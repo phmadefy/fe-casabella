@@ -1,0 +1,170 @@
+<nav
+  class="cb-primary fixed w-full z-20 top-0 left-0 border-b border-cb-secondary"
+>
+  <div
+    class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto h-[70px]"
+  >
+    <div class="flex items-center">
+      <a href="https://flowbite.com/" class="flex items-center mx-2">
+        <!-- <img
+          src="https://flowbite.com/docs/images/logo.svg"
+          class="h-8 mr-3"
+          alt="Flowbite Logo"
+        /> -->
+        <span
+          class="self-center text-xl font-light whitespace-nowrap text-gray-300"
+          >CASA</span
+        >
+        <span
+          class="self-center text-xl font-bold whitespace-nowrap text-cb-base"
+          >BELLA</span
+        >
+      </a>
+
+      <span class="font-semibold text-xs text-orange-400 w-[150px]">
+        Plataforma de Incentivos Exclusiva da Casabella Inspirada no Metaverso
+      </span>
+    </div>
+
+    <div
+      class="items-center justify-between hidden w-full md:flex md:w-auto h-full"
+      id="navbar-sticky"
+    >
+      <div class="h-full">
+        <button
+          id="dropdownMenu"
+          data-dropdown-toggle="dropdownItem1"
+          type="button"
+          data-dropdown-placement="bottom"
+          class="text-cb-base hover:text-cb-info rounded-b-lg hover:font-semibold h-full hover:border-b-8 bg-gradient-cb-border-hover"
+        >
+          Feed
+        </button>
+        <!-- Dropdown menu -->
+        <div
+          id="dropdownItem1"
+          class="z-10 hidden bg-cb-primary divide-y border-[#344A6A] border rounded-lg shadow w-48"
+        >
+          <ul class="py-2 text-sm border-0">
+            <li>
+              <a
+                href="#"
+                class="block px-4 py-2 text-cb-base bg-gradient-cb-hover"
+                >Perfil</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block px-4 py-2 text-cb-base bg-gradient-cb-hover"
+                >Alterar Senha</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block px-4 py-2 text-cb-base bg-gradient-cb-hover"
+                >Termos e Condições</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block px-4 py-2 text-cb-base bg-gradient-cb-hover"
+                >Sair</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <div class="relative">
+        <input
+          type="text"
+          class="block w-[190px] p-2 pr-10 rounded-lg text-sm text-cb-base bg-[#344A6A] placeholder:text-cb-base focus:border-[#21ACBE] focus:text-[#21ACBE] focus:placeholder:text-[#21ACBE]"
+          placeholder="O que você procura?"
+        />
+        <div
+          class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none"
+        >
+          <svg
+            class="w-4 h-4 text-cb-base"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 20 20"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <a
+        id="dropdownProfile"
+        data-dropdown-toggle="dropdown"
+        type="button"
+        data-dropdown-offset-distance="-50"
+        data-dropdown-offset-skidding="80"
+        data-dropdown-placement="left"
+      >
+        <img
+          src="https://flowbite.com/docs/images/logo.svg"
+          class="h-[40px] w-[40px]"
+          alt="Avatar"
+        />
+      </a>
+      <!-- Dropdown menu -->
+      <div
+        id="dropdown"
+        class="z-10 hidden bg-cb-primary divide-y border-[#344A6A] border rounded-lg shadow w-48"
+      >
+        <div class="flex items-center justify-between p-2">
+          <span class="text-gradient-cb">Fernando</span>
+          <img
+            src="https://flowbite.com/docs/images/logo.svg"
+            class="h-[40px] w-[40px]"
+            alt="Avatar"
+          />
+        </div>
+        <ul class="py-2 text-sm border-0">
+          <li>
+            <a
+              href="#"
+              class="block px-4 py-2 text-cb-base bg-gradient-cb-hover"
+              >Perfil</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              class="block px-4 py-2 text-cb-base bg-gradient-cb-hover"
+              >Alterar Senha</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              class="block px-4 py-2 text-cb-base bg-gradient-cb-hover"
+              >Termos e Condições</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              class="block px-4 py-2 text-cb-base bg-gradient-cb-hover"
+              >Sair</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

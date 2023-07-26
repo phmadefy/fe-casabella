@@ -11,7 +11,7 @@ import { initFlowbite } from 'flowbite';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'front-end';
+  title = 'Casa Bella';
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.

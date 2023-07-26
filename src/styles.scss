@@ -2,3 +2,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+// html, body {
+//   background-color: #131E39;
+// }
+
+.text-gradient-cb {
+  @apply font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#20D4E9] to-[#8620BF];
+}
+
+.bg-gradient-cb {
+  @apply bg-gradient-to-r from-[#20D4E9] to-[#8620BF];
+}
+
+.bg-gradient-cb-hover:hover {
+  background-image: linear-gradient(to right, #20d4e9, #8620bf);
+}
+.bg-gradient-cb-border {
+  border-image: linear-gradient(to right, #20d4e9, #8620bf);
+  border-image-slice: 1;
+  border-color: transparent;
+}
+.bg-gradient-cb-border-hover:hover {
+  border-image: linear-gradient(to right, #20d4e9, #8620bf);
+  border-image-slice: 1;
+  border-color: transparent;
+}
