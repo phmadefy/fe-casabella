@@ -30,55 +30,14 @@
       class="items-center justify-between hidden w-full md:flex md:w-auto h-full"
       id="navbar-sticky"
     >
-      <div class="h-full">
-        <button
-          id="dropdownMenu"
-          data-dropdown-toggle="dropdownItem1"
-          type="button"
-          data-dropdown-placement="bottom"
-          class="text-cb-base hover:text-cb-info rounded-b-lg hover:font-semibold h-full hover:border-b-8 bg-gradient-cb-border-hover"
-        >
-          Feed
-        </button>
-        <!-- Dropdown menu -->
-        <div
-          id="dropdownItem1"
-          class="z-10 hidden bg-cb-primary divide-y border-[#344A6A] border rounded-lg shadow w-48"
-        >
-          <ul class="py-2 text-sm border-0">
-            <li>
-              <a
-                href="#"
-                class="block px-4 py-2 text-cb-base bg-gradient-cb-hover"
-                >Perfil</a
-              >
-            </li>
-            <li>
-              <a
-                href="#"
-                class="block px-4 py-2 text-cb-base bg-gradient-cb-hover"
-                >Alterar Senha</a
-              >
-            </li>
-            <li>
-              <a
-                href="#"
-                class="block px-4 py-2 text-cb-base bg-gradient-cb-hover"
-                >Termos e Condições</a
-              >
-            </li>
-            <li>
-              <a
-                href="#"
-                class="block px-4 py-2 text-cb-base bg-gradient-cb-hover"
-                >Sair</a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
+      <ng-container *ngFor="let item of Menu">
+        <ng-container
+          *ngTemplateOutlet="menuH; context: { item }"
+        ></ng-container>
+      </ng-container>
     </div>
 
+    <!-- profile  -->
     <div class="flex items-center gap-2">
       <div class="relative">
         <input
@@ -124,9 +83,11 @@
       <!-- Dropdown menu -->
       <div
         id="dropdown"
-        class="z-10 hidden bg-cb-primary divide-y border-[#344A6A] border rounded-lg shadow w-48"
+        class="z-10 hidden bg-cb-primary border-[#344A6A] border rounded-lg shadow w-48"
       >
-        <div class="flex items-center justify-between p-2">
+        <div
+          class="flex items-center justify-between p-2 border-b border-b-cb-secondary"
+        >
           <span class="text-gradient-cb">Fernando</span>
           <img
             src="https://flowbite.com/docs/images/logo.svg"
@@ -134,37 +95,153 @@
             alt="Avatar"
           />
         </div>
-        <ul class="py-2 text-sm border-0">
+        <ul class="py-2 text-sm font-semibold border-0">
           <li>
             <a
               href="#"
-              class="block px-4 py-2 text-cb-base bg-gradient-cb-hover"
-              >Perfil</a
+              class="block px-2 py-2 text-cb-base bg-gradient-cb-hover"
             >
+              <i class="fa-solid fa-user mr-2"></i> Perfil
+            </a>
           </li>
           <li>
             <a
               href="#"
-              class="block px-4 py-2 text-cb-base bg-gradient-cb-hover"
-              >Alterar Senha</a
+              class="block px-2 py-2 text-cb-base bg-gradient-cb-hover"
             >
+              <i class="fa-solid fa-lock mr-2"></i> Alterar Senha
+            </a>
           </li>
           <li>
             <a
               href="#"
-              class="block px-4 py-2 text-cb-base bg-gradient-cb-hover"
-              >Termos e Condições</a
+              class="block px-2 py-2 text-cb-base bg-gradient-cb-hover"
             >
+              <i class="fa-solid fa-file-lines mr-2"></i> Termos e Condições
+            </a>
           </li>
           <li>
             <a
               href="#"
-              class="block px-4 py-2 text-cb-base bg-gradient-cb-hover"
-              >Sair</a
+              class="block px-2 py-2 text-cb-base bg-gradient-cb-hover"
             >
+              <i class="fa-solid fa-right-from-bracket mr-2"></i> Sair
+            </a>
           </li>
         </ul>
       </div>
     </div>
   </div>
 </nav>
+
+<!-- nivel 1 menu -->
+<ng-template #menuH let-item="item">
+  <div class="h-full" *ngIf="item.items">
+    <button
+      [attr.data-dropdown-toggle]="'dropdown-' + item.id"
+      type="button"
+      data-dropdown-placement="bottom"
+      data-dropdown-offset-distance="-10"
+      class="px-2 text-cb-base rounded-b-lg h-full hover:text-cb-info hover:font-semibold focus:text-cb-info focus:font-semibold border-b-[5px] border-transparent bg-gradient-cb-border-hover"
+    >
+      <i [class]="item.icon + ' mr-3'" *ngIf="item.icon"></i>
+      {{ item.title | titlecase }}
+    </button>
+    <!-- Dropdown menu -->
+    <div
+      [id]="'dropdown-' + item.id"
+      class="z-10 hidden bg-cb-primary border-[#21ACBE] min-w-[250px] border rounded shadow w-48 arrow-up"
+    >
+      <div
+        class="flex items-center justify-between p-3 border-b border-b-cb-secondary"
+        *ngIf="item.subtitle"
+      >
+        <span class="text-sm text-[#21ACBE] font-bold uppercase">
+          {{ item.subtitle }}
+        </span>
+      </div>
+      <ul class="text-sm border-0">
+        <li
+          class="border-b border-b-cb-secondary"
+          *ngFor="let subItem of item.items"
+        >
+          <a
+            href="#"
+            class="flex items-center px-4 py-2 text-cb-base bg-gradient-cb-hover h-11"
+            *ngIf="!subItem.items"
+          >
+            <i [class]="subItem.icon + ' mr-3'" *ngIf="subItem.icon"></i>
+            {{ subItem.title | titlecase }}
+          </a>
+          <ng-container *ngIf="subItem.items">
+            <ng-container
+              *ngTemplateOutlet="menuV; context: { item: subItem }"
+            ></ng-container>
+          </ng-container>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="h-full" *ngIf="!item.items">
+    <button
+      class="px-2 text-cb-base rounded-b-lg h-full hover:text-cb-info hover:font-semibold focus:text-cb-info focus:font-semibold border-b-[5px] border-transparent bg-gradient-cb-border-hover"
+    >
+      <i [class]="item.icon + ' mr-3'" *ngIf="item.icon"></i>
+      {{ item.title | titlecase }}
+    </button>
+  </div>
+</ng-template>
+
+<!-- nivel 2 menu -->
+<ng-template #menuV let-item="item">
+  <div>
+    <button
+      [attr.data-dropdown-toggle]="'dropdown-' + item.id"
+      data-dropdown-placement="right-start"
+      data-dropdown-offset-distance="0"
+      type="button"
+      class="flex items-center justify-between px-4 py-2 text-cb-base bg-gradient-cb-hover w-full"
+    >
+      <span>
+        <i [class]="item.icon + ' mr-3'" *ngIf="item.icon"></i>
+        {{ item.title | titlecase }}
+      </span>
+
+      <svg
+        class="w-2.5 h-2.5 ml-2.5"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 6 10"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="m1 9 4-4-4-4"
+        />
+      </svg>
+    </button>
+    <div
+      [id]="'dropdown-' + item.id"
+      class="z-10 hidden bg-cb-primary border-[#21ACBE] min-w-[250px] border rounded shadow w-48"
+    >
+      <ul class="text-sm text-gray-700 dark:text-gray-200">
+        <li
+          class="border-b border-b-cb-secondary"
+          *ngFor="let subItem of item.items"
+        >
+          <a
+            href="#"
+            class="flex items-center px-4 py-2 text-cb-base bg-gradient-cb-hover"
+            *ngIf="!subItem.items"
+          >
+            <i [class]="subItem.icon + ' mr-3'" *ngIf="subItem.icon"></i>
+            {{ subItem.title | titlecase }}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</ng-template>

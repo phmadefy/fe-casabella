@@ -27,4 +27,39 @@
   border-image: linear-gradient(to right, #20d4e9, #8620bf);
   border-image-slice: 1;
   border-color: transparent;
+  color: #20d4e9;
+}
+
+.arrow-up:before,
+.arrow-up:after {
+  content: "";
+  position: absolute;
+  border: solid transparent;
+  width: 0px;
+  height: 0px;
+  // border-top: 1px solid #20d4e9;
+  // border-right: 0px solid #20d4e9;
+  // border-bottom: 0px solid #20d4e9;
+  // border-left: 1px solid #20d4e9;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  // transform: rotate(45deg);
+  // margin-bottom: -4px;
+  // background: #131e39;
+}
+
+.arrow-up:after {
+  border-color: rgba(40, 213, 127, 0);
+  border-bottom-color: #131e39;
+  border-width: 8px;
+  // margin-bottom: -10px;
+}
+
+.arrow-up:before {
+  border-color: rgba(40, 213, 127, 0);
+  border-bottom-color: #20d4e9;
+  border-width: 10px;
+  // margin-bottom: -10px;
 }
