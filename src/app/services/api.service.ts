@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LoginRequestBody } from '../model/auth.model';
+import { environment } from 'src/environments/environment.development';
 
 
 
@@ -9,7 +10,7 @@ import { LoginRequestBody } from '../model/auth.model';
 })
 export class ApiService {
 
-  private apiUrl = 'https://api-cbella-01.azurewebsites.net';
+  private apiUrl = environment.API;
 
   constructor(private http: HttpClient) { }
 
@@ -23,7 +24,7 @@ export class ApiService {
     return {
       grant_type: 'password',
       client_id: '2',
-      client_secret: 'IfQNgVFKgNb5aj9I9k8XIj5niAx7Koqnii8tBM7y',
+      client_secret: environment.API_KEY,
       username,
       password,
       scope: '*'

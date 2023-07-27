@@ -20,9 +20,10 @@
       Informe seu usuário e senha para acessar
     </p>
     <div class="flex flex-col justify-center w-full pr-12 pl-12">
-      <form class="flex flex-col gap-4">
+      <form class="flex flex-col gap-4" (ngSubmit)="onSubmit()">
         <div class="relative">
           <input
+            formControlName="email"
             type="text"
             id="email"
             class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-cb-base bg-cb-primary rounded-lg border-1 border-cb-secondary appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-cb-secondary peer"
@@ -36,6 +37,7 @@
         </div>
         <div class="relative">
           <input
+            formControlName="password"
             type="password"
             id="password"
             class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-cb-base bg-cb-primary rounded-lg border-1 border-cb-secondary appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-cb-secondary peer"
@@ -54,7 +56,6 @@
               type="checkbox"
               value=""
               class="w-4 h-4 text-cb-info bg-gray-100 border-b-cb-info rounded focus:ring-cb-info dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-              
             />
             <label
               for="remember"
