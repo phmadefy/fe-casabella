@@ -72,12 +72,14 @@
             >
           </div>
           <div class="flex flex-row justify-center items-center">
-            <a
-              href="#"
+            <button
+              (click)="showModal()"
+              data-modal-target="authentication-modal"
+              data-modal-toggle="authentication-modal"
               class="font-medium text-cb-red dark:text-blue-600 hover:underline"
             >
               Esqueceu a senha?
-            </a>
+            </button>
           </div>
         </div>
         <button
@@ -103,3 +105,5 @@
     </div>
   </div>
 </div>
+
+<app-modal></app-modal>
