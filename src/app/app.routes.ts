@@ -24,6 +24,11 @@ export const routes: Routes = [
       import('./cadastro/colaborador/colaborador.component').then((c) => c.ColaboradorComponent),
   },
   {
+    path: 'forgot',
+    loadComponent: () =>
+      import('./components/modal/modal.component').then((c) => c.ModalComponent),
+  },
+  {
     path: 'feed',
     loadComponent: () =>
       import('./layout/base/base.component').then((c) => c.BaseComponent),

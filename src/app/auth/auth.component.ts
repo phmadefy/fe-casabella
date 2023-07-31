@@ -1,29 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, AfterViewInit  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../services/api.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ModalComponent } from '../components/modal/modal.component';
 
 @Component({
   selector: 'app-auth',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, ModalComponent],
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss']
 })
-export class AuthComponent{
+export class AuthComponent implements AfterViewInit{
 
   LoginForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl(''),
     rememberMe: new FormControl(false),
   });
+  @ViewChild('app-modal') modalComponent!: ModalComponent;
 
 
   constructor(private apiService: ApiService, private router: Router){
 
   }
 
+  ngAfterViewInit() {
+    this.showModal();
+  }
+
+  showModal() {
+    if (this.modalComponent) {
+      this.modalComponent.show();
+    }
+  }
 
   onSubmit(){
     const email: string = this.LoginForm.get('email')?.value ?? '';
