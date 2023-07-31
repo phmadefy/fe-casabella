@@ -1,26 +1,34 @@
-<div class="flex flex-row justify-center m-0">
-  <div class="h-screen w-6/12">
+<div
+  class="flex flex-col md:flex-row justify-center m-0 overflow-y-hidden h-screen"
+>
+  <div class="md:w-1/2 md:max-h-screen">
     <img
-      class="bg-center bg-cover"
+      class="w-full h-full object-cover"
       src="../../assets/image-mall.png"
       alt="banner image"
     />
   </div>
 
-  <div class="flex flex-col justify-center w-6/12 p-36 items-center gap-4">
-    <img src="" alt="" />
+  <div
+    class="flex flex-col justify-center w-full md:w-1/2 p-12 md:p-24 items-center"
+  >
+    <img
+      class="w-64 h-40 max-lg:w-40 max-lg:h-28 max-md:w-28 max-md::h-20"
+      src="../../assets/casabella.svg"
+      alt=""
+    />
     <h1
-      class="mb-4 text-3xl font-extrabold leading-none tracking-tight text-white lg:text-2xl text-center dark:text-white"
+      class="font-extrabold my-4 leading-none tracking-tight text-white max-2xl:text-xl text-center dark:text-white"
     >
       Plataforma de Incentivos Exclusiva da Casabella Inspirada no Metaverso
     </h1>
     <p
-      class="mb-6 text-lg font-normal text-white text-center lg:text-lg dark:text-gray-400"
+      class="text-lg font-normal text-white text-center md:text-lg dark:text-gray-400 mb-4"
     >
       Informe seu usuário e senha para acessar
     </p>
-    <div class="flex flex-col justify-center w-full pr-12 pl-12">
-      <form class="flex flex-col gap-4" (ngSubmit)="onSubmit()">
+    <div class="flex flex-col justify-center w-full">
+      <form class="flex flex-col gap-4" [formGroup]="LoginForm">
         <div class="relative">
           <input
             formControlName="email"
@@ -49,7 +57,7 @@
             >Senha</label
           >
         </div>
-        <div class="flex items-start justify-between mb-6 p-1">
+        <div class="flex items-center justify-between mb-6 p-1">
           <div class="flex items-center h-5">
             <input
               id="remember"
@@ -67,23 +75,28 @@
             <a
               href="#"
               class="font-medium text-cb-red dark:text-blue-600 hover:underline"
-              >Esqueceu a senha?</a
             >
+              Esqueceu a senha?
+            </a>
           </div>
         </div>
         <button
           type="submit"
+          (click)="onSubmit()"
           class="text-white bg-gradient-cb bg-gradient-cb-hover focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md w-full h-14 md:w-full px-5 py-2.5 text-center"
         >
           Entrar
         </button>
       </form>
-      <hr class="h-px my-8 bg-cb-secondary border-0 dark:bg-gray-700" />
+      <hr class="h-px my-4 md:my-8 bg-cb-secondary border-0 dark:bg-gray-700" />
       <h1
-        class="mb-4 text-2xl font-extrabold leading-none tracking-tight text-cb-base md:text-base lg:text-lg text-center dark:text-white"
+        class="text-2xl font-extrabold leading-none tracking-tight text-cb-base md:text-base lg:text-lg text-center dark:text-white"
       >
         Não tem conta?
-        <a href="#" class="text-gradient-cb dark:text-blue-500 hover:underline">
+        <a
+          href="/sigup"
+          class="text-gradient-cb dark:text-blue-500 hover:underline"
+        >
           Cadastre-se</a
         >
       </h1>
