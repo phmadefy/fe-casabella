@@ -1,0 +1,160 @@
+<div
+  class="flex flex-col md:flex-row justify-center m-0 overflow-y-hidden h-screen"
+>
+  <div class="flex flex-col justify-center gap-4 items-center">
+    <div class="">
+      <img
+        class="w-40 h-28 max-lg:w-40 max-lg:h-28 max-md:w-28 max-md::h-20"
+        src="../../assets/casabella.svg"
+        alt=""
+      />
+    </div>
+    <div class="flex flex-row justify-center">
+      <nav class="flex" aria-label="Breadcrumb">
+        <ol class="flex items-center">
+          <ng-container *ngFor="let number of [1, 2, 3, 4]; let last = last">
+            <li
+              class="flex justify-center items-center border-2 border-cb-secondary cursor-pointer rounded-full"
+            >
+              <a
+                href="#"
+                class="flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
+              >
+                <span
+                  class="w-10 h-10 rounded-full bg-cb-primary text-white flex items-center justify-center"
+                  >{{ number }}</span
+                >
+              </a>
+            </li>
+            <div
+              *ngIf="!last"
+              class="w-16 h-px bg-cb-info animate-pulse flowbite-transition-opacity"
+            ></div>
+          </ng-container>
+        </ol>
+      </nav>
+    </div>
+    <div>
+      <h1
+        class="mb-4 text-2xl font-extrabold leading-none tracking-tight text-white lg:text-2xl text-center dark:text-white"
+      >
+        Bem vindo, antes de tudo...
+      </h1>
+      <p
+        class="text-sm font-normal text-white text-center md:text-sm dark:text-gray-400 mb-4"
+      >
+        Você pode alterar tudo depois.
+      </p>
+    </div>
+    <div class="px-32">
+      <form class="flex flex-col gap-4">
+        <div class="relative">
+          <input
+            formControlName="nome"
+            type="text"
+            id="nome"
+            class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-cb-base bg-cb-primary rounded-lg border-1 border-cb-secondary appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-cb-secondary peer"
+            placeholder=""
+          />
+          <label
+            for="nome"
+            class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-cb-primary dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-cb-base peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+            >Nome Completo</label
+          >
+        </div>
+        <div class="flex flex-row gap-2 justify-between">
+          <div class="relative w-2/3">
+            <input
+              formControlName="cpf"
+              type="text"
+              id="cpf"
+              class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-cb-base bg-cb-primary rounded-lg border-1 border-cb-secondary appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-cb-secondary peer"
+              placeholder=""
+            />
+            <label
+              for="cpf"
+              class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-cb-primary dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-cb-base peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+              >CPF</label
+            >
+          </div>
+          <div class="relative">
+            <input
+              formControlName="dataNascimento"
+              type="date"
+              id="dataNascimento"
+              class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-cb-base bg-cb-primary rounded-lg border-1 border-cb-secondary appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-cb-secondary peer"
+              placeholder=""
+            />
+            <label
+              for="Data Nascimento"
+              class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-cb-primary dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-cb-base peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+            ></label>
+          </div>
+        </div>
+        <div class="flex flex-row gap-2 justify-between">
+          <div class="relative w-2/3">
+            <input
+              formControlName="email"
+              type="text"
+              id="email"
+              class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-cb-base bg-cb-primary rounded-lg border-1 border-cb-secondary appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-cb-secondary peer"
+              placeholder=""
+            />
+            <label
+              for="email"
+              class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-cb-primary dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-cb-base peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+              >Email</label
+            >
+          </div>
+          <div class="relative">
+            <input
+              formControlName="telefone"
+              type="tel"
+              id="telefone"
+              class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-cb-base bg-cb-primary rounded-lg border-1 border-cb-secondary appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-cb-secondary peer"
+              placeholder=""
+            />
+            <label
+              for="telefone"
+              class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-cb-primary dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-cb-base peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+              >Telefone</label
+            >
+          </div>
+        </div>
+        <div class="flex flex-row gap-2 justify-between">
+          <div class="relative w-2/3">
+            <input
+              formControlName="cidade"
+              type="text"
+              id="cidade"
+              class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-cb-base bg-cb-primary rounded-lg border-1 border-cb-secondary appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-cb-secondary peer"
+              placeholder=""
+            />
+            <label
+              for="cidade"
+              class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-cb-primary dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-cb-base peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+              >Cidade</label
+            >
+          </div>
+          <div class="relative">
+            <input
+              formControlName="uf"
+              type="text"
+              id="uf"
+              class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-cb-base bg-cb-primary rounded-lg border-1 border-cb-secondary appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-cb-secondary peer"
+              placeholder=""
+            />
+            <label
+              for="uf"
+              class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-cb-primary dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-cb-base peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+              >UF</label
+            >
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="absolute mb-4 bottom-0">
+      <a class="underline text-cb-base" href="/">Cancelar e voltar</a>
+    </div>
+  </div>
+</div>

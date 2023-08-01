@@ -1,0 +1,32 @@
+<div class="flex flex-col md:flex-row justify-center m-0 overflow-y-hidden h-screen">
+  <div class="flex flex-col justify-center gap-16 items-center">
+    <div class="">
+      <img class="w-64 h-40 max-lg:w-40 max-lg:h-28 max-md:w-28 max-md::h-20" src="../../assets/casabella.svg" alt="" />
+    </div>
+    <div class="flex flex-col">
+      <h1
+        class="mb-4 text-3xl font-extrabold leading-none tracking-tight text-white lg:text-2xl text-center dark:text-white">
+        Bem vindo, antes de iniciar, precisamos saber:
+      </h1>
+      <div class="flex flex-row justify-center p-4 gap-4">
+
+        <div class="flex justify-center items-center w-52 h-52 border-2 border-white cursor-pointer"
+          (click)="registerDealer()">
+
+
+          <i class="fa-regular fa-handshake"></i>
+          <p class="text-cb-base">Sou revendedor</p>
+
+        </div>
+
+        <div (click)="registerCollaborator()" class="flex justify-center items-center w-52 h-52 border-2 border-white cursor-pointer">
+          <i class="fa-regular fa-handshake"></i>
+          <p class="text-cb-base">Sou Colaborador</p>
+        </div>
+      </div>
+    </div>
+    <div class="absolute mb-4 bottom-0">
+      <a class="underline text-cb-base" href="/">Cancelar e voltar</a>
+    </div>
+  </div>
+</div>
