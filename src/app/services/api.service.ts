@@ -14,18 +14,17 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  login(username: string, password: string) {
-    const requestBody = this.buildLoginRequestBody(username, password);
+  login(email: string, password: string) {
+    const requestBody = this.buildLoginRequestBody(email, password);
     return this.http.post(`${this.apiUrl}/oauth/token/`, requestBody)
   }
 
-  private buildLoginRequestBody(username: string, password: string): LoginRequestBody {
-    console.log('CHEGOU aqui', username, password);
+  private buildLoginRequestBody(email: string, password: string): LoginRequestBody {
     return {
       grant_type: 'password',
       client_id: '2',
       client_secret: environment.API_KEY,
-      username,
+      email,
       password,
       scope: '*'
     };

@@ -1,53 +1,55 @@
 <div
-  class="flex flex-col md:flex-row justify-center m-0 overflow-y-hidden h-screen"
+  class="flex flex-col justify-center items-center m-1 overflow-y-hidden h-screen min-[1024px]:pt-10 pt-4"
 >
-  <div class="flex flex-col justify-center gap-4 items-center">
-    <div class="">
-      <img
-        class="w-40 h-28 max-lg:w-40 max-lg:h-28 max-md:w-28 max-md::h-20"
-        src="../../assets/casabella.svg"
-        alt=""
-      />
-    </div>
-    <div class="flex flex-row justify-center">
-      <nav class="flex" aria-label="Breadcrumb">
-        <ol class="flex items-center">
-          <ng-container *ngFor="let number of [1, 2, 3, 4]; let last = last">
-            <li
-              class="flex justify-center items-center border-2 border-cb-secondary cursor-pointer rounded-full"
+  <div class="max-w-[1024px]:w-28 max-w-[768px]:h-20">
+    <img class="w-40 h-28" src="../../assets/casabella.svg" alt="" />
+  </div>
+  <div
+    class="flex flex-col justify-center pt-5 gap-4 max-w-[768px]:gap-1 max-w-[1024px]:gap-2 items-center"
+  >
+    <div class="flex flex-row justify-center w-full">
+      <ol
+        class="flowbite-step flowbite-step-square flex flex-row justify-center items-center"
+      >
+        <ng-container
+          *ngFor="let step of steps; let i = index; let last = last"
+        >
+          <li
+            [class.flowbite-step-item]="currentStep === i + 1"
+            [class.flowbite-step-blue-500]="currentStep === i + 1"
+            class="flex justify-center items-center border-2 border-cb-secondary cursor-pointer rounded-full"
+          >
+            <span
+              class="flowbite-step-text w-10 h-10 rounded-full bg-cb-primary text-white flex items-center justify-center"
+              >{{ i + 1 }}</span
             >
-              <a
-                href="#"
-                class="flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
-              >
-                <span
-                  class="w-10 h-10 rounded-full bg-cb-primary text-white flex items-center justify-center"
-                  >{{ number }}</span
-                >
-              </a>
-            </li>
-            <div
-              *ngIf="!last"
-              class="w-16 h-px bg-cb-info animate-pulse flowbite-transition-opacity"
-            ></div>
-          </ng-container>
-        </ol>
-      </nav>
+          </li>
+          <div
+            *ngIf="!last"
+            class="w-16 h-px bg-cb-info animate-pulse flowbite-transition-opacity"
+          ></div>
+        </ng-container>
+      </ol>
     </div>
-    <div>
-      <h1
-        class="mb-4 text-2xl font-extrabold leading-none tracking-tight text-white lg:text-2xl text-center dark:text-white"
+
+    <div class="w-full">
+      <form
+        *ngIf="currentStep === 1"
+        class="flex flex-col gap-4 w-[500px] max-md:w-full"
       >
-        Bem vindo, antes de tudo...
-      </h1>
-      <p
-        class="text-sm font-normal text-white text-center md:text-sm dark:text-gray-400 mb-4"
-      >
-        Você pode alterar tudo depois.
-      </p>
-    </div>
-    <div class="px-32">
-      <form class="flex flex-col gap-4">
+        <!-- Passo 1: Formulário de login -->
+        <div>
+          <h1
+            class="mb-4 text-base font-extrabold leading-none tracking-tight text-white lg:text-base text-center dark:text-white"
+          >
+            Bem vindo, antes de tudo...
+          </h1>
+          <p
+            class="text-sm max-2xl:text-xs font-normal text-white text-center md:text-sm dark:text-gray-400 mb-4"
+          >
+            Você pode alterar tudo depois.
+          </p>
+        </div>
         <div class="relative">
           <input
             formControlName="nome"
@@ -63,7 +65,7 @@
           >
         </div>
         <div class="flex flex-row gap-2 justify-between">
-          <div class="relative w-2/3">
+          <div class="relative w-full">
             <input
               formControlName="cpf"
               type="text"
@@ -77,18 +79,19 @@
               >CPF</label
             >
           </div>
-          <div class="relative">
+          <div class="relative w-[54%]">
             <input
               formControlName="dataNascimento"
               type="date"
               id="dataNascimento"
-              class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-cb-base bg-cb-primary rounded-lg border-1 border-cb-secondary appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-cb-secondary peer"
+              class="block pt-4 w-full text-sm text-cb-base bg-cb-primary rounded-lg border-1 border-cb-secondary appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-cb-secondary peer"
               placeholder=""
             />
             <label
               for="Data Nascimento"
-              class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-cb-primary dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-cb-base peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
-            ></label>
+              class="absolute text-base text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-cb-primary dark:bg-gray-900 peer-focus:px-2 peer-focus:text-gray-500 peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-3 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+              >Data Nascimento</label
+            >
           </div>
         </div>
         <div class="flex flex-row gap-2 justify-between">
@@ -151,10 +154,155 @@
             >
           </div>
         </div>
+        <button
+          type="button"
+          class="flowbite-btn flowbite-btn-blue font-medium rounded-lg text-md w-full h-14 md:w-full px-5 py-2.5 text-center text-white bg-gradient-cb bg-gradient-cb-hover"
+          (click)="nextStep()"
+        >
+          Continuar
+        </button>
       </form>
+
+      <!-- Passo 2: Enviar arquivo -->
+      <div *ngIf="currentStep === 2" class="flex flex-col gap-4 w-[450px]">
+        <div>
+          <h1
+            class="mb-4 text-base font-extrabold leading-none tracking-tight text-white lg:text-base text-center dark:text-white"
+          >
+            Fernando, nos envie seu RG ou CNH...
+          </h1>
+          <p
+            class="text-sm max-2xl:text-xs font-normal text-white text-center md:text-sm dark:text-gray-400 mb-4"
+          >
+            Não se preocupe, é seguro e privado.
+          </p>
+        </div>
+
+        <div class="w-full">
+          <label
+            for="fileInput"
+            class="cursor-pointer border-[2px] border-dashed border-cb-info h-[210px] flex flex-col justify-center items-center"
+          >
+            <div class="flex flex-col justify-center items-center">
+              <h2 class="block text-base font-medium text-cb-base">
+                Selecionar Arquivo
+              </h2>
+              <p class="text-cb-secondary">Ou arraste e solte aqui.</p>
+            </div>
+            <input
+              type="file"
+              id="fileInput"
+              class="flowbite-input opacity-0"
+              (change)="onFileSelected($event)"
+              required
+            />
+          </label>
+        </div>
+        <h2 class="text-sm text-center text-cb-base">
+          Obrigatório o envio de documento de identificação, você pode nos
+          enviar o RH ou CNH.
+        </h2>
+        <button
+          type="button"
+          class="flowbite-btn flowbite-btn-blue font-medium rounded-lg text-md w-full h-14 md:w-full px-5 py-2.5 text-center text-white bg-gradient-cb bg-gradient-cb-hover"
+          (click)="nextStep()"
+        >
+          Continuar
+        </button>
+      </div>
+
+      <!-- Passo 3: Foto de Perfil -->
+      <div
+        *ngIf="currentStep === 3"
+        class="flex flex-col justify-center items-center gap-4 w-[450px]"
+      >
+        <!-- Você pode personalizar a interface da foto de perfil aqui -->
+        <div>
+          <h1
+            class="mb-4 text-base font-extrabold leading-none tracking-tight text-white lg:text-base text-center dark:text-white"
+          >
+            Fernando, nos envie seu RG ou CNH...
+          </h1>
+          <p
+            class="text-sm max-2xl:text-xs font-normal text-white text-center md:text-sm dark:text-gray-400 mb-4"
+          >
+            Não se preocupe, é seguro e privado.
+          </p>
+        </div>
+
+        <div class="flex items-center justify-center">
+          <label
+            for="fileInput"
+            class="w-60 cursor-pointer border-[2px] bg-cb-modal rounded-full border-dashed border-cb-info h-60 flex flex-col justify-center items-center"
+          >
+            <input
+              type="file"
+              id="fileInput"
+              class="flowbite-input opacity-0 rounded-full"
+              (change)="onFileSelected($event)"
+              required
+            />
+          </label>
+        </div>
+
+        <h2 class="text-sm text-center text-cb-base">Selecione a sua foto!</h2>
+
+        <button
+          type="button"
+          class="flowbite-btn flowbite-btn-blue font-medium rounded-lg text-md w-full h-14 md:w-full px-5 py-2.5 text-center text-white bg-gradient-cb bg-gradient-cb-hover"
+          (click)="nextStep()"
+        >
+          Continuar
+        </button>
+      </div>
+
+      <!-- Passo 4: Finish -->
+      <div
+        *ngIf="currentStep === 4"
+        class="flex flex-col justify-center items-center gap-4 w-[450px]"
+      >
+        <!-- Você pode personalizar a interface da foto de perfil aqui -->
+
+        <div class="flex items-center justify-center">
+          <label
+            for="fileInput"
+            class="w-60 cursor-pointer border-0 bg-cb-modal rounded-full border-dashed border-cb-info h-60 flex flex-col justify-center items-center"
+          >
+            <input
+              type="file"
+              id="fileInput"
+              class="flowbite-input opacity-0 rounded-full"
+              (change)="onFileSelected($event)"
+              required
+            />
+          </label>
+        </div>
+
+        <div>
+          <h1
+            class="mb-4 text-base font-extrabold leading-none tracking-tight text-white lg:text-base text-center dark:text-white"
+          >
+            Parabéns, Fernando!
+          </h1>
+          <p
+            class="text-sm max-2xl:text-xs font-normal text-white text-center md:text-sm dark:text-gray-400 mb-4"
+          >
+            Você completou seu cadastro, logo te avisaremos quando puder
+            acessar!
+          </p>
+        </div>
+
+        <button
+          type="button"
+          class="flowbite-btn flowbite-btn-blue font-medium rounded-lg text-md w-full h-14 md:w-full px-5 py-2.5 text-center text-white bg-gradient-cb bg-gradient-cb-hover"
+          (click)="nextStep()"
+        >
+          Obrigado
+        </button>
+      </div>
     </div>
-    <div class="absolute mb-4 bottom-0">
-      <a class="underline text-cb-base" href="/">Cancelar e voltar</a>
-    </div>
+  </div>
+  <div class="absolute m-4 -bottom-1">
+    <a class="underline text-cb-base" href="/">Cancelar e voltar</a>
   </div>
 </div>

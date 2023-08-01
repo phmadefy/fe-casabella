@@ -1,7 +1,7 @@
 import { Component, ViewChild, AfterViewInit  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../services/api.service';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalComponent } from '../components/modal/modal.component';
 
@@ -14,16 +14,24 @@ import { ModalComponent } from '../components/modal/modal.component';
 })
 export class AuthComponent implements AfterViewInit{
 
-  LoginForm = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
-    rememberMe: new FormControl(false),
-  });
   @ViewChild('app-modal') modalComponent!: ModalComponent;
 
+  loginForm: FormGroup = new FormGroup({
+    email: new FormControl(null),
+    password: new FormControl(null)
+  });
 
-  constructor(private apiService: ApiService, private router: Router){
 
+
+  constructor(private apiService: ApiService, private router: Router, private formBuilder: FormBuilder){
+
+  }
+
+  ngOnInit() {
+    this.loginForm = this.formBuilder.group({
+      email: [null],
+      password: [null]
+    })
   }
 
   ngAfterViewInit() {
@@ -37,28 +45,21 @@ export class AuthComponent implements AfterViewInit{
   }
 
   onSubmit(){
-    const email: string = this.LoginForm.get('email')?.value ?? '';
-    const password: string = this.LoginForm.get('password')?.value ?? '';
 
-    if (!email || typeof email !== 'string') {
-      alert('Por favor, insira um email válido.');
-      return;
-    }
-
-    console.log("CHEGOU AQUI",email, password);
+    const email = this.loginForm.get('email')?.value;
+    const password = this.loginForm.get('password')?.value;
 
     this.apiService.login(email, password).subscribe(
       response => {
         alert('Login successful');
-        console.log('Acesso Realizado com sucesso!', response)
-
-        this.router.navigate(['/feed']); //
+        console.log('Acesso Realizado com sucesso!', response);
+        this.router.navigate(['/feed']);
       },
       error => {
         console.error('Login failed!', error);
         alert('Login failed!');
       }
-    )
+    );
   }
 
 
