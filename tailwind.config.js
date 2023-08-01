@@ -10,6 +10,7 @@ module.exports = {
       "cb-secondary": "#344A6A",
       "cb-base": "#F7F7F7",
       "cb-info": "#21ACBE",
+      "cb-success": "#4CAF50",
     },
   },
   plugins: [require("flowbite/plugin")],

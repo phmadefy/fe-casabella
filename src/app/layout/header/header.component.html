@@ -1,5 +1,5 @@
 <nav
-  class="cb-primary fixed w-full z-20 top-0 left-0 border-b border-cb-secondary"
+  class="bg-cb-primary fixed w-full z-20 top-0 left-0 border-b border-cb-secondary"
 >
   <div
     class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto h-[70px]"
@@ -160,7 +160,7 @@
           {{ item.subtitle }}
         </span>
       </div>
-      <ul class="text-sm border-0">
+      <ul class="text-sm border-0 overflow-y-auto max-h-screen">
         <li
           class="border-b border-b-cb-secondary"
           *ngFor="let subItem of item.items"
@@ -227,19 +227,28 @@
       [id]="'dropdown-' + item.id"
       class="z-10 hidden bg-cb-primary border-[#21ACBE] min-w-[250px] border rounded shadow w-48"
     >
-      <ul class="text-sm text-gray-700 dark:text-gray-200">
+      <ul class="text-sm text-gray-700 dark:text-gray-200 overflow-y-auto max-h-screen">
         <li
           class="border-b border-b-cb-secondary"
           *ngFor="let subItem of item.items"
         >
-          <a
-            href="#"
-            class="flex items-center px-4 py-2 text-cb-base bg-gradient-cb-hover"
-            *ngIf="!subItem.items"
-          >
-            <i [class]="subItem.icon + ' mr-3'" *ngIf="subItem.icon"></i>
-            {{ subItem.title | titlecase }}
-          </a>
+          <ng-container *ngIf="!subItem.items">
+            <a
+              href="#"
+              class="flex items-center px-4 py-2 text-cb-base bg-gradient-cb-hover"
+              *ngIf="subItem.route"
+            >
+              <i [class]="subItem.icon + ' mr-3'" *ngIf="subItem.icon"></i>
+              {{ subItem.title | titlecase }}
+            </a>
+            <span
+              class="flex items-center px-4 py-2 text-gradient-cb"
+              *ngIf="!subItem.route"
+            >
+              <i [class]="subItem.icon + ' mr-3'" *ngIf="subItem.icon"></i>
+              {{ subItem.title | titlecase }}
+            </span>
+          </ng-container>
         </li>
       </ul>
     </div>
