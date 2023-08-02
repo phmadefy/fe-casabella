@@ -34,12 +34,15 @@ export class ColaboradorComponent {
       email: [null],
       telefone: [null],
       cidade: [null],
-      uf: [null]
+      uf: [null],
+      setor: [null],
+      cargo: [null],
     })
   }
 
   submitForm(): void {
     const formData = this.colabForm.value;
+    console.log("test form", formData)
     this.apiService.signupFormColab(formData).subscribe(
       (response) => {
         console.log('Resposta da API:', response);
@@ -53,7 +56,6 @@ export class ColaboradorComponent {
 
   nextStep(): void {
     if (this.currentStep < 5) {
-      this.submitForm();
       this.currentStep++;
     }
   }
@@ -66,6 +68,15 @@ export class ColaboradorComponent {
 
   onFileSelected(event: any): void {
     this.fileToUpload = event.target.files.item(0);
+  }
+
+  isStepCompleted(step: number): boolean {
+    return this.currentStep >= step;
+  }
+
+  finish(): void {
+    this.submitForm();
+
   }
 
 }

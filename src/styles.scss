@@ -8,12 +8,40 @@
 //   background-color: #131E39;
 // }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0px 1000px #131E39 inset;
+  box-shadow: 0 0 0px 1000px #131E39 inset;
+  transition: background-color 5000s ease-in-out 0s;
+  color: white;
+}
+
 .text-gradient-cb {
   @apply font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#20D4E9] to-[#8620BF];
 }
 
 .bg-gradient-cb {
   @apply bg-gradient-to-r from-[#20D4E9] to-[#8620BF];
+}
+
+.step-completed {
+  background-color: #20d4e9; /* Cor para os steps concluídos */
+}
+
+.step-current {
+  background-color: #20d4e9; /* Cor da linha para o step atual */
+}
+
+.step-line {
+  background-color: #344A6A; /* Cor da linha padrão */
 }
 
 .bg-gradient-cb-hover:hover {
