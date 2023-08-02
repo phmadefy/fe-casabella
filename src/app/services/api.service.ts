@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { LoginRequestBody } from '../model/auth.model';
+import { LoginRequestBody, ResetRequestBody } from '../model/auth.model';
 import { environment } from 'src/environments/environment.development';
+import { ColaboradorFormData } from '../model/signup.model';
 
 
 
@@ -16,17 +17,49 @@ export class ApiService {
 
   login(email: string, password: string) {
     const requestBody = this.buildLoginRequestBody(email, password);
-    return this.http.post(`${this.apiUrl}/oauth/token/`, requestBody)
+    return this.http.post(`${this.apiUrl}/oauth/token`, requestBody)
+  }
+
+  resetPassword(email: string) {
+    const requestBody = this.buildResetRequestBody(email);
+    return this.http.post(`${this.apiUrl}/v1/forgot-password`, requestBody)
+
+  }
+
+  signupFormColab(formData: any) {
+    const requestBody = this.buildFormColab(formData);
+    return this.http.post(`${this.apiUrl}/v1/register`, requestBody);
+
   }
 
   private buildLoginRequestBody(email: string, password: string): LoginRequestBody {
     return {
-      grant_type: 'password',
-      client_id: '2',
+      grant_type: "password",
+      client_id: "2",
       client_secret: environment.API_KEY,
-      email,
-      password,
-      scope: '*'
+      username: email,
+      password: password,
+      scope: "*"
+    };
+  }
+
+  private buildResetRequestBody(email: string): ResetRequestBody {
+    return {
+      email: email,
+    };
+  }
+
+  private buildFormColab(formData: ColaboradorFormData) {
+    return {
+      name: formData.name,
+      cpf: formData.cpf,
+      dataNasc: formData.dataNasc,
+      email: formData.email,
+      phone: formData.telefone,
+      cidade: formData.cidade,
+      uf: formData.uf,
+      setor: formData.setor,
+      cargo: formData.cargo,
     };
   }
 }

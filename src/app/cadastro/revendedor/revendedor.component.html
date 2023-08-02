@@ -184,6 +184,7 @@
             class="cursor-pointer border-[2px] border-dashed border-cb-info h-[210px] flex flex-col justify-center items-center"
           >
             <div class="flex flex-col justify-center items-center">
+              <i class="fa-solid fa-file-arrow-up text-[4rem] text-cb-info"></i>
               <h2 class="block text-base font-medium text-cb-base">
                 Selecionar Arquivo
               </h2>
@@ -192,7 +193,7 @@
             <input
               type="file"
               id="fileInput"
-              class="flowbite-input opacity-0"
+              class="flowbite-input opacity-0 hidden"
               (change)="onFileSelected($event)"
               required
             />
@@ -216,7 +217,6 @@
         *ngIf="currentStep === 3"
         class="flex flex-col justify-center items-center gap-4 w-[450px]"
       >
-        <!-- Você pode personalizar a interface da foto de perfil aqui -->
         <div>
           <h1
             class="mb-4 text-base font-extrabold leading-none tracking-tight text-white lg:text-base text-center dark:text-white"
@@ -235,10 +235,11 @@
             for="fileInput"
             class="w-60 cursor-pointer border-[2px] bg-cb-modal rounded-full border-dashed border-cb-info h-60 flex flex-col justify-center items-center"
           >
+            <i class="fa-regular fa-images text-[5rem] text-gradient-cb"></i>
             <input
               type="file"
               id="fileInput"
-              class="flowbite-input opacity-0 rounded-full"
+              class="flowbite-input opacity-0 rounded-full hidden"
               (change)="onFileSelected($event)"
               required
             />
@@ -261,17 +262,16 @@
         *ngIf="currentStep === 4"
         class="flex flex-col justify-center items-center gap-4 w-[450px]"
       >
-        <!-- Você pode personalizar a interface da foto de perfil aqui -->
-
         <div class="flex items-center justify-center">
           <label
             for="fileInput"
-            class="w-60 cursor-pointer border-0 bg-cb-modal rounded-full border-dashed border-cb-info h-60 flex flex-col justify-center items-center"
+            class="w-60 cursor-pointer border-0 bg-gradient-cb rounded-full border-dashed border-cb-info h-60 flex flex-col justify-center items-center"
           >
+            <i class="fa-solid fa-check text-[5rem] text-cb-base"></i>
             <input
               type="file"
               id="fileInput"
-              class="flowbite-input opacity-0 rounded-full"
+              class="flowbite-input opacity-0 rounded-full hidden"
               (change)="onFileSelected($event)"
               required
             />
@@ -295,7 +295,7 @@
         <button
           type="button"
           class="flowbite-btn flowbite-btn-blue font-medium rounded-lg text-md w-full h-14 md:w-full px-5 py-2.5 text-center text-white bg-gradient-cb bg-gradient-cb-hover"
-          (click)="nextStep()"
+          (click)="finish()"
         >
           Obrigado
         </button>
