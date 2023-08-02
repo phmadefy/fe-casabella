@@ -5,32 +5,50 @@ import { ColaboradorComponent } from './cadastro/colaborador/colaborador.compone
 export const routes: Routes = [
   {
     path: '',
+    redirectTo: 'feed',
+    pathMatch: 'full',
+  },
+  {
+    path: 'auth',
     loadComponent: () =>
       import('./auth/auth.component').then((c) => c.AuthComponent),
   },
   {
     path: 'sigup',
     loadComponent: () =>
-      import('./pages/sigup/sigup.component').then((c) => c.SigupComponent)
+      import('./pages/sigup/sigup.component').then((c) => c.SigupComponent),
   },
   {
     path: 'register-dealer',
     loadComponent: () =>
-      import('./cadastro/revendedor/revendedor.component').then((c) => c.RevendedorComponent),
+      import('./cadastro/revendedor/revendedor.component').then(
+        (c) => c.RevendedorComponent
+      ),
   },
   {
     path: 'register-collaborator',
     loadComponent: () =>
-      import('./cadastro/colaborador/colaborador.component').then((c) => c.ColaboradorComponent),
+      import('./cadastro/colaborador/colaborador.component').then(
+        (c) => c.ColaboradorComponent
+      ),
   },
   {
     path: 'forgot',
     loadComponent: () =>
-      import('./components/modal/modal.component').then((c) => c.ModalComponent),
+      import('./components/modal/modal.component').then(
+        (c) => c.ModalComponent
+      ),
   },
   {
     path: 'feed',
     loadComponent: () =>
       import('./layout/base/base.component').then((c) => c.BaseComponent),
+    children: [
+      {
+        path: 'feed',
+        loadComponent: () =>
+          import('./pages/feed/feed.component').then((c) => c.FeedComponent),
+      },
+    ],
   },
 ];

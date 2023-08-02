@@ -11,6 +11,7 @@ module.exports = {
       "cb-red": "#DD1650",
       "cb-base": "#F7F7F7",
       "cb-info": "#21ACBE",
+      "cb-success": "#4CAF50",
       "cb-modal": "#162446",
     },
   },
