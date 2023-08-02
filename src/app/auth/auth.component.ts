@@ -48,6 +48,7 @@ export class AuthComponent implements AfterViewInit{
 
     const email = this.loginForm.get('email')?.value;
     const password = this.loginForm.get('password')?.value;
+    console.log('Acesso Realizado com sucesso!', email, password);
 
     this.apiService.login(email, password).subscribe(
       response => {
@@ -57,7 +58,7 @@ export class AuthComponent implements AfterViewInit{
       },
       error => {
         console.error('Login failed!', error);
-        alert('Login failed!');
+        alert('Não foi possivel fazer o login!');
       }
     );
   }

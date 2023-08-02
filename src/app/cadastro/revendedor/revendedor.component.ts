@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-revendedor',
@@ -9,6 +10,10 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./revendedor.component.scss']
 })
 export class RevendedorComponent {
+
+  constructor(private router: Router){
+
+  }
 
   currentStep = 1;
   fileToUpload: File | null = null;
@@ -30,6 +35,12 @@ export class RevendedorComponent {
 
   onFileSelected(event: any): void {
     this.fileToUpload = event.target.files.item(0);
+  }
+
+  finish(): void {
+
+    this.router.navigate(['/feed']);
+
   }
 
 }
