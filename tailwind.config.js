@@ -13,6 +13,7 @@ module.exports = {
       "cb-info": "#21ACBE",
       "cb-success": "#4CAF50",
       "cb-modal": "#162446",
+      "cb-hover-signup": "#F10B4E"
     },
   },
   plugins: [require("flowbite/plugin")],
