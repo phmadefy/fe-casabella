@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { LoginRequestBody } from '../model/auth.model';
+import { LoginRequestBody } from '../models/auth.model';
 import { environment } from 'src/environments/environment.development';
 
 

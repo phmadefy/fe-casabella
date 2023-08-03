@@ -5,7 +5,7 @@ import { ColaboradorComponent } from './cadastro/colaborador/colaborador.compone
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'feed',
+    redirectTo: 'profile',
     pathMatch: 'full',
   },
   {
@@ -38,6 +38,11 @@ export const routes: Routes = [
       import('./components/modal/modal.component').then(
         (c) => c.ModalComponent
       ),
+  },
+  {
+    path: 'profile',
+    loadComponent: () =>
+      import('./pages/profile/profile.component').then((c) => c.ProfileComponent),
   },
   {
     path: 'feed',

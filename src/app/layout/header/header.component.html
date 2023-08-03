@@ -98,7 +98,7 @@
         <ul class="py-2 text-sm font-semibold border-0">
           <li>
             <a
-              href="#"
+              href="/profile"
               class="block px-2 py-2 text-cb-base bg-gradient-cb-hover"
             >
               <i class="fa-solid fa-user mr-2"></i> Perfil
@@ -227,7 +227,9 @@
       [id]="'dropdown-' + item.id"
       class="z-10 hidden bg-cb-primary border-[#21ACBE] min-w-[250px] border rounded shadow w-48"
     >
-      <ul class="text-sm text-gray-700 dark:text-gray-200 overflow-y-auto max-h-screen">
+      <ul
+        class="text-sm text-gray-700 dark:text-gray-200 overflow-y-auto max-h-screen"
+      >
         <li
           class="border-b border-b-cb-secondary"
           *ngFor="let subItem of item.items"
