@@ -45,7 +45,7 @@ export const routes: Routes = [
       import('./layout/base/base.component').then((c) => c.BaseComponent),
     children: [
       {
-        path: 'feed',
+        path: '',
         loadComponent: () =>
           import('./pages/feed/feed.component').then((c) => c.FeedComponent),
       },

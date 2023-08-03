@@ -3,7 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 // html, body {
 //   background-color: #131E39;
 // }
@@ -18,8 +17,8 @@ select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
   -webkit-text-fill-color: white;
-  -webkit-box-shadow: 0 0 0px 1000px #131E39 inset;
-  box-shadow: 0 0 0px 1000px #131E39 inset;
+  -webkit-box-shadow: 0 0 0px 1000px #131e39 inset;
+  box-shadow: 0 0 0px 1000px #131e39 inset;
   transition: background-color 5000s ease-in-out 0s;
   color: white;
 }
@@ -41,7 +40,7 @@ select:-webkit-autofill:focus {
 }
 
 .step-line {
-  background-color: #344A6A; /* Cor da linha padrão */
+  background-color: #344a6a; /* Cor da linha padrão */
 }
 
 .bg-gradient-cb-hover:hover {
@@ -91,4 +90,12 @@ select:-webkit-autofill:focus {
   border-bottom-color: #20d4e9;
   border-width: 10px;
   // margin-bottom: -10px;
+}
+
+.activeMenu {
+  @apply text-cb-info font-semibold;
+}
+
+.activeItem {
+  @apply bg-gradient-cb;
 }

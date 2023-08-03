@@ -143,6 +143,7 @@
       data-dropdown-placement="bottom"
       data-dropdown-offset-distance="-10"
       class="px-2 text-cb-base rounded-b-lg h-full hover:text-cb-info hover:font-semibold focus:text-cb-info focus:font-semibold border-b-[5px] border-transparent bg-gradient-cb-border-hover"
+      routerLinkActive="activeMenu"
     >
       <i [class]="item.icon + ' mr-3'" *ngIf="item.icon"></i>
       {{ item.title | titlecase }}
@@ -168,6 +169,7 @@
           <a
             href="#"
             class="flex items-center px-4 py-2 text-cb-base bg-gradient-cb-hover h-11"
+            [routerLink]="[subItem.route]" routerLinkActive="activeItem"
             *ngIf="!subItem.items"
           >
             <i [class]="subItem.icon + ' mr-3'" *ngIf="subItem.icon"></i>
@@ -185,6 +187,8 @@
   <div class="h-full" *ngIf="!item.items">
     <button
       class="px-2 text-cb-base rounded-b-lg h-full hover:text-cb-info hover:font-semibold focus:text-cb-info focus:font-semibold border-b-[5px] border-transparent bg-gradient-cb-border-hover"
+      [routerLink]="[item.route]"
+      routerLinkActive="activeMenu"
     >
       <i [class]="item.icon + ' mr-3'" *ngIf="item.icon"></i>
       {{ item.title | titlecase }}
@@ -227,7 +231,9 @@
       [id]="'dropdown-' + item.id"
       class="z-10 hidden bg-cb-primary border-[#21ACBE] min-w-[250px] border rounded shadow w-48"
     >
-      <ul class="text-sm text-gray-700 dark:text-gray-200 overflow-y-auto max-h-screen">
+      <ul
+        class="text-sm text-gray-700 dark:text-gray-200 overflow-y-auto max-h-screen"
+      >
         <li
           class="border-b border-b-cb-secondary"
           *ngFor="let subItem of item.items"
