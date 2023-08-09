@@ -1,45 +1,43 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { LoginRequestBody, ResetRequestBody } from '../model/auth.model';
 import { environment } from 'src/environments/environment.development';
-import { ColaboradorFormData } from '../model/signup.model';
-
-
+import { LoginRequestBody, ResetRequestBody } from '../models/auth.model';
+import { ColaboradorFormData } from '../models/signup.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiService {
-
   private apiUrl = environment.API;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   login(email: string, password: string) {
     const requestBody = this.buildLoginRequestBody(email, password);
-    return this.http.post(`${this.apiUrl}/oauth/token`, requestBody)
+    return this.http.post(`${this.apiUrl}/oauth/token`, requestBody);
   }
 
   resetPassword(email: string) {
     const requestBody = this.buildResetRequestBody(email);
-    return this.http.post(`${this.apiUrl}/v1/forgot-password`, requestBody)
-
+    return this.http.post(`${this.apiUrl}/v1/forgot-password`, requestBody);
   }
 
   signupFormColab(formData: any) {
     const requestBody = this.buildFormColab(formData);
     return this.http.post(`${this.apiUrl}/v1/register`, requestBody);
-
   }
 
-  private buildLoginRequestBody(email: string, password: string): LoginRequestBody {
+  private buildLoginRequestBody(
+    email: string,
+    password: string
+  ): LoginRequestBody {
     return {
-      grant_type: "password",
-      client_id: "2",
+      grant_type: 'password',
+      client_id: '2',
       client_secret: environment.API_KEY,
       username: email,
       password: password,
-      scope: "*"
+      scope: '*',
     };
   }
 
