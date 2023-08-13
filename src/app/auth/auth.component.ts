@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { ModalComponent } from '../components/modal/modal.component';
 import { AuthService } from '../services/auth.service';
 import { SpinnerComponent } from '../components/spinner/spinner.component';
+import { Store } from '@ngrx/store';
+import { Login } from '../core/actions/auth.action';
 
 @Component({
   selector: 'app-auth',
@@ -18,7 +20,11 @@ export class AuthComponent implements AfterViewInit {
 
   loading = false;
 
-  constructor(private service: AuthService, private router: Router) {}
+  constructor(
+    private service: AuthService,
+    private router: Router,
+    private store: Store
+  ) {}
 
   ngOnInit() {}
 
@@ -44,6 +50,8 @@ export class AuthComponent implements AfterViewInit {
       .login(form.value)
       .then((res) => {
         console.log('res', res);
+        this.store.dispatch(new Login({ token: res.access_token }));
+        this.router.navigate(['/']);
       })
       .finally(() => (this.loading = false));
   }

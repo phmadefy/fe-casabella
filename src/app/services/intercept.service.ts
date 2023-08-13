@@ -13,6 +13,7 @@ import { tap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { Logout } from '../core/actions/auth.action';
 import { AppState } from '../core/reducers';
+import { MessageService } from './message.service';
 
 @Injectable()
 export class InterceptService implements HttpInterceptor {
@@ -20,7 +21,8 @@ export class InterceptService implements HttpInterceptor {
 
   constructor(
     private store: Store<AppState>,
-    private router: Router // private message: MessageService
+    private router: Router,
+    private messageService: MessageService
   ) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -41,9 +43,6 @@ export class InterceptService implements HttpInterceptor {
         Authorization: `Bearer ${localStorage.getItem(environment.token)}`,
       },
     });
-    // console.log('----request----');
-    // console.log(request);
-    // console.log('--- end of request---');
 
     return next.handle(request).pipe(
       tap(
@@ -51,7 +50,7 @@ export class InterceptService implements HttpInterceptor {
           if (event instanceof HttpResponse) {
             // console.log('event intercept', event);
             if (event.status == 201) {
-              // this.message.toastSuccess(event.body.message, '');
+              this.messageService.toastSuccess(event.body.message, '');
             }
           }
         },
@@ -59,7 +58,7 @@ export class InterceptService implements HttpInterceptor {
           if (error.status == 0) {
             // this.message.alertNet();
           } else if (error.status == 401) {
-            // this.message.toastError(error.error.message);
+            this.messageService.toastError(error.error.message);
 
             // this.modalCtrl.dismissAll();
 
@@ -76,7 +75,7 @@ export class InterceptService implements HttpInterceptor {
               message = error.error.message;
             }
 
-            // this.message.toastError(message, 'Falha na requisição');
+            this.messageService.toastError(message, 'Falha na requisição');
           }
         }
       )

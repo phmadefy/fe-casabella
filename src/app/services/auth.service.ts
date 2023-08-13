@@ -14,12 +14,12 @@ export class AuthService {
 
   login(dados: any): Promise<any> {
     const requestBody = this.buildLoginRequestBody(dados.email, dados.password);
-    return lastValueFrom(this.http.post(`${this.base_url}/oauth/token`, dados));
+    return lastValueFrom(this.http.post(`${this.base_url}/oauth/token`, requestBody));
   }
 
   getUserByToken(queryParams: any = {}): Promise<any> {
     return lastValueFrom(
-      this.http.get(`${this.base_url}/v1/me`, { params: queryParams })
+      this.http.post(`${this.base_url}/v1/me`, { params: queryParams })
     );
   }
 
