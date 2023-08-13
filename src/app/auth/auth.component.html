@@ -43,19 +43,26 @@
           >
         </div> -->
         <input-floating
+          class="p-0 bg-transparent border-none"
           id="email"
           label="E-mail:"
           ngModel="email"
           name="email"
-          [isRequired]="true"
+          type="email"
+          required
+          email
+          [form]="form"
         ></input-floating>
 
         <input-floating
+          class="p-0 bg-transparent border-none"
           id="password"
           label="Senha:"
           ngModel="password"
           name="password"
-          [isRequired]="true"
+          type="password"
+          required
+          [form]="form"
         ></input-floating>
 
         <div class="flex items-center justify-between mb-6 p-1">

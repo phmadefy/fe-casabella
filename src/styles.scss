@@ -3,7 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'ngx-toastr/toastr';
+@import "ngx-toastr/toastr";
 
 // html, body {
 //   background-color: #131E39;
@@ -100,4 +100,14 @@ select:-webkit-autofill:focus {
 
 .activeItem {
   @apply bg-gradient-cb;
+}
+
+.is-invalid {
+  label {
+    @apply text-cb-red;
+  }
+
+  input {
+    @apply border-cb-red;
+  }
 }
