@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment.development';
 import { LoginRequestBody, ResetRequestBody } from '../models/auth.model';
 import { ColaboradorFormData } from '../models/signup.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  private apiUrl = environment.API;
+  private apiUrl = environment.url;
 
   constructor(private http: HttpClient) {}
 
@@ -34,7 +34,7 @@ export class ApiService {
     return {
       grant_type: 'password',
       client_id: '2',
-      client_secret: environment.API_KEY,
+      client_secret: environment.api_key,
       username: email,
       password: password,
       scope: '*',

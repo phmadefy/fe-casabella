@@ -1,38 +1,26 @@
-import { Component, ViewChild, AfterViewInit  } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ApiService } from '../services/api.service';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalComponent } from '../components/modal/modal.component';
+import { AuthService } from '../services/auth.service';
+import { SpinnerComponent } from '../components/spinner/spinner.component';
 
 @Component({
   selector: 'app-auth',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, ModalComponent],
+  imports: [CommonModule, FormsModule, ModalComponent, SpinnerComponent],
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.scss']
+  styleUrls: ['./auth.component.scss'],
 })
-export class AuthComponent implements AfterViewInit{
-
+export class AuthComponent implements AfterViewInit {
   @ViewChild('app-modal') modalComponent!: ModalComponent;
 
-  loginForm: FormGroup = new FormGroup({
-    email: new FormControl(null),
-    password: new FormControl(null)
-  });
+  loading = false;
 
+  constructor(private service: AuthService, private router: Router) {}
 
-
-  constructor(private apiService: ApiService, private router: Router, private formBuilder: FormBuilder){
-
-  }
-
-  ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      email: [null],
-      password: [null]
-    })
-  }
+  ngOnInit() {}
 
   ngAfterViewInit() {
     this.showModal();
@@ -44,24 +32,19 @@ export class AuthComponent implements AfterViewInit{
     }
   }
 
-  onSubmit(){
+  onSubmit(form: NgForm) {
+    console.log(form);
 
-    const email = this.loginForm.get('email')?.value;
-    const password = this.loginForm.get('password')?.value;
-    console.log('Acesso Realizado com sucesso!', email, password);
+    if (!form.valid) {
+      return;
+    }
 
-    this.apiService.login(email, password).subscribe(
-      response => {
-        alert('Login successful');
-        console.log('Acesso Realizado com sucesso!', response);
-        this.router.navigate(['/feed']);
-      },
-      error => {
-        console.error('Login failed!', error);
-        alert('Não foi possivel fazer o login!');
-      }
-    );
+    this.loading = true;
+    this.service
+      .login(form.value)
+      .then((res) => {
+        console.log('res', res);
+      })
+      .finally(() => (this.loading = false));
   }
-
-
 }

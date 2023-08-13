@@ -1,7 +1,5 @@
-<div
-  class="flex flex-col md:flex-row justify-center m-0 overflow-y-hidden h-screen"
->
-  <div class="md:w-1/2 md:max-h-screen">
+<div class="grid md:grid-cols-2 m-0 h-screen">
+  <div class="h-screen hidden md:block">
     <img
       class="w-full h-full object-cover"
       src="../../assets/image-mall.png"
@@ -9,14 +7,10 @@
     />
   </div>
 
-  <div
-    class="flex flex-col justify-center w-full md:w-1/2 p-12 md:p-24 items-center"
-  >
-    <img
-      class="w-64 h-40 max-lg:w-40 max-lg:h-28 max-md:w-28 max-md::h-20"
-      src="../../assets/casabella.svg"
-      alt=""
-    />
+  <div class="h-full overflow-y-auto py-6 px-10">
+    <div class="flex justify-center">
+      <img class="w-1/2 md:w-1/3" src="assets/casabella.svg" alt="" />
+    </div>
     <h1
       class="font-extrabold my-4 leading-none tracking-tight text-white max-2xl:text-xl text-center dark:text-white"
     >
@@ -28,37 +22,43 @@
       Informe seu usuário e senha para acessar
     </p>
     <div class="flex flex-col justify-center w-full">
-      <form class="flex flex-col gap-4" [formGroup]="loginForm">
+      <form
+        #form="ngForm"
+        (ngSubmit)="onSubmit(form)"
+        class="flex flex-col gap-4"
+      >
         <div class="relative">
           <input
-            formControlName="email"
-            type="text"
+            ngModel="email"
+            name="email"
+            type="email"
             id="email"
             class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-cb-base bg-cb-primary rounded-lg border-1 border-cb-secondary appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-cb-secondary peer autofill:shadow-cb-primary"
-            placeholder=""
+            placeholder=" "
           />
           <label
             for="email"
-            class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-cb-primary dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-cb-base peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+            class="absolute text-sm text-gray-300 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-cb-primary dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-cb-base peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
             >E-mail</label
           >
         </div>
         <div class="relative">
           <input
-            formControlName="password"
+            ngModel="password"
+            name="password"
             type="password"
             id="password"
             class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-cb-base bg-cb-primary rounded-lg border-1 border-cb-secondary appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-cb-secondary peer"
-            placeholder=""
+            placeholder=" "
           />
           <label
             for="password"
-            class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-cb-primary dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-cb-base peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+            class="absolute text-sm text-gray-300 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-cb-primary dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-cb-base peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
             >Senha</label
           >
         </div>
         <div class="flex items-center justify-between mb-6 p-1">
-          <div class="flex items-center h-5">
+          <div class="flex items-center">
             <input
               id="remember"
               type="checkbox"
@@ -84,15 +84,16 @@
         </div>
         <button
           type="submit"
-          (click)="onSubmit()"
           class="text-white bg-gradient-cb bg-gradient-cb-hover focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md w-full h-14 md:w-full px-5 py-2.5 text-center"
         >
-          Entrar
+          <spinner *ngIf="loading"></spinner>
+          <span *ngIf="!loading">Entrar</span>
         </button>
       </form>
+
       <hr class="h-px my-4 md:my-8 bg-cb-secondary border-0 dark:bg-gray-700" />
       <h1
-        class="text-2xl font-extrabold leading-none tracking-tight text-cb-base md:text-base lg:text-lg text-center dark:text-white"
+        class="lg:text-xl font-extrabold leading-none tracking-tight text-cb-base md:text-base text-center dark:text-white"
       >
         Não tem conta?
         <a
@@ -106,4 +107,4 @@
   </div>
 </div>
 
-<app-modal></app-modal>
+<!-- <app-modal></app-modal> -->

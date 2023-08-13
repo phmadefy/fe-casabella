@@ -11,8 +11,8 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { tap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
-import { AppState } from '@capacitor/app';
 import { Logout } from '../core/actions/auth.action';
+import { AppState } from '../core/reducers';
 
 @Injectable()
 export class InterceptService implements HttpInterceptor {

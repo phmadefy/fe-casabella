@@ -1,13 +1,28 @@
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { provideHttpClient } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 
 import { routes } from './app.routes';
-import { ModalComponent } from './components/modal/modal.component';
-import { provideStore } from '@ngrx/store';
-import { provideEffects } from '@ngrx/effects';
-import { provideRouterStore } from '@ngrx/router-store';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { reducers, metaReducers } from './core/reducers';
+import { authReducer } from './core/reducers/auth.reducers';
+import { AuthEffects } from './core/effects/auth.effect';
+import { InterceptService } from './services/intercept.service';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideHttpClient(), [ModalComponent], provideStore(), provideEffects(), provideRouterStore()]
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptService, multi: true },
+    provideRouter(routes),
+    provideHttpClient(withInterceptorsFromDi()),
+    importProvidersFrom(
+      StoreModule.forRoot(reducers, { metaReducers }),
+      StoreModule.forFeature('auth', authReducer),
+      EffectsModule.forRoot([AuthEffects])
+    ),
+  ],
 };
