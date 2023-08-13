@@ -7,11 +7,18 @@ import { AuthService } from '../services/auth.service';
 import { SpinnerComponent } from '../components/spinner/spinner.component';
 import { Store } from '@ngrx/store';
 import { Login } from '../core/actions/auth.action';
+import { InputFloatingComponent } from '../components/input-floating/input-floating.component';
 
 @Component({
   selector: 'app-auth',
   standalone: true,
-  imports: [CommonModule, FormsModule, ModalComponent, SpinnerComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ModalComponent,
+    SpinnerComponent,
+    InputFloatingComponent,
+  ],
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss'],
 })

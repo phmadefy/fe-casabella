@@ -14,7 +14,9 @@ export class AuthService {
 
   login(dados: any): Promise<any> {
     const requestBody = this.buildLoginRequestBody(dados.email, dados.password);
-    return lastValueFrom(this.http.post(`${this.base_url}/oauth/token`, requestBody));
+    return lastValueFrom(
+      this.http.post(`${this.base_url}/oauth/token`, requestBody)
+    );
   }
 
   getUserByToken(queryParams: any = {}): Promise<any> {
