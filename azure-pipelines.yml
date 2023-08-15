@@ -36,10 +36,19 @@ stages:
       displayName: 'Install Node.js'
 
     - script: |
+        cd AngularWithAzure/
         npm install -g @angular/cli
         npm install
-        npm build
+        npm build --prod
       displayName: 'npm install, build'
+      workingDirectory: '$(Build.SourcesDirectory)'
+
+    - task: CmdLine@2
+      displayName: "Run unit tests"
+      inputs:
+        script: |
+          cd AngularWithAzure/
+          ng test --browsers=ChromeHeadless --code-coverage --watch=false
 
     - task: ArchiveFiles@2
       displayName: 'Archive files'
