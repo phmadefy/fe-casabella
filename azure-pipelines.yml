@@ -20,3 +20,12 @@ steps:
     npm install
     ng build 
   displayName: 'npm install and build'
+  
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Microsoft Partner Network (c3bae6a9-77cd-43c7-9d70-f4dd753a0d9d)'
+    appType: 'webAppLinux'
+    WebAppName: 'portalcbella'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    RuntimeStack: 'NODE|18-lts'
