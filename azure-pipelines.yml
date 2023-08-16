@@ -38,7 +38,7 @@ stages:
     - script: |
         npm install -g @angular/cli
         npm install
-        npm run build:prod
+        ng build
       displayName: 'npm install, build and test'
 
     - task: ArchiveFiles@2
