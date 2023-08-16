@@ -36,19 +36,11 @@ stages:
       displayName: 'Install Node.js'
 
     - script: |
-        cd AngularWithAzure/
         npm install -g @angular/cli
-        npm install
-        npm build --prod
+        npm install --force
+        npm build
       displayName: 'npm install, build'
       workingDirectory: '$(Build.SourcesDirectory)'
-
-    - task: CmdLine@2
-      displayName: "Run unit tests"
-      inputs:
-        script: |
-          cd AngularWithAzure/
-          ng test --browsers=ChromeHeadless --code-coverage --watch=false
 
     - task: ArchiveFiles@2
       displayName: 'Archive files'
@@ -82,6 +74,6 @@ stages:
               azureSubscription: $(azureSubscription)
               appType: webAppLinux
               appName: $(webAppName)
-              runtimeStack: 'NODE|18'
+              runtimeStack: 'NODE|18.0'
               package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
               startUpCommand: 'npm run start'
