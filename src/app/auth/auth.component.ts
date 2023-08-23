@@ -1,7 +1,7 @@
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ModalComponent } from '../components/modal/modal.component';
 import { AuthService } from '../services/auth.service';
 import { SpinnerComponent } from '../components/spinner/spinner.component';
@@ -18,6 +18,7 @@ import { InputFloatingComponent } from '../components/input-floating/input-float
     ModalComponent,
     SpinnerComponent,
     InputFloatingComponent,
+    RouterLink,
   ],
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss'],

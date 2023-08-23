@@ -15,6 +15,8 @@ import { AuthEffects } from './core/effects/auth.effect';
 import { InterceptService } from './services/intercept.service';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideToastr } from 'ngx-toastr';
+import { provideEnvironmentNgxMask } from 'ngx-mask';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -23,10 +25,12 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptorsFromDi()),
     provideAnimations(), // required animations providers
     provideToastr(), // Toastr providers
+    provideEnvironmentNgxMask(),
     importProvidersFrom(
       StoreModule.forRoot(reducers, { metaReducers }),
       StoreModule.forFeature('auth', authReducer),
-      EffectsModule.forRoot([AuthEffects])
+      EffectsModule.forRoot([AuthEffects]),
+      NgxDropzoneModule
     ),
   ],
 };

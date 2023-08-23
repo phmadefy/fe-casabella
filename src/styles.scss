@@ -38,7 +38,7 @@ select:-webkit-autofill:focus {
 }
 
 .step-current {
-  background-color: #20d4e9; /* Cor da linha para o step atual */
+  background-color: #2bb8c9; /* Cor da linha para o step atual */
 }
 
 .step-line {
@@ -110,4 +110,12 @@ select:-webkit-autofill:focus {
   input {
     @apply border-cb-red;
   }
+}
+
+.btn-default {
+  @apply font-medium rounded-lg w-full h-14 md:w-full px-5 py-2.5 text-center;
+}
+
+.btn-default:disabled {
+  opacity: 0.7;
 }

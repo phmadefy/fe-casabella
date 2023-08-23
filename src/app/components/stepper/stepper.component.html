@@ -1,0 +1,21 @@
+<ol
+  class="flowbite-step flowbite-step-square flex flex-row justify-center items-center"
+>
+  <ng-container *ngFor="let step of steps; let i = index; let last = last">
+    <li
+      [class.flowbite-step-item]="currentStep === i + 1"
+      [class.flowbite-step-blue-500]="currentStep === i + 1"
+      class="flex justify-center items-center border-2 border-cb-secondary cursor-pointer rounded-full"
+    >
+      <span
+        [ngClass]="{ 'step-current font-semibold': currentStep === i }"
+        class="flowbite-step-text w-10 h-10 rounded-full bg-cb-primary text-white flex items-center justify-center"
+        >{{ i + 1 }}</span
+      >
+    </li>
+    <div
+      *ngIf="!last"
+      class="w-16 h-px bg-cb-info animate-pulse flowbite-transition-opacity"
+    ></div>
+  </ng-container>
+</ol>
