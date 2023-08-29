@@ -92,7 +92,6 @@ export class ColaboradorComponent {
       formData.append('attachments[]', file);
     }
 
-    console.log('formData', formData);
     this.loading = true;
     this.service
       .create(formData)

@@ -93,6 +93,30 @@
 
       <div class="grid grid-cols-2 gap-2 mb-3">
         <input-floating
+          class="col-span-2 p-0 bg-transparent border-none"
+          label="Senha:"
+          model="password"
+          [(ngModel)]="dados.password"
+          name="password"
+          type="password"
+          required
+          [form]="form1"
+        ></input-floating>
+
+        <input-floating
+          class="col-span-2 p-0 bg-transparent border-none"
+          label="Confirme a Senha:"
+          model="passwordConfirm"
+          [(ngModel)]="dados.passwordConfirm"
+          name="passwordConfirm"
+          type="password"
+          required
+          [form]="form1"
+        ></input-floating>
+      </div>
+
+      <div class="grid grid-cols-2 gap-2 mb-3">
+        <input-floating
           class="p-0 bg-transparent border-none"
           label="Cidade:"
           model="cidade"
