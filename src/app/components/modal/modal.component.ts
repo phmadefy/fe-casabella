@@ -46,16 +46,16 @@ export class ModalComponent {
 
     const emailReset = this.resetForm.get('email')?.value;
 
-    this.apiService.resetPassword(emailReset).subscribe(
-      response => {
-        alert('Login successful');
-        console.log('Acesso Realizado com sucesso!', response);
-      },
-      error => {
-        console.error('Email não encontrado!', error);
-        alert('Não foi possivel resetar a senha!');
-      }
-    );
+    // this.apiService.resetPassword(emailReset).subscribe(
+    //   response => {
+    //     alert('Login successful');
+    //     console.log('Acesso Realizado com sucesso!', response);
+    //   },
+    //   error => {
+    //     console.error('Email não encontrado!', error);
+    //     alert('Não foi possivel resetar a senha!');
+    //   }
+    // );
   }
 
   ngAfterViewInit() {

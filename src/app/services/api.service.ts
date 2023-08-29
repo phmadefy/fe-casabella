@@ -1,63 +1,60 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { LoginRequestBody, ResetRequestBody } from '../models/auth.model';
-import { ColaboradorFormData } from '../models/signup.model';
 import { environment } from 'src/environments/environment';
+import { lastValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  private apiUrl = environment.url;
+  path = '';
 
   constructor(private http: HttpClient) {}
 
-  login(email: string, password: string) {
-    const requestBody = this.buildLoginRequestBody(email, password);
-    return this.http.post(`${this.apiUrl}/oauth/token`, requestBody);
+  getBaseUrl() {
+    return `${environment.url}/${this.path}`;
   }
 
-  resetPassword(email: string) {
-    const requestBody = this.buildResetRequestBody(email);
-    return this.http.post(`${this.apiUrl}/v1/forgot-password`, requestBody);
+  listing(queryParams: any = {}): Promise<any> {
+    return lastValueFrom(
+      this.http.get(`${this.getBaseUrl()}`, { params: queryParams })
+    );
+  }
+  create(data: any): Promise<any> {
+    return lastValueFrom(this.http.post(`${this.getBaseUrl()}`, data));
+  }
+  show(id: any): Promise<any> {
+    return lastValueFrom(this.http.get(`${this.getBaseUrl()}/${id}`));
+  }
+  update(data: any, id: any): Promise<any> {
+    return lastValueFrom(this.http.put(`${this.getBaseUrl()}/${id}`, data));
+  }
+  delete(id: any): Promise<any> {
+    return lastValueFrom(this.http.delete(`${this.getBaseUrl()}/${id}`));
   }
 
-  signupFormColab(formData: any) {
-    const requestBody = this.buildFormColab(formData);
-    return this.http.post(`${this.apiUrl}/v1/register`, requestBody);
+  getCustom(path: string, dados: any = {}): Promise<any> {
+    return lastValueFrom(
+      this.http.get(`${environment.url}/${path}`, { params: dados })
+    );
   }
 
-  private buildLoginRequestBody(
-    email: string,
-    password: string
-  ): LoginRequestBody {
-    return {
-      grant_type: 'password',
-      client_id: '2',
-      client_secret: environment.api_key,
-      username: email,
-      password: password,
-      scope: '*',
-    };
+  postCustom(path: string, dados: any = {}): Promise<any> {
+    return lastValueFrom(this.http.post(`${environment.url}/${path}`, dados));
+  }
+  updateCustom(path: string, dados: any = {}): Promise<any> {
+    return lastValueFrom(this.http.put(`${environment.url}/${path}`, dados));
+  }
+  deleteCustom(path: string, dados: any = {}): Promise<any> {
+    return lastValueFrom(this.http.delete(`${environment.url}/${path}`, dados));
   }
 
-  private buildResetRequestBody(email: string): ResetRequestBody {
-    return {
-      email: email,
-    };
-  }
-
-  private buildFormColab(formData: ColaboradorFormData) {
-    return {
-      name: formData.name,
-      cpf: formData.cpf,
-      dataNasc: formData.dataNasc,
-      email: formData.email,
-      phone: formData.telefone,
-      cidade: formData.cidade,
-      uf: formData.uf,
-      setor: formData.setor,
-      cargo: formData.cargo,
-    };
+  async getByCep(cep: string) {
+    if (cep.length < 8) {
+      return;
+    }
+    cep = cep.replace(/\D/g, '');
+    const result = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+    return await result.json();
   }
 }

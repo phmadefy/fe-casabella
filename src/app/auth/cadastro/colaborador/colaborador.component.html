@@ -119,22 +119,20 @@
         <input-floating
           class="p-0 bg-transparent border-none"
           label="Setor:"
-          model="setor"
-          [(ngModel)]="dados.setor"
-          name="setor"
+          model="department"
+          [(ngModel)]="dados.department"
+          name="department"
           type="select"
-          required
           [form]="form1"
         ></input-floating>
 
         <input-floating
           class="p-0 bg-transparent border-none"
           label="Cargo:"
-          model="cargo"
-          [(ngModel)]="dados.cargo"
-          name="cargo"
+          model="role"
+          [(ngModel)]="dados.role"
+          name="role"
           type="select"
-          required
           [form]="form1"
         ></input-floating>
       </div>
@@ -143,6 +141,7 @@
         type="button"
         class="btn-default text-white bg-gradient-cb bg-gradient-cb-hover mt-2"
         (click)="nextStep()"
+        [disabled]="!form1.valid || loading"
       >
         Continuar
       </button>
@@ -176,6 +175,7 @@
         type="button"
         class="font-medium rounded-lg text-md w-full h-14 md:w-full px-5 py-2.5 text-center text-white bg-gradient-cb bg-gradient-cb-hover"
         (click)="nextStep()"
+        [disabled]="loading"
       >
         Continuar
       </button>
@@ -199,27 +199,36 @@
       <div class="flex items-center justify-center py-2">
         <label
           for="fileInput"
-          class="w-48 h-48 cursor-pointer border-[2px] bg-cb-modal rounded-full border-dashed border-cb-info flex flex-col justify-center items-center"
+          class="w-48 h-48 overflow-hidden cursor-pointer border-[2px] bg-cb-modal rounded-full border-dashed border-cb-info flex flex-col justify-center items-center"
         >
-          <i class="fa-regular fa-images text-[5rem] text-gradient-cb"></i>
+          <i
+            class="fa-regular fa-images text-[5rem] text-gradient-cb"
+            *ngIf="!dados.avatar"
+          ></i>
+          <img
+            class="w-full h-full"
+            [src]="dados.avatar"
+            *ngIf="dados.avatar"
+            alt="avatar"
+          />
           <input
             type="file"
             id="fileInput"
             class="flowbite-input opacity-0 rounded-full hidden"
-            (change)="onFileSelected($event)"
+            (change)="changeAvatar($event)"
             required
           />
         </label>
       </div>
 
-      <h2 class="text-sm text-center text-cb-base py-2">
+      <h2 class="text-sm text-center text-cb-base py-3">
         Selecione a sua foto!
       </h2>
 
       <button
         type="button"
         class="font-medium rounded-lg text-md w-full h-14 md:w-full px-5 py-2.5 text-center text-white bg-gradient-cb bg-gradient-cb-hover"
-        (click)="nextStep()"
+        (click)="finish()"
       >
         Continuar
       </button>
@@ -259,7 +268,7 @@
       <button
         type="button"
         class="font-medium rounded-lg text-md w-full h-14 md:w-full px-5 py-2.5 text-center text-white bg-pink-600 hover:bg-pink-700"
-        (click)="finish()"
+        routerLink="/auth"
       >
         Obrigado
       </button>
