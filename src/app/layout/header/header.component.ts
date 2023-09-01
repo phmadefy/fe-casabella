@@ -20,7 +20,7 @@ export class HeaderComponent {
         {
           id: 'feed-pg-inicial',
           title: 'Página Inicial',
-          route: '',
+          route: '/feed',
           icon: '',
         },
         {

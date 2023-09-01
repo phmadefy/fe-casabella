@@ -1,0 +1,97 @@
+<!-- Main modal -->
+<div
+  id="modalNFTDetail"
+  tabindex="-1"
+  aria-hidden="true"
+  class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
+>
+  <div class="relative w-full max-w-4xl max-h-full">
+    <!-- Modal content -->
+    <div
+      class="flex relative bg-cb-primary rounded-lg overflow-hidden shadow border border-cb-secondary"
+    >
+      <img src="assets/nft1.jpg" alt="nft" class="w-3/5" />
+      <div class="relative text-white p-4 w-full">
+        <h2 class="text-xl font-bold my-2">Macaco com chiclete</h2>
+        <i
+          class="fa-solid fa-xmark absolute right-3 top-3 text-cb-secondary hover:text-cb-base cursor-pointer"
+          data-modal-hide="modalNFTDetail"
+        ></i>
+
+        <div class="flex justify-between items-center my-1">
+          <h2 class="flex gap-2 items-center">
+            <i class="fa-solid fa-user text-cb-secondary"></i>
+            <span class="text-cb-info text-sm">@nomedousuário</span>
+          </h2>
+
+          <button
+            type="button"
+            class="text-xs text-gradient-cb !font-normal hover:text-cb-info focus:z-10"
+          >
+            <i class="fa-solid fa-paper-plane mr-2"></i>
+            <span class="text-cb-base hover:text-cb-info">Enviar mensagem</span>
+          </button>
+        </div>
+
+        <div class="flex items-end gap-4">
+          <btn-like></btn-like>
+          <span class="text-sm pb-1">Curtido por 94 pessoas</span>
+        </div>
+
+        <div class="w-full border-b border-cb-secondary my-3"></div>
+
+        <div class="text-sm">
+          <p>Criador por: <strong>casabella</strong></p>
+          <p>
+            descrição descrição descrição descriçãodescriçãodescrição descrição
+            descrição
+          </p>
+          <p>
+            descrição descrição descrição descriçãodescriçãodescrição descrição
+            descrição
+          </p>
+          <p>
+            descrição descrição descrição descriçãodescriçãodescrição descrição
+            descrição
+          </p>
+          <p>
+            descrição descrição descrição descriçãodescriçãodescrição descrição
+            descrição
+          </p>
+          <p>
+            descrição descrição descrição descriçãodescriçãodescrição descrição
+            descrição
+          </p>
+        </div>
+
+        <div class="w-full border-b border-cb-secondary my-3"></div>
+
+        <div class="text-sm">
+          <p><strong>Classificação 1:</strong> Música, rock</p>
+          <p><strong>Classificação 2:</strong> Música, rock</p>
+          <p><strong>Classificação 3:</strong> Música, rock</p>
+          <p><strong>Tipo:</strong> Tipo 1, Tipo 2</p>
+        </div>
+
+        <div class="w-full border-b border-cb-secondary my-3"></div>
+
+        <div>
+          <p class="text-orange-400 italic text-sm">
+            Vinculado à campanha de incentivo de Páscoa
+          </p>
+        </div>
+
+        <div class="w-full border-b border-cb-secondary my-3"></div>
+
+        <div>
+          <button
+            type="submit"
+            class="text-white bg-gradient-cb bg-gradient-cb-hover focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md w-full md:w-full px-5 py-2.5 text-center"
+          >
+            Transferir
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

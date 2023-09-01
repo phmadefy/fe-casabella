@@ -1,0 +1,42 @@
+<button
+  type="button"
+  data-dropdown-toggle="drop-like"
+  data-dropdown-trigger="hover"
+  data-dropdown-delay="200"
+  data-dropdown-placement="top"
+  class="focus:z-10 ring-0"
+  [ngClass]="{
+    'text-cb-info font-semibold': active,
+    'text-cb-secondary': !active
+  }"
+>
+  <i class="fa-solid fa-thumbs-up text-2xl mr-2"></i>
+  <span>{{ active ? "Curtiu" : "Curtir" }}</span>
+</button>
+<div
+  id="drop-like"
+  class="z-10 hidden bg-cb-secondary divide-y divide-gray-100 rounded-full shadow w-auto py-2 px-4"
+>
+  <div class="flex gap-2 items-center justify-center">
+    <button class="rounded-full bg-cb-info">
+      <i class="fa-solid fa-thumbs-up text-2xl mr-2"></i>
+    </button>
+
+    <button class="rounded-full bg-red-500 text-white">
+      <i class="fa-solid fa-heart text-2xl mr-2"></i>
+    </button>
+
+    <button>
+      <i class="fa-solid fa-face-laugh text-2xl mr-2 text-yellow-500"></i>
+    </button>
+
+    <button>
+      <i class="fa-solid fa-face-grin-hearts text-2xl mr-2"></i>
+    </button>
+
+    <button>
+      <i class="fa-solid fa-face-grin-hearts text-2xl mr-2"></i>
+    </button>
+  </div>
+  <div class="tooltip-arrow" data-popper-arrow></div>
+</div>
