@@ -17,14 +17,15 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideToastr } from 'ngx-toastr';
 import { provideEnvironmentNgxMask } from 'ngx-mask';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { DialogModule } from '@angular/cdk/dialog';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptService, multi: true },
     provideRouter(routes),
     provideHttpClient(withInterceptorsFromDi()),
-    provideAnimations(), // required animations providers
-    provideToastr(), // Toastr providers
+    provideAnimations(),
+    provideToastr(),
     provideEnvironmentNgxMask(),
     importProvidersFrom(
       StoreModule.forRoot(reducers, { metaReducers }),

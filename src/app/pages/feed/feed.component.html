@@ -1,8 +1,7 @@
 <div class="flex gap-3 border border-cb-secondary overflow-x-auto rounded p-4">
   <app-nft-card
     [nft]="{ src: 'assets/nft1.jpg' }"
-    data-modal-target="modalNFTDetail"
-    data-modal-toggle="modalNFTDetail"
+    (click)="openModalNFT()"
   ></app-nft-card>
   <app-nft-card [nft]="{ src: 'assets/nft2.jpg' }"></app-nft-card>
   <app-nft-card [nft]="{ src: 'assets/nft3.jpg' }"></app-nft-card>
@@ -15,5 +14,3 @@
   <app-nft-card [nft]="{ src: 'assets/nft4.jpg' }"></app-nft-card>
   <app-nft-card [nft]="{ src: 'assets/nft4.jpg' }"></app-nft-card>
 </div>
-
-<modal-nft-detail></modal-nft-detail>
