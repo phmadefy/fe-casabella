@@ -1,7 +1,6 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -43,6 +42,15 @@
 // html, body {
 //   background-color: #131E39;
 // }
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -151,9 +159,42 @@ select:-webkit-autofill:focus {
   @apply font-medium rounded-lg w-full h-14 md:w-full px-5 py-2.5 text-center;
 }
 
-.btn-default:disabled {
+.btn-default:disabled,
+.btn:disabled {
   opacity: 0.7;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.card {
+  @apply border rounded-lg border-cb-secondary;
+}
+.card-header {
+  @apply text-cb-base border-b border-cb-secondary p-4;
+}
+
+.card-footer {
+  @apply text-cb-base border-t border-cb-secondary p-4;
+}
+
+.divider {
+  @apply border-b border-cb-secondary py-2;
+}
+
+.btn {
+  @apply focus:ring-2 focus:outline-none focus:ring-cb-secondary font-medium rounded-md text-center border border-cb-secondary;
+}
+
+.btn-sm {
+  @apply px-3 py-1 text-sm;
+}
+
+.btn-md {
+  @apply px-4 py-2;
+}
+
+.btn-lg {
+  @apply px-5 py-2.5 text-lg;
+}
+
+.btn-xl {
+  @apply px-6 py-3 text-xl;
+}

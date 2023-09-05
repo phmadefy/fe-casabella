@@ -23,7 +23,7 @@ export class FeedComponent {
     const dialogRef = this.dialog.open<any>(ModalNftDetailComponent, {
       width: '95%',
       maxWidth: '850px',
-      height: '95%',
+      height: '90%',
     });
 
     dialogRef.closed.subscribe((result) => {

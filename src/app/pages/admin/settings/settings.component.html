@@ -1,0 +1,230 @@
+<form #form="ngForm">
+  <div class="card">
+    <div class="card-header">
+      <h2 class="text-lg font-semibold">Configurações do Sistema</h2>
+    </div>
+
+    <div class="p-4">
+      <div class="mb-3">
+        <input-inline
+          class="p-0 bg-transparent border-none w-full"
+          model="TaxaTransferenciaUsuarios"
+          label="Taxa de transferência entre usuários (%):"
+          [(ngModel)]="dados.TaxaTransferenciaUsuarios"
+          name="TaxaTransferenciaUsuarios"
+          type="currency"
+          required
+          [form]="form"
+          [optionsCurrency]="{
+            align: 'left',
+            prefix: ' ',
+            suffix: ' %',
+            thousands: '.',
+            decimal: ',',
+            precision: 2,
+          }"
+        ></input-inline>
+      </div>
+
+      <div class="mb-3">
+        <input-inline
+          class="p-0 bg-transparent border-none w-full"
+          model="CotacaoFloral"
+          label="Cotação do Floral (F$):"
+          [(ngModel)]="dados.CotacaoFloral"
+          name="CotacaoFloral"
+          type="currency"
+          required
+          [form]="form"
+          [optionsCurrency]="{
+            align: 'left',
+            prefix: 'F$ ',
+            thousands: '.',
+            decimal: ',',
+            precision: 4,
+          }"
+        ></input-inline>
+      </div>
+
+      <div class="mb-3">
+        <input-inline
+          class="p-0 bg-transparent border-none w-full"
+          model="TaxaDescontoCompraFloral"
+          label="Taxa Desconto Compra Floral (%):"
+          [(ngModel)]="dados.TaxaDescontoCompraFloral"
+          name="TaxaDescontoCompraFloral"
+          type="currency"
+          required
+          [form]="form"
+          [optionsCurrency]="{
+            align: 'left',
+            prefix: ' ',
+            suffix: ' %',
+            thousands: '.',
+            decimal: ',',
+            precision: 2,
+          }"
+        ></input-inline>
+      </div>
+
+      <div class="mb-3">
+        <input-inline
+          class="p-0 bg-transparent border-none w-full"
+          model="CotacaoFloralColaborador"
+          label="Cotação do Floral para Colaborador (R$):"
+          [(ngModel)]="dados.CotacaoFloralColaborador"
+          name="CotacaoFloralColaborador"
+          type="currency"
+          required
+          [form]="form"
+          [optionsCurrency]="{
+            align: 'left',
+            prefix: 'R$ ',
+            suffix: '',
+            thousands: '.',
+            decimal: ',',
+            precision: 4,
+          }"
+        ></input-inline>
+      </div>
+
+      <div class="mb-3">
+        <input-inline
+          class="p-0 bg-transparent border-none w-full"
+          model="ValorizacaoFloralCicloAnterior"
+          label="Valorização do Floral x Ciclo anterior (%):"
+          [(ngModel)]="dados.ValorizacaoFloralCicloAnterior"
+          name="ValorizacaoFloralCicloAnterior"
+          type="currency"
+          required
+          [form]="form"
+          [optionsCurrency]="{
+            align: 'left',
+            prefix: ' ',
+            suffix: ' %',
+            thousands: '.',
+            decimal: ',',
+            precision: 4,
+          }"
+        ></input-inline>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="p-4">
+      <div class="mb-3">
+        <input-inline
+          class="p-0 bg-transparent border-none w-full"
+          model="FraseExibidaMenu"
+          label="Frase Exibida no Menu:"
+          [(ngModel)]="dados.FraseExibidaMenu"
+          name="FraseExibidaMenu"
+          type="text"
+          required
+          [form]="form"
+        ></input-inline>
+      </div>
+
+      <div class="mb-3">
+        <input-inline
+          class="p-0 bg-transparent border-none w-full"
+          model="ImagemAnimadaMenu"
+          label="Imagem Animada no Menu (52 x 64):"
+          [(ngModel)]="dados.ImagemAnimadaMenu"
+          name="ImagemAnimadaMenu"
+          type="text"
+          required
+          [form]="form"
+        ></input-inline>
+      </div>
+
+      <div class="mb-3">
+        <input-inline
+          class="p-0 bg-transparent border-none w-full"
+          model="LinkRedirecionamentoGif"
+          label="Link de direcionamento Imagem GIF:"
+          [(ngModel)]="dados.LinkRedirecionamentoGif"
+          name="LinkRedirecionamentoGif"
+          type="text"
+          required
+          [form]="form"
+        ></input-inline>
+      </div>
+
+      <div class="mb-3">
+        <input-inline
+          class="p-0 bg-transparent border-none w-full"
+          model="LinkRedirecionamentoGif"
+          label="Link de direcionamento Imagem GIF:"
+          [(ngModel)]="dados.LinkRedirecionamentoGif"
+          name="LinkRedirecionamentoGif"
+          type="text"
+          required
+          [form]="form"
+        ></input-inline>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="p-4">
+      <div class="mb-3">
+        <input-inline
+          class="p-0 bg-transparent border-none w-full"
+          model="FraseExibidaTelaLogin"
+          label="Frase Exibida na Tela de Login:"
+          [(ngModel)]="dados.FraseExibidaTelaLogin"
+          name="FraseExibidaTelaLogin"
+          type="text"
+          required
+          [form]="form"
+        ></input-inline>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="p-4">
+      <div class="mb-3">
+        <input-inline
+          class="p-0 bg-transparent border-none w-full"
+          model="ImagemOuVideoTelaLogin"
+          label="Imagem ou vídeo na Tela de Login:"
+          [(ngModel)]="dados.ImagemOuVideoTelaLogin"
+          name="ImagemOuVideoTelaLogin"
+          type="text"
+          required
+          [form]="form"
+        ></input-inline>
+      </div>
+
+      <div class="mb-3">
+        <input-inline
+          class="p-0 bg-transparent border-none w-full"
+          model="LinkRedirecionamentoTelaLogin"
+          label="Link de direcionamento Tela de Login:"
+          [(ngModel)]="dados.LinkRedirecionamentoTelaLogin"
+          name="LinkRedirecionamentoTelaLogin"
+          type="text"
+          required
+          [form]="form"
+        ></input-inline>
+      </div>
+    </div>
+
+    <div class="card-footer flex items-center gap-3">
+      <button
+        class="btn btn-sm text-white bg-gradient-cb bg-gradient-cb-hover"
+        (click)="save()"
+        [disabled]="loading"
+      >
+        <spinner *ngIf="loading" />
+        <span *ngIf="!loading">Salvar</span>
+      </button>
+      <button class="btn btn-sm text-white" [disabled]="loading">
+        Cancelar
+      </button>
+    </div>
+  </div>
+</form>
