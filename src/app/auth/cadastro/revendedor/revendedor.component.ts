@@ -9,7 +9,6 @@ import { UFs } from 'src/app/shared/properties';
 import { ToolsService } from 'src/app/services/tools.service';
 import { ApiService } from 'src/app/services/api.service';
 import { ComboboxComponent } from 'src/app/components/combobox/combobox.component';
-import { NgSelectModule } from '@ng-select/ng-select';
 
 @Component({
   selector: 'app-revendedor',
@@ -22,7 +21,6 @@ import { NgSelectModule } from '@ng-select/ng-select';
     DropzoneComponent,
     RouterLink,
     ComboboxComponent,
-    NgSelectModule,
   ],
   templateUrl: './revendedor.component.html',
   styleUrls: ['./revendedor.component.scss'],
@@ -38,7 +36,8 @@ export class RevendedorComponent {
 
   files: File[] = [];
 
-  optionsUF = UFs;
+  optionsStates: any[] = [];
+  optionsCities: any[] = [];
 
   loading = false;
 
@@ -50,7 +49,9 @@ export class RevendedorComponent {
     service.path = 'v1/register';
   }
 
-  ngOnInit() {}
+  async ngOnInit() {
+    this.optionsStates = await this.tools.getStates();
+  }
 
   nextStep(): void {
     if (this.currentStep < 4) {
@@ -97,5 +98,9 @@ export class RevendedorComponent {
         this.nextStep();
       })
       .finally(() => (this.loading = false));
+  }
+
+  async getCities(uf: string) {
+    this.optionsCities = await this.tools.getCities(uf);
   }
 }

@@ -15,6 +15,7 @@ import { DropzoneComponent } from 'src/app/components/dropzone/dropzone.componen
 import { Router } from '@angular/router';
 import { ToolsService } from 'src/app/services/tools.service';
 import { UFs } from 'src/app/shared/properties';
+import { ComboboxComponent } from 'src/app/components/combobox/combobox.component';
 
 @Component({
   selector: 'app-colaborador',
@@ -26,6 +27,7 @@ import { UFs } from 'src/app/shared/properties';
     StepperComponent,
     InputFloatingComponent,
     DropzoneComponent,
+    ComboboxComponent,
   ],
   templateUrl: './colaborador.component.html',
   styleUrls: ['./colaborador.component.scss'],
@@ -36,11 +38,12 @@ export class ColaboradorComponent {
 
   steps = Array(4).fill(0);
 
-  dados: any = { is_collaborator: true };
+  dados: any = { address: {}, is_collaborator: true };
 
   files: File[] = [];
 
-  optionsUF = UFs;
+  optionsStates: any[] = [];
+  optionsCities: any[] = [];
 
   loading = false;
 
@@ -52,7 +55,9 @@ export class ColaboradorComponent {
     service.path = 'v1/register';
   }
 
-  ngOnInit() {}
+  async ngOnInit() {
+    this.optionsStates = await this.tools.getStates();
+  }
 
   nextStep(): void {
     if (this.currentStep < 4) {
@@ -99,5 +104,9 @@ export class ColaboradorComponent {
         this.nextStep();
       })
       .finally(() => (this.loading = false));
+  }
+
+  async getCities(uf: string) {
+    this.optionsCities = await this.tools.getCities(uf);
   }
 }

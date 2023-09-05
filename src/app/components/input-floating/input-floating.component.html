@@ -1,4 +1,7 @@
-<div class="relative" [ngClass]="{ 'is-invalid': getErrors().length > 0 }">
+<div
+  class="relative"
+  [ngClass]="{ 'is-invalid': tools.getErrors(form, model).length > 0 }"
+>
   <input
     *ngIf="type !== 'select'"
     [(ngModel)]="value"
@@ -28,9 +31,12 @@
     class="absolute text-sm text-gray-300 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-cb-primary dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-cb-base peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
     >{{ label }}</label
   >
-  <ng-container *ngIf="form?.submitted || getControl()?.touched">
-    <p class="text-sm text-cb-red" *ngFor="let error of getErrors()">
-      {{ error }}
-    </p>
-  </ng-container>
 </div>
+<ng-container *ngIf="form?.submitted || tools.getControl(form, model)?.touched">
+  <p
+    class="text-sm text-cb-red"
+    *ngFor="let error of tools.getErrors(form, model)"
+  >
+    {{ error }}
+  </p>
+</ng-container>

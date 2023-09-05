@@ -1,6 +1,14 @@
-import { Component, Input, forwardRef } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  forwardRef,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NG_VALUE_ACCESSOR, NgForm } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { ToolsService } from 'src/app/services/tools.service';
 
 const INPUT_FLOATING_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -11,7 +19,7 @@ const INPUT_FLOATING_VALUE_ACCESSOR: any = {
 @Component({
   selector: 'combobox',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, NgSelectModule],
   templateUrl: './combobox.component.html',
   styleUrls: ['./combobox.component.scss'],
   providers: [INPUT_FLOATING_VALUE_ACCESSOR],
@@ -19,12 +27,18 @@ const INPUT_FLOATING_VALUE_ACCESSOR: any = {
 export class ComboboxComponent {
   @Input() model!: string;
   @Input() label!: string;
-  @Input() form: NgForm | undefined;
+  @Input() form!: NgForm;
   @Input() isReadOnly = false;
   @Input() isRequired = false;
   @Input() options: any[] = [];
   @Input() valueBind: string = 'id';
   @Input() textBind: string = 'name';
+  @Input() placeholder: string = ' ';
+  @Input() notFoundText: string = 'Nada encontrado!';
+
+  @Output() selectItem = new EventEmitter<any>();
+
+  constructor(public tools: ToolsService) {}
 
   show = false;
 
@@ -60,39 +74,7 @@ export class ComboboxComponent {
     this.isReadOnly = isDisabled;
   }
 
-  getControl() {
-    const controls: any = this.form?.controls;
-    return controls[this.model];
-  }
-
-  getErrors() {
-    const errors = [];
-    if (this.form instanceof NgForm) {
-      const control: any = this.getControl();
-      if (control?.errors && control?.errors['required']) {
-        errors.push('Obrigatório.');
-      }
-      if (control?.errors && control?.errors['email']) {
-        errors.push('E-mail inválido.');
-      }
-      // console.log('control', control);
-    }
-
-    return errors;
-  }
-
-  toggle() {
-    this.show = !this.show;
-    document.getElementById(this.model)?.focus();
-  }
-
-  checkSelected(item: any) {
-    const find = this.options.find((e) => e[this.valueBind] == this.value);
-    return find;
-  }
-
-  changeItem(item: any) {
-    this.show = false;
-    this.writeValue(item[this.valueBind]);
+  changeItem(event: any) {
+    this.selectItem.emit(event);
   }
 }

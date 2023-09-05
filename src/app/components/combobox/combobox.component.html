@@ -1,86 +1,32 @@
-<div class="relative" [ngClass]="{ 'is-invalid': getErrors().length > 0 }">
-  <input
-    [id]="model"
-    type="text"
-    class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-cb-base bg-cb-primary rounded-lg border-1 border-cb-secondary appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-cb-secondary peer autofill:shadow-cb-primary"
-    role="combobox"
-    aria-controls="options"
-    aria-expanded="false"
-    placeholder=" "
+<div
+  class="relative"
+  [ngClass]="{ 'is-invalid': tools.getErrors(form, model).length > 0 }"
+>
+  <ng-select
     [(ngModel)]="value"
-    [readonly]="!!isReadOnly"
+    [id]="model"
     [required]="isRequired"
-    (blur)="show = false"
-  />
-  <button
-    type="button"
-    class="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none"
-    (click)="toggle()"
+    [name]="model"
+    [notFoundText]="notFoundText"
+    [placeholder]="placeholder"
+    (ngModelChange)="changeItem($event)"
   >
-    <svg
-      class="h-5 w-5 text-gray-400"
-      viewBox="0 0 20 20"
-      fill="currentColor"
-      aria-hidden="true"
-    >
-      <path
-        fill-rule="evenodd"
-        d="M10 3a.75.75 0 01.55.24l3.25 3.5a.75.75 0 11-1.1 1.02L10 4.852 7.3 7.76a.75.75 0 01-1.1-1.02l3.25-3.5A.75.75 0 0110 3zm-3.76 9.2a.75.75 0 011.06.04l2.7 2.908 2.7-2.908a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0l-3.25-3.5a.75.75 0 01.04-1.06z"
-        clip-rule="evenodd"
-      />
-    </svg>
-  </button>
+    <ng-option *ngFor="let item of options" [value]="item[valueBind]">
+      {{ item[textBind] }}
+    </ng-option>
+  </ng-select>
 
-  <ul
-    class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-cb-secondary py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
-    role="listbox"
-    [ngClass]="{ hidden: !show }"
-  >
-    <!--
-        Combobox option, manage highlight styles based on mouseenter/mouseleave and keyboard navigation.
-
-        Active: "text-white bg-indigo-600", Not Active: "text-gray-900"
-      -->
-    <li
-      *ngFor="let item of options"
-      class="relative cursor-default select-none py-2 pl-3 pr-9 text-cb-base"
-      [ngClass]="{ 'font-semibold': checkSelected(item) }"
-      role="option"
-      tabindex="-1"
-      (click)="changeItem(item)"
-    >
-      <!-- Selected: "font-semibold" -->
-      <span class="block truncate">{{ item[textBind] }}</span>
-
-      <!--
-          Checkmark, only display for selected option.
-
-          Active: "text-white", Not Active: "text-indigo-600"
-        -->
-      <span
-        class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600"
-        *ngIf="checkSelected(item)"
-      >
-        <svg
-          class="h-5 w-5"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-          aria-hidden="true"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-            clip-rule="evenodd"
-          />
-        </svg>
-      </span>
-    </li>
-
-    <!-- More items... -->
-  </ul>
   <label
     [attr.for]="model"
     class="absolute text-sm text-gray-300 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-cb-primary dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-cb-base peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
     >{{ label }}</label
   >
 </div>
+<ng-container *ngIf="form?.submitted || tools.getControl(form, model)?.touched">
+  <p
+    class="text-sm text-cb-red"
+    *ngFor="let error of tools.getErrors(form, model)"
+  >
+    {{ error }}
+  </p>
+</ng-container>

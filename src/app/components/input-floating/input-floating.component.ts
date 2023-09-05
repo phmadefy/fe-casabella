@@ -8,6 +8,7 @@ import {
   NgForm,
 } from '@angular/forms';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import { ToolsService } from 'src/app/services/tools.service';
 
 const INPUT_FLOATING_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -28,12 +29,14 @@ export class InputFloatingComponent implements ControlValueAccessor {
   @Input() model!: string;
   @Input() label!: string;
   @Input() mask!: string;
-  @Input() form: NgForm | undefined;
+  @Input() form!: NgForm;
   @Input() isReadOnly = false;
   @Input() isRequired = false;
   @Input() options: any[] = [];
   @Input() valueBind: string = 'id';
   @Input() textBind: string = 'name';
+
+  constructor(public tools: ToolsService) {}
 
   private innerValue: any;
 
@@ -62,29 +65,9 @@ export class InputFloatingComponent implements ControlValueAccessor {
   }
   registerOnTouched(fn: any): void {
     this.onTouchedCb = fn;
+    this.form.controls[this.model].markAsTouched();
   }
   setDisabledState?(isDisabled: boolean): void {
     this.isReadOnly = isDisabled;
-  }
-
-  getControl() {
-    const controls: any = this.form?.controls;
-    return controls[this.model];
-  }
-
-  getErrors() {
-    const errors = [];
-    if (this.form instanceof NgForm) {
-      const control: any = this.getControl();
-      if (control?.errors && control?.errors['required']) {
-        errors.push('Obrigatório.');
-      }
-      if (control?.errors && control?.errors['email']) {
-        errors.push('E-mail inválido.');
-      }
-      // console.log('control', control);
-    }
-
-    return errors;
   }
 }

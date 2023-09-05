@@ -130,22 +130,36 @@
           [form]="form1"
         ></input-floating> -->
 
-        <ng-select [(ngModel)]="dados.address.state">
-          <ng-option *ngFor="let item of optionsUF" [value]="item.sigla">
-            {{ item.description }}
-          </ng-option>
-        </ng-select>
+        <combobox
+          class="p-0 bg-transparent border-none"
+          label="Estado:"
+          model="state"
+          [(ngModel)]="dados.address.state"
+          name="state"
+          type="select"
+          [options]="optionsStates"
+          valueBind="label"
+          textBind="name"
+          placeholder="Selecione um estado"
+          required
+          [form]="form1"
+          (selectItem)="getCities($event)"
+        ></combobox>
 
-        <input-floating
+        <combobox
           class="p-0 bg-transparent border-none"
           label="Cidade:"
           model="city"
           [(ngModel)]="dados.address.city"
           name="city"
-          type="text"
+          type="select"
+          [options]="optionsCities"
+          valueBind="name"
+          textBind="name"
+          placeholder="Selecione uma cidade"
           required
           [form]="form1"
-        ></input-floating>
+        ></combobox>
       </div>
 
       <button

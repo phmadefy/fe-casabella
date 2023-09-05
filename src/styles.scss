@@ -147,16 +147,6 @@ select:-webkit-autofill:focus {
   @apply bg-gradient-cb;
 }
 
-.is-invalid {
-  label {
-    @apply text-cb-red;
-  }
-
-  input {
-    @apply border-cb-red;
-  }
-}
-
 .btn-default {
   @apply font-medium rounded-lg w-full h-14 md:w-full px-5 py-2.5 text-center;
 }
@@ -230,4 +220,27 @@ select:-webkit-autofill:focus {
   .ng-dropdown-panel-items
   .ng-option.ng-option-selected.ng-option-marked {
   @apply bg-cb-info;
+}
+
+.ng-select .ng-select-container .ng-value-container .ng-input > input {
+  @apply text-sm;
+}
+
+.ng-select .ng-select-container .ng-value-container .ng-value {
+  @apply text-sm;
+}
+
+.ng-select .ng-select-container .ng-value-container .ng-placeholder {
+  @apply text-sm;
+}
+
+.is-invalid {
+  label {
+    @apply text-cb-red;
+  }
+
+  input,
+  .ng-select .ng-select-container {
+    @apply border-cb-red;
+  }
 }
