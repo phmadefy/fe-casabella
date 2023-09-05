@@ -8,6 +8,8 @@ import { DropzoneComponent } from 'src/app/components/dropzone/dropzone.componen
 import { UFs } from 'src/app/shared/properties';
 import { ToolsService } from 'src/app/services/tools.service';
 import { ApiService } from 'src/app/services/api.service';
+import { ComboboxComponent } from 'src/app/components/combobox/combobox.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @Component({
   selector: 'app-revendedor',
@@ -19,6 +21,8 @@ import { ApiService } from 'src/app/services/api.service';
     InputFloatingComponent,
     DropzoneComponent,
     RouterLink,
+    ComboboxComponent,
+    NgSelectModule,
   ],
   templateUrl: './revendedor.component.html',
   styleUrls: ['./revendedor.component.scss'],

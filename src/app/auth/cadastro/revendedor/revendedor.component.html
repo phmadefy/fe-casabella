@@ -91,7 +91,7 @@
         ></input-floating>
       </div>
 
-      <div class="grid grid-cols-2 gap-2 mb-3">
+      <!-- <div class="grid grid-cols-2 gap-2 mb-3">
         <input-floating
           class="col-span-2 p-0 bg-transparent border-none"
           label="Senha:"
@@ -113,21 +113,10 @@
           required
           [form]="form1"
         ></input-floating>
-      </div>
+      </div> -->
 
       <div class="grid grid-cols-2 gap-2 mb-3">
-        <input-floating
-          class="p-0 bg-transparent border-none"
-          label="Cidade:"
-          model="city"
-          [(ngModel)]="dados.address.city"
-          name="city"
-          type="text"
-          required
-          [form]="form1"
-        ></input-floating>
-
-        <input-floating
+        <!-- <input-floating
           class="p-0 bg-transparent border-none"
           label="UF:"
           model="state"
@@ -137,6 +126,23 @@
           [options]="optionsUF"
           valueBind="sigla"
           textBind="description"
+          required
+          [form]="form1"
+        ></input-floating> -->
+
+        <ng-select [(ngModel)]="dados.address.state">
+          <ng-option *ngFor="let item of optionsUF" [value]="item.sigla">
+            {{ item.description }}
+          </ng-option>
+        </ng-select>
+
+        <input-floating
+          class="p-0 bg-transparent border-none"
+          label="Cidade:"
+          model="city"
+          [(ngModel)]="dados.address.city"
+          name="city"
+          type="text"
           required
           [form]="form1"
         ></input-floating>

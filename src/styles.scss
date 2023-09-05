@@ -39,6 +39,8 @@
 
 @import "ngx-toastr/toastr";
 
+@import "@ng-select/ng-select/themes/default.theme.css";
+
 // html, body {
 //   background-color: #131E39;
 // }
@@ -197,4 +199,35 @@ select:-webkit-autofill:focus {
 
 .btn-xl {
   @apply px-6 py-3 text-xl;
+}
+
+.activeMenu {
+  @apply text-cb-info font-semibold bg-gradient-cb-border;
+}
+
+.ng-select .ng-select-container,
+.ng-select.ng-select-opened > .ng-select-container {
+  @apply bg-cb-primary border-cb-secondary rounded-lg text-cb-base;
+}
+
+.ng-select.ng-select-single .ng-select-container {
+  @apply h-12 text-cb-base;
+}
+
+.ng-dropdown-panel {
+  @apply bg-cb-primary border-cb-secondary rounded-lg text-cb-base;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+  @apply bg-cb-secondary text-cb-base;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
+  @apply bg-cb-info;
+}
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected,
+.ng-dropdown-panel
+  .ng-dropdown-panel-items
+  .ng-option.ng-option-selected.ng-option-marked {
+  @apply bg-cb-info;
 }

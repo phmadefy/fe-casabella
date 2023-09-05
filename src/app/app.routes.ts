@@ -2,11 +2,6 @@ import { Routes } from '@angular/router';
 import { AuthGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
-  // {
-  //   path: '',
-  //   redirectTo: 'profile',
-  //   pathMatch: 'full',
-  // },
   {
     path: 'auth',
     children: [
@@ -51,6 +46,11 @@ export const routes: Routes = [
       import('./layout/base/base.component').then((c) => c.BaseComponent),
     children: [
       {
+        path: '',
+        redirectTo: 'feed',
+        pathMatch: 'full',
+      },
+      {
         path: 'feed',
         children: [
           {
@@ -82,5 +82,11 @@ export const routes: Routes = [
           ),
       },
     ],
+  },
+
+  {
+    path: '**',
+    redirectTo: 'feed',
+    pathMatch: 'full',
   },
 ];

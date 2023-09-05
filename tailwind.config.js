@@ -16,5 +16,5 @@ module.exports = {
       "cb-hover-signup": "#F10B4E",
     },
   },
-  plugins: [require("flowbite/plugin")],
+  plugins: [require("flowbite/plugin"), require("@tailwindcss/forms")],
 };

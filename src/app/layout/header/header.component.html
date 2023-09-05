@@ -144,6 +144,7 @@
       data-dropdown-offset-distance="-10"
       class="px-2 text-cb-base rounded-b-lg h-full hover:text-cb-info hover:font-semibold focus:text-cb-info focus:font-semibold border-b-[5px] border-transparent bg-gradient-cb-border-hover"
       routerLinkActive="activeMenu"
+      [routerLinkActiveOptions]="{ exact: false }"
     >
       <i [class]="item.icon + ' mr-3'" *ngIf="item.icon"></i>
       {{ item.title | titlecase }}
@@ -169,7 +170,8 @@
           <a
             href="#"
             class="flex items-center px-4 py-2 text-cb-base bg-gradient-cb-hover h-11"
-            [routerLink]="[subItem.route]" routerLinkActive="activeItem"
+            [routerLink]="[subItem.route]"
+            routerLinkActive="activeItem"
             *ngIf="!subItem.items"
           >
             <i [class]="subItem.icon + ' mr-3'" *ngIf="subItem.icon"></i>
