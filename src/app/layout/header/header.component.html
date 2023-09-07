@@ -106,7 +106,7 @@
           </li>
           <li>
             <a
-              href="#"
+              href="javascript:void(0)"
               class="block px-2 py-2 text-cb-base bg-gradient-cb-hover"
             >
               <i class="fa-solid fa-lock mr-2"></i> Alterar Senha
@@ -114,7 +114,7 @@
           </li>
           <li>
             <a
-              href="#"
+              href="javascript:void(0)"
               class="block px-2 py-2 text-cb-base bg-gradient-cb-hover"
             >
               <i class="fa-solid fa-file-lines mr-2"></i> Termos e Condições
@@ -122,7 +122,7 @@
           </li>
           <li>
             <a
-              href="#"
+              href="javascript:void(0)"
               class="block px-2 py-2 text-cb-base bg-gradient-cb-hover"
             >
               <i class="fa-solid fa-right-from-bracket mr-2"></i> Sair
@@ -147,7 +147,7 @@
       [routerLinkActiveOptions]="{ exact: false }"
     >
       <i [class]="item.icon + ' mr-3'" *ngIf="item.icon"></i>
-      {{ item.title | titlecase }}
+      <span class="capitalize">{{ item.title }}</span>
     </button>
     <!-- Dropdown menu -->
     <div
@@ -168,14 +168,15 @@
           *ngFor="let subItem of item.items"
         >
           <a
-            href="#"
+            href="javascript:void(0)"
             class="flex items-center px-4 py-2 text-cb-base bg-gradient-cb-hover h-11"
             [routerLink]="[subItem.route]"
+            [queryParams]="subItem?.queryParams"
             routerLinkActive="activeItem"
             *ngIf="!subItem.items"
           >
             <i [class]="subItem.icon + ' mr-3'" *ngIf="subItem.icon"></i>
-            {{ subItem.title | titlecase }}
+            <span class="capitalize">{{ subItem.title }}</span>
           </a>
           <ng-container *ngIf="subItem.items">
             <ng-container
@@ -191,9 +192,10 @@
       class="px-2 text-cb-base rounded-b-lg h-full hover:text-cb-info hover:font-semibold focus:text-cb-info focus:font-semibold border-b-[5px] border-transparent bg-gradient-cb-border-hover"
       [routerLink]="[item.route]"
       routerLinkActive="activeMenu"
+      [queryParams]="item?.queryParams"
     >
       <i [class]="item.icon + ' mr-3'" *ngIf="item.icon"></i>
-      {{ item.title | titlecase }}
+      <span class="capitalize">{{ item.title }}</span>
     </button>
   </div>
 </ng-template>
@@ -210,7 +212,7 @@
     >
       <span>
         <i [class]="item.icon + ' mr-3'" *ngIf="item.icon"></i>
-        {{ item.title | titlecase }}
+        <span class="capitalize">{{ item.title }}</span>
       </span>
 
       <svg
@@ -242,19 +244,21 @@
         >
           <ng-container *ngIf="!subItem.items">
             <a
-              href="#"
+              href="javascript:void(0)"
               class="flex items-center px-4 py-2 text-cb-base bg-gradient-cb-hover"
               *ngIf="subItem.route"
+              [routerLink]="[subItem.route]"
+              [queryParams]="subItem?.queryParams"
             >
               <i [class]="subItem.icon + ' mr-3'" *ngIf="subItem.icon"></i>
-              {{ subItem.title | titlecase }}
+              <span class="capitalize">{{ subItem.title }}</span>
             </a>
             <span
               class="flex items-center px-4 py-2 text-gradient-cb"
               *ngIf="!subItem.route"
             >
               <i [class]="subItem.icon + ' mr-3'" *ngIf="subItem.icon"></i>
-              {{ subItem.title | titlecase }}
+              <span class="capitalize">{{ subItem.title }}</span>
             </span>
           </ng-container>
         </li>

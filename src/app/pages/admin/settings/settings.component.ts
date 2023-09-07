@@ -5,13 +5,21 @@ import { FormsModule } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 import { MessageService } from 'src/app/services/message.service';
 import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
+import { CardComponent } from 'src/app/components/card/card.component';
 
 @Component({
   selector: 'app-settings',
   standalone: true,
-  imports: [CommonModule, FormsModule, InputInlineComponent, SpinnerComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    InputInlineComponent,
+    SpinnerComponent,
+    CardComponent,
+  ],
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss'],
+  providers: [ApiService],
 })
 export class SettingsComponent {
   dados: any = {};

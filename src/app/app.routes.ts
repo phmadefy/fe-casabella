@@ -72,6 +72,25 @@ export const routes: Routes = [
                 (c) => c.SettingsComponent
               ),
           },
+          {
+            path: 'users',
+            children: [
+              {
+                path: '',
+                loadComponent: () =>
+                  import('./pages/admin/users/users.component').then(
+                    (c) => c.UsersComponent
+                  ),
+              },
+              {
+                path: 'office-sectors',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/users/office-sectors/office-sectors.component'
+                  ).then((c) => c.OfficeSectorsComponent),
+              },
+            ],
+          },
         ],
       },
       {

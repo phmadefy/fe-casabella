@@ -1,5 +1,5 @@
 <form #form="ngForm">
-  <div class="card">
+  <card [loading]="loading">
     <div class="card-header">
       <h2 class="text-lg font-semibold">Configurações do Sistema</h2>
     </div>
@@ -215,16 +215,16 @@
 
     <div class="card-footer flex items-center gap-3">
       <button
-        class="btn btn-sm text-white bg-gradient-cb bg-gradient-cb-hover"
+        class="btn btn-sm text-white bg-gradient-cb bg-gradient-cb-hover rounded-md"
         (click)="save()"
         [disabled]="loading"
       >
         <spinner *ngIf="loading" />
         <span *ngIf="!loading">Salvar</span>
       </button>
-      <button class="btn btn-sm text-white" [disabled]="loading">
+      <button class="btn btn-sm text-white rounded-md" [disabled]="loading">
         Cancelar
       </button>
     </div>
-  </div>
+  </card>
 </form>

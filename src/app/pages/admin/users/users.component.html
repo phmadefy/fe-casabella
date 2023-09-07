@@ -1,0 +1,116 @@
+<div class="mb-4">
+  <card>
+    <ul class="flex flex-wrap gap-3 text-sm font-medium text-center p-5">
+      <li (click)="setTab('actives')">
+        <button
+          class="px-8 py-2 text-cb-base rounded-md"
+          [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'actives' }"
+        >
+          Ativos
+        </button>
+      </li>
+
+      <li (click)="setTab('inactives')">
+        <button
+          class="px-8 py-2 text-cb-base rounded-md"
+          [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'inactives' }"
+        >
+          Inativos
+        </button>
+      </li>
+
+      <li (click)="setTab('pending')">
+        <button
+          class="px-8 py-2 text-cb-base rounded-md"
+          [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'pending' }"
+        >
+          Pendentes
+        </button>
+      </li>
+
+      <li>
+        <button class="px-8 py-2 text-cb-base rounded-md">Cadastrar</button>
+      </li>
+    </ul>
+  </card>
+</div>
+
+<card [loading]="loading">
+  <div class="relative overflow-x-auto">
+    <table class="w-full text-sm text-left table-cb">
+      <thead>
+        <th>Nome</th>
+        <th>E-mail</th>
+        <th class="text-center">Usuário</th>
+        <th class="text-center" *ngIf="tab != 'pending'">Segmento</th>
+        <th class="text-center" *ngIf="tab != 'pending'">Grupo</th>
+        <th class="text-center" *ngIf="tab == 'pending'">Documento</th>
+        <th *ngIf="tab == 'pending'"></th>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let item of dataSource.data; let i = index"
+          class="bg-transparent"
+          [class.bg-cb-secondary]="i % 2 === 0"
+        >
+          <td>
+            <div class="flex items-center">
+              <img
+                [src]="item?.user?.avatar ?? tools.noImageAvatar"
+                alt="avatar"
+                class="h-10 w-10 rounded-full mr-3"
+              />
+              <span>{{ item.name }}</span>
+            </div>
+          </td>
+          <td>{{ item?.user?.email }}</td>
+          <td class="text-center">{{ item?.user?.nickname }}</td>
+          <td class="text-center" *ngIf="tab != 'pending'">{{ item?.role }}</td>
+          <td class="text-center" *ngIf="tab != 'pending'">
+            {{ item?.department }}
+          </td>
+          <td class="text-center" *ngIf="tab == 'pending'">
+            <i class="fa-solid fa-paperclip text-gradient-cb text-xl"></i>
+          </td>
+          <td class="flex items-center gap-2" *ngIf="tab == 'pending'">
+            <button
+              class="btn btn-sm text-white bg-gradient-cb bg-gradient-cb-hover"
+              [disabled]="loading"
+            >
+              <spinner *ngIf="loading" />
+              <span *ngIf="!loading">Aprovar</span>
+            </button>
+            <button class="btn btn-sm text-white" [disabled]="loading">
+              Negar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="relative overflow-x-auto">
+      <div
+        class="text-center py-2 text-gray-400"
+        *ngIf="dataSource.data.length <= 0"
+      >
+        Nenhum Cliente encontrado.
+      </div>
+    </div>
+  </div>
+  <div class="card-footer flex gap-3 items-center">
+    <select
+      [(ngModel)]="filters.per_page"
+      (ngModelChange)="getList()"
+      class="select-default"
+    >
+      <option value="10">10</option>
+      <option value="25">25</option>
+      <option value="50">50</option>
+      <option value="100">100</option>
+      <option value="200">200</option>
+    </select>
+    <span class="text-gray-400 text-sm">
+      Exibindo {{ dataSource.to }} de {{ dataSource.total }}
+    </span>
+  </div>
+</card>

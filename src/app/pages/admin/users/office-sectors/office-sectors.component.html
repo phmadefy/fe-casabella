@@ -1,0 +1,87 @@
+<div class="grid md:grid-cols-2 gap-4 text-cb-base">
+  <card [loading]="loadingOffice">
+    <div class="card-header">
+      <h2 class="text-lg font-semibold">Cargos</h2>
+    </div>
+
+    <div class="relative overflow-x-auto">
+      <div class="text-center py-2 text-gray-400" *ngIf="office.length <= 0">
+        Nenhum Cargo encontrado.
+      </div>
+      <table class="w-full text-sm text-left">
+        <tbody>
+          <ng-container *ngFor="let item of office; let i = index">
+            <tr class="bg-transparent" [class.bg-cb-secondary]="i % 2 === 0">
+              <td></td>
+              <td></td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card-footer">
+      <form #formOffice="ngForm" (ngSubmit)="submit(formOffice, 'office')">
+        <div class="relative w-full">
+          <input
+            type="text"
+            name="name"
+            ngModel
+            class="block p-2.5 w-full z-20 text-sm rounded-lg bg-cb-primary border-l-cb-secondary border border-cb-secondary focus:border-cb-info"
+            placeholder="Adicionar Cargo..."
+            required
+          />
+          <button
+            type="submit"
+            class="absolute top-0 right-0 p-2.5 text-sm font-medium h-full text-cb-primary bg-cb-info rounded-lg border border-cb-secondary focus:outline-none"
+          >
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </card>
+
+  <card [loading]="loadingSectors">
+    <div class="card-header">
+      <h2 class="text-lg font-semibold">Setores</h2>
+    </div>
+
+    <div class="relative overflow-x-auto">
+      <div class="text-center py-2 text-gray-400" *ngIf="sectors.length <= 0">
+        Nenhum Setor encontrado.
+      </div>
+      <table class="w-full text-sm text-left">
+        <tbody>
+          <ng-container *ngFor="let item of sectors; let i = index">
+            <tr class="bg-transparent" [class.bg-cb-secondary]="i % 2 === 0">
+              <td></td>
+              <td></td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card-footer">
+      <form #formSector="ngForm" (ngSubmit)="submit(formSector, 'sector')">
+        <div class="relative w-full">
+          <input
+            type="text"
+            name="name"
+            ngModel
+            class="block p-2.5 w-full z-20 text-sm rounded-lg bg-cb-primary border-l-cb-secondary border border-cb-secondary focus:border-cb-info"
+            placeholder="Adicionar Setor..."
+            required
+          />
+          <button
+            type="submit"
+            class="absolute top-0 right-0 p-2.5 text-sm font-medium h-full text-cb-primary bg-cb-info rounded-lg border border-cb-secondary focus:outline-none"
+          >
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </card>
+</div>

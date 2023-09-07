@@ -172,7 +172,11 @@ select:-webkit-autofill:focus {
 }
 
 .btn {
-  @apply focus:ring-2 focus:outline-none focus:ring-cb-secondary font-medium rounded-md text-center border border-cb-secondary;
+  @apply focus:ring-2 focus:outline-none focus:ring-cb-secondary font-medium text-center border border-cb-secondary;
+}
+
+.btn-square {
+  @apply p-2;
 }
 
 .btn-sm {
@@ -243,4 +247,22 @@ select:-webkit-autofill:focus {
   .ng-select .ng-select-container {
     @apply border-cb-red;
   }
+}
+
+.input-cb {
+  @apply block px-2 pb-2 pt-2 w-full text-sm text-cb-base bg-cb-primary rounded-lg border border-cb-secondary appearance-none focus:outline-none focus:ring-0 focus:border-cb-info autofill:shadow-cb-primary;
+}
+
+.table-cb {
+  tr {
+    @apply border-b border-cb-secondary border-opacity-70;
+  }
+  th,
+  td {
+    @apply px-6 py-3 text-cb-base align-middle;
+  }
+}
+
+.select-default {
+  @apply block p-2.5 text-sm rounded-lg bg-cb-primary border-l-cb-secondary border border-cb-secondary focus:border-cb-info;
 }

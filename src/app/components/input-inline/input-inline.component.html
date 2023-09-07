@@ -2,17 +2,15 @@
   class="flex flex-row items-center gap-3"
   [ngClass]="{ 'is-invalid': getErrors().length > 0 }"
 >
-  <label
-    [attr.for]="model"
-    class="text-sm text-gray-300 bg-cb-primary dark:bg-gray-900 px-2 w-1/2"
-    >{{ label }}</label
-  >
+  <label [attr.for]="model" class="text-sm text-gray-300 px-2 w-1/2">{{
+    label
+  }}</label>
   <input
     *ngIf="type !== 'select' && type !== 'currency'"
     [(ngModel)]="value"
     [type]="type"
     [id]="model"
-    class="block px-2 pb-2 pt-2 w-full text-sm text-cb-base bg-cb-primary rounded-lg border-1 border-cb-secondary appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-cb-info peer autofill:shadow-cb-primary"
+    class="block px-2 pb-2 pt-2 w-full text-sm text-cb-base bg-cb-primary rounded-lg border-1 border-cb-secondary appearance-none focus:outline-none focus:ring-0 focus:border-cb-info peer autofill:shadow-cb-primary"
     placeholder=" "
     [readonly]="!!isReadOnly"
     [required]="isRequired"
@@ -23,7 +21,7 @@
     [(ngModel)]="value"
     type="tel"
     [id]="model"
-    class="block px-2 pb-2 pt-2 w-full text-sm text-cb-base bg-cb-primary rounded-lg border-1 border-cb-secondary appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-cb-info peer autofill:shadow-cb-primary"
+    class="block px-2 pb-2 pt-2 w-full text-sm text-cb-base bg-cb-primary rounded-lg border-1 border-cb-secondary appearance-none focus:outline-none focus:ring-0 focus:border-cb-info peer autofill:shadow-cb-primary"
     placeholder=" "
     [readonly]="!!isReadOnly"
     [required]="isRequired"
@@ -34,7 +32,7 @@
     *ngIf="type === 'select'"
     [(ngModel)]="value"
     [id]="model"
-    class="block px-2 pb-2 pt-2 w-full text-sm text-cb-base bg-cb-primary rounded-lg border-1 border-cb-secondary appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-cb-info peer autofill:shadow-cb-primary"
+    class="block px-2 pb-2 pt-2 w-full text-sm text-cb-base bg-cb-primary rounded-lg border-1 border-cb-secondary appearance-none focus:outline-none focus:ring-0 focus:border-cb-info peer autofill:shadow-cb-primary"
     placeholder=" "
     [disabled]="!!isReadOnly"
     [required]="isRequired"

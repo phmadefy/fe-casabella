@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
   providedIn: 'root',
 })
 export class ToolsService {
+  noImageAvatar = 'assets/sem-foto.png';
   constructor() {}
 
   toBase64(file: File) {

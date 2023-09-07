@@ -10,4 +10,5 @@ import { CommonModule } from '@angular/common';
 })
 export class SpinnerComponent {
   @Input() color = 'white';
+  @Input() size = 4;
 }

@@ -440,18 +440,20 @@ export class HeaderComponent {
         {
           id: 'admin-users',
           title: 'Usuários',
-          route: 'admin/users',
+          route: '/admin/users',
           icon: 'fa-solid fa-user',
           items: [
             {
               id: 'admin-users-active',
               title: 'Usuários Ativos',
-              route: 'admin/users-active',
+              route: '/admin/users',
+              queryParams: { tab: 'actives' },
             },
             {
               id: 'admin-users-inactive',
               title: 'Usuários Inativos',
-              route: 'admin/users-inactive',
+              route: '/admin/users',
+              queryParams: { tab: 'inactives' },
             },
             {
               id: 'admin-user-add',
@@ -461,7 +463,8 @@ export class HeaderComponent {
             {
               id: 'admin-users-pending',
               title: 'Cadastros Pendentes',
-              route: 'admin/users-pending',
+              route: '/admin/users',
+              queryParams: { tab: 'pending' },
             },
             {
               id: 'admin-users-access-group',
@@ -476,7 +479,7 @@ export class HeaderComponent {
             {
               id: 'admin-users-office-sector',
               title: 'Cargo e Setores',
-              route: 'admin/users-office-sector',
+              route: '/admin/users/office-sectors',
             },
             {
               id: 'admin-users-city-state',
