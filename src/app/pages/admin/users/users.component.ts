@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from 'src/app/components/card/card.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 import { ToolsService } from 'src/app/services/tools.service';
@@ -11,7 +11,13 @@ import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [CommonModule, CardComponent, FormsModule, SpinnerComponent],
+  imports: [
+    CommonModule,
+    CardComponent,
+    FormsModule,
+    SpinnerComponent,
+    RouterLink,
+  ],
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss'],
   providers: [ApiService],

@@ -1,6 +1,6 @@
 <div
   class="relative"
-  [ngClass]="{ 'is-invalid': tools.getErrors(form, model).length > 0 }"
+  [ngClass]="{ 'is-invalid': !tools.validateInputForm(form, model) }"
 >
   <ng-select
     [(ngModel)]="value"
@@ -22,7 +22,7 @@
     >{{ label }}</label
   >
 </div>
-<ng-container *ngIf="form?.submitted || tools.getControl(form, model)?.touched">
+<ng-container *ngIf="!tools.validateInputForm(form, model)">
   <p
     class="text-sm text-cb-red"
     *ngFor="let error of tools.getErrors(form, model)"

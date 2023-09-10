@@ -1,0 +1,21 @@
+<card>
+  <div class="card-header">
+    <h2 class="text-lg font-semibold">Permissões de Grupos de Acessos</h2>
+  </div>
+
+  <div class="p-4 border-b border-cb-secondary">
+    <combobox
+      class="p-0 bg-transparent border-none"
+      label="Selecionar grupo:"
+      model="group"
+      [(ngModel)]="dados.group"
+      (selectItem)="listPermissions($event)"
+      name="group"
+      [options]="groups.data"
+      valueBind="name"
+      textBind="name"
+      placeholder="Selecione uma cidade"
+      required
+    ></combobox>
+  </div>
+</card>

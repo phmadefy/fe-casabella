@@ -1,0 +1,280 @@
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+  <card>
+    <div class="card-header">
+      <h2 class="text-lg font-semibold">{{ title }}</h2>
+    </div>
+
+    <div class="p-4">
+      <div class="grid grid-cols-3 gap-3 mb-4">
+        <div class="col-span-1">
+          <div class="flex items-center justify-center py-2">
+            <avatar
+              size="40"
+              (changeImage)="changeAvatar($event)"
+              [image]="dados?.user?.avatar"
+            ></avatar>
+          </div>
+        </div>
+
+        <div class="col-span-2">
+          <div class="mb-4">
+            <input-floating
+              class="p-0 bg-transparent border-none"
+              label="Segmento:"
+              model="category"
+              [(ngModel)]="dados.category"
+              name="category"
+              type="select"
+              [options]="categories"
+              required
+              [form]="form"
+              size="md"
+            ></input-floating>
+          </div>
+
+          <div class="mb-4">
+            <input-floating
+              class="p-0 bg-transparent border-none"
+              label="Grupo de acessos:"
+              model="role"
+              [(ngModel)]="dados.role"
+              name="role"
+              type="select"
+              [options]="roles"
+              required
+              [form]="form"
+              size="md"
+            ></input-floating>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-12 gap-3 mb-4">
+        <div class="col-span-4">
+          <input-floating
+            class="p-0 bg-transparent border-none"
+            label="Nome Completo:"
+            model="name"
+            [(ngModel)]="dados.name"
+            name="name"
+            type="text"
+            required
+            [form]="form"
+            size="md"
+          ></input-floating>
+        </div>
+
+        <div class="col-span-3">
+          <input-floating
+            class="p-0 bg-transparent border-none"
+            label="Usuário:"
+            model="nickname"
+            [(ngModel)]="dados.nickname"
+            name="nickname"
+            type="text"
+            required
+            [form]="form"
+            size="md"
+          ></input-floating>
+        </div>
+
+        <div class="col-span-3">
+          <input-floating
+            class="p-0 bg-transparent border-none"
+            label="Data de Nascimento:"
+            model="birthdate"
+            [(ngModel)]="dados.birthdate"
+            name="birthdate"
+            type="date"
+            required
+            [form]="form"
+            size="md"
+          ></input-floating>
+        </div>
+
+        <div class="col-span-2">
+          <input-floating
+            class="p-0 bg-transparent border-none"
+            label="CPF:"
+            model="cpf"
+            [(ngModel)]="dados.cpf"
+            name="cpf"
+            type="text"
+            required
+            [form]="form"
+            size="md"
+            mask="CPF_CNPJ"
+          ></input-floating>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-12 gap-3 mb-4">
+        <div class="col-span-4">
+          <input-floating
+            class="p-0 bg-transparent border-none"
+            label="E-mail:"
+            model="email"
+            [(ngModel)]="dados.email"
+            email
+            name="email"
+            type="text"
+            required
+            [form]="form"
+            size="md"
+          ></input-floating>
+        </div>
+
+        <div class="col-span-3">
+          <input-floating
+            class="p-0 bg-transparent border-none"
+            label="Telefone 1:"
+            model="phone1"
+            [(ngModel)]="dados.phone1"
+            name="phone1"
+            type="phone"
+            required
+            [form]="form"
+            size="md"
+          ></input-floating>
+        </div>
+
+        <div class="col-span-3">
+          <input-floating
+            class="p-0 bg-transparent border-none"
+            label="Telefone 2:"
+            model="phone2"
+            [(ngModel)]="dados.phone2"
+            name="phone2"
+            type="phone"
+            required
+            [form]="form"
+            size="md"
+          ></input-floating>
+        </div>
+
+        <div class="col-span-2">
+          <input-floating
+            class="p-0 bg-transparent border-none"
+            label="Gênero:"
+            model="gen"
+            [(ngModel)]="dados.gen"
+            name="gen"
+            type="select"
+            [options]="categories"
+            required
+            [form]="form"
+            size="md"
+          ></input-floating>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-12 gap-3 mb-4">
+        <div class="col-span-4">
+          <input-floating
+            class="p-0 bg-transparent border-none"
+            label="Público:"
+            model="public"
+            [(ngModel)]="dados.public"
+            name="public"
+            type="select"
+            [options]="categories"
+            required
+            [form]="form"
+            size="md"
+          ></input-floating>
+        </div>
+
+        <div class="col-span-4">
+          <input-floating
+            class="p-0 bg-transparent border-none"
+            label="Cargo:"
+            model="role"
+            [(ngModel)]="dados.role"
+            name="role"
+            type="select"
+            [options]="categories"
+            required
+            [form]="form"
+            size="md"
+          ></input-floating>
+        </div>
+
+        <div class="col-span-4">
+          <input-floating
+            class="p-0 bg-transparent border-none"
+            label="Setor:"
+            model="department"
+            [(ngModel)]="dados.department"
+            name="department"
+            type="select"
+            [options]="categories"
+            required
+            [form]="form"
+            size="md"
+          ></input-floating>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-12 gap-3 mb-4">
+        <div class="col-span-4">
+          <input-floating
+            class="p-0 bg-transparent border-none"
+            label="Código Revendedor:"
+            model="id"
+            [(ngModel)]="dados.id"
+            name="id"
+            type="text"
+            required
+            [form]="form"
+            size="md"
+          ></input-floating>
+        </div>
+
+        <div class="col-span-3">
+          <input-floating
+            class="p-0 bg-transparent border-none"
+            label="Cidade:"
+            model="city"
+            [(ngModel)]="dados.address.city"
+            name="city"
+            type="select"
+            [options]="categories"
+            required
+            [form]="form"
+            size="md"
+          ></input-floating>
+        </div>
+
+        <div class="col-span-2">
+          <input-floating
+            class="p-0 bg-transparent border-none"
+            label="UF:"
+            model="state"
+            [(ngModel)]="dados.address.state"
+            name="state"
+            type="select"
+            [options]="categories"
+            required
+            [form]="form"
+            size="md"
+          ></input-floating>
+        </div>
+
+        <div class="col-span-2">
+          <input-floating
+            class="p-0 bg-transparent border-none"
+            label="Status:"
+            model="status"
+            [(ngModel)]="dados.status"
+            name="status"
+            type="select"
+            [options]="categories"
+            required
+            [form]="form"
+            size="md"
+          ></input-floating>
+        </div>
+      </div>
+    </div>
+  </card>
+</form>

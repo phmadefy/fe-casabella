@@ -29,7 +29,12 @@
       </li>
 
       <li>
-        <button class="px-8 py-2 text-cb-base rounded-md">Cadastrar</button>
+        <button
+          [routerLink]="['/admin/users/add']"
+          class="px-8 py-2 text-cb-base rounded-md"
+        >
+          Cadastrar
+        </button>
       </li>
     </ul>
   </card>
@@ -39,13 +44,15 @@
   <div class="relative overflow-x-auto">
     <table class="w-full text-sm text-left table-cb">
       <thead>
-        <th>Nome</th>
-        <th>E-mail</th>
-        <th class="text-center">Usuário</th>
-        <th class="text-center" *ngIf="tab != 'pending'">Segmento</th>
-        <th class="text-center" *ngIf="tab != 'pending'">Grupo</th>
-        <th class="text-center" *ngIf="tab == 'pending'">Documento</th>
-        <th *ngIf="tab == 'pending'"></th>
+        <tr>
+          <th>Nome</th>
+          <th>E-mail</th>
+          <th class="text-center">Usuário</th>
+          <th class="text-center" *ngIf="tab != 'pending'">Segmento</th>
+          <th class="text-center" *ngIf="tab != 'pending'">Grupo</th>
+          <th class="text-center" *ngIf="tab == 'pending'">Documento</th>
+          <th *ngIf="tab == 'pending'"></th>
+        </tr>
       </thead>
       <tbody>
         <tr

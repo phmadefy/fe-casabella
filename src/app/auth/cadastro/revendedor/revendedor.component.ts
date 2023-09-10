@@ -9,6 +9,7 @@ import { UFs } from 'src/app/shared/properties';
 import { ToolsService } from 'src/app/services/tools.service';
 import { ApiService } from 'src/app/services/api.service';
 import { ComboboxComponent } from 'src/app/components/combobox/combobox.component';
+import { AvatarComponent } from 'src/app/components/avatar/avatar.component';
 
 @Component({
   selector: 'app-revendedor',
@@ -21,6 +22,7 @@ import { ComboboxComponent } from 'src/app/components/combobox/combobox.componen
     DropzoneComponent,
     RouterLink,
     ComboboxComponent,
+    AvatarComponent,
   ],
   templateUrl: './revendedor.component.html',
   styleUrls: ['./revendedor.component.scss'],

@@ -18,6 +18,22 @@ export class ToolsService {
     });
   }
 
+  validateInputForm(form: NgForm, model: string) {
+    if (!form) {
+      return true;
+    }
+
+    const control = form.controls[model];
+    if (
+      control &&
+      control.status != 'VALID' &&
+      (form.submitted || control.touched)
+    ) {
+      return false;
+    }
+    return true;
+  }
+
   getControl(form: NgForm, model: string) {
     const controls: any = form?.controls;
     return controls[model];

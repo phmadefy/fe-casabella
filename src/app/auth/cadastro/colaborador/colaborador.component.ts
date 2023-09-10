@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 import { ToolsService } from 'src/app/services/tools.service';
 import { UFs } from 'src/app/shared/properties';
 import { ComboboxComponent } from 'src/app/components/combobox/combobox.component';
+import { AvatarComponent } from 'src/app/components/avatar/avatar.component';
 
 @Component({
   selector: 'app-colaborador',
@@ -28,6 +29,7 @@ import { ComboboxComponent } from 'src/app/components/combobox/combobox.componen
     InputFloatingComponent,
     DropzoneComponent,
     ComboboxComponent,
+    AvatarComponent,
   ],
   templateUrl: './colaborador.component.html',
   styleUrls: ['./colaborador.component.scss'],

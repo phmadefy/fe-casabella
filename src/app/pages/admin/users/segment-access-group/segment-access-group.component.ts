@@ -1,16 +1,18 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ApiService } from 'src/app/services/api.service';
-import { MessageService } from 'src/app/services/message.service';
 import { FormsModule, NgForm } from '@angular/forms';
+import { InputFloatingComponent } from 'src/app/components/input-floating/input-floating.component';
 import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
 import { CardComponent } from 'src/app/components/card/card.component';
-import { InputFloatingComponent } from 'src/app/components/input-floating/input-floating.component';
+import { ApiService } from 'src/app/services/api.service';
+import { MessageService } from 'src/app/services/message.service';
 import { ToolsService } from 'src/app/services/tools.service';
 
 @Component({
-  selector: 'app-office-sectors',
+  selector: 'app-segment-access-group',
   standalone: true,
+  templateUrl: './segment-access-group.component.html',
+  styleUrls: ['./segment-access-group.component.scss'],
   imports: [
     CommonModule,
     FormsModule,
@@ -18,15 +20,13 @@ import { ToolsService } from 'src/app/services/tools.service';
     SpinnerComponent,
     CardComponent,
   ],
-  templateUrl: './office-sectors.component.html',
-  styleUrls: ['./office-sectors.component.scss'],
   providers: [ApiService],
 })
-export class OfficeSectorsComponent {
-  office: any[] = [];
-  sectors: any[] = [];
-  loadingOffice = false;
-  loadingSectors = false;
+export class SegmentAccessGroupComponent {
+  segment: any[] = [];
+  loadingSegment = false;
+  accessGroup: any[] = [];
+  loadingAccessGroup = false;
 
   constructor(
     private service: ApiService,
@@ -40,28 +40,28 @@ export class OfficeSectorsComponent {
     this.getDados();
   }
 
-  async getOffice() {
-    this.loadingOffice = true;
+  async getSegment() {
+    this.loadingSegment = true;
     await this.service
       .getCustom('v1/roles')
       .then((res: any[]) => {
-        console.log('getOffice', res);
+        console.log('getSegment', res);
       })
-      .finally(() => (this.loadingOffice = false));
+      .finally(() => (this.loadingSegment = false));
   }
 
-  async getSectors() {
-    this.loadingSectors = true;
+  async getAccessGroup() {
+    this.loadingAccessGroup = true;
     await this.service
       .getCustom('v1/departments')
       .then((res: any[]) => {
-        console.log('getOffice', res);
+        console.log('getSegment', res);
       })
-      .finally(() => (this.loadingSectors = false));
+      .finally(() => (this.loadingAccessGroup = false));
   }
 
   async getDados() {
-    Promise.all([this.getOffice(), this.getSectors()]);
+    Promise.all([this.getSegment(), this.getAccessGroup()]);
   }
 
   submit(form: NgForm, formName: string) {
@@ -69,30 +69,30 @@ export class OfficeSectorsComponent {
       return;
     }
 
-    if (formName == 'office') {
-      this.saveOffice(form.value);
+    if (formName == 'segment') {
+      this.saveSegment(form.value);
     } else {
-      this.saveSectors(form.value);
+      this.saveAccessGroup(form.value);
     }
   }
 
-  async saveOffice(data: any) {
-    this.loadingOffice = true;
+  async saveSegment(data: any) {
+    this.loadingSegment = true;
     await this.service
       .postCustom('v1/users/roles', data)
       .then(async () => {
-        await this.getOffice();
+        await this.getSegment();
       })
-      .finally(() => (this.loadingOffice = false));
+      .finally(() => (this.loadingSegment = false));
   }
 
-  async saveSectors(data: any) {
-    this.loadingSectors = true;
+  async saveAccessGroup(data: any) {
+    this.loadingAccessGroup = true;
     await this.service
       .postCustom('v1/users/departments', data)
       .then(async () => {
-        await this.getSectors();
+        await this.getAccessGroup();
       })
-      .finally(() => (this.loadingSectors = false));
+      .finally(() => (this.loadingAccessGroup = false));
   }
 }

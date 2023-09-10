@@ -1,0 +1,19 @@
+<label
+  for="fileInput"
+  class="w-{{ size }} h-{{
+    size
+  }} overflow-hidden cursor-pointer border-[2px] bg-cb-modal rounded-full border-dashed border-cb-info flex flex-col justify-center items-center"
+>
+  <i
+    class="fa-regular fa-images text-[5rem] text-gradient-cb"
+    *ngIf="!image"
+  ></i>
+  <img class="w-full h-full" [src]="image" *ngIf="image" alt="avatar" />
+  <input
+    type="file"
+    id="fileInput"
+    class="flowbite-input opacity-0 rounded-full hidden"
+    (change)="onFileSelected($event)"
+    required
+  />
+</label>

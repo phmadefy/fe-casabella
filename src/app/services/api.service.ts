@@ -57,4 +57,28 @@ export class ApiService {
     const result = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
     return await result.json();
   }
+
+  getCategories(dados: any = {}): Promise<any> {
+    return lastValueFrom(
+      this.http.get(`${environment.url}/v1/categories`, { params: dados })
+    );
+  }
+
+  getDepartment(dados: any = {}): Promise<any> {
+    return lastValueFrom(
+      this.http.get(`${environment.url}/v1/departments`, { params: dados })
+    );
+  }
+
+  getRoles(dados: any = {}): Promise<any> {
+    return lastValueFrom(
+      this.http.get(`${environment.url}/v1/roles`, { params: dados })
+    );
+  }
+
+  getAccessGroups(dados: any = {}): Promise<any> {
+    return lastValueFrom(
+      this.http.get(`${environment.url}/v1/groups`, { params: dados })
+    );
+  }
 }

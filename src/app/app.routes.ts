@@ -83,11 +83,39 @@ export const routes: Routes = [
                   ),
               },
               {
+                path: 'add',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/users/user-form/user-form.component'
+                  ).then((c) => c.UserFormComponent),
+              },
+              {
                 path: 'office-sectors',
                 loadComponent: () =>
                   import(
                     './pages/admin/users/office-sectors/office-sectors.component'
                   ).then((c) => c.OfficeSectorsComponent),
+              },
+              {
+                path: 'segment-access-group',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/users/segment-access-group/segment-access-group.component'
+                  ).then((c) => c.SegmentAccessGroupComponent),
+              },
+              {
+                path: 'permissions-access-group',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/users/permissions-access-group/permissions-access-group.component'
+                  ).then((c) => c.PermissionsAccessGroupComponent),
+              },
+              {
+                path: ':id',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/users/user-form/user-form.component'
+                  ).then((c) => c.UserFormComponent),
               },
             ],
           },

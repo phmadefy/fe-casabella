@@ -56,9 +56,9 @@
         <input-floating
           class="p-0 bg-transparent border-none"
           label="Data de nascimento:"
-          model="dataNasc"
-          [(ngModel)]="dados.dataNasc"
-          name="dataNasc"
+          model="birthdate"
+          [(ngModel)]="dados.birthdate"
+          name="birthdate"
           type="date"
           required
           [form]="form1"
@@ -222,28 +222,10 @@
       </div>
 
       <div class="flex items-center justify-center py-2">
-        <label
-          for="fileInput"
-          class="w-48 h-48 overflow-hidden cursor-pointer border-[2px] bg-cb-modal rounded-full border-dashed border-cb-info flex flex-col justify-center items-center"
-        >
-          <i
-            class="fa-regular fa-images text-[5rem] text-gradient-cb"
-            *ngIf="!dados.avatar"
-          ></i>
-          <img
-            class="w-full h-full"
-            [src]="dados.avatar"
-            *ngIf="dados.avatar"
-            alt="avatar"
-          />
-          <input
-            type="file"
-            id="fileInput"
-            class="flowbite-input opacity-0 rounded-full hidden"
-            (change)="changeAvatar($event)"
-            required
-          />
-        </label>
+        <avatar
+          (changeImage)="changeAvatar($event)"
+          [image]="dados.avatar"
+        ></avatar>
       </div>
 
       <h2 class="text-sm text-center text-cb-base py-3">
@@ -267,13 +249,6 @@
           class="w-48 h-48 cursor-pointer border-0 bg-gradient-cb rounded-full border-dashed border-cb-info flex flex-col justify-center items-center"
         >
           <i class="fa-solid fa-check text-[5rem] text-cb-base"></i>
-          <input
-            type="file"
-            id="fileInput"
-            class="flowbite-input opacity-0 rounded-full hidden"
-            (change)="onFileSelected($event)"
-            required
-          />
         </label>
       </div>
 

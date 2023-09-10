@@ -456,25 +456,26 @@ export class HeaderComponent {
               queryParams: { tab: 'inactives' },
             },
             {
-              id: 'admin-user-add',
-              title: 'Cadastrar Usuário',
-              route: 'admin/user-add',
-            },
-            {
               id: 'admin-users-pending',
               title: 'Cadastros Pendentes',
               route: '/admin/users',
               queryParams: { tab: 'pending' },
             },
             {
+              id: 'admin-user-add',
+              title: 'Cadastrar Usuário',
+              route: 'admin/users/add',
+            },
+
+            {
               id: 'admin-users-access-group',
               title: 'Grupo de Acesso e Segmentos',
-              route: 'admin/users-access-group',
+              route: 'admin/users/segment-access-group',
             },
             {
               id: 'admin-users-permissions-access-group',
               title: 'Permissões de Grupos de Acessos',
-              route: 'admin/users-permissions-access-group',
+              route: 'admin/users/permissions-access-group',
             },
             {
               id: 'admin-users-office-sector',

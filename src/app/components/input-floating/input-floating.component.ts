@@ -26,6 +26,7 @@ const INPUT_FLOATING_VALUE_ACCESSOR: any = {
 })
 export class InputFloatingComponent implements ControlValueAccessor {
   @Input() type = 'text';
+  @Input() size = 'lg';
   @Input() model!: string;
   @Input() label!: string;
   @Input() mask!: string;
