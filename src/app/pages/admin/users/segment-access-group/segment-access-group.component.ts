@@ -23,9 +23,9 @@ import { ToolsService } from 'src/app/services/tools.service';
   providers: [ApiService],
 })
 export class SegmentAccessGroupComponent {
-  segment: any[] = [];
+  segment: any = { data: [] };
   loadingSegment = false;
-  accessGroup: any[] = [];
+  accessGroup: any = { data: [] };
   loadingAccessGroup = false;
 
   constructor(
@@ -43,9 +43,10 @@ export class SegmentAccessGroupComponent {
   async getSegment() {
     this.loadingSegment = true;
     await this.service
-      .getCustom('v1/roles')
-      .then((res: any[]) => {
+      .getCategories()
+      .then((res: any) => {
         console.log('getSegment', res);
+        this.segment = res;
       })
       .finally(() => (this.loadingSegment = false));
   }
@@ -53,9 +54,10 @@ export class SegmentAccessGroupComponent {
   async getAccessGroup() {
     this.loadingAccessGroup = true;
     await this.service
-      .getCustom('v1/departments')
-      .then((res: any[]) => {
-        console.log('getSegment', res);
+      .getAccessGroups()
+      .then((res: any) => {
+        console.log('getAccessGroup', res);
+        this.accessGroup = res;
       })
       .finally(() => (this.loadingAccessGroup = false));
   }
@@ -79,7 +81,7 @@ export class SegmentAccessGroupComponent {
   async saveSegment(data: any) {
     this.loadingSegment = true;
     await this.service
-      .postCustom('v1/users/roles', data)
+      .postCustom('v1/categories', data)
       .then(async () => {
         await this.getSegment();
       })
@@ -89,7 +91,7 @@ export class SegmentAccessGroupComponent {
   async saveAccessGroup(data: any) {
     this.loadingAccessGroup = true;
     await this.service
-      .postCustom('v1/users/departments', data)
+      .postCustom('v1/groups', data)
       .then(async () => {
         await this.getAccessGroup();
       })

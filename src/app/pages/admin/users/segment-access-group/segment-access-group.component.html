@@ -5,14 +5,17 @@
     </div>
 
     <div class="relative overflow-x-auto">
-      <div class="text-center py-2 text-gray-400" *ngIf="segment.length <= 0">
+      <div
+        class="text-center py-2 text-gray-400"
+        *ngIf="segment.data.length <= 0"
+      >
         Nenhum Segmento encontrado.
       </div>
-      <table class="w-full text-sm text-left">
+      <table class="w-full text-sm text-left table-cb">
         <tbody>
-          <ng-container *ngFor="let item of segment; let i = index">
+          <ng-container *ngFor="let item of segment.data; let i = index">
             <tr class="bg-transparent" [class.bg-cb-secondary]="i % 2 === 0">
-              <td></td>
+              <td>{{ item.name }}</td>
               <td></td>
             </tr>
           </ng-container>
@@ -50,18 +53,20 @@
     <div class="relative overflow-x-auto">
       <div
         class="text-center py-2 text-gray-400"
-        *ngIf="accessGroup.length <= 0"
+        *ngIf="accessGroup.data.length <= 0"
       >
         Nenhum Grupo de Acesso encontrado.
       </div>
-      <table class="w-full text-sm text-left">
+      <table class="w-full text-sm text-left table-cb">
         <tbody>
-          <ng-container *ngFor="let item of accessGroup; let i = index">
-            <tr class="bg-transparent" [class.bg-cb-secondary]="i % 2 === 0">
-              <td></td>
-              <td></td>
-            </tr>
-          </ng-container>
+          <tr
+            *ngFor="let item of accessGroup.data; let i = index"
+            class="bg-transparent"
+            [class.bg-cb-secondary]="i % 2 === 0"
+          >
+            <td>{{ item.name }}</td>
+            <td></td>
+          </tr>
         </tbody>
       </table>
     </div>

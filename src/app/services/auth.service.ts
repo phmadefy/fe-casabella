@@ -35,7 +35,7 @@ export class AuthService {
   ): LoginRequestBody {
     return {
       grant_type: 'password',
-      client_id: '2',
+      client_id: environment.client_id,
       client_secret: environment.api_key,
       username: email,
       password: password,

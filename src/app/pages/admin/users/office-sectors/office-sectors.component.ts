@@ -46,6 +46,7 @@ export class OfficeSectorsComponent {
       .getCustom('v1/roles')
       .then((res: any[]) => {
         console.log('getOffice', res);
+        this.office = res;
       })
       .finally(() => (this.loadingOffice = false));
   }
@@ -55,7 +56,8 @@ export class OfficeSectorsComponent {
     await this.service
       .getCustom('v1/departments')
       .then((res: any[]) => {
-        console.log('getOffice', res);
+        console.log('getSectors', res);
+        this.sectors = res;
       })
       .finally(() => (this.loadingSectors = false));
   }
@@ -79,7 +81,7 @@ export class OfficeSectorsComponent {
   async saveOffice(data: any) {
     this.loadingOffice = true;
     await this.service
-      .postCustom('v1/users/roles', data)
+      .postCustom('v1/admin/roles/create', data)
       .then(async () => {
         await this.getOffice();
       })
@@ -89,7 +91,7 @@ export class OfficeSectorsComponent {
   async saveSectors(data: any) {
     this.loadingSectors = true;
     await this.service
-      .postCustom('v1/users/departments', data)
+      .postCustom('v1/admin/departments/create', data)
       .then(async () => {
         await this.getSectors();
       })

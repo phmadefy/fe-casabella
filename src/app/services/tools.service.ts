@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
+import { AppState } from '../core/reducers';
+import { Logout } from '../core/actions/auth.action';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ToolsService {
   noImageAvatar = 'assets/sem-foto.png';
-  constructor() {}
+  constructor(private store: Store<AppState>) {}
 
   toBase64(file: File) {
     return new Promise((resolve, reject) => {
@@ -67,5 +70,13 @@ export class ToolsService {
       'https://api-cbella-01.azurewebsites.net/v1/cities/' + uf
     );
     return data.json();
+  }
+
+  logout() {
+    this.store.dispatch(new Logout());
+  }
+
+  logs(data: any) {
+    console.log(data);
   }
 }

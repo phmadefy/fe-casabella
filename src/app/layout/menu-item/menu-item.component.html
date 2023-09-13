@@ -1,0 +1,69 @@
+<button
+  type="button"
+  class="btn-sub-menu"
+  cdkMenuItem
+  [cdkMenuTriggerFor]="index"
+>
+  <span>
+    <i [class]="item.icon + ' mr-3'" *ngIf="item.icon"></i>
+    <span class="capitalize">{{ item.title }}</span>
+  </span>
+
+  <svg
+    class="w-2.5 h-2.5 ml-2.5"
+    aria-hidden="true"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 6 10"
+  >
+    <path
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="m1 9 4-4-4-4"
+    />
+  </svg>
+</button>
+
+<ng-template #index>
+  <div
+    class="z-10 bg-cb-primary border-[#21ACBE] min-w-[250px] border rounded shadow w-48"
+    cdkMenu
+  >
+    <div
+      class="flex items-center justify-between p-3 border-b border-b-cb-secondary"
+      *ngIf="item.subtitle"
+    >
+      <span class="text-sm text-[#21ACBE] font-bold uppercase">
+        {{ item.subtitle }}
+      </span>
+    </div>
+    <ul class="text-sm border-0 overflow-y-auto max-h-screen">
+      <li
+        class="border-b border-b-cb-secondary"
+        *ngFor="let subItem of item.items"
+      >
+        <button
+          type="button"
+          class="btn-sub-menu"
+          [routerLink]="[subItem.route]"
+          [queryParams]="subItem?.queryParams"
+          routerLinkActive="activeItem"
+          cdkMenuItem
+          *ngIf="!subItem.items"
+        >
+          <span>
+            <i [class]="subItem.icon + ' mr-3'" *ngIf="subItem.icon"></i>
+            <span class="capitalize">{{ subItem.title }}</span>
+          </span>
+        </button>
+        <!-- <ng-container *ngIf="subItem.items">
+          <ng-container
+            *ngTemplateOutlet="subMenu; context: { item: subItem }"
+          ></ng-container>
+        </ng-container> -->
+      </li>
+    </ul>
+  </div>
+</ng-template>

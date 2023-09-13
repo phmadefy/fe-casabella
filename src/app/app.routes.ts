@@ -110,6 +110,23 @@ export const routes: Routes = [
                     './pages/admin/users/permissions-access-group/permissions-access-group.component'
                   ).then((c) => c.PermissionsAccessGroupComponent),
               },
+
+              {
+                path: 'import-defaulters',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/users/import-defaulters/import-defaulters.component'
+                  ).then((c) => c.ImportDefaultersComponent),
+              },
+
+              {
+                path: 'imports',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/users/import-users/import-users.component'
+                  ).then((c) => c.ImportUsersComponent),
+              },
+
               {
                 path: ':id',
                 loadComponent: () =>

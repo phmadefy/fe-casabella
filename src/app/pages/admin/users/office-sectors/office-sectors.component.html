@@ -8,14 +8,16 @@
       <div class="text-center py-2 text-gray-400" *ngIf="office.length <= 0">
         Nenhum Cargo encontrado.
       </div>
-      <table class="w-full text-sm text-left">
+      <table class="w-full text-sm text-left table-cb">
         <tbody>
-          <ng-container *ngFor="let item of office; let i = index">
-            <tr class="bg-transparent" [class.bg-cb-secondary]="i % 2 === 0">
-              <td></td>
-              <td></td>
-            </tr>
-          </ng-container>
+          <tr
+            *ngFor="let item of office; let i = index"
+            class="bg-transparent"
+            [class.bg-cb-secondary]="i % 2 === 0"
+          >
+            <td>{{ item.name }}</td>
+            <td></td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -51,14 +53,16 @@
       <div class="text-center py-2 text-gray-400" *ngIf="sectors.length <= 0">
         Nenhum Setor encontrado.
       </div>
-      <table class="w-full text-sm text-left">
+      <table class="w-full text-sm text-left table-cb">
         <tbody>
-          <ng-container *ngFor="let item of sectors; let i = index">
-            <tr class="bg-transparent" [class.bg-cb-secondary]="i % 2 === 0">
-              <td></td>
-              <td></td>
-            </tr>
-          </ng-container>
+          <tr
+            *ngFor="let item of sectors; let i = index"
+            class="bg-transparent"
+            [class.bg-cb-secondary]="i % 2 === 0"
+          >
+            <td>{{ item.name }}</td>
+            <td></td>
+          </tr>
         </tbody>
       </table>
     </div>

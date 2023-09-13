@@ -1,0 +1,39 @@
+<!-- <label
+  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+  for="file_input"
+  >Upload file</label
+> -->
+<div
+  class="relative w-full"
+  [ngClass]="{ 'is-invalid': !tools.validateInputForm(form, controlName) }"
+>
+  <input
+    class="block w-full py-2 px-3 text-sm text-cb-secondary border border-cb-secondary rounded-lg cursor-pointer bg-cb-primary focus:border-cb-info focus:outline-none file:hidden"
+    type="file"
+    placeholder="Localizar planilha XLSX"
+    [(ngModel)]="value"
+    [required]="required"
+    [disabled]="disabled"
+    (change)="fileUpload($event)"
+  />
+
+  <span
+    class="absolute top-0 right-0 p-2.5 text-sm font-medium h-full text-cb-secondary"
+  >
+    <svg
+      class="w-4 h-4"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 20 20"
+    >
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+      />
+    </svg>
+  </span>
+</div>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { ToolsService } from 'src/app/services/tools.service';
 
 @Component({
   selector: 'app-header',
@@ -71,7 +72,7 @@ export class HeaderComponent {
     },
     {
       id: 'floral',
-      title: 'floral',
+      title: 'Floral',
       route: 'floral',
       icon: '',
       items: [
@@ -103,7 +104,7 @@ export class HeaderComponent {
     },
     {
       id: 'nfts',
-      title: 'nfts',
+      title: 'NFTs',
       route: 'nfts',
       icon: '',
       items: [
@@ -135,7 +136,7 @@ export class HeaderComponent {
     },
     {
       id: 'fale-conosco',
-      title: 'fale conosco',
+      title: 'Fale Conosco',
       route: 'fale-conosco',
       icon: '',
     },
@@ -482,20 +483,20 @@ export class HeaderComponent {
               title: 'Cargo e Setores',
               route: '/admin/users/office-sectors',
             },
-            {
-              id: 'admin-users-city-state',
-              title: 'Cidades e Estados',
-              route: 'admin/users-city-state',
-            },
+            // {
+            //   id: 'admin-users-city-state',
+            //   title: 'Cidades e Estados',
+            //   route: 'admin/users/cities-states',
+            // },
             {
               id: 'admin-users-import-defaulters',
               title: 'Importar inadimplentes',
-              route: 'admin/users-import-defaulters',
+              route: 'admin/users/import-defaulters',
             },
             {
               id: 'admin-users-imports',
               title: 'Importar Usuários',
-              route: 'admin/users-imports',
+              route: 'admin/users/imports',
             },
           ],
         },
@@ -508,4 +509,6 @@ export class HeaderComponent {
       ],
     },
   ];
+
+  constructor(public tools: ToolsService) {}
 }

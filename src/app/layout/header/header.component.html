@@ -124,6 +124,7 @@
             <a
               href="javascript:void(0)"
               class="block px-2 py-2 text-cb-base bg-gradient-cb-hover"
+              (click)="tools.logout()"
             >
               <i class="fa-solid fa-right-from-bracket mr-2"></i> Sair
             </a>
@@ -147,7 +148,7 @@
       [routerLinkActiveOptions]="{ exact: false }"
     >
       <i [class]="item.icon + ' mr-3'" *ngIf="item.icon"></i>
-      <span class="capitalize">{{ item.title }}</span>
+      <span class="">{{ item.title }}</span>
     </button>
     <!-- Dropdown menu -->
     <div
@@ -176,7 +177,7 @@
             *ngIf="!subItem.items"
           >
             <i [class]="subItem.icon + ' mr-3'" *ngIf="subItem.icon"></i>
-            <span class="capitalize">{{ subItem.title }}</span>
+            <span class="">{{ subItem.title }}</span>
           </a>
           <ng-container *ngIf="subItem.items">
             <ng-container
@@ -195,7 +196,7 @@
       [queryParams]="item?.queryParams"
     >
       <i [class]="item.icon + ' mr-3'" *ngIf="item.icon"></i>
-      <span class="capitalize">{{ item.title }}</span>
+      <span class="">{{ item.title }}</span>
     </button>
   </div>
 </ng-template>
@@ -212,7 +213,7 @@
     >
       <span>
         <i [class]="item.icon + ' mr-3'" *ngIf="item.icon"></i>
-        <span class="capitalize">{{ item.title }}</span>
+        <span class="">{{ item.title }}</span>
       </span>
 
       <svg
@@ -251,14 +252,14 @@
               [queryParams]="subItem?.queryParams"
             >
               <i [class]="subItem.icon + ' mr-3'" *ngIf="subItem.icon"></i>
-              <span class="capitalize">{{ subItem.title }}</span>
+              <span class="">{{ subItem.title }}</span>
             </a>
             <span
               class="flex items-center px-4 py-2 text-gradient-cb"
               *ngIf="!subItem.route"
             >
               <i [class]="subItem.icon + ' mr-3'" *ngIf="subItem.icon"></i>
-              <span class="capitalize">{{ subItem.title }}</span>
+              <span class="">{{ subItem.title }}</span>
             </span>
           </ng-container>
         </li>

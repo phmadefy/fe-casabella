@@ -1,0 +1,64 @@
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+  <card>
+    <div class="card-header">
+      <h2 class="text-lg font-semibold">Importar Usuários Inadimplentes</h2>
+    </div>
+
+    <div class="p-4 border-b border-cb-secondary">
+      <div class="w-1/2">
+        <div class="text-cb-base mx-1 mb-2">
+          <label>Importar planilha XLS com usuários indimplentes</label>
+        </div>
+        <input-file
+          name="file"
+          [form]="form"
+          ngModel
+          [required]="true"
+          (selectFile)="tools.logs($event)"
+        ></input-file>
+      </div>
+
+      <div class="flex items-center gap-4 py-4">
+        <div class="flex items-center">
+          <input
+            id="lock"
+            type="radio"
+            name="status"
+            value="lock"
+            class="input-radio"
+            ngModel
+          />
+          <label for="lock" class="ml-2 text-sm font-medium">Bloquear</label>
+        </div>
+        <div class="flex items-center">
+          <input
+            checked
+            id="unlock"
+            type="radio"
+            name="status"
+            value="unlock"
+            class="input-radio"
+            ngModel
+          />
+          <label for="unlock" class="ml-2 text-sm font-medium"
+            >Checked state</label
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer flex items-center gap-3">
+      <button
+        class="btn btn-sm text-white bg-gradient-cb bg-gradient-cb-hover rounded-md"
+        type="submit"
+        [disabled]="loading"
+      >
+        <spinner *ngIf="loading" />
+        <span *ngIf="!loading">Importar</span>
+      </button>
+      <!-- <button class="btn btn-sm text-white rounded-md" [disabled]="loading">
+        Cancelar
+      </button> -->
+    </div>
+  </card>
+</form>

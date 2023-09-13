@@ -59,7 +59,8 @@ export class AuthComponent implements AfterViewInit {
       .then((res) => {
         console.log('res', res);
         this.store.dispatch(new Login({ token: res.access_token }));
-        this.router.navigate(['/']);
+        // this.router.navigate(['/']);
+        location.href = '/';
       })
       .finally(() => (this.loading = false));
   }
