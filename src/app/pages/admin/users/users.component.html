@@ -59,6 +59,7 @@
           *ngFor="let item of dataSource.data; let i = index"
           class="bg-transparent"
           [class.bg-cb-secondary]="i % 2 === 0"
+          (dblclick)="edit(item)"
         >
           <td>
             <div class="flex items-center">

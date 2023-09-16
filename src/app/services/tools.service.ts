@@ -4,13 +4,14 @@ import { Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
 import { AppState } from '../core/reducers';
 import { Logout } from '../core/actions/auth.action';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ToolsService {
   noImageAvatar = 'assets/sem-foto.png';
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>, public route: Router) {}
 
   toBase64(file: File) {
     return new Promise((resolve, reject) => {
@@ -56,20 +57,6 @@ export class ToolsService {
     }
 
     return errors;
-  }
-
-  async getStates() {
-    const data = await fetch(
-      'https://api-cbella-01.azurewebsites.net/v1/states'
-    );
-    return data.json();
-  }
-
-  async getCities(uf: string) {
-    const data = await fetch(
-      'https://api-cbella-01.azurewebsites.net/v1/cities/' + uf
-    );
-    return data.json();
   }
 
   logout() {

@@ -43,7 +43,7 @@ export class SegmentAccessGroupComponent {
   async getSegment() {
     this.loadingSegment = true;
     await this.service
-      .getCategories()
+      .getSegments()
       .then((res: any) => {
         console.log('getSegment', res);
         this.segment = res;
@@ -81,7 +81,7 @@ export class SegmentAccessGroupComponent {
   async saveSegment(data: any) {
     this.loadingSegment = true;
     await this.service
-      .postCustom('v1/categories', data)
+      .postCustom('v1/segments', data)
       .then(async () => {
         await this.getSegment();
       })

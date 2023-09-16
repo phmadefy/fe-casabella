@@ -144,7 +144,7 @@ select:-webkit-autofill:focus {
 }
 
 .activeItem {
-  @apply bg-gradient-cb;
+  @apply bg-gradient-cb font-semibold;
 }
 
 .btn-default {
@@ -236,6 +236,10 @@ select:-webkit-autofill:focus {
 
 .ng-select .ng-select-container .ng-value-container .ng-placeholder {
   @apply text-sm;
+}
+
+.md.ng-select.ng-select-single .ng-select-container {
+  height: 37px;
 }
 
 .is-invalid {

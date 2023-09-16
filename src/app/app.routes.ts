@@ -66,12 +66,25 @@ export const routes: Routes = [
         path: 'admin',
         children: [
           {
-            path: 'settings',
-            loadComponent: () =>
-              import('./pages/admin/settings/settings.component').then(
-                (c) => c.SettingsComponent
-              ),
+            path: 'incentives',
+            children: [
+              {
+                path: '',
+                loadComponent: () =>
+                  import('./pages/admin/incentives/incentives.component').then(
+                    (c) => c.IncentivesComponent
+                  ),
+              },
+              {
+                path: 'add',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/incentives/incentive-form/incentive-form.component'
+                  ).then((c) => c.IncentiveFormComponent),
+              },
+            ],
           },
+
           {
             path: 'users',
             children: [
@@ -135,6 +148,13 @@ export const routes: Routes = [
                   ).then((c) => c.UserFormComponent),
               },
             ],
+          },
+          {
+            path: 'settings',
+            loadComponent: () =>
+              import('./pages/admin/settings/settings.component').then(
+                (c) => c.SettingsComponent
+              ),
           },
         ],
       },

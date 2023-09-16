@@ -1,0 +1,177 @@
+<form #form="ngForm" (ngSubmit)="onSubmit(form)" class="grid md:grid-cols-3">
+  <card class="col-span-2">
+    <div class="card-header">
+      <h2 class="text-lg font-semibold">
+        {{ dados.id ? "Editar" : "Adicionar" }} Incentivo
+      </h2>
+    </div>
+
+    <div class="p-4">
+      <div class="grid">
+        <div class="mb-4">
+          <checkbox
+            label="Nome do Incentivo"
+            controlName="showName"
+            [(ngModel)]="dados.showName"
+          ></checkbox>
+          <input
+            type="text"
+            class="input-cb"
+            name="name"
+            [(ngModel)]="dados.name"
+            placeholder="Nome do Incentivo"
+          />
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="mb-4">
+          <checkbox
+            label="Descrição do Incentivo"
+            controlName="showDescription"
+            [(ngModel)]="dados.showDescription"
+          ></checkbox>
+          <textarea
+            rows="3"
+            class="input-cb"
+            name="description"
+            [(ngModel)]="dados.description"
+            placeholder="Descrição do Incentivo"
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="mb-4">
+          <checkbox
+            label="Premiação"
+            controlName="showAward"
+            [(ngModel)]="dados.showAward"
+          ></checkbox>
+          <textarea
+            rows="3"
+            class="input-cb"
+            name="award"
+            [(ngModel)]="dados.award"
+            placeholder="Premiação"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="p-4">
+      <div class="grid grid-cols-3 gap-3">
+        <div class="mb-4">
+          <checkbox
+            label="Contém Floral (F$)"
+            controlName="show_has_floral"
+            [(ngModel)]="dados.show_has_floral"
+          ></checkbox>
+          <select
+            type="text"
+            class="input-cb"
+            name="has_floral"
+            [(ngModel)]="dados.has_floral"
+            placeholder="Contém Floral (F$)"
+          >
+            <option value="0">Não</option>
+            <option value="1">Sim</option>
+          </select>
+        </div>
+
+        <div class="mb-4">
+          <checkbox
+            label="Quanditade de Floral (F$)"
+            controlName="show_quantity_floral"
+            [(ngModel)]="dados.show_quantity_floral"
+          ></checkbox>
+          <input
+            type="tel"
+            class="input-cb"
+            name="quantity_floral"
+            [(ngModel)]="dados.quantity_floral"
+            placeholder="Quanditade de Floral (F$)"
+            currencyMask
+            [options]="{ prefix: 'F$ ', align: 'left' }"
+          />
+        </div>
+
+        <div class="mb-4">
+          <checkbox
+            label="Valor do Investimento (R$)"
+            controlName="show_quantity_floral"
+            [(ngModel)]="dados.show_quantity_floral"
+          ></checkbox>
+          <input
+            type="tel"
+            class="input-cb"
+            name="quantity_floral"
+            [(ngModel)]="dados.quantity_floral"
+            placeholder="Valor do Investimento (R$)"
+            currencyMask
+            [options]="{ prefix: 'R$ ', align: 'left' }"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="p-4">
+      <div class="grid grid-cols-3 gap-3">
+        <div class="mb-4">
+          <checkbox
+            label="Contém NFT"
+            controlName="show_has_nft"
+            [(ngModel)]="dados.show_has_nft"
+          ></checkbox>
+          <select
+            type="text"
+            class="input-cb"
+            name="has_nft"
+            [(ngModel)]="dados.has_nft"
+            placeholder="Contém NFT"
+          >
+            <option value="0">Não</option>
+            <option value="1">Sim</option>
+          </select>
+        </div>
+
+        <div class="mb-4">
+          <checkbox
+            label="Quanditade de NFT"
+            controlName="show_quantity_nft"
+            [(ngModel)]="dados.show_quantity_nft"
+          ></checkbox>
+          <input
+            type="number"
+            class="input-cb"
+            name="quantity_nft"
+            [(ngModel)]="dados.quantity_nft"
+            placeholder="Quanditade de NFT"
+          />
+        </div>
+
+        <div class="mb-4">
+          <checkbox
+            label="Vincular NFT"
+            controlName="show_sync_nft"
+            [(ngModel)]="dados.show_sync_nft"
+          ></checkbox>
+          <input
+            type="tel"
+            class="input-cb"
+            name="sync_nft"
+            [(ngModel)]="dados.sync_nft"
+            placeholder="Vincular NFT"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+  </card>
+</form>

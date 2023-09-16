@@ -1,5 +1,5 @@
 <form #form="ngForm" (ngSubmit)="onSubmit(form)">
-  <card>
+  <card [loading]="loading">
     <div class="card-header">
       <h2 class="text-lg font-semibold">{{ title }}</h2>
     </div>
@@ -21,12 +21,11 @@
             <input-floating
               class="p-0 bg-transparent border-none"
               label="Segmento:"
-              model="category"
-              [(ngModel)]="dados.category"
-              name="category"
+              model="segment_id"
+              [(ngModel)]="dados.segment_id"
+              name="segment_id"
               type="select"
-              [options]="categories"
-              required
+              [options]="segments"
               [form]="form"
               size="md"
             ></input-floating>
@@ -36,12 +35,11 @@
             <input-floating
               class="p-0 bg-transparent border-none"
               label="Grupo de acessos:"
-              model="role"
-              [(ngModel)]="dados.role"
-              name="role"
+              model="group_id"
+              [(ngModel)]="dados.group_id"
+              name="group_id"
               type="select"
-              [options]="roles"
-              required
+              [options]="groups"
               [form]="form"
               size="md"
             ></input-floating>
@@ -69,10 +67,9 @@
             class="p-0 bg-transparent border-none"
             label="Usuário:"
             model="nickname"
-            [(ngModel)]="dados.nickname"
+            [(ngModel)]="dados.user.nickname"
             name="nickname"
             type="text"
-            required
             [form]="form"
             size="md"
           ></input-floating>
@@ -86,7 +83,6 @@
             [(ngModel)]="dados.birthdate"
             name="birthdate"
             type="date"
-            required
             [form]="form"
             size="md"
           ></input-floating>
@@ -114,7 +110,7 @@
             class="p-0 bg-transparent border-none"
             label="E-mail:"
             model="email"
-            [(ngModel)]="dados.email"
+            [(ngModel)]="dados.user.email"
             email
             name="email"
             type="text"
@@ -128,9 +124,9 @@
           <input-floating
             class="p-0 bg-transparent border-none"
             label="Telefone 1:"
-            model="phone1"
-            [(ngModel)]="dados.phone1"
-            name="phone1"
+            model="phone"
+            [(ngModel)]="dados.phone"
+            name="phone"
             type="phone"
             required
             [form]="form"
@@ -142,11 +138,10 @@
           <input-floating
             class="p-0 bg-transparent border-none"
             label="Telefone 2:"
-            model="phone2"
-            [(ngModel)]="dados.phone2"
-            name="phone2"
+            model="phone_2"
+            [(ngModel)]="dados.phone_2"
+            name="phone_2"
             type="phone"
-            required
             [form]="form"
             size="md"
           ></input-floating>
@@ -156,12 +151,13 @@
           <input-floating
             class="p-0 bg-transparent border-none"
             label="Gênero:"
-            model="gen"
-            [(ngModel)]="dados.gen"
-            name="gen"
+            model="gender"
+            [(ngModel)]="dados.gender"
+            name="gender"
             type="select"
-            [options]="categories"
-            required
+            valueBind="key"
+            textBind="description"
+            [options]="gender"
             [form]="form"
             size="md"
           ></input-floating>
@@ -173,12 +169,13 @@
           <input-floating
             class="p-0 bg-transparent border-none"
             label="Público:"
-            model="public"
-            [(ngModel)]="dados.public"
-            name="public"
+            model="person_type"
+            [(ngModel)]="dados.type_person_id"
+            name="person_type"
             type="select"
-            [options]="categories"
-            required
+            valueBind="key"
+            textBind="description"
+            [options]="personsType"
             [form]="form"
             size="md"
           ></input-floating>
@@ -188,12 +185,13 @@
           <input-floating
             class="p-0 bg-transparent border-none"
             label="Cargo:"
-            model="role"
-            [(ngModel)]="dados.role"
-            name="role"
+            model="role_id"
+            [(ngModel)]="dados.role_id"
+            name="role_id"
             type="select"
-            [options]="categories"
-            required
+            valueBind="id"
+            textBind="name"
+            [options]="roles"
             [form]="form"
             size="md"
           ></input-floating>
@@ -203,12 +201,13 @@
           <input-floating
             class="p-0 bg-transparent border-none"
             label="Setor:"
-            model="department"
-            [(ngModel)]="dados.department"
-            name="department"
+            model="department_id"
+            [(ngModel)]="dados.department_id"
+            name="department_id"
             type="select"
-            [options]="categories"
-            required
+            valueBind="id"
+            textBind="name"
+            [options]="departments"
             [form]="form"
             size="md"
           ></input-floating>
@@ -220,26 +219,10 @@
           <input-floating
             class="p-0 bg-transparent border-none"
             label="Código Revendedor:"
-            model="id"
-            [(ngModel)]="dados.id"
-            name="id"
+            model="code"
+            [(ngModel)]="dados.code"
+            name="code"
             type="text"
-            required
-            [form]="form"
-            size="md"
-          ></input-floating>
-        </div>
-
-        <div class="col-span-3">
-          <input-floating
-            class="p-0 bg-transparent border-none"
-            label="Cidade:"
-            model="city"
-            [(ngModel)]="dados.address.city"
-            name="city"
-            type="select"
-            [options]="categories"
-            required
             [form]="form"
             size="md"
           ></input-floating>
@@ -253,11 +236,31 @@
             [(ngModel)]="dados.address.state"
             name="state"
             type="select"
-            [options]="categories"
+            valueBind="label"
+            textBind="name"
+            [options]="states"
+            [form]="form"
+            size="md"
+            (ngModelChange)="getCities($event)"
+          ></input-floating>
+        </div>
+
+        <div class="col-span-3">
+          <combobox
+            class="p-0 bg-transparent border-none"
+            label="Cidade:"
+            model="city"
+            [(ngModel)]="dados.address.city"
+            name="city"
+            type="select"
+            [options]="cities"
+            valueBind="name"
+            textBind="name"
+            placeholder="Selecione uma cidade"
             required
             [form]="form"
             size="md"
-          ></input-floating>
+          ></combobox>
         </div>
 
         <div class="col-span-2">
@@ -268,13 +271,30 @@
             [(ngModel)]="dados.status"
             name="status"
             type="select"
-            [options]="categories"
-            required
+            [options]="status"
             [form]="form"
             size="md"
           ></input-floating>
         </div>
       </div>
+    </div>
+
+    <div class="card-footer flex items-center gap-3">
+      <button
+        class="btn btn-sm text-white bg-gradient-cb bg-gradient-cb-hover rounded-md"
+        [disabled]="loading"
+        type="submit"
+      >
+        <spinner *ngIf="loading" />
+        <span *ngIf="!loading">Salvar</span>
+      </button>
+      <button
+        class="btn btn-sm text-white rounded-md"
+        [disabled]="loading"
+        routerLink="/admin/users"
+      >
+        Cancelar
+      </button>
     </div>
   </card>
 </form>

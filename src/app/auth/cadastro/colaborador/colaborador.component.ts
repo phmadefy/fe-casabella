@@ -14,7 +14,6 @@ import { InputFloatingComponent } from 'src/app/components/input-floating/input-
 import { DropzoneComponent } from 'src/app/components/dropzone/dropzone.component';
 import { Router } from '@angular/router';
 import { ToolsService } from 'src/app/services/tools.service';
-import { UFs } from 'src/app/shared/properties';
 import { ComboboxComponent } from 'src/app/components/combobox/combobox.component';
 import { AvatarComponent } from 'src/app/components/avatar/avatar.component';
 
@@ -58,7 +57,7 @@ export class ColaboradorComponent {
   }
 
   async ngOnInit() {
-    this.optionsStates = await this.tools.getStates();
+    this.optionsStates = await this.service.getStates();
   }
 
   nextStep(): void {
@@ -109,6 +108,6 @@ export class ColaboradorComponent {
   }
 
   async getCities(uf: string) {
-    this.optionsCities = await this.tools.getCities(uf);
+    this.optionsCities = await this.service.getCities(uf);
   }
 }

@@ -145,7 +145,10 @@
       data-dropdown-offset-distance="-10"
       class="px-2 text-cb-base rounded-b-lg h-full hover:text-cb-info hover:font-semibold focus:text-cb-info focus:font-semibold border-b-[5px] border-transparent bg-gradient-cb-border-hover"
       routerLinkActive="activeMenu"
-      [routerLinkActiveOptions]="{ exact: false }"
+      [routerLinkActiveOptions]="{
+        exact: false,
+        fragment: 'ignored'
+      }"
     >
       <i [class]="item.icon + ' mr-3'" *ngIf="item.icon"></i>
       <span class="">{{ item.title }}</span>
@@ -170,8 +173,8 @@
         >
           <a
             href="javascript:void(0)"
-            class="flex items-center px-4 py-2 text-cb-base bg-gradient-cb-hover h-11"
-            [routerLink]="[subItem.route]"
+            class="flex justify-start items-center px-4 py-2 text-cb-base bg-gradient-cb-hover h-11"
+            [routerLink]="[item.route + subItem.route]"
             [queryParams]="subItem?.queryParams"
             routerLinkActive="activeItem"
             *ngIf="!subItem.items"
@@ -246,16 +249,21 @@
           <ng-container *ngIf="!subItem.items">
             <a
               href="javascript:void(0)"
-              class="flex items-center px-4 py-2 text-cb-base bg-gradient-cb-hover"
+              class="w-full flex justify-start items-center px-4 py-2 text-cb-base bg-gradient-cb-hover"
               *ngIf="subItem.route"
-              [routerLink]="[subItem.route]"
+              [routerLink]="[item.route + subItem.route]"
+              routerLinkActive="activeItem"
+              [routerLinkActiveOptions]="{
+                exact: true,
+                fragment: 'ignored'
+              }"
               [queryParams]="subItem?.queryParams"
             >
               <i [class]="subItem.icon + ' mr-3'" *ngIf="subItem.icon"></i>
               <span class="">{{ subItem.title }}</span>
             </a>
             <span
-              class="flex items-center px-4 py-2 text-gradient-cb"
+              class="flex justify-start items-center px-4 py-2 text-gradient-cb"
               *ngIf="!subItem.route"
             >
               <i [class]="subItem.icon + ' mr-3'" *ngIf="subItem.icon"></i>

@@ -58,13 +58,13 @@ export class ApiService {
     return await result.json();
   }
 
-  getCategories(dados: any = {}): Promise<any> {
+  getSegments(dados: any = {}): Promise<any> {
     return lastValueFrom(
-      this.http.get(`${environment.url}/v1/categories`, { params: dados })
+      this.http.get(`${environment.url}/v1/segments`, { params: dados })
     );
   }
 
-  getDepartment(dados: any = {}): Promise<any> {
+  getDepartments(dados: any = {}): Promise<any> {
     return lastValueFrom(
       this.http.get(`${environment.url}/v1/departments`, { params: dados })
     );
@@ -79,6 +79,17 @@ export class ApiService {
   getAccessGroups(dados: any = {}): Promise<any> {
     return lastValueFrom(
       this.http.get(`${environment.url}/v1/groups`, { params: dados })
+    );
+  }
+
+  getStates(dados: any = {}): Promise<any> {
+    return lastValueFrom(
+      this.http.get(`${environment.url}/v1/states`, { params: dados })
+    );
+  }
+  getCities(uf: string, dados: any = {}): Promise<any> {
+    return lastValueFrom(
+      this.http.get(`${environment.url}/v1/cities/${uf}`, { params: dados })
     );
   }
 }

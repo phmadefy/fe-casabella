@@ -23,8 +23,8 @@ import { ToolsService } from 'src/app/services/tools.service';
   providers: [ApiService],
 })
 export class OfficeSectorsComponent {
-  office: any[] = [];
-  sectors: any[] = [];
+  office: any = { data: [] };
+  sectors: any = { data: [] };
   loadingOffice = false;
   loadingSectors = false;
 
@@ -35,16 +35,15 @@ export class OfficeSectorsComponent {
   ) {}
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-    this.getDados();
+    this.getOffice();
+    this.getSectors();
   }
 
   async getOffice() {
     this.loadingOffice = true;
     await this.service
       .getCustom('v1/roles')
-      .then((res: any[]) => {
+      .then((res: any) => {
         console.log('getOffice', res);
         this.office = res;
       })
@@ -55,15 +54,11 @@ export class OfficeSectorsComponent {
     this.loadingSectors = true;
     await this.service
       .getCustom('v1/departments')
-      .then((res: any[]) => {
+      .then((res: any) => {
         console.log('getSectors', res);
         this.sectors = res;
       })
       .finally(() => (this.loadingSectors = false));
-  }
-
-  async getDados() {
-    Promise.all([this.getOffice(), this.getSectors()]);
   }
 
   submit(form: NgForm, formName: string) {

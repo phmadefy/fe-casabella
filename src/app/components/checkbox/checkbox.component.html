@@ -1,0 +1,13 @@
+<div class="flex items-center mb-2">
+  <input
+    [id]="controlName"
+    [name]="controlName"
+    [disabled]="disabled"
+    [(ngModel)]="value"
+    type="checkbox"
+    class="w-4 h-4 text-cb-info bg-gray-100 border-gray-300 rounded focus:ring-cb-info"
+  />
+  <label [attr.for]="controlName" class="ml-2 text-sm font-medium">{{
+    label
+  }}</label>
+</div>

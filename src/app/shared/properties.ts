@@ -27,3 +27,10 @@ export const UFs = [
   { sigla: 'SE', description: 'Sergipe' },
   { sigla: 'TO', description: 'Tocantins' },
 ];
+
+export const Status = [{ key: '', description: '' }];
+
+export const Gender = [
+  { key: 'male', description: 'Masculino' },
+  { key: 'female', description: 'Feminino' },
+];

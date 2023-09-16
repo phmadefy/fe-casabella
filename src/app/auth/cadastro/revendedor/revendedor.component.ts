@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { StepperComponent } from 'src/app/components/stepper/stepper.component';
 import { InputFloatingComponent } from 'src/app/components/input-floating/input-floating.component';
 import { DropzoneComponent } from 'src/app/components/dropzone/dropzone.component';
-import { UFs } from 'src/app/shared/properties';
 import { ToolsService } from 'src/app/services/tools.service';
 import { ApiService } from 'src/app/services/api.service';
 import { ComboboxComponent } from 'src/app/components/combobox/combobox.component';
@@ -52,7 +51,7 @@ export class RevendedorComponent {
   }
 
   async ngOnInit() {
-    this.optionsStates = await this.tools.getStates();
+    this.optionsStates = await this.service.getStates();
   }
 
   nextStep(): void {
@@ -103,6 +102,6 @@ export class RevendedorComponent {
   }
 
   async getCities(uf: string) {
-    this.optionsCities = await this.tools.getCities(uf);
+    this.optionsCities = await this.service.getCities(uf);
   }
 }

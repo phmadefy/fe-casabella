@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from 'src/app/components/card/card.component';
-import { ActivatedRoute, RouterLink } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { ApiService } from 'src/app/services/api.service';
-import { ToolsService } from 'src/app/services/tools.service';
 import { FormsModule } from '@angular/forms';
 import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
+import { ToolsService } from 'src/app/services/tools.service';
+import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-users',
+  selector: 'app-incentives',
   standalone: true,
   imports: [
     CommonModule,
@@ -18,24 +18,24 @@ import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
     SpinnerComponent,
     RouterLink,
   ],
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss'],
   providers: [ApiService],
+  templateUrl: './incentives.component.html',
+  styleUrls: ['./incentives.component.scss'],
 })
-export class UsersComponent {
+export class IncentivesComponent {
   dataSource: any = { data: [] };
   queryParamsObs!: Subscription;
   loading = false;
 
   filters: any = { per_page: 50, page: 1 };
 
-  tab: string = 'actives';
+  tab: string = 'all';
   constructor(
     private route: ActivatedRoute,
     private service: ApiService,
     public tools: ToolsService
   ) {
-    service.path = 'v1/users';
+    service.path = 'v1/incentives';
   }
 
   ngOnInit(): void {

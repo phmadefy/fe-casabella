@@ -1,0 +1,44 @@
+<div class="mb-4">
+  <card>
+    <ul class="flex flex-wrap gap-3 text-sm font-medium text-center p-5">
+      <li (click)="setTab('actives')">
+        <button
+          class="px-8 py-2 text-cb-base rounded-md"
+          [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'all' }"
+        >
+          Todos
+        </button>
+      </li>
+
+      <li>
+        <button routerLink="add" class="px-8 py-2 text-cb-base rounded-md">
+          Adicionar Incentivo
+        </button>
+      </li>
+
+      <li (click)="setTab('inactives')">
+        <button
+          class="px-8 py-2 text-cb-base rounded-md"
+          [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'inactives' }"
+        >
+          Inativos
+        </button>
+      </li>
+
+      <li (click)="setTab('pending')">
+        <button
+          class="px-8 py-2 text-cb-base rounded-md"
+          [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'pending' }"
+        >
+          Meus Incentivos
+        </button>
+      </li>
+
+      <li>
+        <button class="px-8 py-2 text-cb-base rounded-md">Galeria</button>
+      </li>
+    </ul>
+  </card>
+</div>
+
+<card [loading]="loading"> </card>

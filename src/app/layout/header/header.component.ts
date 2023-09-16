@@ -149,18 +149,18 @@ export class HeaderComponent {
         {
           id: 'admin-incentivos',
           title: 'Incentivos',
-          route: 'admin/incentivos',
+          route: 'admin/incentives',
           icon: 'fa-solid fa-flag',
           items: [
             {
               id: 'admin-incentivos-todos',
               title: 'Todos Incentivos',
-              route: 'admin/incentivos-todos',
+              route: '/',
             },
             {
               id: 'admin-incentivo-add',
               title: 'Adicionar Incentivo',
-              route: 'admin/incentivo-add',
+              route: '/add',
             },
             {
               id: 'admin-termos',
@@ -447,56 +447,56 @@ export class HeaderComponent {
             {
               id: 'admin-users-active',
               title: 'Usuários Ativos',
-              route: '/admin/users',
+              route: '/',
               queryParams: { tab: 'actives' },
             },
             {
               id: 'admin-users-inactive',
               title: 'Usuários Inativos',
-              route: '/admin/users',
+              route: '/',
               queryParams: { tab: 'inactives' },
             },
             {
               id: 'admin-users-pending',
               title: 'Cadastros Pendentes',
-              route: '/admin/users',
+              route: '/',
               queryParams: { tab: 'pending' },
             },
             {
               id: 'admin-user-add',
               title: 'Cadastrar Usuário',
-              route: 'admin/users/add',
+              route: '/add',
             },
 
             {
               id: 'admin-users-access-group',
               title: 'Grupo de Acesso e Segmentos',
-              route: 'admin/users/segment-access-group',
+              route: '/segment-access-group',
             },
             {
               id: 'admin-users-permissions-access-group',
               title: 'Permissões de Grupos de Acessos',
-              route: 'admin/users/permissions-access-group',
+              route: '/permissions-access-group',
             },
             {
               id: 'admin-users-office-sector',
               title: 'Cargo e Setores',
-              route: '/admin/users/office-sectors',
+              route: '/office-sectors',
             },
             // {
             //   id: 'admin-users-city-state',
             //   title: 'Cidades e Estados',
-            //   route: 'admin/users/cities-states',
+            //   route: '/cities-states',
             // },
             {
               id: 'admin-users-import-defaulters',
               title: 'Importar inadimplentes',
-              route: 'admin/users/import-defaulters',
+              route: '/import-defaulters',
             },
             {
               id: 'admin-users-imports',
               title: 'Importar Usuários',
-              route: 'admin/users/imports',
+              route: '/imports',
             },
           ],
         },
