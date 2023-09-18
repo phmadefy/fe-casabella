@@ -35,7 +35,13 @@
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.scss"],
-            "scripts": []
+            "scripts": [
+              "node_modules/@ckeditor/ckeditor5-build-classic/build/translations/pt-br.js"
+            ],
+            "allowedCommonJsDependencies": [
+              "@ckeditor/ckeditor5-build-classic"
+            ],
+            "preserveSymlinks": true
           },
           "configurations": {
             "production": {

@@ -1,17 +1,22 @@
-<form #form="ngForm" (ngSubmit)="onSubmit(form)" class="grid md:grid-cols-3">
-  <card class="col-span-2">
+<form
+  #form="ngForm"
+  (ngSubmit)="onSubmit(form)"
+  class="grid md:grid-cols-8 gap-3"
+>
+  <card class="col-span-6">
     <div class="card-header">
       <h2 class="text-lg font-semibold">
         {{ dados.id ? "Editar" : "Adicionar" }} Incentivo
       </h2>
     </div>
 
-    <div class="p-4">
+    <div class="px-4">
       <div class="grid">
         <div class="mb-4">
           <checkbox
             label="Nome do Incentivo"
             controlName="showName"
+            name="showName"
             [(ngModel)]="dados.showName"
           ></checkbox>
           <input
@@ -29,6 +34,7 @@
           <checkbox
             label="Descrição do Incentivo"
             controlName="showDescription"
+            name="showDescription"
             [(ngModel)]="dados.showDescription"
           ></checkbox>
           <textarea
@@ -46,6 +52,7 @@
           <checkbox
             label="Premiação"
             controlName="showAward"
+            name="showAward"
             [(ngModel)]="dados.showAward"
           ></checkbox>
           <textarea
@@ -61,12 +68,13 @@
 
     <div class="divider"></div>
 
-    <div class="p-4">
+    <div class="px-4">
       <div class="grid grid-cols-3 gap-3">
         <div class="mb-4">
           <checkbox
             label="Contém Floral (F$)"
             controlName="show_has_floral"
+            name="show_has_floral"
             [(ngModel)]="dados.show_has_floral"
           ></checkbox>
           <select
@@ -85,6 +93,7 @@
           <checkbox
             label="Quanditade de Floral (F$)"
             controlName="show_quantity_floral"
+            name="show_quantity_floral"
             [(ngModel)]="dados.show_quantity_floral"
           ></checkbox>
           <input
@@ -102,6 +111,7 @@
           <checkbox
             label="Valor do Investimento (R$)"
             controlName="show_quantity_floral"
+            name="show_quantity_floral"
             [(ngModel)]="dados.show_quantity_floral"
           ></checkbox>
           <input
@@ -119,12 +129,13 @@
 
     <div class="divider"></div>
 
-    <div class="p-4">
+    <div class="px-4">
       <div class="grid grid-cols-3 gap-3">
         <div class="mb-4">
           <checkbox
             label="Contém NFT"
             controlName="show_has_nft"
+            name="show_has_nft"
             [(ngModel)]="dados.show_has_nft"
           ></checkbox>
           <select
@@ -143,6 +154,7 @@
           <checkbox
             label="Quanditade de NFT"
             controlName="show_quantity_nft"
+            name="show_quantity_nft"
             [(ngModel)]="dados.show_quantity_nft"
           ></checkbox>
           <input
@@ -158,6 +170,7 @@
           <checkbox
             label="Vincular NFT"
             controlName="show_sync_nft"
+            name="show_sync_nft"
             [(ngModel)]="dados.show_sync_nft"
           ></checkbox>
           <input
@@ -173,5 +186,284 @@
 
     <div class="divider"></div>
 
+    <div class="px-4">
+      <div class="grid grid-cols-3 gap-3">
+        <div class="mb-4">
+          <checkbox
+            label="Início do Incentivo"
+            controlName="show_start"
+            name="show_start"
+            [(ngModel)]="dados.show_start"
+          ></checkbox>
+          <input
+            type="date"
+            class="input-cb"
+            name="start"
+            [(ngModel)]="dados.start"
+            placeholder="Início do Incentivo"
+          />
+        </div>
+
+        <div class="mb-4">
+          <checkbox
+            label="Término do Incentivo"
+            controlName="show_end"
+            name="show_end"
+            [(ngModel)]="dados.show_end"
+          ></checkbox>
+          <input
+            type="date"
+            class="input-cb caret-pink-500"
+            name="end"
+            [(ngModel)]="dados.end"
+            placeholder="Término do Incentivo"
+          />
+        </div>
+
+        <div class="mb-4">
+          <checkbox
+            label="Cíclo do Incentivo"
+            controlName="show_cycle"
+            name="show_cycle"
+            [(ngModel)]="dados.show_cycle"
+          ></checkbox>
+          <input
+            type="tel"
+            class="input-cb"
+            name="cycle"
+            [(ngModel)]="dados.cycle"
+            placeholder="Cíclo do Incentivo"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="px-4 mb-4">
+      <ckeditor
+        class="editor-cb"
+        name="editorCB"
+        [(ngModel)]="dados.editorData"
+        [editor]="Editor"
+        [config]="config"
+      ></ckeditor>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="px-4">
+      <div class="grid grid-cols-2 gap-3">
+        <div class="mb-4">
+          <checkbox
+            label="Vincular álbum de fotos/vídeos (Galleria)"
+            controlName="show_sync_gallery"
+            name="show_sync_gallery"
+            [(ngModel)]="dados.show_sync_gallery"
+          ></checkbox>
+          <select
+            type="text"
+            class="input-cb"
+            name="sync_gallery"
+            [(ngModel)]="dados.sync_gallery"
+            placeholder="Vincular álbum de fotos/vídeos (Galleria)"
+          >
+            <option value="0">Não</option>
+            <option value="1">Sim</option>
+          </select>
+        </div>
+
+        <div class="mb-4">
+          <checkbox
+            label="Link do YouTube"
+            controlName="show_link_youtube"
+            name="show_link_youtube"
+            [(ngModel)]="dados.show_link_youtube"
+          ></checkbox>
+          <input
+            type="url"
+            class="input-cb"
+            name="link_youtube"
+            [(ngModel)]="dados.link_youtube"
+            placeholder="URL do vídeo"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="px-4">
+      <div class="grid grid-cols-3 gap-3">
+        <div class="mb-4">
+          <checkbox
+            label="Exibir Ranking"
+            controlName="show_ranking"
+            name="show_ranking"
+            [(ngModel)]="dados.show_ranking"
+          ></checkbox>
+          <select
+            type="text"
+            class="input-cb"
+            name="ranking"
+            [(ngModel)]="dados.ranking"
+          >
+            <option value="0">Não</option>
+            <option value="1">Sim</option>
+          </select>
+        </div>
+
+        <div class="mb-4">
+          <checkbox
+            label="Status do Incentivo"
+            controlName="show_status"
+            name="show_status"
+            [(ngModel)]="dados.show_status"
+          ></checkbox>
+          <select
+            type="text"
+            class="input-cb"
+            name="status"
+            [(ngModel)]="dados.status"
+          >
+            <option value="0">Inativo</option>
+            <option value="1">Ativo</option>
+          </select>
+        </div>
+
+        <div class="mb-4">
+          <checkbox
+            label="Permitir Comentário"
+            controlName="show_enable_comment"
+            name="show_enable_comment"
+            [(ngModel)]="dados.show_enable_comment"
+          ></checkbox>
+          <select
+            type="text"
+            class="input-cb"
+            name="enable_comment"
+            [(ngModel)]="dados.enable_comment"
+          >
+            <option value="0">Não</option>
+            <option value="1">Sim</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="px-4">
+      <div class="grid grid-cols-3 gap-3">
+        <div class="mb-4">
+          <checkbox
+            label="Vincular Termo"
+            controlName="show_term_id"
+            name="show_term_id"
+            [(ngModel)]="dados.show_term_id"
+          ></checkbox>
+          <select
+            type="text"
+            class="input-cb"
+            name="term_id"
+            [(ngModel)]="dados.term_id"
+          >
+            <option value="0">Não</option>
+            <option value="1">Sim</option>
+          </select>
+        </div>
+
+        <div class="mb-4">
+          <checkbox
+            label="Rascunho"
+            controlName="show_draft"
+            name="show_draft"
+            [(ngModel)]="dados.show_draft"
+          ></checkbox>
+          <select
+            type="text"
+            class="input-cb"
+            name="draft"
+            [(ngModel)]="dados.draft"
+          >
+            <option value="0">Não</option>
+            <option value="1">Sim</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer flex items-center gap-3">
+      <button
+        class="btn btn-sm text-white bg-gradient-cb rounded-md font-semibold"
+        type="submit"
+        [disabled]="loading"
+      >
+        <spinner *ngIf="loading" />
+        <span *ngIf="!loading">Salvar Incentivo</span>
+      </button>
+
+      <button class="btn btn-sm text-white rounded-md" [disabled]="loading">
+        Excluir incentivo
+      </button>
+
+      <button class="btn btn-sm text-white rounded-md" [disabled]="loading">
+        Cancelar
+      </button>
+    </div>
   </card>
+
+  <div class="col-span-2">
+    <div class="mb-4">
+      <card>
+        <div class="card-header">
+          <h2 class="font-semibold text-cb-secondary">Adicionar capa</h2>
+        </div>
+
+        <div class="p-4">
+          <image-select
+            name="fileCapa"
+            title="Selecione a capa"
+            subtitle="800 x 540"
+          ></image-select>
+        </div>
+      </card>
+    </div>
+
+    <div class="mb-4">
+      <card>
+        <div class="card-header">
+          <h2 class="font-semibold text-cb-secondary">Adicionar Banner Feed</h2>
+        </div>
+
+        <div class="p-4">
+          <image-select
+            name="fileBanner"
+            title="Selecione o banner"
+            subtitle="770 x 470"
+          ></image-select>
+        </div>
+      </card>
+    </div>
+
+    <div class="mb-4">
+      <card-choose
+        inputPlaceholder="Público"
+        endpoint="v1/persons-type"
+        bindText="name"
+        bindValue="id"
+        name="publico"
+      ></card-choose>
+    </div>
+
+    <div class="mb-4">
+      <card-choose
+        inputPlaceholder="Segmentos"
+        endpoint="v1/segments"
+        bindText="name"
+        bindValue="id"
+        name="segmento"
+      ></card-choose>
+    </div>
+  </div>
 </form>

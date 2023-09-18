@@ -1,0 +1,19 @@
+<label
+  [attr.for]="name"
+  class="overflow-hidden cursor-pointer border-[2px] bg-cb-modal rounded-md border-dashed border-cb-secondary flex flex-col justify-center items-center p-2"
+>
+  <div *ngIf="!image" class="text-center">
+    <i class="fa-regular fa-image text-[5rem] text-cb-secondary"></i>
+    <p class="text-cb-base text-sm">{{ title }}</p>
+    <small class="text-cb-secondary text-xs">{{ subtitle }}</small>
+  </div>
+
+  <img class="w-full h-full" [src]="image" *ngIf="image" alt="avatar" />
+  <input
+    type="file"
+    [id]="name"
+    class="flowbite-input opacity-0 rounded-md hidden"
+    (change)="onFileSelected($event)"
+    required
+  />
+</label>

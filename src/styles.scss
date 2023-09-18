@@ -160,7 +160,7 @@ select:-webkit-autofill:focus {
   @apply border rounded-lg border-cb-secondary;
 }
 .card-header {
-  @apply text-cb-base border-b border-cb-secondary p-4;
+  @apply text-cb-base border-b border-cb-secondary p-4 mb-4;
 }
 
 .card-footer {
@@ -168,7 +168,7 @@ select:-webkit-autofill:focus {
 }
 
 .divider {
-  @apply border-b border-cb-secondary py-2;
+  @apply border-t border-cb-secondary py-2;
 }
 
 .btn {
@@ -254,7 +254,7 @@ select:-webkit-autofill:focus {
 }
 
 .input-cb {
-  @apply block px-2 pb-2 pt-2 w-full text-sm text-cb-base bg-cb-primary rounded-lg border border-cb-secondary appearance-none focus:outline-none focus:ring-0 focus:border-cb-info autofill:shadow-cb-primary;
+  @apply block px-2 pb-2 pt-2 w-full text-sm text-cb-base bg-cb-primary rounded-md border border-cb-secondary appearance-none focus:outline-none focus:ring-0 focus:border-cb-info autofill:shadow-cb-primary;
 }
 
 .table-cb {
@@ -281,4 +281,40 @@ select:-webkit-autofill:focus {
 
 .input-radio {
   @apply w-4 h-4 text-cb-secondary bg-gray-100 border-gray-300 focus:ring-cb-secondary;
+}
+
+.editor-cb {
+  .ck-editor__editable_inline {
+    min-height: 150px;
+  }
+  .ck.ck-toolbar {
+    @apply bg-cb-primary border-cb-secondary;
+
+    .ck.ck-button,
+    a.ck.ck-button {
+      @apply text-cb-base;
+    }
+
+    .ck.ck-button:not(.ck-disabled):hover,
+    a.ck.ck-button:not(.ck-disabled):hover {
+      @apply text-cb-primary bg-cb-info;
+    }
+  }
+
+  .ck.ck-editor__main > .ck-editor__editable {
+    @apply bg-cb-primary text-cb-base border-cb-secondary;
+  }
+
+  .ck.ck-editor__main > .ck-editor__editable:not(.ck-focused) {
+    @apply border-cb-secondary;
+  }
+
+  .ck.ck-button.ck-on,
+  a.ck.ck-button.ck-on {
+    @apply text-cb-primary bg-cb-info;
+  }
+
+  .ck.ck-list__item {
+    @apply bg-cb-contrast text-cb-base;
+  }
 }

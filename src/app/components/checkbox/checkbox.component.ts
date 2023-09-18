@@ -1,4 +1,10 @@
-import { Component, Input, forwardRef } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  forwardRef,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   ControlValueAccessor,
@@ -28,6 +34,8 @@ export class CheckboxComponent implements ControlValueAccessor {
   @Input() label!: string;
   @Input() disabled = false;
   @Input() required = false;
+
+  @Output() checkedItem = new EventEmitter<any>();
 
   constructor(public tools: ToolsService) {}
 
