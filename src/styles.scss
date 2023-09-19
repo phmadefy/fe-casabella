@@ -209,7 +209,7 @@ select:-webkit-autofill:focus {
 }
 
 .ng-dropdown-panel {
-  @apply bg-cb-primary border-cb-secondary rounded-md text-cb-base;
+  @apply bg-cb-primary border-cb-secondary rounded-md text-cb-base text-sm;
 }
 
 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
@@ -238,12 +238,17 @@ select:-webkit-autofill:focus {
   @apply text-sm;
 }
 
+.ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input {
+  top: 25%;
+}
+
 .md.ng-select.ng-select-single .ng-select-container {
   height: 37px;
 }
 
 .is-invalid {
-  label {
+  label,
+  .ng-select .ng-select-container .ng-value-container .ng-placeholder {
     @apply text-cb-red;
   }
 

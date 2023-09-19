@@ -136,12 +136,11 @@
           model="state"
           [(ngModel)]="dados.address.state"
           name="state"
-          type="select"
           [options]="optionsStates"
           valueBind="label"
           textBind="name"
           placeholder="Selecione um estado"
-          required
+          [required]="true"
           [form]="form1"
           (selectItem)="getCities($event)"
         ></combobox>
@@ -152,24 +151,32 @@
           model="city"
           [(ngModel)]="dados.address.city"
           name="city"
-          type="select"
           [options]="optionsCities"
           valueBind="name"
           textBind="name"
           placeholder="Selecione uma cidade"
-          required
+          [required]="true"
           [form]="form1"
         ></combobox>
       </div>
 
-      <button
+      <!-- <button
         type="button"
         class="btn-default text-white bg-gradient-cb bg-gradient-cb-hover mt-2"
         (click)="nextStep()"
         [disabled]="!form1.valid || loading"
       >
         Continuar
-      </button>
+      </button> -->
+      <button-cb
+        [disabled]="!form1.valid || loading"
+        type="button"
+        class="w-full"
+        classes="font-medium rounded-lg text-md w-full h-14 md:w-full px-5 py-2.5 text-center text-white bg-gradient-cb bg-gradient-cb-hover"
+        (onClick)="nextStep()"
+        label="Continuar"
+      >
+      </button-cb>
     </form>
 
     <!-- Passo 2: Enviar arquivo -->
@@ -196,14 +203,23 @@
         Obrigatório o envio de documento de identificação, você pode nos enviar
         o RH ou CNH.
       </h2>
-      <button
+      <!-- <button
         type="button"
         class="font-medium rounded-lg text-md w-full h-14 md:w-full px-5 py-2.5 text-center text-white bg-gradient-cb bg-gradient-cb-hover"
         (click)="nextStep()"
         [disabled]="loading"
       >
         Continuar
-      </button>
+      </button> -->
+      <button-cb
+        [disabled]="files.length <= 0"
+        type="button"
+        class="w-full"
+        classes="font-medium rounded-lg text-md w-full h-14 md:w-full px-5 py-2.5 text-center text-white bg-gradient-cb bg-gradient-cb-hover"
+        (onClick)="nextStep()"
+        label="Continuar"
+      >
+      </button-cb>
     </div>
 
     <!-- Passo 3: Foto de Perfil -->
@@ -232,13 +248,23 @@
         Selecione a sua foto!
       </h2>
 
-      <button
+      <button-cb
+        [loading]="loading"
+        type="button"
+        classes="font-medium rounded-lg text-md w-full h-14 md:w-full px-5 py-2.5 text-center text-white bg-gradient-cb bg-gradient-cb-hover"
+        (onClick)="finish()"
+        class="w-full"
+        label="Finalizar"
+      >
+      </button-cb>
+
+      <!-- <button
         type="button"
         class="font-medium rounded-lg text-md w-full h-14 md:w-full px-5 py-2.5 text-center text-white bg-gradient-cb bg-gradient-cb-hover"
         (click)="finish()"
       >
         Continuar
-      </button>
+      </button> -->
     </div>
 
     <!-- Passo 4: Finish -->

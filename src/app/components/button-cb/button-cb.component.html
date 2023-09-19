@@ -1,7 +1,7 @@
 <button
   class="btn {{ classes }}"
   [type]="type"
-  [disabled]="loading"
+  [disabled]="loading || disabled"
   (click)="onClick.emit()"
 >
   <spinner *ngIf="loading"></spinner>

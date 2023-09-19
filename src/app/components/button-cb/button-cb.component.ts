@@ -11,6 +11,7 @@ import { SpinnerComponent } from '../spinner/spinner.component';
 })
 export class ButtonCbComponent {
   @Input() loading = false;
+  @Input() disabled = false;
   @Input() label!: string;
   @Input() classes = '';
   @Input() type = 'button';

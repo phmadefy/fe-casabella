@@ -9,6 +9,7 @@ import { ToolsService } from 'src/app/services/tools.service';
 import { ApiService } from 'src/app/services/api.service';
 import { ComboboxComponent } from 'src/app/components/combobox/combobox.component';
 import { AvatarComponent } from 'src/app/components/avatar/avatar.component';
+import { ButtonCbComponent } from 'src/app/components/button-cb/button-cb.component';
 
 @Component({
   selector: 'app-revendedor',
@@ -22,6 +23,7 @@ import { AvatarComponent } from 'src/app/components/avatar/avatar.component';
     RouterLink,
     ComboboxComponent,
     AvatarComponent,
+    ButtonCbComponent,
   ],
   templateUrl: './revendedor.component.html',
   styleUrls: ['./revendedor.component.scss'],

@@ -66,7 +66,9 @@ export class InputFloatingComponent implements ControlValueAccessor {
   }
   registerOnTouched(fn: any): void {
     this.onTouchedCb = fn;
-    this.form.controls[this.model].markAsTouched();
+    if (this.form) {
+      this.form.controls[this.model].markAsTouched();
+    }
   }
   setDisabledState?(isDisabled: boolean): void {
     this.isReadOnly = isDisabled;

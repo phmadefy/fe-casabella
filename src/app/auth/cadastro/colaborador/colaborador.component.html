@@ -127,7 +127,7 @@
           valueBind="label"
           textBind="name"
           placeholder="Selecione um estado"
-          required
+          [required]="true"
           [form]="form1"
           (selectItem)="getCities($event)"
         ></combobox>
@@ -143,13 +143,26 @@
           valueBind="name"
           textBind="name"
           placeholder="Selecione uma cidade"
-          required
+          [required]="true"
           [form]="form1"
         ></combobox>
       </div>
 
       <div class="grid gap-2 mb-3">
-        <input-floating
+        <combobox
+          label="Setor:"
+          model="department_id"
+          [(ngModel)]="dados.department_id"
+          name="department_id"
+          [options]="optionsDepartments"
+          valueBind="id"
+          textBind="name"
+          placeholder="Selecione o Setor"
+          [required]="true"
+          [form]="form1"
+        ></combobox>
+
+        <!-- <input-floating
           class="p-0 bg-transparent border-none"
           label="Setor:"
           model="department"
@@ -157,9 +170,22 @@
           name="department"
           type="select"
           [form]="form1"
-        ></input-floating>
+        ></input-floating> -->
 
-        <input-floating
+        <combobox
+          label="Cargo:"
+          model="role_id"
+          [(ngModel)]="dados.role_id"
+          name="role_id"
+          [options]="optionsRoles"
+          valueBind="id"
+          textBind="name"
+          placeholder="Selecione o Cargo"
+          [required]="true"
+          [form]="form1"
+        ></combobox>
+
+        <!-- <input-floating
           class="p-0 bg-transparent border-none"
           label="Cargo:"
           model="role"
@@ -167,17 +193,21 @@
           name="role"
           type="select"
           [form]="form1"
-        ></input-floating>
+          [options]="optionsRoles"
+          textBind="name"
+          valueBind="id"
+        ></input-floating> -->
       </div>
 
-      <button
-        type="button"
-        class="btn-default text-white bg-gradient-cb bg-gradient-cb-hover mt-2"
-        (click)="nextStep()"
+      <button-cb
         [disabled]="!form1.valid || loading"
+        type="button"
+        class="w-full"
+        classes="font-medium rounded-lg text-md w-full h-14 md:w-full px-5 py-2.5 text-center text-white bg-gradient-cb bg-gradient-cb-hover"
+        (onClick)="nextStep()"
+        label="Continuar"
       >
-        Continuar
-      </button>
+      </button-cb>
     </form>
 
     <!-- Passo 2: Enviar arquivo -->
@@ -204,14 +234,16 @@
         Obrigatório o envio de documento de identificação, você pode nos enviar
         o RH ou CNH.
       </h2>
-      <button
+
+      <button-cb
+        [disabled]="files.length <= 0"
         type="button"
-        class="font-medium rounded-lg text-md w-full h-14 md:w-full px-5 py-2.5 text-center text-white bg-gradient-cb bg-gradient-cb-hover"
-        (click)="nextStep()"
-        [disabled]="loading"
+        class="w-full"
+        classes="font-medium rounded-lg text-md w-full h-14 md:w-full px-5 py-2.5 text-center text-white bg-gradient-cb bg-gradient-cb-hover"
+        (onClick)="nextStep()"
+        label="Continuar"
       >
-        Continuar
-      </button>
+      </button-cb>
     </div>
 
     <!-- Passo 3: Foto de Perfil -->
@@ -240,13 +272,15 @@
         Selecione a sua foto!
       </h2>
 
-      <button
+      <button-cb
+        [loading]="loading"
         type="button"
-        class="font-medium rounded-lg text-md w-full h-14 md:w-full px-5 py-2.5 text-center text-white bg-gradient-cb bg-gradient-cb-hover"
-        (click)="finish()"
+        classes="font-medium rounded-lg text-md w-full h-14 md:w-full px-5 py-2.5 text-center text-white bg-gradient-cb bg-gradient-cb-hover"
+        (onClick)="finish()"
+        class="w-full"
+        label="Finalizar"
       >
-        Continuar
-      </button>
+      </button-cb>
     </div>
 
     <!-- Passo 4: Finish -->

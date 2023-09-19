@@ -77,7 +77,7 @@
       <button-cb
         type="submit"
         classes="btn-sm btn-md rounded-md bg-gradient-cb font-semibold"
-        label="Aprovar Cadastro"
+        [label]="data.approved_at ? 'Aprovar Cadastro' : 'Reprovar Cadastro'"
       ></button-cb>
       <button-cb
         classes="btn-sm btn-md rounded-md"

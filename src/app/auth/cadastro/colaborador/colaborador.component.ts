@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 import { ToolsService } from 'src/app/services/tools.service';
 import { ComboboxComponent } from 'src/app/components/combobox/combobox.component';
 import { AvatarComponent } from 'src/app/components/avatar/avatar.component';
+import { ButtonCbComponent } from 'src/app/components/button-cb/button-cb.component';
 
 @Component({
   selector: 'app-colaborador',
@@ -29,6 +30,7 @@ import { AvatarComponent } from 'src/app/components/avatar/avatar.component';
     DropzoneComponent,
     ComboboxComponent,
     AvatarComponent,
+    ButtonCbComponent,
   ],
   templateUrl: './colaborador.component.html',
   styleUrls: ['./colaborador.component.scss'],
@@ -45,6 +47,8 @@ export class ColaboradorComponent {
 
   optionsStates: any[] = [];
   optionsCities: any[] = [];
+  optionsDepartments: any[] = [];
+  optionsRoles: any[] = [];
 
   loading = false;
 
@@ -58,6 +62,8 @@ export class ColaboradorComponent {
 
   async ngOnInit() {
     this.optionsStates = await this.service.getStates();
+    this.optionsDepartments = await this.service.getDepartments();
+    this.optionsRoles = await this.service.getRoles();
   }
 
   nextStep(): void {
