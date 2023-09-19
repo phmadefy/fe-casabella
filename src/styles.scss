@@ -179,6 +179,10 @@ select:-webkit-autofill:focus {
   @apply p-2;
 }
 
+.btn-xs {
+  @apply px-2 py-1 text-xs;
+}
+
 .btn-sm {
   @apply px-4 py-1 text-sm;
 }
@@ -332,4 +336,12 @@ select:-webkit-autofill:focus {
 
 .modal-cb {
   @apply bg-cb-primary text-cb-base rounded-md overflow-hidden shadow border border-cb-secondary h-full;
+}
+
+.dropdown-cb-item {
+  @apply hover:bg-cb-info hover:text-cb-primary w-full flex items-center gap-2;
+}
+
+.cdk-overlay-container {
+  z-index: 1010;
 }

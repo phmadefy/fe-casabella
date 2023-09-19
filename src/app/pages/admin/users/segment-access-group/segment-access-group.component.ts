@@ -7,6 +7,9 @@ import { CardComponent } from 'src/app/components/card/card.component';
 import { ApiService } from 'src/app/services/api.service';
 import { MessageService } from 'src/app/services/message.service';
 import { ToolsService } from 'src/app/services/tools.service';
+import { DropdownCbComponent } from 'src/app/components/dropdown-cb/dropdown-cb.component';
+import { Dialog, DialogModule } from '@angular/cdk/dialog';
+import { AlertConfirmComponent } from 'src/app/shared/alert-confirm/alert-confirm.component';
 
 @Component({
   selector: 'app-segment-access-group',
@@ -19,6 +22,8 @@ import { ToolsService } from 'src/app/services/tools.service';
     InputFloatingComponent,
     SpinnerComponent,
     CardComponent,
+    DropdownCbComponent,
+    DialogModule,
   ],
   providers: [ApiService],
 })
@@ -31,7 +36,8 @@ export class SegmentAccessGroupComponent {
   constructor(
     private service: ApiService,
     private messageService: MessageService,
-    public tools: ToolsService
+    public tools: ToolsService,
+    private dialog: Dialog
   ) {}
 
   ngOnInit(): void {
@@ -63,7 +69,8 @@ export class SegmentAccessGroupComponent {
   }
 
   async getDados() {
-    Promise.all([this.getSegment(), this.getAccessGroup()]);
+    this.getSegment();
+    this.getAccessGroup();
   }
 
   submit(form: NgForm, formName: string) {
@@ -72,9 +79,9 @@ export class SegmentAccessGroupComponent {
     }
 
     if (formName == 'segment') {
-      this.saveSegment(form.value);
+      this.saveSegment(form.value).then(() => form.reset());
     } else {
-      this.saveAccessGroup(form.value);
+      this.saveAccessGroup(form.value).then(() => form.reset());
     }
   }
 
@@ -96,5 +103,83 @@ export class SegmentAccessGroupComponent {
         await this.getAccessGroup();
       })
       .finally(() => (this.loadingAccessGroup = false));
+  }
+
+  openEditSegment(item: any) {
+    const modalRef = this.tools.presentAlertPrompt('', 'Editar Segmento', {
+      value: item.name,
+    });
+    modalRef.closed.subscribe((result) => {
+      if (result) {
+        this.loadingSegment = true;
+        this.service
+          .postCustom(`v1/segments/${item.id}`, { name: result })
+          .then(async () => {
+            this.tools.presentAlert('Segmento atualizado com sucesso.');
+            await this.getSegment();
+          })
+          .finally(() => (this.loadingSegment = false));
+      }
+    });
+  }
+  openDeleteSegment(item: any) {
+    const dialogRef = this.tools.presentAlertConfirm(
+      `Excluir <b>${item.name}</b> ?`,
+      'Excluir Segmento'
+    );
+
+    dialogRef.closed.subscribe((result) => {
+      if (result) {
+        this.loadingSegment = true;
+        this.service
+          .deleteCustom(`v1/segments/${item.id}`)
+          .then(async () => {
+            this.tools.presentAlert('Segmento excluído com sucesso.');
+            await this.getSegment();
+          })
+          .finally(() => (this.loadingSegment = false));
+      }
+    });
+  }
+
+  openEditAccessGroup(item: any) {
+    const modalRef = this.tools.presentAlertPrompt(
+      '',
+      'Editar Grupo de Acesso',
+      {
+        value: item.name,
+      }
+    );
+    modalRef.closed.subscribe((result) => {
+      if (result) {
+        this.loadingAccessGroup = true;
+        this.service
+          .postCustom(`v1/groups/${item.id}`, { name: result })
+          .then(async () => {
+            this.tools.presentAlert('Grupo de Acesso atualizado com sucesso.');
+            await this.getAccessGroup();
+          })
+          .finally(() => (this.loadingAccessGroup = false));
+      }
+    });
+  }
+  openDeleteAccessGroup(item: any) {
+    const dialogRef = this.tools.presentAlertConfirm(
+      `Excluir <b>${item.name}</b> ?`,
+      'Excluir Grupo de Acesso'
+    );
+
+    dialogRef.closed.subscribe((result) => {
+      if (result) {
+        this.loadingAccessGroup = true;
+        this.service
+          .deleteCustom(`v1/groups/${item.id}`)
+          .then(async () => {
+            this.tools.presentAlert('Grupo de Acesso excluído com sucesso.');
+            await this.getAccessGroup();
+          })
+          .finally(() => (this.loadingAccessGroup = false));
+      }
+    });
   }
 }

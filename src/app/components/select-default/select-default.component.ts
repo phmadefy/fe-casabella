@@ -29,6 +29,7 @@ export class SelectDefaultComponent implements ControlValueAccessor {
 
   dataSource: any[] = [];
 
+  @Input() label!: string;
   @Input() form!: NgForm;
   @Input() inputPlaceholder = '';
   @Input() endpoint = '';

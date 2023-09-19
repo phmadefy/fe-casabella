@@ -19,7 +19,17 @@
             [class.bg-cb-secondary]="i % 2 === 0"
           >
             <td>{{ item.name }}</td>
-            <td></td>
+            <td>
+              <dropdown-cb
+                icon="fa-solid fa-ellipsis-vertical"
+                classes="justify-end text-md"
+                [btnEdit]="true"
+                (onEdit)="openEditOffice(item)"
+                [btnDelete]="true"
+                (onDelete)="openDeleteOffice(item)"
+              >
+              </dropdown-cb>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -67,7 +77,17 @@
             [class.bg-cb-secondary]="i % 2 === 0"
           >
             <td>{{ item.name }}</td>
-            <td></td>
+            <td>
+              <dropdown-cb
+                icon="fa-solid fa-ellipsis-vertical"
+                classes="justify-end text-md"
+                [btnEdit]="true"
+                (onEdit)="openEditSectors(item)"
+                [btnDelete]="true"
+                (onDelete)="openDeleteSectors(item)"
+              >
+              </dropdown-cb>
+            </td>
           </tr>
         </tbody>
       </table>

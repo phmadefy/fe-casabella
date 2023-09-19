@@ -1,0 +1,29 @@
+<modal [title]="data?.title" [dialogRef]="dialogRef">
+  <div class="p-4 text-sm text-center" [innerHTML]="data?.message"></div>
+  <div class="p-4 text-sm">
+    <label class="ml-2 text-sm font-medium" *ngIf="data?.input?.label">
+      {{ data.input.label }}
+    </label>
+    <input
+      [type]="data?.input?.type ?? 'text'"
+      class="input-cb"
+      [name]="data?.input?.name ?? 'inputPrompt'"
+      [(ngModel)]="control"
+      [placeholder]="data?.input?.placeholder"
+    />
+  </div>
+  <div class="flex items-center border-t border-cb-secondary p-4 gap-4">
+    <button
+      class="btn btn-sm btn-md rounded-md bg-gradient-cb font-semibold"
+      (click)="dialogRef.close(control)"
+    >
+      {{ data?.confirmText ?? "Confirmar" }}
+    </button>
+    <button
+      class="btn btn-sm btn-md rounded-md"
+      (click)="dialogRef.close(false)"
+    >
+      {{ data?.cancelText ?? "Voltar" }}
+    </button>
+  </div>
+</modal>

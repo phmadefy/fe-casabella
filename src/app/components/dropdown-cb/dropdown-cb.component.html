@@ -1,0 +1,63 @@
+<button
+  [cdkMenuTriggerFor]="menu"
+  class="flex items-center gap-3 w-full {{ classes }}"
+>
+  <i *ngIf="icon" class="{{ icon }}"></i>
+  <span *ngIf="label">{{ label }}</span>
+</button>
+<ng-template #menu>
+  <div class="bg-cb-primary text-cb-base" cdkMenu>
+    <button
+      class="dropdown-cb-item text-{{ size }}"
+      cdkMenuItem
+      *ngIf="btnCustom"
+      (click)="onCustom.emit()"
+    >
+      <i *ngIf="btnCustomIcon" class="{{ btnCustomIcon }} text-{{ size }}"></i>
+      {{ btnCustomLabel }}
+    </button>
+    <button
+      class="dropdown-cb-item btn-xs"
+      cdkMenuItem
+      *ngIf="btnEdit"
+      (click)="onEdit.emit()"
+    >
+      <i class="fa-solid fa-pencil btn-xs"></i>
+      Editar
+    </button>
+    <button
+      class="dropdown-cb-item btn-xs"
+      cdkMenuItem
+      *ngIf="btnDelete"
+      (click)="onDelete.emit()"
+    >
+      <i class="fa-solid fa-trash-can btn-xs"></i>
+      Excluir
+    </button>
+
+    <!-- <button
+      class="hover:bg-cb-info hover:text-cb-primary w-full flex items-center gap-3"
+      cdkMenuItem
+    >
+      Refresh
+    </button>
+    <button
+      class="hover:bg-cb-info hover:text-cb-primary w-full flex items-center gap-3"
+      cdkMenuItem
+    >
+      Settings
+    </button>
+    <button
+      class="hover:bg-cb-info hover:text-cb-primary w-full flex items-center gap-3"
+      cdkMenuItem
+    >
+      Help
+    </button>
+    <button
+      class="hover:bg-cb-info hover:text-cb-primary w-full flex items-center gap-3"
+      cdkMenuItem
+    >
+      Sign out
+    </button> -->
+  </div>
+</ng-template>

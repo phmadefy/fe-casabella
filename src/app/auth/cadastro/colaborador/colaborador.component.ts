@@ -62,8 +62,10 @@ export class ColaboradorComponent {
 
   async ngOnInit() {
     this.optionsStates = await this.service.getStates();
-    this.optionsDepartments = await this.service.getDepartments();
-    this.optionsRoles = await this.service.getRoles();
+    const departments = await this.service.getDepartments();
+    this.optionsDepartments = departments.data;
+    const roles = await this.service.getRoles();
+    this.optionsRoles = roles.data;
   }
 
   nextStep(): void {

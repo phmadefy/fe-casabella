@@ -10,6 +10,7 @@ import { AvatarComponent } from 'src/app/components/avatar/avatar.component';
 import { Gender, Status } from 'src/app/shared/properties';
 import { ComboboxComponent } from 'src/app/components/combobox/combobox.component';
 import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
+import { SelectDefaultComponent } from 'src/app/components/select-default/select-default.component';
 
 @Component({
   selector: 'app-user-form',
@@ -23,6 +24,7 @@ import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
     ComboboxComponent,
     AvatarComponent,
     SpinnerComponent,
+    SelectDefaultComponent,
   ],
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.scss'],
@@ -32,11 +34,6 @@ export class UserFormComponent extends AbstractForms {
   dados: any = { user: {}, address: {} };
   title = 'Cadastrar usuário';
 
-  segments: any[] = [];
-  roles: any[] = [];
-  groups: any[] = [];
-  departments: any[] = [];
-  personsType: any[] = [];
   states: any[] = [];
   cities: any[] = [];
 
@@ -53,12 +50,6 @@ export class UserFormComponent extends AbstractForms {
   }
 
   async ngOnInit() {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-    this.service.getAccessGroups().then((res) => (this.groups = res.data));
-    this.service.getRoles().then((res) => (this.roles = res.data));
-    this.service.getDepartments().then((res) => (this.departments = res.data));
-    this.service.getSegments().then((res) => (this.segments = res.data));
     this.service.getStates().then((res) => (this.states = res));
 
     console.log('state');

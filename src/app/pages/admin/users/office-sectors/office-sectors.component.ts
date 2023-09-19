@@ -7,6 +7,7 @@ import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
 import { CardComponent } from 'src/app/components/card/card.component';
 import { InputFloatingComponent } from 'src/app/components/input-floating/input-floating.component';
 import { ToolsService } from 'src/app/services/tools.service';
+import { DropdownCbComponent } from 'src/app/components/dropdown-cb/dropdown-cb.component';
 
 @Component({
   selector: 'app-office-sectors',
@@ -17,6 +18,7 @@ import { ToolsService } from 'src/app/services/tools.service';
     InputFloatingComponent,
     SpinnerComponent,
     CardComponent,
+    DropdownCbComponent,
   ],
   templateUrl: './office-sectors.component.html',
   styleUrls: ['./office-sectors.component.scss'],
@@ -67,9 +69,9 @@ export class OfficeSectorsComponent {
     }
 
     if (formName == 'office') {
-      this.saveOffice(form.value);
+      this.saveOffice(form.value).then(() => form.reset());
     } else {
-      this.saveSectors(form.value);
+      this.saveSectors(form.value).then(() => form.reset());
     }
   }
 
@@ -82,6 +84,42 @@ export class OfficeSectorsComponent {
       })
       .finally(() => (this.loadingOffice = false));
   }
+  openEditOffice(item: any) {
+    const modalRef = this.tools.presentAlertPrompt('', 'Editar Cargo', {
+      value: item.name,
+    });
+    modalRef.closed.subscribe((result) => {
+      if (result) {
+        this.loadingOffice = true;
+        this.service
+          .updateCustom(`v1/admin/roles/${item.id}/update`, { name: result })
+          .then(async () => {
+            this.tools.presentAlert('Cargo atualizado com sucesso.');
+            await this.getOffice();
+          })
+          .finally(() => (this.loadingOffice = false));
+      }
+    });
+  }
+  openDeleteOffice(item: any) {
+    const dialogRef = this.tools.presentAlertConfirm(
+      `Excluir <b>${item.name}</b> ?`,
+      'Excluir Cargo'
+    );
+
+    dialogRef.closed.subscribe((result) => {
+      if (result) {
+        this.loadingOffice = true;
+        this.service
+          .deleteCustom(`v1/users/roles/${item.id}`)
+          .then(async () => {
+            this.tools.presentAlert('Cargo excluído com sucesso.');
+            await this.getOffice();
+          })
+          .finally(() => (this.loadingOffice = false));
+      }
+    });
+  }
 
   async saveSectors(data: any) {
     this.loadingSectors = true;
@@ -91,5 +129,43 @@ export class OfficeSectorsComponent {
         await this.getSectors();
       })
       .finally(() => (this.loadingSectors = false));
+  }
+  openEditSectors(item: any) {
+    const modalRef = this.tools.presentAlertPrompt('', 'Editar Setor', {
+      value: item.name,
+    });
+    modalRef.closed.subscribe((result) => {
+      if (result) {
+        this.loadingSectors = true;
+        this.service
+          .updateCustom(`v1/admin/departments/${item.id}/update`, {
+            name: result,
+          })
+          .then(async () => {
+            this.tools.presentAlert('Setor atualizado com sucesso.');
+            await this.getSectors();
+          })
+          .finally(() => (this.loadingSectors = false));
+      }
+    });
+  }
+  openDeleteSectors(item: any) {
+    const dialogRef = this.tools.presentAlertConfirm(
+      `Excluir <b>${item.name}</b> ?`,
+      'Excluir Setor'
+    );
+
+    dialogRef.closed.subscribe((result) => {
+      if (result) {
+        this.loadingSectors = true;
+        this.service
+          .deleteCustom(`v1/admin/departments/${item.id}`)
+          .then(async () => {
+            this.tools.presentAlert('Setor excluído com sucesso.');
+            await this.getSectors();
+          })
+          .finally(() => (this.loadingSectors = false));
+      }
+    });
   }
 }

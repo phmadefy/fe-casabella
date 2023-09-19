@@ -49,7 +49,8 @@ export const appConfig: ApplicationConfig = {
       StoreModule.forRoot(reducers, { metaReducers }),
       StoreModule.forFeature('auth', authReducer),
       EffectsModule.forRoot([AuthEffects]),
-      NgxDropzoneModule
+      NgxDropzoneModule,
+      DialogModule
     ),
   ],
 };

@@ -58,32 +58,28 @@ export class ApiService {
     return await result.json();
   }
 
-  async getSegments(dados: any = {}): Promise<any> {
-    const result: any = await lastValueFrom(
+  getSegments(dados: any = { active: 1 }): Promise<any> {
+    return lastValueFrom(
       this.http.get(`${environment.url}/v1/segments`, { params: dados })
     );
-    return result.data;
   }
 
-  async getDepartments(dados: any = {}): Promise<any> {
-    const result: any = await lastValueFrom(
+  getDepartments(dados: any = {}): Promise<any> {
+    return lastValueFrom(
       this.http.get(`${environment.url}/v1/departments`, { params: dados })
     );
-    return result.data;
   }
 
-  async getRoles(dados: any = {}): Promise<any> {
-    const result: any = await lastValueFrom(
+  getRoles(dados: any = {}): Promise<any> {
+    return lastValueFrom(
       this.http.get(`${environment.url}/v1/roles`, { params: dados })
     );
-    return result.data;
   }
 
-  async getAccessGroups(dados: any = {}): Promise<any> {
-    const result: any = await lastValueFrom(
+  getAccessGroups(dados: any = {}): Promise<any> {
+    return lastValueFrom(
       this.http.get(`${environment.url}/v1/groups`, { params: dados })
     );
-    return result.data;
   }
 
   getStates(dados: any = {}): Promise<any> {

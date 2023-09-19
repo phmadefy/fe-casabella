@@ -18,31 +18,35 @@
 
         <div class="col-span-2">
           <div class="mb-4">
-            <input-floating
-              class="p-0 bg-transparent border-none"
+            <select-default
               label="Segmento:"
               model="segment_id"
               [(ngModel)]="dados.segment_id"
               name="segment_id"
-              type="select"
-              [options]="segments"
+              endpoint="v1/segments"
+              bindText="name"
+              bindValue="id"
+              inputPlaceholder="Selecione o segmento"
               [form]="form"
               size="md"
-            ></input-floating>
+              [required]="true"
+            ></select-default>
           </div>
 
           <div class="mb-4">
-            <input-floating
-              class="p-0 bg-transparent border-none"
-              label="Grupo de acessos:"
+            <select-default
+              label="Grupo de Acesso:"
               model="group_id"
               [(ngModel)]="dados.group_id"
               name="group_id"
-              type="select"
-              [options]="groups"
+              endpoint="v1/groups"
+              bindText="name"
+              bindValue="id"
+              inputPlaceholder="Selecione o grupo"
               [form]="form"
               size="md"
-            ></input-floating>
+              [required]="true"
+            ></select-default>
           </div>
         </div>
       </div>
@@ -166,51 +170,48 @@
 
       <div class="grid grid-cols-12 gap-3 mb-4">
         <div class="col-span-4">
-          <input-floating
-            class="p-0 bg-transparent border-none"
+          <select-default
             label="Público:"
-            model="person_type"
+            model="type_person_id"
             [(ngModel)]="dados.type_person_id"
-            name="person_type"
-            type="select"
-            valueBind="key"
-            textBind="description"
-            [options]="personsType"
+            name="type_person_id"
+            endpoint="v1/persons-type"
+            bindText="name"
+            bindValue="id"
+            inputPlaceholder="Selecione o público"
             [form]="form"
             size="md"
-          ></input-floating>
+          ></select-default>
         </div>
 
         <div class="col-span-4">
-          <input-floating
-            class="p-0 bg-transparent border-none"
+          <select-default
             label="Cargo:"
             model="role_id"
             [(ngModel)]="dados.role_id"
             name="role_id"
-            type="select"
-            valueBind="id"
-            textBind="name"
-            [options]="roles"
+            endpoint="v1/roles"
+            bindText="name"
+            bindValue="id"
+            inputPlaceholder="Selecione o cargo"
             [form]="form"
             size="md"
-          ></input-floating>
+          ></select-default>
         </div>
 
         <div class="col-span-4">
-          <input-floating
-            class="p-0 bg-transparent border-none"
+          <select-default
             label="Setor:"
             model="department_id"
             [(ngModel)]="dados.department_id"
             name="department_id"
-            type="select"
-            valueBind="id"
-            textBind="name"
-            [options]="departments"
+            endpoint="v1/departments"
+            bindText="name"
+            bindValue="id"
+            inputPlaceholder="Selecione o setor"
             [form]="form"
             size="md"
-          ></input-floating>
+          ></select-default>
         </div>
       </div>
 
@@ -242,6 +243,7 @@
             [form]="form"
             size="md"
             (ngModelChange)="getCities($event)"
+            [required]="true"
           ></input-floating>
         </div>
 
@@ -257,7 +259,7 @@
             valueBind="name"
             textBind="name"
             placeholder="Selecione uma cidade"
-            required
+            [required]="true"
             [form]="form"
             size="md"
           ></combobox>

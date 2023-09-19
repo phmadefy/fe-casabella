@@ -1,0 +1,17 @@
+<modal [title]="data?.title" [dialogRef]="dialogRef">
+  <div class="p-4 text-sm text-center" [innerHTML]="data?.message"></div>
+  <div class="flex items-center border-t border-cb-secondary p-4 gap-4">
+    <button
+      class="btn btn-sm btn-md rounded-md bg-gradient-cb font-semibold"
+      (click)="dialogRef.close(true)"
+    >
+      {{ data?.confirmText ?? "Sim" }}
+    </button>
+    <button
+      class="btn btn-sm btn-md rounded-md"
+      (click)="dialogRef.close(false)"
+    >
+      {{ data?.cancelText ?? "Não" }}
+    </button>
+  </div>
+</modal>

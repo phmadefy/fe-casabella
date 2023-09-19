@@ -34,3 +34,11 @@ export const Gender = [
   { key: 'male', description: 'Masculino' },
   { key: 'female', description: 'Feminino' },
 ];
+
+export interface InputProps {
+  label?: string;
+  type?: string;
+  placeholder?: string;
+  name?: string;
+  value?: string;
+}
