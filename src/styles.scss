@@ -172,7 +172,7 @@ select:-webkit-autofill:focus {
 }
 
 .btn {
-  @apply focus:ring-2 focus:outline-none focus:ring-cb-secondary font-medium text-center border border-cb-secondary;
+  @apply focus:ring-2 focus:outline-none focus:ring-cb-secondary text-center border border-cb-secondary;
 }
 
 .btn-square {
@@ -184,7 +184,7 @@ select:-webkit-autofill:focus {
 }
 
 .btn-md {
-  @apply px-6 py-2;
+  @apply px-6 py-1.5;
 }
 
 .btn-lg {
@@ -201,7 +201,7 @@ select:-webkit-autofill:focus {
 
 .ng-select .ng-select-container,
 .ng-select.ng-select-opened > .ng-select-container {
-  @apply bg-cb-primary border-cb-secondary rounded-lg text-cb-base;
+  @apply bg-cb-primary border-cb-secondary rounded-md text-cb-base;
 }
 
 .ng-select.ng-select-single .ng-select-container {
@@ -209,7 +209,7 @@ select:-webkit-autofill:focus {
 }
 
 .ng-dropdown-panel {
-  @apply bg-cb-primary border-cb-secondary rounded-lg text-cb-base;
+  @apply bg-cb-primary border-cb-secondary rounded-md text-cb-base;
 }
 
 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
@@ -248,6 +248,8 @@ select:-webkit-autofill:focus {
   }
 
   input,
+  textarea,
+  select,
   .ng-select .ng-select-container {
     @apply border-cb-red;
   }
@@ -317,4 +319,12 @@ select:-webkit-autofill:focus {
   .ck.ck-list__item {
     @apply bg-cb-contrast text-cb-base;
   }
+}
+
+.cdk-overlay-dark-backdrop {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.modal-cb {
+  @apply bg-cb-primary text-cb-base rounded-md overflow-hidden shadow border border-cb-secondary h-full;
 }

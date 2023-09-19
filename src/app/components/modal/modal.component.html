@@ -1,11 +1,27 @@
 <div
+  class="bg-cb-primary text-cb-base rounded-md shadow border border-cb-secondary h-full"
+>
+  <div
+    class="flex justify-between items-start p-4 border-b border-cb-secondary"
+  >
+    <h2 class="text-lg font-bold">{{ title }}</h2>
+    <button
+      class="text-cb-secondary hover:text-cb-base cursor-pointer"
+      (click)="dialogRef.close()"
+    >
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+  <ng-content></ng-content>
+</div>
+
+<!-- <div
   id="authentication-modal"
   tabindex="-1"
   aria-hidden="true"
   class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full backdrop-blur"
 >
   <div class="relative w-full max-w-md max-h-full">
-    <!-- Modal content -->
     <div class="relative bg-cb-modal rounded-lg shadow dark:bg-gray-700 m-8">
       <div class="flex flex-row items-center justify-center h-14">
         <button
@@ -70,4 +86,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

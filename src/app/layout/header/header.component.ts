@@ -503,7 +503,7 @@ export class HeaderComponent {
         {
           id: 'admin-settings',
           title: 'Configurações',
-          route: 'admin/settings',
+          route: '/settings',
           icon: 'fa-solid fa-sliders',
         },
       ],

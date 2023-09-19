@@ -10,6 +10,8 @@ export abstract class AbstractForms {
   abstract finish(result: any): void;
 
   onSubmit(form: NgForm) {
+    console.log('onSubmit', form);
+
     if (form.status == 'VALID') {
       this.submit();
     }

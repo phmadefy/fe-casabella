@@ -1,8 +1,14 @@
 import { Component, Input, forwardRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, NG_VALUE_ACCESSOR, NgForm } from '@angular/forms';
+import {
+  ControlValueAccessor,
+  FormsModule,
+  NG_VALUE_ACCESSOR,
+  NgForm,
+} from '@angular/forms';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { NgxCurrencyDirective } from 'ngx-currency';
+import { ToolsService } from 'src/app/services/tools.service';
 
 const INPUT_FLOATING_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -19,23 +25,20 @@ const INPUT_FLOATING_VALUE_ACCESSOR: any = {
   styleUrls: ['./input-inline.component.scss'],
   providers: [INPUT_FLOATING_VALUE_ACCESSOR, provideNgxMask()],
 })
-export class InputInlineComponent {
+export class InputInlineComponent implements ControlValueAccessor {
   @Input() type = 'text';
   @Input() model!: string;
   @Input() label!: string;
   @Input() mask!: string;
-  @Input() form: NgForm | undefined;
+  @Input() form!: NgForm;
   @Input() isReadOnly = false;
   @Input() isRequired = false;
   @Input() options: any[] = [];
   @Input() valueBind: string = 'id';
   @Input() textBind: string = 'name';
-  @Input() optionsCurrency: any = {
-    prefix: 'R$ ',
-    thousands: '.',
-    decimal: ',',
-    precision: 2,
-  };
+  @Input() optionsCurrency: any = {};
+
+  constructor(public tools: ToolsService) {}
 
   private innerValue: any;
 

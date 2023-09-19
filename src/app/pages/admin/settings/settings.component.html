@@ -1,4 +1,4 @@
-<form #form="ngForm">
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">
   <card [loading]="loading">
     <div class="card-header">
       <h2 class="text-lg font-semibold">Configurações do Sistema</h2>
@@ -16,12 +16,8 @@
           required
           [form]="form"
           [optionsCurrency]="{
-            align: 'left',
             prefix: ' ',
             suffix: ' %',
-            thousands: '.',
-            decimal: ',',
-            precision: 2,
           }"
         ></input-inline>
       </div>
@@ -37,10 +33,7 @@
           required
           [form]="form"
           [optionsCurrency]="{
-            align: 'left',
             prefix: 'F$ ',
-            thousands: '.',
-            decimal: ',',
             precision: 4,
           }"
         ></input-inline>
@@ -57,12 +50,9 @@
           required
           [form]="form"
           [optionsCurrency]="{
-            align: 'left',
             prefix: ' ',
             suffix: ' %',
-            thousands: '.',
-            decimal: ',',
-            precision: 2,
+            precision: 4
           }"
         ></input-inline>
       </div>
@@ -78,11 +68,7 @@
           required
           [form]="form"
           [optionsCurrency]="{
-            align: 'left',
             prefix: 'R$ ',
-            suffix: '',
-            thousands: '.',
-            decimal: ',',
             precision: 4,
           }"
         ></input-inline>
@@ -99,11 +85,8 @@
           required
           [form]="form"
           [optionsCurrency]="{
-            align: 'left',
             prefix: ' ',
             suffix: ' %',
-            thousands: '.',
-            decimal: ',',
             precision: 4,
           }"
         ></input-inline>
@@ -127,7 +110,29 @@
       </div>
 
       <div class="mb-3">
-        <input-inline
+        <div
+          class="flex flex-row items-center gap-3"
+          [ngClass]="{
+            'is-invalid': !tools.validateInputForm(
+              form,
+              'ImagemAnimadaMenu'
+            )
+          }"
+        >
+          <label class="text-sm text-gray-300 px-2 w-1/2">
+            Imagem Animada no Menu (52 x 64):
+          </label>
+          <input-file
+            class="w-full"
+            controlName="ImagemAnimadaMenu"
+            [form]="form"
+            [required]="true"
+            [(ngModel)]="dados.ImagemAnimadaMenu"
+            (selectFile)="parseFiles($event, 'ImagemAnimadaMenu')"
+            name="ImagemAnimadaMenu"
+          ></input-file>
+        </div>
+        <!-- <input-inline
           class="p-0 bg-transparent border-none w-full"
           model="ImagemAnimadaMenu"
           label="Imagem Animada no Menu (52 x 64):"
@@ -136,20 +141,7 @@
           type="text"
           required
           [form]="form"
-        ></input-inline>
-      </div>
-
-      <div class="mb-3">
-        <input-inline
-          class="p-0 bg-transparent border-none w-full"
-          model="LinkRedirecionamentoGif"
-          label="Link de direcionamento Imagem GIF:"
-          [(ngModel)]="dados.LinkRedirecionamentoGif"
-          name="LinkRedirecionamentoGif"
-          type="text"
-          required
-          [form]="form"
-        ></input-inline>
+        ></input-inline> -->
       </div>
 
       <div class="mb-3">
@@ -187,7 +179,29 @@
 
     <div class="px-4">
       <div class="mb-3">
-        <input-inline
+        <div
+          class="flex flex-row items-center gap-3"
+          [ngClass]="{
+            'is-invalid': !tools.validateInputForm(
+              form,
+              'ImagemOuVideoTelaLogin'
+            )
+          }"
+        >
+          <label class="text-sm text-gray-300 px-2 w-1/2">
+            Imagem ou vídeo na Tela de Login
+          </label>
+          <input-file
+            class="w-full"
+            controlName="ImagemOuVideoTelaLogin"
+            [form]="form"
+            [required]="true"
+            [(ngModel)]="dados.ImagemOuVideoTelaLogin"
+            (selectFile)="parseFiles($event, 'ImagemOuVideoTelaLogin')"
+            name="ImagemOuVideoTelaLogin"
+          ></input-file>
+        </div>
+        <!-- <input-inline
           class="p-0 bg-transparent border-none w-full"
           model="ImagemOuVideoTelaLogin"
           label="Imagem ou vídeo na Tela de Login:"
@@ -196,7 +210,7 @@
           type="text"
           required
           [form]="form"
-        ></input-inline>
+        ></input-inline> -->
       </div>
 
       <div class="mb-3">
@@ -216,7 +230,7 @@
     <div class="card-footer flex items-center gap-3">
       <button
         class="btn btn-sm text-white bg-gradient-cb bg-gradient-cb-hover rounded-md"
-        (click)="save()"
+        type="submit"
         [disabled]="loading"
       >
         <spinner *ngIf="loading" />

@@ -7,6 +7,8 @@ import { ApiService } from 'src/app/services/api.service';
 import { ToolsService } from 'src/app/services/tools.service';
 import { FormsModule } from '@angular/forms';
 import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
+import { Dialog, DialogModule } from '@angular/cdk/dialog';
+import { ModalApproveComponent } from './modal-approve/modal-approve.component';
 
 @Component({
   selector: 'app-users',
@@ -17,6 +19,7 @@ import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
     FormsModule,
     SpinnerComponent,
     RouterLink,
+    DialogModule,
   ],
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss'],
@@ -33,7 +36,8 @@ export class UsersComponent {
   constructor(
     private route: ActivatedRoute,
     private service: ApiService,
-    public tools: ToolsService
+    public tools: ToolsService,
+    private dialog: Dialog
   ) {
     service.path = 'v1/users';
   }
@@ -44,7 +48,7 @@ export class UsersComponent {
     this.queryParamsObs = this.route.queryParams.subscribe((res: any) => {
       console.log('queryParams', res);
       if (res?.tab) {
-        this.tab = res?.tab;
+        this.setTab(res.tab);
       }
     });
 
@@ -69,11 +73,35 @@ export class UsersComponent {
 
   setTab(tab: string) {
     this.tab = tab;
+    this.filters.status = tab;
+    this.getList();
   }
 
   edit(item: any) {
     this.tools.route.navigate([`/admin/users/edit`], {
       state: { user_id: item.id },
     });
+  }
+
+  approve(item: any, approved_at = true) {
+    const dialogRef = this.dialog.open<any>(ModalApproveComponent, {
+      width: '95%',
+      maxWidth: '500px',
+      maxHeight: '90%',
+      data: {
+        item,
+        approved_at,
+        title: approved_at
+          ? 'Aprovar cadastro de usuário'
+          : 'Reprovar cadastro de usuário',
+      },
+    });
+
+    dialogRef.closed.subscribe((result) => {
+      console.log('The dialog was closed', result);
+    });
+    // this.service.update(`v1/users/${item.id}/update-status`, {
+    //   approved_at,
+    // });
   }
 }

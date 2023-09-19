@@ -1,0 +1,17 @@
+<!-- <select [disabled]="disabled" [(ngModel)]="value">
+  <option value=""></option>
+</select> -->
+<combobox
+  class="p-0 bg-transparent border-none"
+  [model]="name"
+  [(ngModel)]="value"
+  [name]="name"
+  [options]="dataSource"
+  [valueBind]="bindValue"
+  [textBind]="bindText"
+  [placeholder]="inputPlaceholder"
+  [isRequired]="required"
+  [form]="form"
+  size="md"
+  [loading]="loading"
+></combobox>

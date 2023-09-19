@@ -24,7 +24,7 @@ import { InputFloatingComponent } from '../components/input-floating/input-float
   styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent implements AfterViewInit {
-  @ViewChild('app-modal') modalComponent!: ModalComponent;
+  // @ViewChild('app-modal') modalComponent!: ModalComponent;
 
   loading = false;
 
@@ -41,9 +41,9 @@ export class AuthComponent implements AfterViewInit {
   }
 
   showModal() {
-    if (this.modalComponent) {
-      this.modalComponent.show();
-    }
+    // if (this.modalComponent) {
+    //   this.modalComponent.show();
+    // }
   }
 
   onSubmit(form: NgForm) {

@@ -84,11 +84,16 @@
             <button
               class="btn btn-sm text-white bg-gradient-cb bg-gradient-cb-hover"
               [disabled]="loading"
+              (click)="approve(item)"
             >
               <spinner *ngIf="loading" />
               <span *ngIf="!loading">Aprovar</span>
             </button>
-            <button class="btn btn-sm text-white" [disabled]="loading">
+            <button
+              class="btn btn-sm text-white"
+              [disabled]="loading"
+              (click)="approve(item, false)"
+            >
               Negar
             </button>
           </td>

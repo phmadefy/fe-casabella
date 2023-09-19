@@ -18,6 +18,10 @@ import { provideToastr } from 'ngx-toastr';
 import { provideEnvironmentNgxMask } from 'ngx-mask';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { DialogModule } from '@angular/cdk/dialog';
+import {
+  NgxCurrencyInputMode,
+  provideEnvironmentNgxCurrency,
+} from 'ngx-currency';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -27,6 +31,20 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideToastr(),
     provideEnvironmentNgxMask(),
+    provideEnvironmentNgxCurrency({
+      align: 'left',
+      allowNegative: true,
+      allowZero: true,
+      decimal: ',',
+      precision: 2,
+      prefix: 'R$ ',
+      suffix: '',
+      thousands: '.',
+      nullable: false,
+      min: null,
+      max: null,
+      inputMode: NgxCurrencyInputMode.Financial,
+    }),
     importProvidersFrom(
       StoreModule.forRoot(reducers, { metaReducers }),
       StoreModule.forFeature('auth', authReducer),

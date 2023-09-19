@@ -6,6 +6,9 @@ import { ApiService } from 'src/app/services/api.service';
 import { MessageService } from 'src/app/services/message.service';
 import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
 import { CardComponent } from 'src/app/components/card/card.component';
+import { ToolsService } from 'src/app/services/tools.service';
+import { InputFileComponent } from 'src/app/components/input-file/input-file.component';
+import { AbstractForms } from 'src/app/shared/abstract-form';
 
 @Component({
   selector: 'app-settings',
@@ -16,19 +19,22 @@ import { CardComponent } from 'src/app/components/card/card.component';
     InputInlineComponent,
     SpinnerComponent,
     CardComponent,
+    InputFileComponent,
   ],
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss'],
   providers: [ApiService],
 })
-export class SettingsComponent {
+export class SettingsComponent extends AbstractForms {
   dados: any = {};
-  loading = false;
+  formData = new FormData();
 
   constructor(
-    private service: ApiService,
-    private messageService: MessageService
+    service: ApiService,
+    private messageService: MessageService,
+    public tools: ToolsService
   ) {
+    super(service);
     service.path = 'v1/parameters';
   }
 
@@ -55,13 +61,34 @@ export class SettingsComponent {
     }
   }
 
-  async save() {
+  async save(data: any) {
     this.loading = true;
     await this.service
-      .updateCustom('v1/parameters', this.dados)
+      .updateCustom('v1/parameters', data)
       .then((res: any) => {
         this.messageService.toastSuccess(res.message, '');
       })
       .finally(() => (this.loading = false));
   }
+
+  parseFiles(event: any[], model: string) {
+    console.log('parseFiles', model, event);
+    if (this.formData.has(model)) {
+      this.formData.set(model, event[0]);
+    } else {
+      this.formData.append(model, event[0]);
+    }
+  }
+
+  submit(): void {
+    for (let key of Object.keys(this.dados)) {
+      if (key == 'ImagemOuVideoTelaLogin' || key == 'ImagemAnimadaMenu') {
+        continue;
+      }
+      this.formData.append(key, this.dados[key]);
+    }
+
+    this.save(this.formData);
+  }
+  finish(result: any): void {}
 }

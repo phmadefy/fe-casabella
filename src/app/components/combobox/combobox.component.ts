@@ -36,6 +36,7 @@ export class ComboboxComponent {
   @Input() size: string = 'lg';
   @Input() placeholder: string = ' ';
   @Input() notFoundText: string = 'Nada encontrado!';
+  @Input() loading = false;
 
   @Output() selectItem = new EventEmitter<any>();
 

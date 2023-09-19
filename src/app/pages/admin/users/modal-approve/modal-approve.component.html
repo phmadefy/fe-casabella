@@ -1,0 +1,90 @@
+<modal [title]="data?.title" [dialogRef]="dialogRef">
+  <div class="flex items-center p-4 gap-4">
+    <img
+      class="h-24 w-24 rounded-full"
+      [src]="data?.item?.user?.avatar ?? tools.noImageAvatar"
+      alt=""
+    />
+    <div class="py-2">
+      <h2><strong>Nome:</strong> {{ data?.item?.name }}</h2>
+      <h2><strong>CPF:</strong> {{ data?.item?.cpf | mask : "CPF_CNPJ" }}</h2>
+      <h2><strong>E-mail:</strong> {{ data?.item?.user?.email }}</h2>
+      <h2><strong>Usuário:</strong> {{ data?.item?.user?.nickname }}</h2>
+    </div>
+  </div>
+
+  <form #form="ngForm" class="px-4" (ngSubmit)="onSubmit(form)">
+    <ng-container *ngIf="dados.approved_at">
+      <div class="mb-3">
+        <select-default
+          endpoint="v1/segments"
+          inputPlaceholder="Informe o Segmento"
+          bindText="name"
+          bindValue="id"
+          [(ngModel)]="dados.segment_id"
+          name="segment_id"
+          [required]="true"
+          [form]="form"
+        ></select-default>
+      </div>
+
+      <div class="mb-3">
+        <select-default
+          endpoint="v1/groups"
+          inputPlaceholder="Informe o Grupo de Acesso"
+          bindText="name"
+          bindValue="id"
+          [(ngModel)]="dados.group_id"
+          name="group_id"
+          [required]="true"
+          [form]="form"
+        ></select-default>
+      </div>
+
+      <div
+        class="mb-3"
+        [ngClass]="{ 'is-invalid': !tools.validateInputForm(form, 'code') }"
+      >
+        <input
+          type="text"
+          class="input-cb"
+          [(ngModel)]="dados.code"
+          name="code"
+          placeholder="Código do revendedor"
+        />
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="!dados.approved_at">
+      <div
+        class="mb-3"
+        [ngClass]="{
+          'is-invalid': !tools.validateInputForm(form, 'justification')
+        }"
+      >
+        <textarea
+          rows="5"
+          class="input-cb"
+          [(ngModel)]="dados.justification"
+          name="justification"
+          placeholder="Informar Motivo"
+          required
+        ></textarea>
+      </div>
+    </ng-container>
+
+    <div class="flex gap-4 py-4">
+      <button-cb
+        type="submit"
+        classes="btn-sm btn-md rounded-md bg-gradient-cb font-semibold"
+        label="Aprovar Cadastro"
+      ></button-cb>
+      <button-cb
+        classes="btn-sm btn-md rounded-md"
+        label="Cancelar"
+        type="button"
+        (onClick)="dialogRef.close()"
+      ></button-cb>
+    </div>
+  </form>
+</modal>
