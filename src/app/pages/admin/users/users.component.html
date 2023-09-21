@@ -1,28 +1,30 @@
 <div class="mb-4">
   <card>
     <ul class="flex flex-wrap gap-3 text-sm font-medium text-center p-5">
-      <li (click)="setTab('actives')">
+      <li (click)="setTab('active')">
         <button
           class="px-8 py-2 text-cb-base rounded-md"
-          [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'actives' }"
+          [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'active' }"
         >
           Ativos
         </button>
       </li>
 
-      <li (click)="setTab('inactives')">
+      <li (click)="setTab('suspend')">
         <button
           class="px-8 py-2 text-cb-base rounded-md"
-          [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'inactives' }"
+          [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'suspend' }"
         >
           Inativos
         </button>
       </li>
 
-      <li (click)="setTab('pending')">
+      <li (click)="setTab('waiting approve')">
         <button
           class="px-8 py-2 text-cb-base rounded-md"
-          [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'pending' }"
+          [ngClass]="{
+            'bg-gradient-cb font-semibold': tab == 'waiting approve'
+          }"
         >
           Pendentes
         </button>
@@ -48,10 +50,12 @@
           <th>Nome</th>
           <th>E-mail</th>
           <th class="text-center">Usuário</th>
-          <th class="text-center" *ngIf="tab != 'pending'">Segmento</th>
-          <th class="text-center" *ngIf="tab != 'pending'">Grupo</th>
-          <th class="text-center" *ngIf="tab == 'pending'">Documento</th>
-          <th *ngIf="tab == 'pending'"></th>
+          <th class="text-center" *ngIf="tab != 'waiting approve'">Segmento</th>
+          <th class="text-center" *ngIf="tab != 'waiting approve'">Grupo</th>
+          <th class="text-center" *ngIf="tab == 'waiting approve'">
+            Documento
+          </th>
+          <th *ngIf="tab == 'waiting approve'"></th>
         </tr>
       </thead>
       <tbody>
@@ -73,14 +77,20 @@
           </td>
           <td>{{ item?.user?.email }}</td>
           <td class="text-center">{{ item?.user?.nickname }}</td>
-          <td class="text-center" *ngIf="tab != 'pending'">{{ item?.role }}</td>
-          <td class="text-center" *ngIf="tab != 'pending'">
-            {{ item?.department }}
+          <td class="text-center" *ngIf="tab != 'waiting approve'">
+            {{ item?.segment?.name }}
           </td>
-          <td class="text-center" *ngIf="tab == 'pending'">
+          <td class="text-center" *ngIf="tab != 'waiting approve'">
+            <ng-container *ngIf="item?.user?.group">
+              <p class="text-xs" *ngFor="let group of item.user.group">
+                {{ group.name }}
+              </p>
+            </ng-container>
+          </td>
+          <td class="text-center" *ngIf="tab == 'waiting approve'">
             <i class="fa-solid fa-paperclip text-gradient-cb text-xl"></i>
           </td>
-          <td class="flex items-center gap-2" *ngIf="tab == 'pending'">
+          <td class="flex items-center gap-2" *ngIf="tab == 'waiting approve'">
             <button
               class="btn btn-sm text-white bg-gradient-cb bg-gradient-cb-hover"
               [disabled]="loading"

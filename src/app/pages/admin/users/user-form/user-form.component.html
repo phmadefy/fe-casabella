@@ -36,9 +36,10 @@
           <div class="mb-4">
             <select-default
               label="Grupo de Acesso:"
-              model="group_id"
-              [(ngModel)]="dados.group_id"
-              name="group_id"
+              model="group"
+              [(ngModel)]="dados.user.group"
+              [multiple]="true"
+              name="group"
               endpoint="v1/groups"
               bindText="name"
               bindValue="id"
@@ -273,6 +274,8 @@
             [(ngModel)]="dados.status"
             name="status"
             type="select"
+            valueBind="key"
+            textBind="description"
             [options]="status"
             [form]="form"
             size="md"
@@ -294,6 +297,7 @@
         class="btn btn-sm text-white rounded-md"
         [disabled]="loading"
         routerLink="/admin/users"
+        [queryParams]="{ tab: 'active' }"
       >
         Cancelar
       </button>

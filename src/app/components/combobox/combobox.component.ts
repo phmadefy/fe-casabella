@@ -30,6 +30,7 @@ export class ComboboxComponent {
   @Input() form!: NgForm;
   @Input() isReadOnly = false;
   @Input() isRequired = false;
+  @Input() multiple = false;
   @Input() options: any[] = [];
   @Input() valueBind: string = 'id';
   @Input() textBind: string = 'name';
@@ -41,6 +42,7 @@ export class ComboboxComponent {
   @Output() selectItem = new EventEmitter<any>();
 
   constructor(public tools: ToolsService) {}
+  ngOnInit(): void {}
 
   show = false;
 
@@ -71,7 +73,11 @@ export class ComboboxComponent {
   }
   registerOnTouched(fn: any): void {
     this.onTouchedCb = fn;
-    if (this.form) {
+    if (this.form && this.model && this.form.controls[this.model]) {
+      console.log(
+        'registerOnTouched control ' + this.model,
+        this.form.controls[this.model]
+      );
       this.form.controls[this.model].markAsTouched();
     }
   }

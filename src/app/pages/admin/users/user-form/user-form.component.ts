@@ -1,7 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from 'src/app/components/card/card.component';
-import { ActivatedRoute, Route, Router, RouterLink } from '@angular/router';
+import {
+  ActivatedRoute,
+  Route,
+  Router,
+  RouterLink,
+  RouterModule,
+} from '@angular/router';
 import { InputFloatingComponent } from 'src/app/components/input-floating/input-floating.component';
 import { FormsModule } from '@angular/forms';
 import { AbstractForms } from 'src/app/shared/abstract-form';
@@ -19,7 +25,7 @@ import { SelectDefaultComponent } from 'src/app/components/select-default/select
     CommonModule,
     FormsModule,
     CardComponent,
-    RouterLink,
+    RouterModule,
     InputFloatingComponent,
     ComboboxComponent,
     AvatarComponent,
@@ -31,7 +37,7 @@ import { SelectDefaultComponent } from 'src/app/components/select-default/select
   providers: [ApiService],
 })
 export class UserFormComponent extends AbstractForms {
-  dados: any = { user: {}, address: {} };
+  dados: any = { user: {}, address: {}, status: 'active' };
   title = 'Cadastrar usuário';
 
   states: any[] = [];
@@ -45,8 +51,8 @@ export class UserFormComponent extends AbstractForms {
     private activateRoute: ActivatedRoute,
     private route: Router
   ) {
-    super(service);
     service.path = 'v1/users';
+    super(service);
   }
 
   async ngOnInit() {
@@ -68,6 +74,11 @@ export class UserFormComponent extends AbstractForms {
         if (!res.address) {
           this.dados.address = {};
         }
+        if (res?.user?.group) {
+          this.dados.user.group = res.user.group.map((e: any) => {
+            return e.id;
+          });
+        }
       })
       .finally(() => (this.loading = false));
   }
@@ -76,15 +87,12 @@ export class UserFormComponent extends AbstractForms {
     if (!this.dados.id) {
       this.create(this.dados);
     } else {
-      this.loading = true;
-      this.service
-        .postCustom(`v1/users/${this.dados.id}`, this.dados)
-        .finally(() => (this.loading = false));
+      this.update(this.dados, this.dados.id);
     }
   }
 
   finish(result: any): void {
-    this.route.navigate(['/admin/users'], { queryParams: { tab: 'actives' } });
+    this.route.navigate(['/admin/users'], { queryParams: { tab: 'active' } });
   }
 
   changeAvatar(event: any) {}

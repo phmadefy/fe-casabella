@@ -22,7 +22,7 @@ const INPUT_FLOATING_VALUE_ACCESSOR: any = {
   imports: [CommonModule, FormsModule, ComboboxComponent],
   templateUrl: './select-default.component.html',
   styleUrls: ['./select-default.component.scss'],
-  providers: [INPUT_FLOATING_VALUE_ACCESSOR],
+  providers: [INPUT_FLOATING_VALUE_ACCESSOR, ApiService],
 })
 export class SelectDefaultComponent implements ControlValueAccessor {
   loading = false;
@@ -40,6 +40,7 @@ export class SelectDefaultComponent implements ControlValueAccessor {
   @Input() required = false;
   @Input() search = false;
   @Input() all = false;
+  @Input() multiple = false;
 
   constructor(private service: ApiService, public tools: ToolsService) {}
 

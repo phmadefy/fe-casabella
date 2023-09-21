@@ -35,7 +35,7 @@ export class RevendedorComponent {
 
   steps = Array(4).fill(0);
 
-  dados: any = { address: {}, is_sales: true };
+  dados: any = { address: {}, type_person_id: 2 };
 
   files: File[] = [];
 

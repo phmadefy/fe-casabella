@@ -249,6 +249,15 @@ select:-webkit-autofill:focus {
 .md.ng-select.ng-select-single .ng-select-container {
   height: 37px;
 }
+.md.ng-select.ng-select-multiple
+  .ng-select-container
+  .ng-value-container
+  .ng-value {
+  @apply mb-0 bg-cb-info text-cb-primary text-xs;
+  .ng-value-icon.left {
+    @apply border-r-cb-secondary;
+  }
+}
 
 .is-invalid {
   label,

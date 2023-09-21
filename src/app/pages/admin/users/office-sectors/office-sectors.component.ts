@@ -92,7 +92,7 @@ export class OfficeSectorsComponent {
       if (result) {
         this.loadingOffice = true;
         this.service
-          .updateCustom(`v1/admin/roles/${item.id}/update`, { name: result })
+          .updateCustom(`v1/admin/roles/update/${item.id}`, { name: result })
           .then(async () => {
             this.tools.presentAlert('Cargo atualizado com sucesso.');
             await this.getOffice();
@@ -111,7 +111,7 @@ export class OfficeSectorsComponent {
       if (result) {
         this.loadingOffice = true;
         this.service
-          .deleteCustom(`v1/users/roles/${item.id}`)
+          .deleteCustom(`v1/admin/roles/destroy/${item.id}`)
           .then(async () => {
             this.tools.presentAlert('Cargo excluído com sucesso.');
             await this.getOffice();
@@ -138,7 +138,7 @@ export class OfficeSectorsComponent {
       if (result) {
         this.loadingSectors = true;
         this.service
-          .updateCustom(`v1/admin/departments/${item.id}/update`, {
+          .updateCustom(`v1/admin/departments/update/${item.id}`, {
             name: result,
           })
           .then(async () => {
@@ -159,7 +159,7 @@ export class OfficeSectorsComponent {
       if (result) {
         this.loadingSectors = true;
         this.service
-          .deleteCustom(`v1/admin/departments/${item.id}`)
+          .deleteCustom(`v1/admin/departments/destroy/${item.id}`)
           .then(async () => {
             this.tools.presentAlert('Setor excluído com sucesso.');
             await this.getSectors();

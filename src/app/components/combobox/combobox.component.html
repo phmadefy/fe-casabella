@@ -12,7 +12,10 @@
     (ngModelChange)="changeItem($event)"
     class="{{ size }}"
     [loading]="loading"
-  >
+    [multiple]="multiple"
+    [bindLabel]="textBind"
+    >
+    <!-- [bindValue]="valueBind" -->
     <ng-option *ngFor="let item of options" [value]="item[valueBind]">
       {{ item[textBind] }}
     </ng-option>

@@ -12,7 +12,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { StepperComponent } from 'src/app/components/stepper/stepper.component';
 import { InputFloatingComponent } from 'src/app/components/input-floating/input-floating.component';
 import { DropzoneComponent } from 'src/app/components/dropzone/dropzone.component';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ToolsService } from 'src/app/services/tools.service';
 import { ComboboxComponent } from 'src/app/components/combobox/combobox.component';
 import { AvatarComponent } from 'src/app/components/avatar/avatar.component';
@@ -31,6 +31,7 @@ import { ButtonCbComponent } from 'src/app/components/button-cb/button-cb.compon
     ComboboxComponent,
     AvatarComponent,
     ButtonCbComponent,
+    RouterLink,
   ],
   templateUrl: './colaborador.component.html',
   styleUrls: ['./colaborador.component.scss'],
@@ -41,7 +42,7 @@ export class ColaboradorComponent {
 
   steps = Array(4).fill(0);
 
-  dados: any = { address: {}, is_collaborator: true };
+  dados: any = { address: {}, type_person_id: 1 };
 
   files: File[] = [];
 

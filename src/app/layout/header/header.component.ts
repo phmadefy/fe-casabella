@@ -448,19 +448,19 @@ export class HeaderComponent {
               id: 'admin-users-active',
               title: 'Usuários Ativos',
               route: '/',
-              queryParams: { tab: 'actives' },
+              queryParams: { tab: 'active' },
             },
             {
               id: 'admin-users-inactive',
               title: 'Usuários Inativos',
               route: '/',
-              queryParams: { tab: 'inactives' },
+              queryParams: { tab: 'suspend' },
             },
             {
               id: 'admin-users-pending',
               title: 'Cadastros Pendentes',
               route: '/',
-              queryParams: { tab: 'pending' },
+              queryParams: { tab: 'waiting approve' },
             },
             {
               id: 'admin-user-add',

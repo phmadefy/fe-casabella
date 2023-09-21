@@ -38,6 +38,7 @@ export class InputFloatingComponent implements ControlValueAccessor {
   @Input() textBind: string = 'name';
 
   constructor(public tools: ToolsService) {}
+  ngOnInit(): void {}
 
   private innerValue: any;
 
