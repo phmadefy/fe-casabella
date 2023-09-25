@@ -45,8 +45,8 @@
     [disabled]="!!isReadOnly"
     [required]="isRequired"
   >
-    <option [value]="item[valueBind]" *ngFor="let item of options">
-      {{ item[textBind] }}
+    <option [value]="item[bindValue]" *ngFor="let item of options">
+      {{ item[bindText] }}
     </option>
   </select>
   <label

@@ -92,4 +92,12 @@ export class ApiService {
       this.http.get(`${environment.url}/v1/cities/${uf}`, { params: dados })
     );
   }
+
+  getPermissionsBase(): Promise<any> {
+    return lastValueFrom(this.http.get(`${environment.url}/v1/permissions`));
+  }
+
+  getSettings(): Promise<any> {
+    return lastValueFrom(this.http.get(`${environment.url}/v1/parameters`));
+  }
 }

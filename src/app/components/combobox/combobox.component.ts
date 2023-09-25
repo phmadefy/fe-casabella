@@ -32,8 +32,8 @@ export class ComboboxComponent {
   @Input() isRequired = false;
   @Input() multiple = false;
   @Input() options: any[] = [];
-  @Input() valueBind: string = 'id';
-  @Input() textBind: string = 'name';
+  @Input() bindValue: string = 'id';
+  @Input() bindText: string = 'name';
   @Input() size: string = 'lg';
   @Input() placeholder: string = ' ';
   @Input() notFoundText: string = 'Nada encontrado!';

@@ -85,16 +85,20 @@ export class OfficeSectorsComponent {
       .finally(() => (this.loadingOffice = false));
   }
   openEditOffice(item: any) {
-    const modalRef = this.tools.presentAlertPrompt('', 'Editar Cargo', {
-      value: item.name,
-    });
+    const modalRef = this.messageService.presentAlertPrompt(
+      '',
+      'Editar Cargo',
+      {
+        value: item.name,
+      }
+    );
     modalRef.closed.subscribe((result) => {
       if (result) {
         this.loadingOffice = true;
         this.service
           .updateCustom(`v1/admin/roles/update/${item.id}`, { name: result })
           .then(async () => {
-            this.tools.presentAlert('Cargo atualizado com sucesso.');
+            this.messageService.presentAlert('Cargo atualizado com sucesso.');
             await this.getOffice();
           })
           .finally(() => (this.loadingOffice = false));
@@ -102,7 +106,7 @@ export class OfficeSectorsComponent {
     });
   }
   openDeleteOffice(item: any) {
-    const dialogRef = this.tools.presentAlertConfirm(
+    const dialogRef = this.messageService.presentAlertConfirm(
       `Excluir <b>${item.name}</b> ?`,
       'Excluir Cargo'
     );
@@ -113,7 +117,7 @@ export class OfficeSectorsComponent {
         this.service
           .deleteCustom(`v1/admin/roles/destroy/${item.id}`)
           .then(async () => {
-            this.tools.presentAlert('Cargo excluído com sucesso.');
+            this.messageService.presentAlert('Cargo excluído com sucesso.');
             await this.getOffice();
           })
           .finally(() => (this.loadingOffice = false));
@@ -131,9 +135,13 @@ export class OfficeSectorsComponent {
       .finally(() => (this.loadingSectors = false));
   }
   openEditSectors(item: any) {
-    const modalRef = this.tools.presentAlertPrompt('', 'Editar Setor', {
-      value: item.name,
-    });
+    const modalRef = this.messageService.presentAlertPrompt(
+      '',
+      'Editar Setor',
+      {
+        value: item.name,
+      }
+    );
     modalRef.closed.subscribe((result) => {
       if (result) {
         this.loadingSectors = true;
@@ -142,7 +150,7 @@ export class OfficeSectorsComponent {
             name: result,
           })
           .then(async () => {
-            this.tools.presentAlert('Setor atualizado com sucesso.');
+            this.messageService.presentAlert('Setor atualizado com sucesso.');
             await this.getSectors();
           })
           .finally(() => (this.loadingSectors = false));
@@ -150,7 +158,7 @@ export class OfficeSectorsComponent {
     });
   }
   openDeleteSectors(item: any) {
-    const dialogRef = this.tools.presentAlertConfirm(
+    const dialogRef = this.messageService.presentAlertConfirm(
       `Excluir <b>${item.name}</b> ?`,
       'Excluir Setor'
     );
@@ -161,7 +169,7 @@ export class OfficeSectorsComponent {
         this.service
           .deleteCustom(`v1/admin/departments/destroy/${item.id}`)
           .then(async () => {
-            this.tools.presentAlert('Setor excluído com sucesso.');
+            this.messageService.presentAlert('Setor excluído com sucesso.');
             await this.getSectors();
           })
           .finally(() => (this.loadingSectors = false));

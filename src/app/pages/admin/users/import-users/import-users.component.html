@@ -1,4 +1,4 @@
-<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+<form #form="ngForm">
   <card>
     <div class="card-header">
       <h2 class="text-lg font-semibold">Importar Usuários</h2>
@@ -14,16 +14,28 @@
           [form]="form"
           ngModel
           [required]="true"
-          (selectFile)="tools.logs($event)"
+          (selectFile)="selectFile($event)"
         ></input-file>
       </div>
+    </div>
+
+    <div class="p-4">
+      <a
+        target="_blank"
+        [href]="service.getBaseUrl() + 'v1/users/import/sample-all'"
+        class="flex items-center gap-3 text-cb-secondary cursor-pointer hover:text-orange-500 w-max"
+      >
+        <i class="fa-solid fa-file-arrow-down text-3xl"></i>
+        <span>Baixar modelo</span>
+      </a>
     </div>
 
     <div class="card-footer flex items-center gap-3">
       <button
         class="btn btn-sm text-white bg-gradient-cb bg-gradient-cb-hover rounded-md"
-        type="submit"
-        [disabled]="loading"
+        type="button"
+        (click)="save(form)"
+        [disabled]="loading || !form.valid"
       >
         <spinner *ngIf="loading" />
         <span *ngIf="!loading">Importar</span>

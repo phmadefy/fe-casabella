@@ -1,4 +1,10 @@
-import { Component, Input, forwardRef } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  forwardRef,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApiService } from 'src/app/services/api.service';
 import {
@@ -35,12 +41,15 @@ export class SelectDefaultComponent implements ControlValueAccessor {
   @Input() endpoint = '';
   @Input() bindValue = '';
   @Input() bindText = '';
+  @Input() size = 'md';
   @Input() name = '';
   @Input() disabled = false;
   @Input() required = false;
   @Input() search = false;
   @Input() all = false;
   @Input() multiple = false;
+
+  @Output() selectItem = new EventEmitter<any>();
 
   constructor(private service: ApiService, public tools: ToolsService) {}
 

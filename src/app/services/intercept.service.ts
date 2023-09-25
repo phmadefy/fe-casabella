@@ -50,7 +50,7 @@ export class InterceptService implements HttpInterceptor {
           if (event instanceof HttpResponse) {
             // console.log('event intercept', event);
             if (event.status == 201) {
-              this.messageService.toastSuccess(event.body.message, '');
+              this.messageService.presentAlert(event.body.message, '');
             }
           }
         },
@@ -58,7 +58,7 @@ export class InterceptService implements HttpInterceptor {
           if (error.status == 0) {
             // this.message.alertNet();
           } else if (error.status == 401) {
-            this.messageService.toastError(error.error.message);
+            this.messageService.presentAlertError(error.error.message);
 
             // this.modalCtrl.dismissAll();
 
@@ -75,7 +75,10 @@ export class InterceptService implements HttpInterceptor {
               message = error.error.message;
             }
 
-            this.messageService.toastError(message, 'Falha na requisição');
+            this.messageService.presentAlertError(
+              message,
+              'Falha na requisição'
+            );
           }
         }
       )

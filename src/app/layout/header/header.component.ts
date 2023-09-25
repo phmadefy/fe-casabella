@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ToolsService } from 'src/app/services/tools.service';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-header',
   standalone: true,
   imports: [CommonModule, RouterModule],
+  providers: [ApiService],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
@@ -510,5 +512,15 @@ export class HeaderComponent {
     },
   ];
 
-  constructor(public tools: ToolsService) {}
+  params: any = {};
+
+  constructor(public tools: ToolsService, private service: ApiService) {}
+
+  ngOnInit() {
+    // this.service.getSettings().then((res) => {
+    //   for (const item of res) {
+    //     this.params[item.parameter] = item.value;
+    //   }
+    // });
+  }
 }

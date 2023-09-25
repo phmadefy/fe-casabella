@@ -17,6 +17,7 @@ import { Gender, Status } from 'src/app/shared/properties';
 import { ComboboxComponent } from 'src/app/components/combobox/combobox.component';
 import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
 import { SelectDefaultComponent } from 'src/app/components/select-default/select-default.component';
+import { ToolsService } from 'src/app/services/tools.service';
 
 @Component({
   selector: 'app-user-form',
@@ -49,7 +50,8 @@ export class UserFormComponent extends AbstractForms {
   constructor(
     service: ApiService,
     private activateRoute: ActivatedRoute,
-    private route: Router
+    private route: Router,
+    public tools: ToolsService
   ) {
     service.path = 'v1/users';
     super(service);
@@ -95,7 +97,10 @@ export class UserFormComponent extends AbstractForms {
     this.route.navigate(['/admin/users'], { queryParams: { tab: 'active' } });
   }
 
-  changeAvatar(event: any) {}
+  async changeAvatar(event: any) {
+    console.log('changeAvatar', event);
+    this.dados.user.avatar = await this.tools.toBase64(event.target.files[0]);
+  }
 
   async getCities(uf: string) {
     this.cities = await this.service.getCities(uf);

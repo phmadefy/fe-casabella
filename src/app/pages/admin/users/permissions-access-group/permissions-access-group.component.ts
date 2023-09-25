@@ -4,12 +4,21 @@ import { ApiService } from 'src/app/services/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CardComponent } from 'src/app/components/card/card.component';
-import { ComboboxComponent } from 'src/app/components/combobox/combobox.component';
+import { SelectDefaultComponent } from 'src/app/components/select-default/select-default.component';
+import { CheckboxComponent } from 'src/app/components/checkbox/checkbox.component';
+import { ButtonCbComponent } from 'src/app/components/button-cb/button-cb.component';
 
 @Component({
   selector: 'app-permissions-access-group',
   standalone: true,
-  imports: [CommonModule, FormsModule, CardComponent, ComboboxComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    CardComponent,
+    SelectDefaultComponent,
+    CheckboxComponent,
+    ButtonCbComponent,
+  ],
   providers: [ApiService],
   templateUrl: './permissions-access-group.component.html',
   styleUrls: ['./permissions-access-group.component.scss'],
@@ -18,8 +27,10 @@ export class PermissionsAccessGroupComponent {
   dados: any = { user: {}, address: {} };
   title = 'Cadastrar usuário';
 
-  groups: any = { data: [] };
-  roles: any[] = [];
+  permissionsBase: any[] = [];
+  group: any = { rules: [] };
+
+  loading = false;
 
   constructor(
     private service: ApiService,
@@ -30,14 +41,37 @@ export class PermissionsAccessGroupComponent {
   }
 
   async ngOnInit() {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-    this.groups = await this.service.getAccessGroups();
+    this.listPermissions();
   }
 
-  listPermissions(event: any) {
-    this.service.listing({ perPage: 100, name: event }).then((res) => {
+  listPermissions() {
+    this.service.listing({ perPage: 100 }).then((res) => {
       console.log('listPermissions', res);
+      const list: any[] = res.data;
+
+      list.forEach((i) => {
+        const index = this.permissionsBase.findIndex((p) => p.name == i.module);
+        if (index >= 0) {
+          this.permissionsBase[index].items
+            ? this.permissionsBase[index].items.push(i)
+            : (this.permissionsBase[index].items = [i]);
+        } else {
+          this.permissionsBase.push({ name: i.module, items: [i] });
+        }
+      });
+
+      console.log('permissionsBase', this.permissionsBase);
     });
+  }
+
+  getGroup(id: any) {
+    this.loading = true;
+    this.service
+      .getCustom(`v1/groups/${id}`)
+      .then((res) => {
+        console.log('getGroup', res);
+        this.group = res;
+      })
+      .finally(() => (this.loading = false));
   }
 }

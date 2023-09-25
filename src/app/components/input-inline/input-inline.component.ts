@@ -34,8 +34,8 @@ export class InputInlineComponent implements ControlValueAccessor {
   @Input() isReadOnly = false;
   @Input() isRequired = false;
   @Input() options: any[] = [];
-  @Input() valueBind: string = 'id';
-  @Input() textBind: string = 'name';
+  @Input() bindValue: string = 'id';
+  @Input() bindText: string = 'name';
   @Input() optionsCurrency: any = {};
 
   constructor(public tools: ToolsService) {}

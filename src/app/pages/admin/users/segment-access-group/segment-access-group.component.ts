@@ -106,16 +106,22 @@ export class SegmentAccessGroupComponent {
   }
 
   openEditSegment(item: any) {
-    const modalRef = this.tools.presentAlertPrompt('', 'Editar Segmento', {
-      value: item.name,
-    });
+    const modalRef = this.messageService.presentAlertPrompt(
+      '',
+      'Editar Segmento',
+      {
+        value: item.name,
+      }
+    );
     modalRef.closed.subscribe((result) => {
       if (result) {
         this.loadingSegment = true;
         this.service
           .postCustom(`v1/segments/${item.id}`, { name: result })
           .then(async () => {
-            this.tools.presentAlert('Segmento atualizado com sucesso.');
+            this.messageService.presentAlert(
+              'Segmento atualizado com sucesso.'
+            );
             await this.getSegment();
           })
           .finally(() => (this.loadingSegment = false));
@@ -123,7 +129,7 @@ export class SegmentAccessGroupComponent {
     });
   }
   openDeleteSegment(item: any) {
-    const dialogRef = this.tools.presentAlertConfirm(
+    const dialogRef = this.messageService.presentAlertConfirm(
       `Excluir <b>${item.name}</b> ?`,
       'Excluir Segmento'
     );
@@ -134,7 +140,7 @@ export class SegmentAccessGroupComponent {
         this.service
           .deleteCustom(`v1/segments/${item.id}`)
           .then(async () => {
-            this.tools.presentAlert('Segmento excluído com sucesso.');
+            this.messageService.presentAlert('Segmento excluído com sucesso.');
             await this.getSegment();
           })
           .finally(() => (this.loadingSegment = false));
@@ -143,7 +149,7 @@ export class SegmentAccessGroupComponent {
   }
 
   openEditAccessGroup(item: any) {
-    const modalRef = this.tools.presentAlertPrompt(
+    const modalRef = this.messageService.presentAlertPrompt(
       '',
       'Editar Grupo de Acesso',
       {
@@ -156,7 +162,9 @@ export class SegmentAccessGroupComponent {
         this.service
           .postCustom(`v1/groups/${item.id}`, { name: result })
           .then(async () => {
-            this.tools.presentAlert('Grupo de Acesso atualizado com sucesso.');
+            this.messageService.presentAlert(
+              'Grupo de Acesso atualizado com sucesso.'
+            );
             await this.getAccessGroup();
           })
           .finally(() => (this.loadingAccessGroup = false));
@@ -164,7 +172,7 @@ export class SegmentAccessGroupComponent {
     });
   }
   openDeleteAccessGroup(item: any) {
-    const dialogRef = this.tools.presentAlertConfirm(
+    const dialogRef = this.messageService.presentAlertConfirm(
       `Excluir <b>${item.name}</b> ?`,
       'Excluir Grupo de Acesso'
     );
@@ -175,7 +183,9 @@ export class SegmentAccessGroupComponent {
         this.service
           .deleteCustom(`v1/groups/${item.id}`)
           .then(async () => {
-            this.tools.presentAlert('Grupo de Acesso excluído com sucesso.');
+            this.messageService.presentAlert(
+              'Grupo de Acesso excluído com sucesso.'
+            );
             await this.getAccessGroup();
           })
           .finally(() => (this.loadingAccessGroup = false));

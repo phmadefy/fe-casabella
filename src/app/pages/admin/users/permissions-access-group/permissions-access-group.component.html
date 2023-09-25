@@ -4,18 +4,38 @@
   </div>
 
   <div class="p-4 border-b border-cb-secondary">
-    <combobox
+    <select-default
       class="p-0 bg-transparent border-none"
       label="Selecionar grupo:"
-      model="group"
-      [(ngModel)]="dados.group"
-      (selectItem)="listPermissions($event)"
-      name="group"
-      [options]="groups.data"
-      valueBind="name"
-      textBind="name"
-      placeholder="Selecione uma cidade"
-      required
-    ></combobox>
+      model="group_id"
+      [(ngModel)]="dados.group_id"
+      name="group_id"
+      bindValue="id"
+      bindText="name"
+      inputPlaceholder="Selecione o grupo de acesso"
+      endpoint="v1/groups"
+      size="lg"
+      (selectItem)="getGroup($event)"
+    ></select-default>
   </div>
+
+  <ng-container *ngIf="group.id">
+    <div class="p-4">
+      <div class="mb-4" *ngFor="let permission of permissionsBase">
+        <label>{{ permission.name }}</label>
+        <div class="bg-cb-primary p-4 rounded-md border border-cb-secondary">
+          <checkbox
+            *ngFor="let item of permission.items"
+            [label]="item.name"
+            [controlName]="item.name"
+          ></checkbox>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <button-cb class="" label="Salvar"></button-cb>
+      <!-- <button-cb class="" label="Cancelar"></button-cb> -->
+    </div>
+  </ng-container>
 </card>

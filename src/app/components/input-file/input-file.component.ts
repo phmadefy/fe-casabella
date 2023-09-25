@@ -70,6 +70,7 @@ export class InputFileComponent implements ControlValueAccessor {
   }
 
   fileUpload(event: any) {
-    this.selectFile.emit(event.target.files);
+    const files: File[] = event.target.files;
+    this.selectFile.emit(files);
   }
 }
