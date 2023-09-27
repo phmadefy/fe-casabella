@@ -20,14 +20,15 @@
     </div>
 
     <div class="p-4">
-      <a
-        target="_blank"
-        [href]="service.getBaseUrl() + 'v1/users/import/sample-all'"
+      <button
+        (click)="
+          service.download(service.getBaseUrl() + 'v1/users/import/sample-all')
+        "
         class="flex items-center gap-3 text-cb-secondary cursor-pointer hover:text-orange-500 w-max"
       >
         <i class="fa-solid fa-file-arrow-down text-3xl"></i>
         <span>Baixar modelo</span>
-      </a>
+      </button>
     </div>
 
     <div class="card-footer flex items-center gap-3">

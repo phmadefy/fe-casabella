@@ -58,6 +58,23 @@ export class ApiService {
     return await result.json();
   }
 
+  download(route: string) {
+    const httpOptions = {
+      responseType: 'blob' as 'json',
+    };
+
+    return this.http.get(`${route}`, httpOptions).subscribe((data: any) => {
+      const blob = new Blob([data]);
+
+      var downloadURL = window.URL.createObjectURL(blob);
+      var link = document.createElement('a');
+      link.href = downloadURL;
+      link.download = 'exemplo-importação.csv';
+      link.click();
+      link.remove();
+    });
+  }
+
   getSegments(dados: any = { active: 1 }): Promise<any> {
     return lastValueFrom(
       this.http.get(`${environment.url}/v1/segments`, { params: dados })
