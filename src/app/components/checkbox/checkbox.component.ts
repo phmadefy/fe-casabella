@@ -34,10 +34,15 @@ export class CheckboxComponent implements ControlValueAccessor {
   @Input() label!: string;
   @Input() disabled = false;
   @Input() required = false;
+  @Input() checked = false;
 
   @Output() checkedItem = new EventEmitter<any>();
 
   constructor(public tools: ToolsService) {}
+
+  ngOnInit(): void {
+    this.innerValue = this.checked;
+  }
 
   private innerValue: any;
 

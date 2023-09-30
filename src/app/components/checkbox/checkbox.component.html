@@ -5,6 +5,7 @@
     [disabled]="disabled"
     [(ngModel)]="value"
     (ngModelChange)="checkedItem.emit(value)"
+    [checked]="checked"
     type="checkbox"
     class="w-4 h-4 text-cb-info bg-gray-100 border-gray-300 rounded focus:ring-cb-info"
   />

@@ -7,6 +7,7 @@ import { CardComponent } from 'src/app/components/card/card.component';
 import { SelectDefaultComponent } from 'src/app/components/select-default/select-default.component';
 import { CheckboxComponent } from 'src/app/components/checkbox/checkbox.component';
 import { ButtonCbComponent } from 'src/app/components/button-cb/button-cb.component';
+import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
 
 @Component({
   selector: 'app-permissions-access-group',
@@ -18,6 +19,7 @@ import { ButtonCbComponent } from 'src/app/components/button-cb/button-cb.compon
     SelectDefaultComponent,
     CheckboxComponent,
     ButtonCbComponent,
+    SpinnerComponent,
   ],
   providers: [ApiService],
   templateUrl: './permissions-access-group.component.html',
@@ -71,6 +73,38 @@ export class PermissionsAccessGroupComponent {
       .then((res) => {
         console.log('getGroup', res);
         this.group = res;
+      })
+      .finally(() => (this.loading = false));
+  }
+
+  checkMarkItem(item: any) {
+    const findIndex = this.group.rules.findIndex((i: any) => i.id == item.id);
+    console.log('checkMarkItem', findIndex, item);
+
+    return findIndex;
+  }
+
+  checkedItem(event: any, item: any) {
+    const index = this.checkMarkItem(item);
+    if (event) {
+      if (index < 0) {
+        this.group.rules.push(item);
+      }
+    } else {
+      if (index >= 0) {
+        this.group.rules.splice(index, 1);
+      }
+    }
+  }
+
+  save() {
+    this.loading = true;
+    const data = this.group.rules.map((e: any) => {
+      return e.id;
+    });
+    this.service
+      .updateCustom(`v1/groups/${this.group.id}/permissions`, {
+        permissions: data,
       })
       .finally(() => (this.loading = false));
   }
