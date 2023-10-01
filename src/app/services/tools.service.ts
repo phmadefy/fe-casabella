@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../core/reducers';
 import { Logout } from '../core/actions/auth.action';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root',
@@ -64,5 +65,9 @@ export class ToolsService {
 
   logs(data: any) {
     console.log(data);
+  }
+
+  getTimeFrom(date: string) {
+    return moment(date).locale('pt-br').fromNow();
   }
 }

@@ -1,0 +1,11 @@
+<div class="grid grid-cols-3">
+  <button
+    routerLink="gallery/add"
+    class="flex flex-col items-center justify-center border border-cb-secondary text-cb-secondary text-gradient-cb-hover rounded-md p-4 h-48"
+  >
+    <i class="fa-solid fa-photo-film text-6xl"></i>
+    <h2 class="text-cb-base my-3">Adicionar Galeria</h2>
+  </button>
+
+  <card-image *ngFor="let item of dataSource.data"></card-image>
+</div>

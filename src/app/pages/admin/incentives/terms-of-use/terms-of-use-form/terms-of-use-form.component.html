@@ -1,0 +1,53 @@
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+  <card [loading]="loading">
+    <div class="card-header">
+      <h2 class="text-lg font-semibold">
+        {{ dados.id ? "Atualizar Termo" : "Adicionar Termo" }}
+      </h2>
+    </div>
+
+    <div class="px-4">
+      <div class="grid mb-4">
+        <input-floating
+          class="p-0 bg-transparent border-none"
+          label="Nome:"
+          model="name"
+          [(ngModel)]="dados.name"
+          name="name"
+          type="text"
+          required
+          [form]="form"
+          size="md"
+        ></input-floating>
+      </div>
+    </div>
+
+    <div class="px-4 mb-4">
+      <ckeditor
+        class="editor-cb"
+        name="editorCB"
+        [(ngModel)]="dados.description"
+        [editor]="Editor"
+        [config]="config"
+      ></ckeditor>
+    </div>
+
+    <div class="card-footer flex items-center gap-3">
+      <button-cb
+        classes="btn-sm text-white bg-gradient-cb bg-gradient-cb-hover rounded-md"
+        [disabled]="loading"
+        [label]="dados.id ? 'Salvar' : 'Adicionar'"
+        type="submit"
+      >
+      </button-cb>
+      <button
+        class="btn btn-sm text-white rounded-md"
+        [disabled]="loading"
+        routerLink="/admin/incentives"
+        [queryParams]="{ tab: 'terms-of-use' }"
+      >
+        Cancelar
+      </button>
+    </div>
+  </card>
+</form>

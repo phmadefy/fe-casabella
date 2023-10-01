@@ -1,0 +1,31 @@
+<div class="p-4 relative" *ngIf="loading">
+  <div
+    class="absolute z-[1010] bg-cb-contrast h-full overflow-hidden p-10 rounded-lg text-center w-full"
+  >
+    <spinner [size]="8" color="cb"></spinner>
+  </div>
+</div>
+
+<div
+  class="border border-cb-secondary rounded-md flex justify-between items-center mb-4"
+  *ngFor="let item of dataSource.data"
+>
+  <div class="w-full p-4 border-r border-cb-secondary">
+    <h2 class="text-cb-info font-bold">{{ item.name }}</h2>
+    <p
+      class="text-white text-sm"
+      [innerHTML]="item.description | slice : 0 : 200"
+    ></p>
+    <p class="text-cb-secondary text-sm">
+      Atualizado há {{ tools.getTimeFrom(item.updated_at) }}
+    </p>
+  </div>
+  <div class="p-4">
+    <button-cb
+      routerLink="terms-of-use/edit"
+      [state]="{ termsData: item }"
+      classes="btn-sm btn-md rounded-md bg-gradient-cb text-white w-max"
+      label="Atualizar Termo"
+    ></button-cb>
+  </div>
+</div>

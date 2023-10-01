@@ -7,6 +7,9 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { ToolsService } from 'src/app/services/tools.service';
 import { Subscription } from 'rxjs';
+import { CardImageComponent } from 'src/app/components/card-image/card-image.component';
+import { TermsOfUseComponent } from './terms-of-use/terms-of-use.component';
+import { IncentiveGalleryComponent } from './incentive-gallery/incentive-gallery.component';
 
 @Component({
   selector: 'app-incentives',
@@ -17,6 +20,9 @@ import { Subscription } from 'rxjs';
     FormsModule,
     SpinnerComponent,
     RouterLink,
+    CardImageComponent,
+    TermsOfUseComponent,
+    IncentiveGalleryComponent,
   ],
   providers: [ApiService],
   templateUrl: './incentives.component.html',
@@ -45,10 +51,12 @@ export class IncentivesComponent {
       console.log('queryParams', res);
       if (res?.tab) {
         this.tab = res?.tab;
+
+        if (this.tab == 'all') {
+          this.getList();
+        }
       }
     });
-
-    this.getList();
   }
 
   ngOnDestroy(): void {

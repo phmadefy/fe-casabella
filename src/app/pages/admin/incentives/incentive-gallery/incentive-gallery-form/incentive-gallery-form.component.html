@@ -1,0 +1,96 @@
+<form
+  #form="ngForm"
+  (ngSubmit)="onSubmit(form)"
+  class="grid md:grid-cols-8 gap-3"
+>
+  <card class="col-span-6">
+    <div class="card-header">
+      <h2 class="text-lg font-semibold">
+        {{ dados.id ? "Editar" : "Adicionar" }} Galeria
+      </h2>
+    </div>
+
+    <div class="px-4">
+      <div class="mb-4">
+        <input-floating
+          class="p-0 bg-transparent border-none"
+          type="text"
+          name="name"
+          [(ngModel)]="dados.name"
+          placeholder="Nome da Galeria:"
+          label="Nome da Galeria:"
+          size="md"
+          [required]="true"
+        />
+      </div>
+
+      <div class="mb-4">
+        <textarea
+          rows="3"
+          class="input-cb"
+          name="description"
+          [(ngModel)]="dados.description"
+          placeholder="Descrição da Galeria:"
+        ></textarea>
+      </div>
+
+      <div class="grid md:grid-cols-4 gap-3"></div>
+    </div>
+
+    <div class="card-footer flex items-center gap-3">
+      <button-cb
+        classes="btn-sm text-white bg-gradient-cb rounded-md font-semibold"
+        type="submit"
+        [loading]="loading"
+        [label]="dados.id ? 'Salvar' : 'Adicionar'"
+      >
+      </button-cb>
+
+      <button class="btn btn-sm text-white rounded-md" [disabled]="loading">
+        Excluir
+      </button>
+
+      <button class="btn btn-sm text-white rounded-md" [disabled]="loading">
+        Cancelar
+      </button>
+    </div>
+  </card>
+
+  <div class="col-span-2">
+    <div class="mb-4">
+      <card>
+        <div class="card-header">
+          <h2 class="font-semibold text-cb-secondary">Adicionar capa</h2>
+        </div>
+
+        <div class="p-4">
+          <image-select
+            name="fileCapa"
+            title="Selecione a capa"
+            subtitle="276 x 180"
+          ></image-select>
+        </div>
+      </card>
+    </div>
+
+    <div class="mb-4">
+      <card-choose
+        inputPlaceholder="Público"
+        endpoint="v1/persons-type"
+        bindText="name"
+        bindValue="id"
+        name="publico"
+      ></card-choose>
+    </div>
+
+    <div class="mb-4">
+      <card-choose
+        inputPlaceholder="Segmentos"
+        endpoint="v1/segments"
+        bindText="name"
+        bindValue="id"
+        name="segmento"
+      ></card-choose>
+    </div>
+  </div>
+</form>

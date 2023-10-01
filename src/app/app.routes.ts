@@ -67,6 +67,7 @@ export const routes: Routes = [
         children: [
           {
             path: 'incentives',
+            data: { role: 'ADMIN' },
             children: [
               {
                 path: '',
@@ -81,6 +82,34 @@ export const routes: Routes = [
                   import(
                     './pages/admin/incentives/incentive-form/incentive-form.component'
                   ).then((c) => c.IncentiveFormComponent),
+              },
+              {
+                path: 'terms-of-use/add',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/incentives/terms-of-use/terms-of-use-form/terms-of-use-form.component'
+                  ).then((c) => c.TermsOfUseFormComponent),
+              },
+              {
+                path: 'terms-of-use/edit',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/incentives/terms-of-use/terms-of-use-form/terms-of-use-form.component'
+                  ).then((c) => c.TermsOfUseFormComponent),
+              },
+              {
+                path: 'gallery/add',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/incentives/incentive-gallery/incentive-gallery-form/incentive-gallery-form.component'
+                  ).then((c) => c.IncentiveGalleryFormComponent),
+              },
+              {
+                path: 'gallery/edit',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/incentives/incentive-gallery/incentive-gallery-form/incentive-gallery-form.component'
+                  ).then((c) => c.IncentiveGalleryFormComponent),
               },
             ],
           },

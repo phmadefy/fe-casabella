@@ -1,8 +1,10 @@
 <div class="mb-4">
   <card>
-    <ul class="flex flex-wrap gap-3 text-sm font-medium text-center p-5">
-      <li (click)="setTab('actives')">
+    <ul class="flex flex-wrap gap-2 text-sm font-medium text-center p-5">
+      <li>
         <button
+          routerLink="/admin/incentives"
+          [queryParams]="{ tab: 'all' }"
           class="px-8 py-2 text-cb-base rounded-md"
           [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'all' }"
         >
@@ -16,29 +18,50 @@
         </button>
       </li>
 
-      <li (click)="setTab('inactives')">
+      <li
+        routerLink="/admin/incentives"
+        [queryParams]="{ tab: 'terms-of-use' }"
+      >
         <button
           class="px-8 py-2 text-cb-base rounded-md"
-          [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'inactives' }"
+          [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'terms-of-use' }"
         >
-          Inativos
-        </button>
-      </li>
-
-      <li (click)="setTab('pending')">
-        <button
-          class="px-8 py-2 text-cb-base rounded-md"
-          [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'pending' }"
-        >
-          Meus Incentivos
+          Termos de Uso
         </button>
       </li>
 
       <li>
-        <button class="px-8 py-2 text-cb-base rounded-md">Galeria</button>
+        <button
+          class="px-8 py-2 text-cb-base rounded-md"
+          routerLink="terms-of-use/add"
+          [state]="{ termsData: { type: 'campaings' } }"
+        >
+          Adicionar Termos de Uso
+        </button>
+      </li>
+
+      <li routerLink="/admin/incentives" [queryParams]="{ tab: 'gallery' }">
+        <button
+          class="px-8 py-2 text-cb-base rounded-md"
+          [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'gallery' }"
+        >
+          Galeria de imagens
+        </button>
       </li>
     </ul>
   </card>
 </div>
 
-<card [loading]="loading"> </card>
+<card [loading]="loading" *ngIf="tab == 'all'">
+  <div class="grid md:grid-cols-3 gap-3">
+    <card-image *ngFor="let item of dataSource.data"></card-image>
+  </div>
+</card>
+
+<ng-container *ngIf="tab == 'terms-of-use'">
+  <app-terms-of-use type="campaings"></app-terms-of-use>
+</ng-container>
+
+<ng-container *ngIf="tab == 'gallery'">
+  <app-incentive-gallery></app-incentive-gallery>
+</ng-container>
