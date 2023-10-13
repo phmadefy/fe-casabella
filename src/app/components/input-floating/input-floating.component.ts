@@ -9,6 +9,11 @@ import {
 } from '@angular/forms';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { ToolsService } from 'src/app/services/tools.service';
+import {
+  NgxCurrencyConfig,
+  NgxCurrencyDirective,
+  NgxCurrencyInputMode,
+} from 'ngx-currency';
 
 const INPUT_FLOATING_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -19,7 +24,7 @@ const INPUT_FLOATING_VALUE_ACCESSOR: any = {
 @Component({
   selector: 'input-floating',
   standalone: true,
-  imports: [CommonModule, FormsModule, NgxMaskDirective],
+  imports: [CommonModule, FormsModule, NgxMaskDirective, NgxCurrencyDirective],
   templateUrl: './input-floating.component.html',
   styleUrls: ['./input-floating.component.scss'],
   providers: [INPUT_FLOATING_VALUE_ACCESSOR, provideNgxMask()],
@@ -29,6 +34,7 @@ export class InputFloatingComponent implements ControlValueAccessor {
   @Input() size = 'lg';
   @Input() model!: string;
   @Input() label!: string;
+  @Input() colorBgLabel = 'bg-cb-primary';
   @Input() mask!: string;
   @Input() form!: NgForm;
   @Input() isReadOnly = false;
@@ -36,9 +42,31 @@ export class InputFloatingComponent implements ControlValueAccessor {
   @Input() options: any[] = [];
   @Input() bindValue: string = 'id';
   @Input() bindText: string = 'name';
+  @Input() prefix!: string;
+  @Input() suffix!: string;
+  @Input() precision!: number;
+
+  optionsMoney!: NgxCurrencyConfig;
+
+  exclude = ['select', 'phone', 'money'];
 
   constructor(public tools: ToolsService) {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.optionsMoney = {
+      align: 'left',
+      allowNegative: true,
+      allowZero: true,
+      decimal: ',',
+      precision: this.precision ?? 2,
+      prefix: this.prefix ?? 'R$ ',
+      suffix: this.suffix ?? '',
+      thousands: '.',
+      nullable: false,
+      min: null,
+      max: null,
+      inputMode: NgxCurrencyInputMode.Financial,
+    };
+  }
 
   private innerValue: any;
 
@@ -67,7 +95,7 @@ export class InputFloatingComponent implements ControlValueAccessor {
   }
   registerOnTouched(fn: any): void {
     this.onTouchedCb = fn;
-    if (this.form) {
+    if (this.form && this.model && this.form.controls[this.model]) {
       this.form.controls[this.model].markAsTouched();
     }
   }

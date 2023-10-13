@@ -38,7 +38,7 @@ export class SelectDefaultComponent implements ControlValueAccessor {
   @Input() label!: string;
   @Input() form!: NgForm;
   @Input() inputPlaceholder = '';
-  @Input() endpoint = '';
+  @Input() endpoint!: string;
   @Input() bindValue = '';
   @Input() bindText = '';
   @Input() size = 'md';
@@ -48,14 +48,17 @@ export class SelectDefaultComponent implements ControlValueAccessor {
   @Input() search = false;
   @Input() all = false;
   @Input() multiple = false;
+  @Input() autoClear = false;
 
   @Output() selectItem = new EventEmitter<any>();
 
   constructor(private service: ApiService, public tools: ToolsService) {}
 
   ngOnInit(): void {
-    this.service.path = this.endpoint;
-    this.getList();
+    if (this.endpoint) {
+      this.service.path = this.endpoint;
+      this.getList();
+    }
   }
 
   getList() {
@@ -95,8 +98,21 @@ export class SelectDefaultComponent implements ControlValueAccessor {
   }
   registerOnTouched(fn: any): void {
     this.onTouchedCb = fn;
+    if (this.form && this.name && this.form.controls[this.name]) {
+      this.form.controls[this.name].markAsTouched();
+    }
   }
   setDisabledState?(isDisabled: boolean): void {
     this.disabled = isDisabled;
+  }
+
+  changeItem(event: any) {
+    console.log('changeItem', event);
+    this.selectItem.emit(
+      this.dataSource.find((e) => e[this.bindValue] == event)
+    );
+    if (this.autoClear) {
+      this.value = null;
+    }
   }
 }

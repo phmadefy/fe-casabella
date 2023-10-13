@@ -61,8 +61,10 @@
       <tbody>
         <tr
           *ngFor="let item of dataSource.data; let i = index"
-          class="bg-transparent"
-          [class.bg-cb-secondary]="i % 2 === 0"
+          [ngClass]="{
+            'bg-transparent': i % 2 !== 0,
+            'bg-cb-secondary': i % 2 === 0
+          }"
           (dblclick)="edit(item)"
         >
           <td>

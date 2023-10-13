@@ -28,6 +28,7 @@ export class ToolsService {
     }
 
     const control = form.controls[model];
+    console.log('validateInputForm', model, control);
     if (
       control &&
       control.status != 'VALID' &&

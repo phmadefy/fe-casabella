@@ -14,7 +14,12 @@
       <table class="w-full text-sm text-left table-cb">
         <tbody>
           <ng-container *ngFor="let item of segment.data; let i = index">
-            <tr class="bg-transparent" [class.bg-cb-secondary]="i % 2 === 0">
+            <tr
+              [ngClass]="{
+                'bg-transparent': i % 2 !== 0,
+                'bg-cb-secondary': i % 2 === 0
+              }"
+            >
               <td>{{ item.name }}</td>
               <td>
                 <dropdown-cb
@@ -71,8 +76,10 @@
         <tbody>
           <tr
             *ngFor="let item of accessGroup.data; let i = index"
-            class="bg-transparent"
-            [class.bg-cb-secondary]="i % 2 === 0"
+            [ngClass]="{
+              'bg-transparent': i % 2 !== 0,
+              'bg-cb-secondary': i % 2 === 0
+            }"
           >
             <td>{{ item.name }}</td>
             <td>

@@ -34,7 +34,7 @@ export class CardChooseComponent {
   selected: any[] = [];
 
   @Input() inputPlaceholder = '';
-  @Input() endpoint = '';
+  @Input() endpoint!: string;
   @Input() bindValue = '';
   @Input() bindText = '';
   @Input() name = '';
@@ -62,10 +62,10 @@ export class CardChooseComponent {
   }
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-    this.service.path = this.endpoint;
-    this.getList();
+    if (this.endpoint) {
+      this.service.path = this.endpoint;
+      this.getList();
+    }
   }
 
   getList() {

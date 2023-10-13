@@ -15,8 +15,10 @@
         <tbody>
           <tr
             *ngFor="let item of office.data; let i = index"
-            class="bg-transparent"
-            [class.bg-cb-secondary]="i % 2 === 0"
+            [ngClass]="{
+              'bg-transparent': i % 2 !== 0,
+              'bg-cb-secondary': i % 2 === 0
+            }"
           >
             <td>{{ item.name }}</td>
             <td>
@@ -73,8 +75,10 @@
         <tbody>
           <tr
             *ngFor="let item of sectors.data; let i = index"
-            class="bg-transparent"
-            [class.bg-cb-secondary]="i % 2 === 0"
+            [ngClass]="{
+              'bg-transparent': i % 2 !== 0,
+              'bg-cb-secondary': i % 2 === 0
+            }"
           >
             <td>{{ item.name }}</td>
             <td>

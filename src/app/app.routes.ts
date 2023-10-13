@@ -113,6 +113,65 @@ export const routes: Routes = [
               },
             ],
           },
+          {
+            path: 'cash-box',
+            children: [
+              {
+                path: '',
+                loadComponent: () =>
+                  import('./pages/admin/cash-box/cash-box.component').then(
+                    (c) => c.CashBoxComponent
+                  ),
+              },
+              {
+                path: 'add',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/cash-box/cash-box-form/cash-box-form.component'
+                  ).then((c) => c.CashBoxFormComponent),
+              },
+            ],
+          },
+          {
+            path: 'nfts',
+            children: [
+              {
+                path: '',
+                loadComponent: () =>
+                  import('./pages/admin/nfts/nfts.component').then(
+                    (c) => c.NftsComponent
+                  ),
+              },
+              {
+                path: 'add',
+                loadComponent: () =>
+                  import('./pages/admin/nfts/nft-form/nft-form.component').then(
+                    (c) => c.NftFormComponent
+                  ),
+              },
+              {
+                path: 'classifications',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/nfts/nft-classifications/nft-classifications.component'
+                  ).then((c) => c.NftClassificationsComponent),
+              },
+              {
+                path: 'classifications/add',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/nfts/nft-classifications/nft-classification-form/nft-classification-form.component'
+                  ).then((c) => c.NftClassificationFormComponent),
+              },
+              {
+                path: 'types',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/nfts/nft-types/nft-types.component'
+                  ).then((c) => c.NftTypesComponent),
+              },
+            ],
+          },
 
           {
             path: 'users',

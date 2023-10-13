@@ -6,7 +6,10 @@
   <span *ngIf="label">{{ label }}</span>
 </button>
 <ng-template #menu>
-  <div class="bg-cb-primary text-cb-base" cdkMenu>
+  <div
+    class="bg-cb-primary border border-cb-secondary rounded-md text-cb-base overflow-hidden"
+    cdkMenu
+  >
     <button
       class="dropdown-cb-item text-{{ size }}"
       cdkMenuItem

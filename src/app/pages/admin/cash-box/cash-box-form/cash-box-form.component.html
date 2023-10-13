@@ -1,0 +1,161 @@
+<div class="grid md:grid-cols-8 gap-3">
+  <div class="col-span-6">
+    <div class="mb-4">
+      <card>
+        <div class="card-header">
+          <h2 class="text-lg font-semibold">Adicionar Novo Caixa</h2>
+        </div>
+
+        <form #form="ngForm" class="p-4">
+          <input-floating
+            class="p-0 bg-transparent border-none"
+            label="Nome do caixa:"
+            model="name"
+            name="name"
+            [(ngModel)]="dados.name"
+            type="text"
+            required
+            [form]="form"
+            size="md"
+          ></input-floating>
+        </form>
+      </card>
+    </div>
+
+    <div class="mb-4" *ngIf="dados.id">
+      <card>
+        <div class="card-header">
+          <h2 class="font-semibold">Administradores</h2>
+        </div>
+        <div class="p-4">
+          <select-default
+            inputPlaceholder="Adicionar administrador"
+            bindText="name"
+            bindValue="id"
+            endpoint="v1/users"
+            (selectItem)="setAdmin($event)"
+            [autoClear]="true"
+          >
+          </select-default>
+        </div>
+
+        <table class="w-full text-sm text-left table-cb">
+          <tbody>
+            <tr
+              *ngFor="let item of admins; let i = index"
+              [ngClass]="{
+                'bg-transparent': i % 2 !== 0,
+                'bg-cb-secondary': i % 2 === 0
+              }"
+            >
+              <td>
+                <div class="flex items-center">
+                  <img
+                    [src]="item?.user?.avatar ?? tools.noImageAvatar"
+                    alt="avatar"
+                    class="h-10 w-10 rounded-full mr-3"
+                  />
+                  <span>{{ item.name }}</span>
+                </div>
+              </td>
+              <td class="">
+                <dropdown-cb
+                  icon="fa-solid fa-ellipsis-vertical"
+                  classes="justify-end text-md"
+                  [btnDelete]="true"
+                  (onDelete)="openDeleteAdmin(item)"
+                >
+                </dropdown-cb>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </card>
+    </div>
+
+    <div class="mb-4" *ngIf="dados.id">
+      <card>
+        <div class="card-header">
+          <h2 class="font-semibold">Utilizadores</h2>
+        </div>
+        <div class="p-4">
+          <select-default
+            inputPlaceholder="Adicionar utilizador"
+            bindText="name"
+            bindValue="id"
+            endpoint="v1/users"
+            (selectItem)="setUser($event)"
+            [autoClear]="true"
+          >
+          </select-default>
+        </div>
+        <table class="w-full text-sm text-left table-cb">
+          <tbody>
+            <tr
+              *ngFor="let item of users; let i = index"
+              [ngClass]="{
+                'bg-transparent': i % 2 !== 0,
+                'bg-cb-secondary': i % 2 === 0
+              }"
+            >
+              <td>
+                <div class="flex items-center">
+                  <img
+                    [src]="item?.user?.avatar ?? tools.noImageAvatar"
+                    alt="avatar"
+                    class="h-10 w-10 rounded-full mr-3"
+                  />
+                  <span>{{ item.name }}</span>
+                </div>
+              </td>
+              <td class="">
+                <dropdown-cb
+                  icon="fa-solid fa-ellipsis-vertical"
+                  classes="justify-end text-md"
+                  [btnDelete]="true"
+                  (onDelete)="openDeleteAdmin(item)"
+                >
+                </dropdown-cb>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </card>
+    </div>
+  </div>
+  <div class="col-span-2">
+    <div class="mb-4">
+      <card>
+        <div class="card-header flex items-center justify-between">
+          <h2 class="font-semibold text-cb-base">Saldo</h2>
+          <p class="text-cb-info text-sm">Depositar</p>
+        </div>
+
+        <div class="p-4">
+          <h2 class="text-3xl text-cb-success text-center font-bold">
+            F$ 0,0000
+          </h2>
+        </div>
+      </card>
+    </div>
+
+    <card>
+      <div class="flex flex-col gap-3 p-4">
+        <button-cb
+          (onClick)="onSubmit(form)"
+          classes="btn-sm btn-md w-full rounded-md bg-gradient-cb font-semibold"
+          label="Criar Caixa"
+          [loading]="loading"
+        ></button-cb>
+
+        <button-cb
+          classes="btn-sm btn-md w-full text-white rounded-md"
+          routerLink="/admin/cash-box"
+          [queryParams]="{ tab: 'active' }"
+          label="Cancelar"
+          [loading]="loading"
+        ></button-cb>
+      </div>
+    </card>
+  </div>
+</div>

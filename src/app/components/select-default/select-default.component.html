@@ -15,5 +15,6 @@
   [size]="size"
   [loading]="loading"
   [multiple]="multiple"
-  (selectItem)="selectItem.emit($event)"
+  (selectItem)="changeItem($event)"
+  [autoClear]="autoClear"
 ></combobox>

@@ -9,7 +9,11 @@
     type="checkbox"
     class="w-4 h-4 text-cb-info bg-gray-100 border-gray-300 rounded focus:ring-cb-info"
   />
-  <label [attr.for]="controlName" class="ml-2 text-sm font-medium">
+  <label
+    [attr.for]="controlName"
+    class="ml-2 text-sm font-medium"
+    *ngIf="label"
+  >
     {{ label }}
   </label>
 </div>

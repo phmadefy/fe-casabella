@@ -1,0 +1,2 @@
+Devolver o id do caixa gerado.
+Rota: https://api-cbella-01.azurewebsites.net/v1/admin/cashiers?per_page=15&page=1&status=active retorna 404

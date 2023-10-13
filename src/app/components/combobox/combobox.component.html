@@ -9,14 +9,13 @@
     [name]="model"
     [notFoundText]="notFoundText"
     [placeholder]="placeholder"
-    (ngModelChange)="changeItem($event)"
     class="{{ size }}"
     [loading]="loading"
     loadingText="carregando..."
     [multiple]="multiple"
     [bindLabel]="bindText"
+    (change)="changeItem($event)"
   >
-    <!-- [bindValue]="bindValue" -->
     <ng-option *ngFor="let item of options" [value]="item[bindValue]">
       {{ item[bindText] }}
     </ng-option>

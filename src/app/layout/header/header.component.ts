@@ -184,7 +184,8 @@ export class HeaderComponent {
         {
           id: 'admin-caixas',
           title: 'Caixas',
-          route: 'admin/caixas',
+          route: '/cash-box',
+          queryParams: { tab: 'active' },
           icon: 'fa-solid fa-building-columns',
         },
         {
@@ -195,33 +196,35 @@ export class HeaderComponent {
           items: [
             {
               id: 'admin-nfts-todos',
-              title: 'Todos nfts',
-              route: 'admin/nfts',
+              title: 'Todos NFTs',
+              route: '/',
+              queryParams: { tab: 'all' },
             },
             {
               id: 'admin-nfts-add',
-              title: 'Cadastrar nfts',
-              route: 'admin/nft-add',
+              title: 'Cadastrar NFTs',
+              route: '/add',
             },
             {
               id: 'admin-cassificacao-nfts',
               title: 'Classificação NFTs',
-              route: 'admin/nft-classificacao',
+              route: '/classifications',
+              queryParams: { tab: 'active' },
             },
             {
               id: 'admin-nfts-tipos',
               title: 'Tipos de NFTs',
-              route: 'admin/nfts-tipos',
+              route: '/types',
             },
             {
               id: 'admin-nfts-transfer',
               title: 'Transferir Propriedade de NFTs',
-              route: 'admin/nfts-transfer',
+              route: '/transfer',
             },
             {
               id: 'admin-nfts-transfer-auth',
               title: 'Autorizar Transferências de NFTs',
-              route: 'admin/nfts-transfer-auth',
+              route: '/transfer-auth',
             },
           ],
         },
