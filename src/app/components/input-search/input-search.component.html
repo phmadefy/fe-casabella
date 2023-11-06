@@ -1,5 +1,11 @@
 <div class="relative">
-  <input type="text" class="input-cb" placeholder="Pesquisar" />
+  <input
+    type="text"
+    class="input-cb"
+    placeholder="Pesquisar"
+    [(ngModel)]="value"
+    (keyup.enter)="search.emit(value)"
+  />
   <div
     class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none"
   >

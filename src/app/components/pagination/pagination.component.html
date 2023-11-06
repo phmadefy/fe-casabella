@@ -1,0 +1,89 @@
+<nav class="flex item-center justify-between w-full">
+  <div class="flex items-center gap-4">
+    <select
+      [(ngModel)]="itemsPerPage"
+      (change)="perPageChange.emit(itemsPerPage)"
+      class="select-default"
+    >
+      <option value="10">10</option>
+      <option value="25">25</option>
+      <option value="50">50</option>
+      <option value="100">100</option>
+      <option value="200">200</option>
+    </select>
+    <span class="text-gray-400 text-sm">
+      Exibindo do {{ from }} á {{ to }} de {{ totalItems }}
+    </span>
+  </div>
+
+  <ul class="flex items-center -space-x-px h-8 text-sm">
+    <li>
+      <button
+        [disabled]="currentPage <= 1"
+        class="flex items-center justify-center px-4 h-10 ml-0 leading-tight text-cb-primary bg-cb-secondary border border-cb-secondary rounded-l-lg hover:bg-cb-info hover:text-cb-primary disabled:bg-cb-secondary"
+        (click)="goToFirstPage()"
+      >
+        <i class="fa-solid fa-angles-left"></i>
+      </button>
+    </li>
+    <li>
+      <button
+        [disabled]="currentPage <= 1"
+        class="flex items-center justify-center px-4 h-10 ml-0 leading-tight text-cb-primary bg-cb-secondary border border-cb-secondary hover:bg-cb-info hover:text-cb-primary disabled:bg-cb-secondary"
+        (click)="goToPreviousPage()"
+      >
+        <i class="fa-solid fa-angle-left"></i>
+      </button>
+    </li>
+    <li *ngFor="let page of firstPages">
+      <button
+        [disabled]="currentPage <= 1"
+        class="flex items-center justify-center px-4 h-10 ml-0 leading-tight text-cb-primary bg-cb-secondary border border-cb-secondary hover:bg-cb-info hover:text-cb-primary disabled:bg-cb-secondary"
+        [class.font-bold]="page === currentPage"
+        (click)="goToPage(page)"
+        *ngIf="page != currentPage"
+      >
+        {{ page }}
+      </button>
+    </li>
+    <!-- Exibir página atual -->
+    <li>
+      <button
+        class="flex items-center justify-center px-4 h-10 ml-0 leading-tight text-cb-primary bg-cb-info border border-cb-secondary hover:bg-cb-info hover:text-cb-primary disabled:bg-cb-secondary"
+        (click)="goToPage(currentPage)"
+        [class.font-bold]="true"
+      >
+        {{ currentPage }}
+      </button>
+    </li>
+    <li *ngFor="let page of lastPages">
+      <button
+        [disabled]="currentPage <= 1"
+        class="flex items-center justify-center px-4 h-10 ml-0 leading-tight text-cb-primary bg-cb-secondary border border-cb-secondary hover:bg-cb-info hover:text-cb-primary disabled:bg-cb-secondary"
+        [class.font-bold]="page === currentPage"
+        (click)="goToPage(page)"
+        *ngIf="page != currentPage"
+      >
+        {{ page }}
+      </button>
+    </li>
+    <li>
+      <button
+        [disabled]="currentPage <= totalPages"
+        class="flex items-center justify-center px-4 h-10 ml-0 leading-tight text-cb-primary bg-cb-secondary border border-cb-secondary hover:bg-cb-info hover:text-cb-primary disabled:bg-cb-secondary"
+        (click)="goToNextPage()"
+      >
+        <i class="fa-solid fa-angle-right"></i>
+      </button>
+    </li>
+    <li>
+      <button
+        [disabled]="currentPage <= totalPages"
+        class="flex items-center justify-center px-4 h-10 ml-0 leading-tight text-cb-primary bg-cb-secondary border border-cb-secondary rounded-r-lg hover:bg-cb-info hover:text-cb-primary disabled:bg-cb-secondary"
+        (click)="goToLastPage()"
+      >
+        <i class="fa-solid fa-angles-right"></i>
+      </button>
+    </li>
+  </ul>
+</nav>

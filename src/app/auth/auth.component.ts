@@ -25,7 +25,7 @@ import { InputFloatingComponent } from '../components/input-floating/input-float
 })
 export class AuthComponent implements AfterViewInit {
   // @ViewChild('app-modal') modalComponent!: ModalComponent;
-
+  dados: any = {};
   loading = false;
 
   constructor(

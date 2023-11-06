@@ -2,9 +2,19 @@
   <div class="p-4 flex justify-center">
     <label
       class="w-24 h-24 border-0 bg-gradient-cb rounded-full border-dashed flex justify-center items-center"
+      *ngIf="data?.type != 'error'"
     >
       <i
         class="fa-solid fa-check text-{{ data?.size ?? '3' }}xl text-cb-primary"
+      ></i>
+    </label>
+    <label
+      class="w-24 h-24 border-0 bg-cb-red rounded-full border-dashed flex justify-center items-center"
+      *ngIf="data?.type == 'error'"
+    >
+      <i
+        class="fa-solid fa-xmark text-{{ data?.size ?? '3' }}xl text-cb-primary"
+        *ngIf="data?.type == 'error'"
       ></i>
     </label>
   </div>

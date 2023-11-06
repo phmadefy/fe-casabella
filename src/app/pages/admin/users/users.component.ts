@@ -9,6 +9,8 @@ import { FormsModule } from '@angular/forms';
 import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
 import { Dialog, DialogModule } from '@angular/cdk/dialog';
 import { ModalApproveComponent } from './modal-approve/modal-approve.component';
+import { InputSearchComponent } from 'src/app/components/input-search/input-search.component';
+import { PaginationComponent } from 'src/app/components/pagination/pagination.component';
 
 @Component({
   selector: 'app-users',
@@ -20,6 +22,8 @@ import { ModalApproveComponent } from './modal-approve/modal-approve.component';
     SpinnerComponent,
     RouterLink,
     DialogModule,
+    InputSearchComponent,
+    PaginationComponent,
   ],
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss'],
@@ -103,5 +107,10 @@ export class UsersComponent {
     // this.service.update(`v1/users/${item.id}/update-status`, {
     //   approved_at,
     // });
+  }
+
+  changePagination(page: number, per_page: number) {
+    this.filters = { ...this.filters, page, per_page };
+    this.getList();
   }
 }

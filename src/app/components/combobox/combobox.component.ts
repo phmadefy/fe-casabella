@@ -74,9 +74,9 @@ export class ComboboxComponent {
   }
   registerOnTouched(fn: any): void {
     this.onTouchedCb = fn;
-    if (this.form && this.model && this.form.controls[this.model]) {
-      this.form.controls[this.model].markAsTouched();
-    }
+    // if (this.form && this.model && this.form.controls[this.model]) {
+    //   this.form.controls[this.model].markAsTouched();
+    // }
   }
   setDisabledState?(isDisabled: boolean): void {
     this.isReadOnly = isDisabled;

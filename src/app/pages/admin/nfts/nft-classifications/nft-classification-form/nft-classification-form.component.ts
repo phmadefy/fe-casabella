@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { CardComponent } from 'src/app/components/card/card.component';
 import { InputFloatingComponent } from 'src/app/components/input-floating/input-floating.component';
 import { DropdownCbComponent } from 'src/app/components/dropdown-cb/dropdown-cb.component';
@@ -28,9 +28,7 @@ import { ToolsService } from 'src/app/services/tools.service';
   styleUrls: ['./nft-classification-form.component.scss'],
 })
 export class NftClassificationFormComponent extends AbstractForms {
-  admins: any[] = [];
-  users: any[] = [];
-  dados: any = {};
+  dados: any = { classifications: [] };
 
   constructor(service: ApiService, public tools: ToolsService) {
     service.path = 'v1/nft-classification';
@@ -64,5 +62,16 @@ export class NftClassificationFormComponent extends AbstractForms {
   override finish(result: any): void {
     // throw new Error('Method not implemented.');
     this.getDados(result.id);
+  }
+
+  async saveSubClassification(formSub: NgForm) {
+    this.loading = true;
+    await this.service
+      .postCustom('v1/nft-classification', formSub.value)
+      .then(async () => {
+        formSub.resetForm();
+        await this.getDados(this.dados.id);
+      })
+      .finally(() => (this.loading = false));
   }
 }

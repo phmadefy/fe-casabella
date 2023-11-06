@@ -362,3 +362,8 @@ select:-webkit-autofill:focus {
 .ck-powered-by {
   display: none !important;
 }
+
+/* Seletor específico para o ícone do calendário no Chrome */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}

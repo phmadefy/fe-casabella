@@ -16,6 +16,7 @@
     [readonly]="!!isReadOnly"
     [required]="isRequired"
     [mask]="mask"
+    (focus)="onTouchedCb(value)"
   />
   <input
     *ngIf="type == 'phone'"
@@ -31,6 +32,7 @@
     [readonly]="!!isReadOnly"
     [required]="isRequired"
     mask="(00) 0000-0000||(00) 0 0000-0000"
+    (focus)="onTouchedCb(value)"
   />
   <input
     *ngIf="type == 'money'"
@@ -47,6 +49,7 @@
     [required]="isRequired"
     currencyMask
     [options]="optionsMoney"
+    (focus)="onTouchedCb(value)"
   />
   <select
     *ngIf="type === 'select'"
@@ -60,6 +63,7 @@
     placeholder=" "
     [disabled]="!!isReadOnly"
     [required]="isRequired"
+    (focus)="onTouchedCb(value)"
   >
     <option [value]="item[bindValue]" *ngFor="let item of options">
       {{ item[bindText] }}

@@ -15,6 +15,7 @@
     [multiple]="multiple"
     [bindLabel]="bindText"
     (change)="changeItem($event)"
+    (focus)="onTouchedCb(value)"
   >
     <ng-option *ngFor="let item of options" [value]="item[bindValue]">
       {{ item[bindText] }}

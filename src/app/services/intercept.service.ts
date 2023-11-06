@@ -55,6 +55,8 @@ export class InterceptService implements HttpInterceptor {
           }
         },
         (error) => {
+          console.log('error', error);
+
           if (error.status == 0) {
             // this.message.alertNet();
           } else if (error.status == 401) {
@@ -71,8 +73,10 @@ export class InterceptService implements HttpInterceptor {
               for (let err of error.error.erros) {
                 message += `${err} \n`;
               }
-            } else {
+            } else if (error?.error?.message) {
               message = error.error.message;
+            } else {
+              message = error.message;
             }
 
             this.messageService.presentAlertError(
