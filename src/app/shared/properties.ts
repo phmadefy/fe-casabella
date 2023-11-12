@@ -46,6 +46,8 @@ export const Status = [
 export const Gender = [
   { key: 'male', description: 'Masculino' },
   { key: 'female', description: 'Feminino' },
+  { key: 'noAnswer', description: 'Prefiro não responder' },
+  { key: 'others', description: 'Outros' },
 ];
 
 export interface InputProps {

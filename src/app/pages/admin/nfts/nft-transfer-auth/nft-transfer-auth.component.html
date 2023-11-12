@@ -1,0 +1,102 @@
+<div class="mb-4">
+  <card>
+    <ul class="flex flex-wrap gap-3 text-sm font-medium text-center p-5">
+      <li
+        routerLink="/admin/nfts/transfer-auth"
+        [queryParams]="{ tab: 'authorize' }"
+      >
+        <button
+          class="px-8 py-2 text-cb-base rounded-md"
+          [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'authorize' }"
+        >
+          Autorizar
+        </button>
+      </li>
+
+      <li
+        routerLink="/admin/nfts/transfer-auth"
+        [queryParams]="{ tab: 'refused' }"
+      >
+        <button
+          class="px-8 py-2 text-cb-base rounded-md"
+          [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'refused' }"
+        >
+          Recusados
+        </button>
+      </li>
+    </ul>
+
+    <div class="p-5 grid grid-cols-2 border-t border-cb-secondary">
+      <input-search></input-search>
+    </div>
+  </card>
+</div>
+
+<div
+  class="rounded-md border border-cb-secondary flex justify-between text-cb-base"
+>
+  <div class="overflow-hidden rounded-s-md border-r border-cb-secondary">
+    <img src="assets/nft1.jpg" alt="nft" class="h-24 w-32 object-cover" />
+  </div>
+
+  <div class="p-4 flex flex-col justify-center border-r border-cb-secondary">
+    <div>
+      <p>De: <span class="text-cb-info text-sm">@NomeDoUsuário</span></p>
+      <p>Para: <span class="text-cb-info text-sm">@NomeDoUsuário</span></p>
+    </div>
+  </div>
+
+  <div
+    class="p-4 flex flex-col justify-center border-r border-cb-secondary text-center"
+  >
+    <div>
+      <p>Data:</p>
+      <p><span class="text-cb-info text-sm">12/10/2023</span></p>
+    </div>
+  </div>
+
+  <ng-container *ngIf="tab === 'refused'">
+    <div class="p-4 flex flex-col justify-center">
+      <div>
+        <p>Recusado por:</p>
+        <span class="text-cb-info text-sm">Fulano de tal</span>
+      </div>
+    </div>
+
+    <div
+      class="p-4 flex flex-col justify-center border-l border-cb-secondary gap-2"
+    >
+      <div>
+        <p>Motivo:</p>
+        <span class="text-cb-info text-sm">Descrição da mensagem do us...</span>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="tab === 'authorize'">
+    <div class="p-4 flex flex-col justify-center">
+      <div>
+        <p>Mensagem:</p>
+        <span class="text-cb-info text-sm">Descrição da mensagem do us...</span>
+      </div>
+    </div>
+
+    <div
+      class="p-4 flex flex-col justify-center border-l border-cb-secondary gap-2"
+    >
+      <div class="flex gap-2">
+        <button
+          class="btn-sm btn-md w-full rounded-md bg-gradient-cb font-semibold"
+        >
+          Aceitar
+        </button>
+
+        <button
+          class="btn-sm btn-md w-full text-white rounded-md border border-cb-secondary"
+        >
+          Recusar
+        </button>
+      </div>
+    </div>
+  </ng-container>
+</div>

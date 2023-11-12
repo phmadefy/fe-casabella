@@ -1,0 +1,28 @@
+<div class="bg-cb-primary rounded-md border-cb-secondary border relative">
+  <!-- caso não tenha selecionado o NFT -->
+  <div
+    class="p-2 flex items-center justify-between gap-3 text-sm text-cb-secondary cursor-pointer"
+    (click)="openModalNFTSearch()"
+    *ngIf="!nft.id"
+  >
+    <span class="">Selecione o NFT para transferir</span>
+    <i class="fa-solid fa-search"></i>
+  </div>
+
+  <div class="p-2 flex gap-4 text-sm text-cb-secondary" *ngIf="nft.id">
+    <button
+      class="absolute -right-2 -top-2 bg-cb-secondary text-cb-primary rounded-full h-5 w-5"
+      (click)="nft = {}"
+    >
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <div class="rounded-md h-36 w-36 overflow-hidden">
+      <img [src]="nft.image" alt="nft" />
+    </div>
+    <div class="w-3/4 text-cb-base">
+      <h2 class="text-xl">{{ nft.title }}</h2>
+      <p>{{ nft.description }}</p>
+    </div>
+  </div>
+</div>

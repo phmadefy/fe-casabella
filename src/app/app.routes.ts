@@ -170,6 +170,33 @@ export const routes: Routes = [
                     './pages/admin/nfts/nft-types/nft-types.component'
                   ).then((c) => c.NftTypesComponent),
               },
+              {
+                path: 'transfer',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/nfts/nft-transfer-form/nft-transfer-form.component'
+                  ).then((c) => c.NftTransferFormComponent),
+              },
+              {
+                path: 'transfer-auth',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/nfts/nft-transfer-auth/nft-transfer-auth.component'
+                  ).then((c) => c.NftTransferAuthComponent),
+              },
+            ],
+          },
+
+          {
+            path: 'floral',
+            children: [
+              {
+                path: 'movement-statement',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/foral/movement-statement/movement-statement.component'
+                  ).then((c) => c.MovementStatementComponent),
+              },
             ],
           },
 

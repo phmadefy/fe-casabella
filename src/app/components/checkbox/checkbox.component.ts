@@ -10,6 +10,7 @@ import {
   ControlValueAccessor,
   FormsModule,
   NG_VALUE_ACCESSOR,
+  NgForm,
 } from '@angular/forms';
 import { ToolsService } from 'src/app/services/tools.service';
 
@@ -31,6 +32,7 @@ export class CheckboxComponent implements ControlValueAccessor {
   @Input() size = 'lg';
   @Input() controlName!: string;
   @Input() controlValue!: string;
+  @Input() form!: NgForm;
   @Input() label!: string;
   @Input() disabled = false;
   @Input() required = false;

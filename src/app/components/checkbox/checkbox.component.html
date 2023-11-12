@@ -1,4 +1,7 @@
-<div class="flex items-center mb-2">
+<div
+  class="flex items-center mb-2"
+  [ngClass]="{ 'is-invalid': !tools.validateInputForm(form, controlName) }"
+>
   <input
     [id]="controlName"
     [name]="controlName"
@@ -6,6 +9,7 @@
     [(ngModel)]="value"
     (ngModelChange)="checkedItem.emit(value)"
     [checked]="checked"
+    [required]="required"
     type="checkbox"
     class="w-4 h-4 text-cb-info bg-gray-100 border-gray-300 rounded focus:ring-cb-info"
   />

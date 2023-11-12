@@ -1,0 +1,43 @@
+<modal title="Pesquisa NFT" [dialogRef]="dialogRef">
+  <div class="p-2">
+    <input-search
+      [(ngModel)]="filters.term"
+      (ngModelChange)="getList()"
+    ></input-search>
+  </div>
+
+  <div class="grid grid-cols-2 md:grid-cols-3 gap-2 p-2">
+    <div
+      class="rounded-md overflow-hidden h-24 w-24 cursor-pointer"
+      (click)="dialogRef.close(true)"
+    >
+      <img
+        src="assets/nft1.jpg"
+        alt="nft1"
+        class="hover:scale-110 transition duration-500 object-cover"
+      />
+    </div>
+
+    <div
+      class="rounded-md overflow-hidden h-24 w-24"
+      (click)="dialogRef.close(true)"
+    >
+      <img
+        src="assets/nft2.jpg"
+        alt="nft1"
+        class="hover:scale-110 transition duration-500 object-cover"
+      />
+    </div>
+
+    <div
+      class="rounded-md overflow-hidden h-24 w-24"
+      (click)="dialogRef.close(true)"
+    >
+      <img
+        src="assets/nft3.jpg"
+        alt="nft1"
+        class="hover:scale-110 transition duration-500 object-cover"
+      />
+    </div>
+  </div>
+</modal>

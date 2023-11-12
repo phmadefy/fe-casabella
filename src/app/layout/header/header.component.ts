@@ -225,6 +225,7 @@ export class HeaderComponent {
               id: 'admin-nfts-transfer-auth',
               title: 'Autorizar Transferências de NFTs',
               route: '/transfer-auth',
+              queryParams: { tab: 'authorize' },
             },
           ],
         },
@@ -237,7 +238,7 @@ export class HeaderComponent {
             {
               id: 'admin-floral-extrato',
               title: 'Extrato de Movimentação',
-              route: 'admin/floral-extrato',
+              route: '/movement-statement',
             },
             {
               id: 'admin-floral-resgate-pending',

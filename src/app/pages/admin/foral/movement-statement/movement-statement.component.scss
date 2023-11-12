@@ -1,0 +1,10 @@
+/* Adicione ou modifique as classes conforme necessário */
+/* Esta classe alinha a data e o conteúdo na vertical */
+.flex.items-start {
+  align-items: flex-start;
+}
+
+/* Adicione margem à esquerda para afastar a data do início do conteúdo */
+.ml-4 {
+  margin-left: 1rem; /* Ou o valor desejado */
+}

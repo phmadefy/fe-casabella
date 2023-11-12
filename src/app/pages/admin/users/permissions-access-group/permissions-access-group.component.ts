@@ -66,10 +66,12 @@ export class PermissionsAccessGroupComponent {
     });
   }
 
-  getGroup(id: any) {
+  getGroup(group: any) {
+    // console.log('getGroup', id);
+
     this.loading = true;
     this.service
-      .getCustom(`v1/groups/${id}`)
+      .getCustom(`v1/groups/${group.id}`)
       .then((res) => {
         console.log('getGroup', res);
         this.group = res;

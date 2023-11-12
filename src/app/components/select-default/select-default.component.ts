@@ -98,9 +98,6 @@ export class SelectDefaultComponent implements ControlValueAccessor {
   }
   registerOnTouched(fn: any): void {
     this.onTouchedCb = fn;
-    if (this.form && this.name && this.form.controls[this.name]) {
-      this.form.controls[this.name].markAsTouched();
-    }
   }
   setDisabledState?(isDisabled: boolean): void {
     this.disabled = isDisabled;
