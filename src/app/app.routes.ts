@@ -191,11 +191,39 @@ export const routes: Routes = [
             path: 'floral',
             children: [
               {
+                path: '',
+                loadComponent: () =>
+                  import('./pages/admin/foral/foral.component').then(
+                    (c) => c.ForalComponent
+                  ),
+              },
+              {
                 path: 'movement-statement',
                 loadComponent: () =>
                   import(
                     './pages/admin/foral/movement-statement/movement-statement.component'
                   ).then((c) => c.MovementStatementComponent),
+              },
+              {
+                path: 'deposit',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/foral/floral-deposit/floral-deposit.component'
+                  ).then((c) => c.FloralDepositComponent),
+              },
+              {
+                path: 'transfer',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/foral/floral-transfer-form/floral-transfer-form.component'
+                  ).then((c) => c.FloralTransferFormComponent),
+              },
+              {
+                path: 'transfer-auth',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/foral/floral-transfer-auth/floral-transfer-auth.component'
+                  ).then((c) => c.FloralTransferAuthComponent),
               },
             ],
           },

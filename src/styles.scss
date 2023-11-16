@@ -367,3 +367,7 @@ select:-webkit-autofill:focus {
 input[type="date"]::-webkit-calendar-picker-indicator {
   filter: invert(1);
 }
+
+.bg-gradient-amount-floral {
+  background: linear-gradient(89deg, #174776, #182847, #182a4a, #16578d);
+}

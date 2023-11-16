@@ -1,0 +1,169 @@
+<div class="mb-4">
+  <card>
+    <ul class="flex flex-wrap gap-3 text-sm font-medium text-center p-5">
+      <li routerLink="/admin/floral" [queryParams]="{ tab: 'pending' }">
+        <button
+          class="px-8 py-2 text-cb-base rounded-md"
+          [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'pending' }"
+        >
+          Pendentes
+        </button>
+      </li>
+
+      <li routerLink="/admin/floral" [queryParams]="{ tab: 'approve' }">
+        <button
+          class="px-8 py-2 text-cb-base rounded-md"
+          [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'approve' }"
+        >
+          Aprovados
+        </button>
+      </li>
+
+      <li routerLink="/admin/floral" [queryParams]="{ tab: 'rejected' }">
+        <button
+          class="px-8 py-2 text-cb-base rounded-md"
+          [ngClass]="{
+            'bg-gradient-cb font-semibold': tab == 'rejected'
+          }"
+        >
+          Rejeitados
+        </button>
+      </li>
+    </ul>
+
+    <div class="p-5 grid grid-cols-2 border-t border-cb-secondary">
+      <input-search
+        [(ngModel)]="filters.search"
+        (search)="getList()"
+      ></input-search>
+    </div>
+  </card>
+</div>
+
+<!-- <card *ngFor="let item of dataSource.data"> -->
+<div class="mb-4">
+  <card>
+    <div
+      class="rounded-md border border-cb-secondary flex justify-between text-cb-base"
+    >
+      <div
+        class="py-2 px-3 flex flex-col justify-center border-r border-cb-secondary text-2xl text-cb-success font-bold w-1/6"
+      >
+        <!-- <img src="assets/nft1.jpg" alt="nft" class="h-24 w-32 object-cover" /> -->
+        F$ 371,00
+      </div>
+
+      <div
+        class="py-2 px-3 flex flex-col justify-center border-r border-cb-secondary w-1/4"
+      >
+        <p>Resgate:</p>
+        <p class="text-cb-success flex gap-2" *ngIf="tab === 'approve'">
+          <i class="fa-solid fa-circle"></i>
+          <span class="">Aprovado</span>
+        </p>
+        <p class="text-cb-orange flex gap-2" *ngIf="tab === 'pending'">
+          <i class="fa-solid fa-circle"></i>
+          <span class="">Em aprovação</span>
+        </p>
+        <p class="text-cb-red flex gap-2" *ngIf="tab === 'rejected'">
+          <i class="fa-solid fa-circle"></i>
+          <span class="">Rejeitado</span>
+        </p>
+        <p>Resgate de fim de ano</p>
+      </div>
+
+      <div
+        class="py-2 px-3 flex flex-col justify-center border-r border-cb-secondary w-1/6"
+      >
+        <div>
+          <p>Solicitante:</p>
+          <p><span class="text-cb-info text-sm">Usuário da Silva</span></p>
+          <p><span class="text-gray-500 text-sm">@usuário</span></p>
+        </div>
+      </div>
+
+      <div
+        class="py-2 px-3 flex flex-col justify-center border-r border-cb-secondary text-center"
+        *ngIf="tab !== 'rejected'"
+      >
+        <div>
+          <p>Data:</p>
+          <p><span class="text-cb-info text-sm">12/10/2022</span></p>
+        </div>
+      </div>
+
+      <div
+        class="py-2 px-3 flex flex-col justify-center border-r border-cb-secondary text-center w-1/6"
+      >
+        <div>
+          <p>Valor (R$):</p>
+          <p><span class="text-cb-info text-sm">R$ 50,00</span></p>
+        </div>
+      </div>
+
+      <div
+        class="py-2 px-3 flex flex-col justify-center w-1/5"
+        *ngIf="tab === 'approve'"
+      >
+        <div>
+          <p>Aprovado por:</p>
+          <p><span class="text-cb-info text-sm">Fulano de tal</span></p>
+          <p><span class="text-gray-500 text-sm">20/01/2023</span></p>
+        </div>
+      </div>
+
+      <ng-container *ngIf="tab === 'rejected'">
+        <div class="py-2 px-3 flex flex-col justify-center w-1/6">
+          <div>
+            <p>Rejeitado por:</p>
+            <p><span class="text-cb-info text-sm">Fulano de tal</span></p>
+            <p><span class="text-gray-500 text-sm">20/01/2023</span></p>
+          </div>
+        </div>
+
+        <div
+          class="py-2 px-3 flex flex-col justify-center border-l border-cb-secondary gap-2"
+        >
+          <div>
+            <p>Motivo:</p>
+            <span class="text-cb-info text-sm"
+              >Descrição da mensagem do us...</span
+            >
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="tab === 'pending'">
+        <div class="py-2 px-3 flex flex-col justify-center gap-2">
+          <div class="flex gap-2">
+            <button
+              class="btn-sm btn-md w-full rounded-md bg-gradient-cb font-semibold"
+            >
+              Aprovar
+            </button>
+
+            <button
+              class="btn-sm btn-md w-full text-white rounded-md border border-cb-secondary"
+            >
+              Rejeitar
+            </button>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </card>
+</div>
+
+<card [loading]="loading">
+  <div class="card-footer flex gap-3 items-center">
+    <app-pagination
+      class="w-full"
+      [currentPage]="dataSource.current_page"
+      [totalItems]="dataSource.total"
+      [itemsPerPage]="filters.per_page"
+      (pageChange)="changePagination($event, filters.per_page)"
+      [to]="dataSource.to"
+      [from]="dataSource.from"
+    ></app-pagination>
+  </div>
+</card>

@@ -1,7 +1,7 @@
 <div class="mb-4">
   <card>
     <ul class="flex flex-wrap gap-3 text-sm font-medium text-center p-5">
-      <li (click)="setTab('active')">
+      <li routerLink="/admin/users" [queryParams]="{ tab: 'active' }">
         <button
           class="px-8 py-2 text-cb-base rounded-md"
           [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'active' }"
@@ -10,7 +10,7 @@
         </button>
       </li>
 
-      <li (click)="setTab('suspend')">
+      <li routerLink="/admin/users" [queryParams]="{ tab: 'suspend' }">
         <button
           class="px-8 py-2 text-cb-base rounded-md"
           [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'suspend' }"
@@ -19,7 +19,7 @@
         </button>
       </li>
 
-      <li (click)="setTab('waiting approve')">
+      <li routerLink="/admin/users" [queryParams]="{ tab: 'waiting approve' }">
         <button
           class="px-8 py-2 text-cb-base rounded-md"
           [ngClass]="{
