@@ -16,6 +16,7 @@ module.exports = {
       "cb-modal": "#162446",
       "cb-hover-signup": "#F10B4E",
       "cb-orange": "#F39257",
+      "cb-orange-light": "#F07D4217",
     },
   },
   plugins: [require("flowbite/plugin"), require("@tailwindcss/forms")],

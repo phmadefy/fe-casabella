@@ -1,0 +1,86 @@
+<div class="mb-4">
+  <card>
+    <div class="card-header">
+      <h2 class="text-lg font-semibold">Adicionar Patrocinador</h2>
+    </div>
+
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+      <div class="px-4">
+        <div class="mb-4">
+          <input-floating
+            class="p-0 bg-transparent border-none"
+            label="Nome do Patrocinador:"
+            model="name"
+            name="name"
+            [(ngModel)]="dados.name"
+            type="text"
+            required
+            [form]="form"
+            size="md"
+          ></input-floating>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3 mb-4">
+          <image-select
+            name="fileCapa"
+            title="Selecionar Imagem"
+            subtitle="1350 x 1080"
+          ></image-select>
+
+          <textarea
+            class="input-cb col-span-2"
+            [rows]="15"
+            name="description"
+            [(ngModel)]="dados.description"
+            placeholder="Descrição da NFT"
+          ></textarea>
+        </div>
+
+        <div class="grid gap-3 mb-4">
+          <input-floating
+            class="p-0 bg-transparent border-none"
+            label="URL:"
+            model="url"
+            name="url"
+            [(ngModel)]="dados.url"
+            type="text"
+            required
+            [form]="form"
+            size="md"
+          ></input-floating>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3 mb-4">
+          <input-floating
+            class="p-0 bg-transparent border-none"
+            label="Vigência:"
+            model="vigencia"
+            name="vigencia"
+            [(ngModel)]="dados.vigencia"
+            type="date"
+            [required]="true"
+            [form]="form"
+            size="md"
+          ></input-floating>
+        </div>
+      </div>
+
+      <div class="card-footer flex items-center gap-3">
+        <button-cb
+          type="submit"
+          classes="btn-sm btn-md w-full rounded-md bg-gradient-cb font-semibold"
+          label="Adicionar NFT"
+          [loading]="loading"
+        ></button-cb>
+
+        <button-cb
+          classes="btn-sm btn-md w-full text-white rounded-md"
+          routerLink="/admin/nfts"
+          [queryParams]="{ tab: 'all' }"
+          label="Cancelar"
+          [loading]="loading"
+        ></button-cb>
+      </div>
+    </form>
+  </card>
+</div>

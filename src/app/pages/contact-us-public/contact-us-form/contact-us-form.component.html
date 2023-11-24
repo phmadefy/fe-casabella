@@ -1,0 +1,92 @@
+<div class="mb-4">
+  <div class="my-3">
+    <div
+      class="flex justify-between items-center p-4 mb-4 text-sm text-cb-base rounded-md border border-cb-orange bg-cb-orange-light"
+      role="alert"
+    >
+      <span>
+        A opção de "Fale Conosco" só deverá ser utilizada em dúvidas, sugestões
+        e/ou reclamações desta plataforma de incentivos.
+      </span>
+
+      <button
+        class="border h-4 w-4 text-cb-orange border-cb-orange rounded-full flex items-center justify-center"
+      >
+        <i class="fa-solid fa-xmark text-[10px]"></i>
+      </button>
+    </div>
+  </div>
+
+  <card>
+    <div class="card-header">
+      <h2 class="text-lg font-semibold">Adicionar Patrocinador</h2>
+    </div>
+
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+      <div class="px-4">
+        <div class="grid grid-cols-3 gap-3 mb-4">
+          <input-floating
+            class="p-0 bg-transparent border-none col-span-2"
+            label="Assunto:"
+            model="subject"
+            name="subject"
+            [(ngModel)]="dados.subject"
+            type="text"
+            required
+            [form]="form"
+            size="md"
+          ></input-floating>
+
+          <combobox
+            class="p-0 bg-transparent border-none"
+            label="Tipo de Chamado:"
+            model="type"
+            [(ngModel)]="dados.type"
+            name="type"
+            [options]="optionsCall"
+            bindValue="label"
+            bindText="name"
+            placeholder="Selecione um tipo"
+            [required]="true"
+            [form]="form"
+            size="md"
+          ></combobox>
+        </div>
+
+        <div class="mb-4">
+          <textarea
+            class="input-cb col-span-2"
+            [rows]="10"
+            name="description"
+            [(ngModel)]="dados.description"
+            placeholder="Descrição da NFT"
+          ></textarea>
+        </div>
+
+        <div class="mb-4">
+          <dropzone
+            (changeFile)="onFileSelected($event)"
+            [files]="files"
+          ></dropzone>
+        </div>
+      </div>
+
+      <div class="card-footer flex items-center gap-3">
+        <button-cb
+          type="submit"
+          classes="btn-sm btn-md w-full rounded-md bg-gradient-cb font-semibold"
+          label="Criar"
+          [loading]="loading"
+        ></button-cb>
+
+        <button-cb
+          classes="btn-sm btn-md w-full text-white rounded-md"
+          routerLink="/fale-conosco"
+          [queryParams]="{ tab: 'all' }"
+          label="Cancelar"
+          [loading]="loading"
+        ></button-cb>
+      </div>
+    </form>
+  </card>
+</div>

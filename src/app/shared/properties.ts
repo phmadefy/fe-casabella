@@ -50,6 +50,13 @@ export const Gender = [
   { key: 'others', description: 'Outros' },
 ];
 
+export const OptionsCall = [
+  { key: 'request', description: 'Solicitação' },
+  { key: 'suggestion', description: 'Sugestão' },
+  { key: 'doubt', description: 'Dúvida' },
+  { key: 'others', description: 'Outros' },
+];
+
 export interface InputProps {
   label?: string;
   type?: string;

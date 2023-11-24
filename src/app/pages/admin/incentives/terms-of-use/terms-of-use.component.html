@@ -1,4 +1,21 @@
-<div class="p-4 relative" *ngIf="loading">
+<div class="mb-4" *ngIf="type == 'login'">
+  <card>
+    <ul class="flex flex-wrap gap-2 text-sm font-medium text-center p-5">
+      <li>
+        <button
+          routerLink="/admin/incentives"
+          [queryParams]="{ type: 'login' }"
+          class="px-8 py-2 text-cb-base rounded-md"
+          [ngClass]="{ 'bg-gradient-cb font-semibold': type == 'login' }"
+        >
+          Termos
+        </button>
+      </li>
+    </ul>
+  </card>
+</div>
+
+<div class="relative" *ngIf="loading">
   <div
     class="absolute z-[1010] bg-cb-contrast h-full overflow-hidden p-10 rounded-lg text-center w-full"
   >

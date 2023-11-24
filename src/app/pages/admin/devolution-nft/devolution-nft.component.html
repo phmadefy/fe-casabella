@@ -1,0 +1,84 @@
+<card>
+  <div class="card-header">
+    <h2 class="text-lg font-semibold">Devolução de NFT á Casabella</h2>
+  </div>
+
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <div class="px-4">
+      <div class="mb-4">
+        <select-default
+          endpoint="v1/user?status=active"
+          inputPlaceholder="Informe o usuário"
+          bindText="name"
+          bindValue="id"
+          [(ngModel)]="dados.user_id"
+          name="user_id"
+          [required]="true"
+          [form]="form"
+        ></select-default>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3 mb-4">
+        <combobox
+          class="p-0 bg-transparent border-none"
+          model="type"
+          name="type"
+          [(ngModel)]="dados.type"
+          type="select"
+          required
+          [form]="form"
+          size="md"
+          placeholder="Selecione o tipo de transferência"
+          [options]="types"
+          bindText="description"
+          bindValue="id"
+        ></combobox>
+
+        <app-nft-choose *ngIf="dados.type === 'specific'"></app-nft-choose>
+      </div>
+    </div>
+
+    <div class="p-4 border-t border-cb-secondary">
+      <h3 class="font-semibold">Termos e ciência</h3>
+      <div class="flex item-center">
+        <checkbox
+          label="Estou ciente que esta transferência é irreversível"
+          controlName="check1"
+          name="check1"
+          [required]="true"
+        ></checkbox>
+      </div>
+      <div class="flex item-center gap-2">
+        <checkbox
+          controlName="check2"
+          name="check2"
+          [required]="true"
+        ></checkbox>
+        <label class="text-sm font-medium" for="check2"
+          >Eu aceito os
+          <a href="javascript:void(0)" class="text-blue-500">
+            Termos e Condições de Uso
+          </a>
+          da Casabella Fragrâncias</label
+        >
+      </div>
+    </div>
+
+    <div class="card-footer flex items-center gap-3">
+      <button-cb
+        type="submit"
+        classes="btn-sm btn-md w-full rounded-md bg-gradient-cb font-semibold"
+        label="Adicionar NFT"
+        [loading]="loading"
+      ></button-cb>
+
+      <!-- <button-cb
+        classes="btn-sm btn-md w-full text-white rounded-md"
+        routerLink="/admin/nfts"
+        [queryParams]="{ tab: 'all' }"
+        label="Cancelar"
+        [loading]="loading"
+      ></button-cb> -->
+    </div>
+  </form>
+</card>

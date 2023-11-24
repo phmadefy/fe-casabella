@@ -63,6 +63,25 @@ export const routes: Routes = [
         ],
       },
       {
+        path: 'fale-conosco',
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import(
+                './pages/contact-us-public/contact-us-public.component'
+              ).then((c) => c.ContactUsPublicComponent),
+          },
+          {
+            path: 'add',
+            loadComponent: () =>
+              import(
+                './pages/contact-us-public/contact-us-form/contact-us-form.component'
+              ).then((c) => c.ContactUsFormComponent),
+          },
+        ],
+      },
+      {
         path: 'admin',
         children: [
           {
@@ -224,6 +243,67 @@ export const routes: Routes = [
                   import(
                     './pages/admin/foral/floral-transfer-auth/floral-transfer-auth.component'
                   ).then((c) => c.FloralTransferAuthComponent),
+              },
+            ],
+          },
+
+          {
+            path: 'sponsors',
+            children: [
+              {
+                path: '',
+                loadComponent: () =>
+                  import('./pages/admin/sponsors/sponsors.component').then(
+                    (c) => c.SponsorsComponent
+                  ),
+              },
+              {
+                path: 'add',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/sponsors/sponsor-form/sponsor-form.component'
+                  ).then((c) => c.SponsorFormComponent),
+              },
+            ],
+          },
+          {
+            path: 'contact-us',
+            loadComponent: () =>
+              import('./pages/admin/contact-us/contact-us.component').then(
+                (c) => c.ContactUsComponent
+              ),
+          },
+          {
+            path: 'terms-of-use',
+            loadComponent: () =>
+              import(
+                './pages/admin/incentives/terms-of-use/terms-of-use.component'
+              ).then((c) => c.TermsOfUseComponent),
+          },
+          {
+            path: 'audit',
+            loadComponent: () =>
+              import('./pages/admin/audit/audit.component').then(
+                (c) => c.AuditComponent
+              ),
+          },
+
+          {
+            path: 'devolution',
+            children: [
+              {
+                path: 'nft',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/devolution-nft/devolution-nft.component'
+                  ).then((c) => c.DevolutionNftComponent),
+              },
+              {
+                path: 'floral',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/devolution-floral/devolution-floral.component'
+                  ).then((c) => c.DevolutionFloralComponent),
               },
             ],
           },

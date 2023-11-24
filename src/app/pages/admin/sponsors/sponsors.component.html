@@ -1,0 +1,62 @@
+<div class="mb-4">
+  <card>
+    <ul class="flex flex-wrap gap-3 text-sm font-medium text-center p-5">
+      <li routerLink="/admin/sponsors" [queryParams]="{ tab: 'active' }">
+        <button
+          class="px-8 py-2 text-cb-base rounded-md"
+          [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'active' }"
+        >
+          Ativos
+        </button>
+      </li>
+
+      <li routerLink="/admin/sponsors" [queryParams]="{ tab: 'suspend' }">
+        <button
+          class="px-8 py-2 text-cb-base rounded-md"
+          [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'suspend' }"
+        >
+          Inativos
+        </button>
+      </li>
+
+      <li>
+        <button
+          [routerLink]="['add']"
+          class="px-8 py-2 text-cb-base rounded-md"
+        >
+          Cadastrar
+        </button>
+      </li>
+    </ul>
+
+    <div class="p-5 grid grid-cols-2 border-t border-cb-secondary">
+      <input-search></input-search>
+    </div>
+  </card>
+</div>
+
+<div
+  class="rounded-md border bg-cb-primary border-cb-secondary flex gap-3 justify-between text-cb-base"
+>
+  <div class="overflow-hidden rounded-s-md border-r border-cb-secondary">
+    <img src="assets/spensor2.jpg" alt="nft" class="h-48 object-cover" />
+  </div>
+
+  <div class="p-4 flex flex-col justify-center w-3/4">
+    <div>
+      <h2 class="text-cb-info">Boticário - Malbec</h2>
+      <p class="text-sm text-cb-base">Descrição do patrocinador...</p>
+    </div>
+  </div>
+
+  <div
+    class="p-4 flex flex-col justify-center items-center gap-2 border-l border-cb-secondary"
+  >
+    <button-cb
+      type="submit"
+      classes="btn-sm btn-md w-full rounded-md bg-gradient-cb font-semibold"
+      label="Editar"
+      [loading]="loading"
+    ></button-cb>
+  </div>
+</div>

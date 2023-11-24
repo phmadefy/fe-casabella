@@ -1,0 +1,72 @@
+<div class="mb-4">
+  <card>
+    <ul class="flex flex-wrap gap-3 text-sm font-medium text-center p-5">
+      <li routerLink="/admin/users">
+        <button
+          class="px-8 py-2 text-cb-base rounded-md bg-gradient-cb font-semibold"
+        >
+          Solicitações
+        </button>
+      </li>
+    </ul>
+
+    <div class="p-5 grid grid-cols-2 border-t border-cb-secondary">
+      <input-search
+        [(ngModel)]="filters.search"
+        (search)="getList()"
+      ></input-search>
+    </div>
+  </card>
+</div>
+
+<card [loading]="loading">
+  <div class="relative overflow-x-auto">
+    <table class="w-full text-sm text-left table-cb">
+      <thead>
+        <tr>
+          <th>Protocolo</th>
+          <th>Assunto</th>
+          <th>Solicitante</th>
+          <th>Data de Criação</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let item of dataSource.data; let i = index"
+          [ngClass]="{
+            'bg-transparent': i % 2 !== 0,
+            'bg-cb-secondary': i % 2 === 0
+          }"
+          (dblclick)="edit(item)"
+        >
+          <td>2351452696</td>
+          <td>Solicitação de Permissão</td>
+          <td>Fulano de Tal</td>
+          <td>01/10/2023</td>
+          <td>Finalizado</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="relative overflow-x-auto">
+      <div
+        class="text-center py-2 text-gray-400"
+        *ngIf="dataSource.data.length <= 0"
+      >
+        Nenhuma solicitação encontrada.
+      </div>
+    </div>
+  </div>
+  <div class="card-footer flex gap-3 items-center">
+    <app-pagination
+      class="w-full"
+      [currentPage]="dataSource.current_page"
+      [totalItems]="dataSource.total"
+      [itemsPerPage]="filters.per_page"
+      (pageChange)="changePagination($event, filters.per_page)"
+      [to]="dataSource.to"
+      [from]="dataSource.from"
+    ></app-pagination>
+  </div>
+</card>

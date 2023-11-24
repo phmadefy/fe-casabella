@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { AppState } from '../core/reducers';
 import { Logout } from '../core/actions/auth.action';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
+import { lastValueFrom, skipWhile, take } from 'rxjs';
+import { currentUser } from '../core/selectors/auth.selector';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +14,16 @@ import * as moment from 'moment';
 export class ToolsService {
   noImageAvatar = 'assets/sem-foto.png';
   constructor(private store: Store<AppState>, public route: Router) {}
+
+  async getCurrentUser() {
+    return lastValueFrom(
+      this.store.pipe(
+        select(currentUser),
+        skipWhile((user) => !user),
+        take(1)
+      )
+    );
+  }
 
   toBase64(file: File) {
     return new Promise((resolve, reject) => {

@@ -167,7 +167,8 @@ export class HeaderComponent {
             {
               id: 'admin-incentives-terms-of-use',
               title: 'Termos de Uso',
-              route: '/terms-of-use',
+              route: '/',
+              queryParams: { tab: 'terms-of-use' },
             },
             {
               id: 'admin-incentives-terms-of-use-add',
@@ -278,30 +279,32 @@ export class HeaderComponent {
         {
           id: 'admin-patrocinio',
           title: 'Patrocinador',
-          route: 'admin-patrocinio',
+          route: 'admin/sponsors',
           icon: 'fa-solid fa-circle-dollar-to-slot',
           items: [
             {
               id: 'admin-patrocinio-actives',
               title: 'Patrocínios Ativos',
-              route: 'admin/patrocinio-ativos',
+              route: '/',
+              queryParams: { tab: 'active' },
             },
             {
               id: 'admin-patrocinio-inactives',
               title: 'Patrocínios Inativos',
-              route: 'admin/patrocinio-inativos',
+              route: '/',
+              queryParams: { tab: 'suspend' },
             },
             {
               id: 'admin-patrocinio-add',
               title: 'Adicionar Patrocinador',
-              route: 'admin/patrocinio-add',
+              route: '/add',
             },
           ],
         },
         {
           id: 'admin-fale-conosco',
           title: 'Fale Conosco',
-          route: 'admin/fale-conosco',
+          route: '/contact-us',
           icon: 'fa-solid fa-ticket',
         },
         {
@@ -313,30 +316,31 @@ export class HeaderComponent {
         {
           id: 'admin-termos',
           title: 'Termos',
-          route: 'admin/termos',
           icon: 'fa-solid fa-file-lines',
+          route: '/terms-of-use',
+          queryParams: { type: 'login' },
         },
         {
           id: 'admin-audit',
           title: 'Auditoria',
-          route: 'admin/auditoria',
+          route: '/audit',
           icon: 'fa-solid fa-clipboard-check',
         },
         {
           id: 'admin-floral-nft-devolution',
           title: 'Devolução de Floral/NFT',
-          route: 'admin/devolucao-floral-nft',
+          route: 'admin/devolution',
           icon: 'fa-solid fa-right-left',
           items: [
             {
               id: 'admin-nft-devolution-caixa',
               title: 'Devolução de NFT ao Caixa',
-              route: 'admin/devolucao-nft-caixa',
+              route: '/nft',
             },
             {
               id: 'admin-floral-devolution-caixa',
               title: 'Devolução de Floral ao Caixa',
-              route: 'admin/devolucao-floral-caixa',
+              route: '/floral',
             },
           ],
         },
