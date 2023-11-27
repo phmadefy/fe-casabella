@@ -83,4 +83,14 @@ export class ToolsService {
   getTimeFrom(date: string) {
     return moment(date).locale('pt-br').fromNow();
   }
+
+  checkRouteContainsAdmin() {
+    const paths = location.pathname.split('/');
+    console.log('checkRouteContainsAdmin', paths);
+    if (paths.includes('admin')) {
+      return true;
+    }
+
+    return false;
+  }
 }

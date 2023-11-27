@@ -63,6 +63,32 @@ export const routes: Routes = [
         ],
       },
       {
+        path: 'floral',
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import('./pages/floral-public/floral-public.component').then(
+                (c) => c.FloralPublicComponent
+              ),
+          },
+          {
+            path: 'transferir',
+            loadComponent: () =>
+              import(
+                './pages/admin/foral/floral-transfer-form/floral-transfer-form.component'
+              ).then((c) => c.FloralTransferFormComponent),
+          },
+          {
+            path: 'resgatar',
+            loadComponent: () =>
+              import(
+                './pages/floral-public/floral-redeem/floral-redeem.component'
+              ).then((c) => c.FloralRedeemComponent),
+          },
+        ],
+      },
+      {
         path: 'fale-conosco',
         children: [
           {
@@ -81,6 +107,7 @@ export const routes: Routes = [
           },
         ],
       },
+
       {
         path: 'admin',
         children: [

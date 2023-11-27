@@ -1,4 +1,8 @@
-import { ApplicationConfig, importProvidersFrom } from '@angular/core';
+import {
+  ApplicationConfig,
+  LOCALE_ID,
+  importProvidersFrom,
+} from '@angular/core';
 import { provideRouter } from '@angular/router';
 import {
   HTTP_INTERCEPTORS,
@@ -23,9 +27,15 @@ import {
   provideEnvironmentNgxCurrency,
 } from 'ngx-currency';
 
+import { registerLocaleData } from '@angular/common';
+import localeBr from '@angular/common/locales/pt';
+import localeBrExtra from '@angular/common/locales/extra/pt';
+registerLocaleData(localeBr, 'br', localeBrExtra);
+
 export const appConfig: ApplicationConfig = {
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptService, multi: true },
+    { provide: LOCALE_ID, useValue: 'br' },
     provideRouter(routes),
     provideHttpClient(withInterceptorsFromDi()),
     provideAnimations(),

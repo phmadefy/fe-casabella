@@ -2,40 +2,34 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CardComponent } from 'src/app/components/card/card.component';
-import { InputFloatingComponent } from 'src/app/components/input-floating/input-floating.component';
-import { AbstractForms } from 'src/app/shared/abstract-form';
-import { ApiService } from 'src/app/services/api.service';
-import { ToolsService } from 'src/app/services/tools.service';
 import { CheckboxComponent } from 'src/app/components/checkbox/checkbox.component';
 import { ButtonCbComponent } from 'src/app/components/button-cb/button-cb.component';
 import { RouterLink } from '@angular/router';
-import { NftChooseComponent } from 'src/app/components/nft-choose/nft-choose.component';
-import { SelectDefaultComponent } from 'src/app/components/select-default/select-default.component';
-import { ComboboxComponent } from 'src/app/components/combobox/combobox.component';
+import { NgxCurrencyDirective } from 'ngx-currency';
 import { AlertDisplayComponent } from 'src/app/components/alert-display/alert-display.component';
+import { ApiService } from 'src/app/services/api.service';
+import { ToolsService } from 'src/app/services/tools.service';
+import { AbstractForms } from 'src/app/shared/abstract-form';
 
 @Component({
-  selector: 'app-nft-transfer-form',
+  selector: 'app-floral-redeem',
   standalone: true,
   imports: [
     CommonModule,
     FormsModule,
     CardComponent,
-    InputFloatingComponent,
     CheckboxComponent,
     ButtonCbComponent,
     RouterLink,
-    NftChooseComponent,
-    SelectDefaultComponent,
-    ComboboxComponent,
+    NgxCurrencyDirective,
     AlertDisplayComponent,
   ],
   providers: [ApiService],
-  templateUrl: './nft-transfer-form.component.html',
-  styleUrls: ['./nft-transfer-form.component.scss'],
+  templateUrl: './floral-redeem.component.html',
+  styleUrls: ['./floral-redeem.component.scss'],
 })
-export class NftTransferFormComponent extends AbstractForms {
-  dados: any = {};
+export class FloralRedeemComponent extends AbstractForms {
+  dados: any = { mode: 'products' };
   types = [
     { id: 'definitiva', description: 'Definitiva' },
     { id: 'temporaria', description: 'Temporária' },

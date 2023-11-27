@@ -1,3 +1,9 @@
+<div class="my-3" *ngIf="modo != 'admin'">
+  <alert-display
+    title="Esta transferência deverá ser aprovada pela Casabella Fragrâncias, conforme nossos Termos de Uso da plataforma de incentivos."
+  ></alert-display>
+</div>
+
 <card>
   <div class="card-header">
     <h2 class="text-lg font-semibold">Transferir Propriedade de NFT</h2>
@@ -33,7 +39,7 @@
         ></textarea>
       </div>
 
-      <div class="grid grid-cols-3 gap-3">
+      <div class="grid grid-cols-3 gap-3" *ngIf="modo == 'admin'">
         <combobox
           class="p-0 bg-transparent border-none"
           model="type"

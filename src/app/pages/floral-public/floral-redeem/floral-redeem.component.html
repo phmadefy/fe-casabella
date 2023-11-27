@@ -1,4 +1,4 @@
-<div class="my-3" *ngIf="modo != 'admin'">
+<div class="my-3">
   <alert-display
     title="Esta transferência deverá ser aprovada pela Casabella Fragrâncias, conforme nossos Termos de Uso da plataforma de incentivos."
   ></alert-display>
@@ -6,57 +6,33 @@
 
 <card>
   <div class="card-header">
-    <h2 class="text-lg font-semibold" *ngIf="modo !== 'user'">
-      Transferência de Foral (Caixa/Usuário)
-    </h2>
-    <h2 class="text-lg font-semibold" *ngIf="modo == 'user'">
-      Transferir Floral
-    </h2>
+    <h2 class="text-lg font-semibold">Resgatar Floral</h2>
   </div>
+
+  <ul class="flex flex-wrap gap-3 text-sm font-medium text-center px-4 mb-3">
+    <li>
+      <button
+        class="px-4 py-2 text-cb-base rounded-md"
+        [ngClass]="{ 'bg-gradient-cb font-semibold': dados.mode == 'products' }"
+        (click)="dados.mode = 'products'"
+      >
+        Em produtos
+      </button>
+    </li>
+
+    <li>
+      <button
+        class="px-4 py-2 text-cb-base rounded-md"
+        [ngClass]="{ 'bg-gradient-cb font-semibold': dados.mode == 'money' }"
+        (click)="dados.mode = 'money'"
+      >
+        Em dinheiro
+      </button>
+    </li>
+  </ul>
 
   <form #form="ngForm" (ngSubmit)="onSubmit(form)">
     <div class="px-4">
-      <div class="grid grid-cols-2 gap-3" *ngIf="modo == 'admin'">
-        <div class="mb-4">
-          <select-default
-            endpoint="v1/admin/cashiers?status=active"
-            inputPlaceholder="Informe o caixa de origem"
-            bindText="name"
-            bindValue="id"
-            [(ngModel)]="dados.cashier_from"
-            name="cashier_from"
-            [required]="true"
-            [form]="form"
-          ></select-default>
-        </div>
-
-        <div class="mb-4">
-          <select-default
-            endpoint="v1/admin/cashiers?status=active"
-            inputPlaceholder="Informe o caixa de destino"
-            bindText="name"
-            bindValue="id"
-            [(ngModel)]="dados.cashier_to"
-            name="cashier_to"
-            [required]="true"
-            [form]="form"
-          ></select-default>
-        </div>
-      </div>
-
-      <div class="mb-4" *ngIf="modo == 'user'">
-        <select-default
-          endpoint="v1/admin/cashiers?status=active"
-          inputPlaceholder="Informe o Usuário"
-          bindText="name"
-          bindValue="id"
-          [(ngModel)]="dados.user_id"
-          name="user_id"
-          [required]="true"
-          [form]="form"
-        ></select-default>
-      </div>
-
       <div
         class="mb-4 rounded-md bg-gradient-amount-floral py-6 flex flex-col justify-center items-center gap-2"
       >
@@ -128,14 +104,14 @@
       <button-cb
         type="submit"
         classes="btn-sm btn-md w-full rounded-md bg-gradient-cb font-semibold"
-        label="Enviar Floral"
+        label="Resgatar"
         [loading]="loading"
       ></button-cb>
 
       <button-cb
         classes="btn-sm btn-md w-full text-white rounded-md"
-        routerLink="/admin/floral"
-        [queryParams]="{ tab: 'pending' }"
+        routerLink="/floral"
+        [queryParams]="{ tab: 'my' }"
         label="Cancelar"
         [loading]="loading"
       ></button-cb>

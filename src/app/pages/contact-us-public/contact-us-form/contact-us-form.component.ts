@@ -11,6 +11,7 @@ import { AbstractForms } from 'src/app/shared/abstract-form';
 import { ToolsService } from 'src/app/services/tools.service';
 import { ComboboxComponent } from 'src/app/components/combobox/combobox.component';
 import { OptionsCall } from 'src/app/shared/properties';
+import { AlertDisplayComponent } from 'src/app/components/alert-display/alert-display.component';
 
 @Component({
   selector: 'app-contact-us-form',
@@ -24,6 +25,7 @@ import { OptionsCall } from 'src/app/shared/properties';
     ButtonCbComponent,
     RouterLink,
     DropzoneComponent,
+    AlertDisplayComponent,
   ],
   providers: [ApiService],
   templateUrl: './contact-us-form.component.html',

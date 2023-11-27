@@ -1,0 +1,107 @@
+<div class="mb-4">
+  <card>
+    <div class="flex justify-between items-center">
+      <ul
+        class="flex flex-wrap gap-2 text-sm font-medium text-center p-5 w-3/4"
+      >
+        <li routerLink="/nfts" [queryParams]="{ tab: 'my' }">
+          <button
+            class="px-8 py-2 text-cb-base rounded-md"
+            [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'my' }"
+          >
+            Meus
+          </button>
+        </li>
+
+        <li routerLink="/nfts" [queryParams]="{ tab: 'all' }">
+          <button
+            class="px-8 py-2 text-cb-base rounded-md"
+            [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'all' }"
+          >
+            Todos
+          </button>
+        </li>
+
+        <li routerLink="/nfts" [queryParams]="{ tab: 'pending' }">
+          <button
+            class="px-8 py-2 text-cb-base rounded-md"
+            [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'pending' }"
+          >
+            Pendentes
+          </button>
+        </li>
+
+        <li>
+          <button
+            [routerLink]="['add']"
+            class="px-8 py-2 text-cb-base rounded-md"
+          >
+            Transferir
+          </button>
+        </li>
+      </ul>
+
+      <div class="p-5">
+        <input-search></input-search>
+      </div>
+    </div>
+  </card>
+</div>
+
+<card *ngIf="tab != 'pending'">
+  <div class="grid grid-cols-5 gap-3 p-4">
+    <app-nft-card [nft]="{ src: 'assets/nft2.jpg' }"></app-nft-card>
+  </div>
+</card>
+
+<div
+  *ngIf="tab == 'pending'"
+  class="rounded-md border border-cb-secondary flex justify-between text-cb-base"
+>
+  <div
+    class="overflow-hidden rounded-s-md border-r border-cb-secondary min-w-max"
+  >
+    <img src="assets/nft1.jpg" alt="nft" class="h-24 w-32 object-cover" />
+  </div>
+
+  <div class="p-4 flex flex-col justify-center border-r border-cb-secondary">
+    <p class="text-cb-success flex gap-2">
+      <i class="fa-solid fa-circle"></i>
+      <span class="">Recebido</span>
+    </p>
+  </div>
+
+  <div
+    class="p-4 flex flex-col justify-center border-r border-cb-secondary w-full"
+  >
+    <div class="text-center">
+      <p>Recebido de:</p>
+      <p><span class="text-cb-info text-sm">@NomeDoUsuário</span></p>
+    </div>
+  </div>
+
+  <div class="p-4 flex flex-col justify-center text-center w-full">
+    <div>
+      <p>Data:</p>
+      <p><span class="text-cb-info text-sm">12/10/2023</span></p>
+    </div>
+  </div>
+
+  <div
+    class="p-4 flex flex-col justify-center border-l border-cb-secondary gap-2 w-full"
+  >
+    <div class="flex gap-2">
+      <button
+        class="btn-sm btn-md w-full rounded-md bg-gradient-cb font-semibold"
+      >
+        Aceitar
+      </button>
+
+      <button
+        class="btn-sm btn-md w-full text-white rounded-md border border-cb-secondary"
+      >
+        Rejeitar
+      </button>
+    </div>
+  </div>
+</div>

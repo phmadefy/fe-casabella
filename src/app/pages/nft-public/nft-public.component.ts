@@ -4,13 +4,13 @@ import { CardComponent } from 'src/app/components/card/card.component';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { DropdownCbComponent } from 'src/app/components/dropdown-cb/dropdown-cb.component';
 import { InputSearchComponent } from 'src/app/components/input-search/input-search.component';
-import { ApiService } from 'src/app/services/api.service';
-import { ToolsService } from 'src/app/services/tools.service';
-import { Subscription } from 'rxjs';
 import { NftCardComponent } from 'src/app/components/nft-card/nft-card.component';
+import { ApiService } from 'src/app/services/api.service';
+import { Subscription } from 'rxjs';
+import { ToolsService } from 'src/app/services/tools.service';
 
 @Component({
-  selector: 'app-nfts',
+  selector: 'app-nft-public',
   standalone: true,
   imports: [
     CommonModule,
@@ -21,17 +21,17 @@ import { NftCardComponent } from 'src/app/components/nft-card/nft-card.component
     NftCardComponent,
   ],
   providers: [ApiService],
-  templateUrl: './nfts.component.html',
-  styleUrls: ['./nfts.component.scss'],
+  templateUrl: './nft-public.component.html',
+  styleUrls: ['./nft-public.component.scss'],
 })
-export class NftsComponent {
+export class NftPublicComponent {
   dataSource: any = { data: [] };
   queryParamsObs!: Subscription;
   loading = false;
 
   filters: any = { per_page: 30, page: 1 };
 
-  tab: string = 'all';
+  tab: string = 'my';
   constructor(
     private route: ActivatedRoute,
     private service: ApiService,

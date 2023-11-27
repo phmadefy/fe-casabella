@@ -10,6 +10,7 @@ import { ButtonCbComponent } from 'src/app/components/button-cb/button-cb.compon
 import { RouterLink } from '@angular/router';
 import { NgxCurrencyDirective } from 'ngx-currency';
 import { SelectDefaultComponent } from 'src/app/components/select-default/select-default.component';
+import { AlertDisplayComponent } from 'src/app/components/alert-display/alert-display.component';
 
 @Component({
   selector: 'app-floral-transfer-form',
@@ -23,6 +24,7 @@ import { SelectDefaultComponent } from 'src/app/components/select-default/select
     RouterLink,
     NgxCurrencyDirective,
     SelectDefaultComponent,
+    AlertDisplayComponent,
   ],
   providers: [ApiService],
   templateUrl: './floral-transfer-form.component.html',
@@ -30,9 +32,18 @@ import { SelectDefaultComponent } from 'src/app/components/select-default/select
 })
 export class FloralTransferFormComponent extends AbstractForms {
   dados: any = { amount: 0 };
+  userCurrent: any = {};
+  modo = 'user';
   constructor(service: ApiService, public tools: ToolsService) {
     service.path = 'v1/admin/floral';
     super(service);
+  }
+
+  async ngOnInit() {
+    this.userCurrent = await this.tools.getCurrentUser();
+    if (this.tools.checkRouteContainsAdmin()) {
+      this.modo = 'admin';
+    }
   }
 
   override submit(): void {

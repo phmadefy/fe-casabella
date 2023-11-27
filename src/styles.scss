@@ -378,3 +378,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .bg-gradient-amount-floral {
   background: linear-gradient(89deg, #174776, #182847, #182a4a, #16578d);
 }
+
+.bg-gradient-item-positive {
+  background: transparent linear-gradient(90deg, #21acbe00 0%, #21acbe26 100%)
+    0% 0% no-repeat padding-box;
+  opacity: 1;
+}
+
+.bg-gradient-item-negative {
+  background: transparent linear-gradient(90deg, #21acbe00 0%, #dd165030 100%)
+    0% 0% no-repeat padding-box;
+  opacity: 1;
+}
