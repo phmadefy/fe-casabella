@@ -1,0 +1,109 @@
+<div class="grid md:grid-cols-8 gap-3">
+  <div class="col-span-6">
+    <div class="mb-4">
+      <card>
+        <div class="card-header">
+          <h2 class="text-lg font-semibold">Adicionar novo post</h2>
+        </div>
+
+        <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+          <div class="p-4">
+            <div class="mb-4 h-80">
+              <image-select
+                name="fileCapa"
+                title="Selecione uma foto ou video."
+                subtitle="922 x 560"
+              ></image-select>
+            </div>
+
+            <div class="mb-4">
+              <textarea
+                class="input-cb"
+                rows="5"
+                name="description"
+                [(ngModel)]="dados.description"
+                placeholder="Descreva seu post"
+              ></textarea>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div class="mb-4">
+                <checkbox
+                  label="Vincular Incentivo"
+                  controlName="syncIncntive"
+                  name="syncIncntive"
+                  [(ngModel)]="dados.syncIncntive"
+                ></checkbox>
+                <select-default
+                  inputPlaceholder="Vincular Incentivo"
+                  bindText="name"
+                  bindValue="id"
+                  endpoint="v1/incentives"
+                  name="incentives"
+                  [(ngModel)]="dados.incentives"
+                  [required]="true"
+                  [form]="form"
+                />
+              </div>
+
+              <div class="mb-4">
+                <checkbox
+                  label="Vincular Galeria"
+                  controlName="syncGallery"
+                  name="syncGallery"
+                  [(ngModel)]="dados.syncGallery"
+                ></checkbox>
+                <select-default
+                  inputPlaceholder="Vincular Galeria"
+                  bindText="name"
+                  bindValue="id"
+                  endpoint="v1/incentives-gallery"
+                  name="gallery"
+                  [(ngModel)]="dados.gallery"
+                  [required]="true"
+                  [form]="form"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="card-footer flex items-center gap-3">
+            <button-cb
+              type="submit"
+              classes="btn-sm btn-md w-full rounded-md bg-gradient-cb font-semibold"
+              label="Postar agora"
+              [loading]="loading"
+            ></button-cb>
+
+            <button-cb
+              classes="btn-sm btn-md w-full text-white rounded-md"
+              routerLink="/feed"
+              [queryParams]="{ tab: 'all' }"
+              label="Cancelar"
+              [loading]="loading"
+            ></button-cb>
+          </div>
+        </form>
+      </card>
+    </div>
+  </div>
+  <div class="col-span-2">
+    <div class="mb-2">
+      <card-choose
+        inputPlaceholder="Público"
+        endpoint="v1/persons-type"
+        bindText="name"
+        bindValue="id"
+      />
+    </div>
+
+    <div class="mb-2">
+      <card-choose
+        inputPlaceholder="Segmento"
+        endpoint="v1/segments"
+        bindText="name"
+        bindValue="id"
+      />
+    </div>
+  </div>
+</div>

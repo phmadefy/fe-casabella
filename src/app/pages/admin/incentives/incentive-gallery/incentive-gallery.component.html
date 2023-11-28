@@ -1,5 +1,6 @@
 <div class="grid grid-cols-3">
   <button
+    *ngIf="tools.checkRouteContainsAdmin()"
     routerLink="gallery/add"
     class="flex flex-col items-center justify-center border border-cb-secondary text-cb-secondary text-gradient-cb-hover rounded-md p-4 h-48"
   >

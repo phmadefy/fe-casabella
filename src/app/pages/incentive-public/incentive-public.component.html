@@ -1,0 +1,60 @@
+<div class="mb-4">
+  <card>
+    <div class="flex justify-between items-center">
+      <ul
+        class="flex flex-wrap gap-2 text-sm font-medium text-center p-5 w-3/4"
+      >
+        <li routerLink="/incentivo" [queryParams]="{ tab: 'active' }">
+          <button
+            class="px-8 py-2 text-cb-base rounded-md"
+            [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'active' }"
+          >
+            Ativos
+          </button>
+        </li>
+
+        <li routerLink="/incentivo" [queryParams]="{ tab: 'inactives' }">
+          <button
+            class="px-8 py-2 text-cb-base rounded-md"
+            [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'inactives' }"
+          >
+            Inativos
+          </button>
+        </li>
+
+        <li routerLink="/incentivo" [queryParams]="{ tab: 'my' }">
+          <button
+            class="px-8 py-2 text-cb-base rounded-md"
+            [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'my' }"
+          >
+            Meus incentivos
+          </button>
+        </li>
+
+        <li routerLink="/incentivo" [queryParams]="{ tab: 'galeria' }">
+          <button
+            class="px-8 py-2 text-cb-base rounded-md"
+            [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'galeria' }"
+          >
+            Galeria
+          </button>
+        </li>
+      </ul>
+
+      <div class="p-5">
+        <input-search></input-search>
+      </div>
+    </div>
+  </card>
+</div>
+
+<div class="grid md:grid-cols-3 gap-3" *ngIf="tab != 'galeria'">
+  <card [loading]="loading">
+    <!-- *ngFor="let item of dataSource.data" -->
+    <card-image></card-image>
+  </card>
+</div>
+
+<ng-container *ngIf="tab == 'galeria'">
+  <app-incentive-gallery></app-incentive-gallery>
+</ng-container>

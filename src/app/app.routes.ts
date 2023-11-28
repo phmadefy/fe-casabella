@@ -60,6 +60,37 @@ export const routes: Routes = [
                 (c) => c.FeedComponent
               ),
           },
+          {
+            path: 'novo-post',
+            loadComponent: () =>
+              import('./pages/feed/post-form/post-form.component').then(
+                (c) => c.PostFormComponent
+              ),
+          },
+        ],
+      },
+      {
+        path: 'dashboard',
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import('./pages/dashboard/dashboard.component').then(
+                (c) => c.DashboardComponent
+              ),
+          },
+        ],
+      },
+      {
+        path: 'incentivo',
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import(
+                './pages/incentive-public/incentive-public.component'
+              ).then((c) => c.IncentivePublicComponent),
+          },
         ],
       },
       {
