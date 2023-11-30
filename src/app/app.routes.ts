@@ -120,6 +120,25 @@ export const routes: Routes = [
         ],
       },
       {
+        path: 'nfts',
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import('./pages/nft-public/nft-public.component').then(
+                (c) => c.NftPublicComponent
+              ),
+          },
+          {
+            path: 'transferir',
+            loadComponent: () =>
+              import(
+                './pages/admin/nfts/nft-transfer-form/nft-transfer-form.component'
+              ).then((c) => c.NftTransferFormComponent),
+          },
+        ],
+      },
+      {
         path: 'fale-conosco',
         children: [
           {

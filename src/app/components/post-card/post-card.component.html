@@ -1,1 +1,55 @@
-<p>post-card works!</p>
+<card>
+  <div class="flex justify-between">
+    <div class="flex items-center gap-4 p-4">
+      <div
+        class="rounded-full ring-4 bg-conic-gradient(from 0deg at 50% 50%, red, green) w-12 h-12 overflow-hidden"
+      >
+        <img
+          src="assets/avatar.jpg"
+          class="object-cover w-full h-full"
+          alt=""
+        />
+      </div>
+      <div>
+        <h2 class="m-0">Fernando Vidal</h2>
+        <p class="text-sm">2 horas</p>
+      </div>
+    </div>
+
+    <div></div>
+  </div>
+
+  <div class="p-4">
+    No meu xinélo da humildade eu gostaria muito de ver o Neymar e o Ganso. Por
+    que eu acho que 11 entre 10 brasileiros gostariam. Você veja, eu já vi,
+    parei de ver. Voltei a ver, e acho que o Neymar e o Ganso têm essa
+    capacidade de fazer a gente olhar.
+  </div>
+
+  <img src="assets/post.jpg" alt="" />
+
+  <div
+    class="p-4 flex items-center justify-between border-b border-cb-secondary"
+  >
+    <div></div>
+    <div class="text-sm">22 comentários</div>
+  </div>
+  <div class="p-4 flex items-center justify-between gap-4">
+    <div class="min-w-max">
+      <btn-like></btn-like>
+    </div>
+    <div class="w-full relative">
+      <input
+        type="text"
+        class="input-cb-rounded"
+        name="name"
+        placeholder="Deixe o seu comentário"
+      />
+      <button
+        class="absolute inset-y-0 right-3 flex items-center pr-3 text-gradient-cb"
+      >
+        <i class="fa-solid fa-paper-plane mr-2"></i>
+      </button>
+    </div>
+  </div>
+</card>

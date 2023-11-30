@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NftCardComponent } from 'src/app/components/nft-card/nft-card.component';
 import { ModalNftDetailComponent } from 'src/app/shared/modal-nft-detail/modal-nft-detail.component';
 import { Dialog, DialogModule } from '@angular/cdk/dialog';
+import { PostCardComponent } from 'src/app/components/post-card/post-card.component';
 
 @Component({
   selector: 'app-feed',
@@ -12,6 +13,7 @@ import { Dialog, DialogModule } from '@angular/cdk/dialog';
     NftCardComponent,
     ModalNftDetailComponent,
     DialogModule,
+    PostCardComponent,
   ],
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.scss'],

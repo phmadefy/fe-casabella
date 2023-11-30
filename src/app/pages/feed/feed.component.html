@@ -1,4 +1,6 @@
-<div class="flex gap-3 border border-cb-secondary overflow-x-auto rounded p-4">
+<div
+  class="flex gap-3 border border-cb-secondary overflow-x-auto rounded p-4 mb-3"
+>
   <app-nft-card
     [nft]="{ src: 'assets/nft1.jpg' }"
     (click)="openModalNFT()"
@@ -13,4 +15,8 @@
   <app-nft-card [nft]="{ src: 'assets/nft4.jpg' }"></app-nft-card>
   <app-nft-card [nft]="{ src: 'assets/nft4.jpg' }"></app-nft-card>
   <app-nft-card [nft]="{ src: 'assets/nft4.jpg' }"></app-nft-card>
+</div>
+
+<div class="mb-3">
+  <post-card></post-card>
 </div>

@@ -41,7 +41,8 @@
             ],
             "allowedCommonJsDependencies": [
               "@ckeditor/ckeditor5-build-classic",
-              "moment"
+              "moment",
+              "apexcharts"
             ],
             "preserveSymlinks": true
           },

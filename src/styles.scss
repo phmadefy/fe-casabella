@@ -281,6 +281,10 @@ select:-webkit-autofill:focus {
   @apply block px-2 pb-2 pt-2 w-full text-sm text-cb-base bg-cb-primary rounded-md border border-cb-secondary appearance-none focus:outline-none focus:ring-0 focus:border-cb-info autofill:shadow-cb-primary;
 }
 
+.input-cb-rounded {
+  @apply block px-5 pb-2 pt-2 w-full text-sm text-cb-base bg-cb-primary rounded-full border border-cb-secondary appearance-none focus:outline-none focus:ring-0 focus:border-cb-info autofill:shadow-cb-primary;
+}
+
 .table-cb {
   tr {
     @apply border-b border-cb-secondary border-opacity-70;
