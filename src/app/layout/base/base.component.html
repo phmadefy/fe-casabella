@@ -1,18 +1,19 @@
 <main class="container mx-auto h-full w-full">
   <app-header></app-header>
-  <div class="pt-[90px] pb-6 min-h-screen grid grid-cols-12">
-    <div class="col-span-9 pr-4 h-full">
-      <router-outlet></router-outlet>
-    </div>
 
-    <div class="col-span-3 h-full">
+  <div class="pt-[90px] pb-6 px-2 min-h-screen grid grid-cols-12 gap-3">
+    <div class="col-span-12 md:col-span-3 h-full order-1 md:order-2">
       <div class="flex flex-col gap-4">
         <app-floral-price></app-floral-price>
 
         <app-my-floral></app-my-floral>
 
-        <app-ads></app-ads>
+        <app-ads class="hidden md:block"></app-ads>
       </div>
+    </div>
+
+    <div class="col-span-12 md:col-span-9 h-full order-2 md:order-1">
+      <router-outlet></router-outlet>
     </div>
   </div>
 </main>
