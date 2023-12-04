@@ -3,11 +3,18 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ToolsService } from 'src/app/services/tools.service';
 import { ApiService } from 'src/app/services/api.service';
+import { FloralPriceComponent } from 'src/app/components/floral-price/floral-price.component';
+import { MyFloralComponent } from 'src/app/components/my-floral/my-floral.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    FloralPriceComponent,
+    MyFloralComponent,
+  ],
   providers: [ApiService],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
@@ -537,6 +544,39 @@ export class HeaderComponent {
     },
   ];
 
+  MenuMobile: any[] = [
+    {
+      title: 'Feed',
+      route: '/feed',
+      icon: 'fa-solid fa-newspaper',
+    },
+    {
+      title: 'Dashboard',
+      route: '/dashboard',
+      icon: 'fa-solid fa-chart-pie',
+    },
+    {
+      title: 'Incentivo',
+      route: '/incentivo',
+      icon: 'fa-solid fa-flag',
+    },
+    {
+      title: 'Floral',
+      route: '/floral',
+      icon: 'fa-solid fa-fan',
+    },
+    {
+      title: 'NFTs',
+      route: '/nfts',
+      icon: 'fa-solid fa-panorama',
+    },
+    {
+      title: 'Fale Conosco',
+      route: '/fale-conosco',
+      icon: 'fa-solid fa-headset',
+    },
+  ];
+
   params: any = {};
 
   constructor(public tools: ToolsService, private service: ApiService) {}
@@ -547,5 +587,14 @@ export class HeaderComponent {
     //     this.params[item.parameter] = item.value;
     //   }
     // });
+  }
+
+  closeDrawer() {
+    setTimeout(() => {
+      const drawer = document.querySelectorAll('[drawer-backdrop]');
+      drawer.forEach((e) => {
+        e.remove();
+      });
+    }, 150);
   }
 }
