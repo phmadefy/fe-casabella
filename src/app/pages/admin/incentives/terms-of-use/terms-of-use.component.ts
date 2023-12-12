@@ -25,7 +25,7 @@ export class TermsOfUseComponent {
   dataSource: any = { data: [] };
   loading = false;
 
-  filters: any = { per_page: 50, page: 1 };
+  filters: any = { per_page: 50, page: 1, type: 'incentives' };
 
   @Input() type: any;
 

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ToolsService } from 'src/app/services/tools.service';
 
 @Component({
   selector: 'image-select',
@@ -17,7 +18,15 @@ export class ImageSelectComponent {
 
   @Output() changeImage = new EventEmitter<any>();
 
-  onFileSelected(event: any) {
-    this.changeImage.emit(event);
+  constructor(private tools: ToolsService) {}
+  ngOnInit(): void {
+    console.log('image', this.image);
+  }
+
+  async onFileSelected(event: any) {
+    if (event?.target?.files) {
+      this.image = await this.tools.toBase64(event?.target?.files[0]);
+      this.changeImage.emit(event?.target?.files);
+    }
   }
 }

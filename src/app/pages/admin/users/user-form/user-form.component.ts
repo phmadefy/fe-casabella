@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { AbstractForms } from 'src/app/shared/abstract-form';
 import { ApiService } from 'src/app/services/api.service';
 import { AvatarComponent } from 'src/app/components/avatar/avatar.component';
-import { Gender, Status } from 'src/app/shared/properties';
+import { Gender, StatusUser } from 'src/app/shared/properties';
 import { ComboboxComponent } from 'src/app/components/combobox/combobox.component';
 import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
 import { SelectDefaultComponent } from 'src/app/components/select-default/select-default.component';
@@ -45,7 +45,7 @@ export class UserFormComponent extends AbstractForms {
   cities: any[] = [];
 
   gender = Gender;
-  status = Status;
+  status = StatusUser;
 
   constructor(
     service: ApiService,

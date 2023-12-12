@@ -194,7 +194,8 @@ export class HeaderComponent {
             {
               id: 'admin-incentives-cycle',
               title: 'Ciclos de Incentivo',
-              route: '/incentives-cycle',
+              route: '/ciclos',
+              queryParams: { tab: 'active' },
             },
           ],
         },

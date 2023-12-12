@@ -1,0 +1,27 @@
+<!-- <div class="relative inline-block">
+  <img [src]="image ?? tools.noImageAvatar" alt="" />
+  <button class="btn btn-sm bg-cb-primary text-white rounded-md">
+    <i class="fa-regular fa-trash-can"></i>
+  </button>
+  <div
+    class="w-full h-full absolute bg-cb-primary opacity-30 z-10 hidden hover:flex items-center justify-center"
+  >
+  </div>
+</div> -->
+
+<div class="relative inline-block group rounded-md overflow-hidden">
+  <img
+    [src]="image ?? tools.noImageAvatar"
+    alt="Imagem"
+    class="{{ width }} {{
+      height
+    }} object-cover group-hover:opacity-75 transition-opacity"
+  />
+  <button
+    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white bg-opacity-75 text-red-500 px-4 py-2 rounded-md opacity-0 group-hover:opacity-100 transition-opacity"
+    type="button"
+    (click)="onClick.emit()"
+  >
+    <i class="fa-regular fa-trash-can"></i>
+  </button>
+</div>

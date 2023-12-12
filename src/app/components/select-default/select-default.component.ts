@@ -41,6 +41,7 @@ export class SelectDefaultComponent implements ControlValueAccessor {
   @Input() endpoint!: string;
   @Input() bindValue = '';
   @Input() bindText = '';
+  @Input() bindImage!: string;
   @Input() size = 'md';
   @Input() name = '';
   @Input() disabled = false;
@@ -64,7 +65,7 @@ export class SelectDefaultComponent implements ControlValueAccessor {
   getList() {
     this.loading = true;
     this.service
-      .listing()
+      .listing({ per_page: 500 })
       .then((res) => {
         this.dataSource = res.data;
       })

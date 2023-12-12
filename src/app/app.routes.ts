@@ -207,6 +207,20 @@ export const routes: Routes = [
                     './pages/admin/incentives/incentive-gallery/incentive-gallery-form/incentive-gallery-form.component'
                   ).then((c) => c.IncentiveGalleryFormComponent),
               },
+              {
+                path: 'ciclos',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/incentives/cycles/cycles.component'
+                  ).then((c) => c.CyclesComponent),
+              },
+              {
+                path: 'ciclos/add',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/incentives/cycles/cycle-form/cycle-form.component'
+                  ).then((c) => c.CycleFormComponent),
+              },
             ],
           },
           {

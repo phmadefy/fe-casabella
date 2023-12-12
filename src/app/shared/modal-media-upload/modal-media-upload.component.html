@@ -1,0 +1,22 @@
+<modal title="Adicionar imagens ou vídeos" [dialogRef]="dialogRef">
+  <div class="p-4">
+    <dropzone (changeFile)="processFile($event)" />
+  </div>
+
+  <div class="card-footer flex items-center justify-between gap-3">
+    <button-cb
+      classes="btn-sm text-white bg-gradient-cb rounded-md font-semibold"
+      [loading]="loading"
+      label="Adicionar"
+      (onClick)="sendFiles()"
+    />
+
+    <button
+      class="btn btn-sm text-white rounded-md"
+      [disabled]="loading"
+      (click)="dialogRef.close()"
+    >
+      Cancelar
+    </button>
+  </div>
+</modal>

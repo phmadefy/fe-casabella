@@ -40,7 +40,11 @@ export class InputFloatingComponent implements ControlValueAccessor {
   @Input() form!: NgForm;
   @Input() isReadOnly = false;
   @Input() isRequired = false;
-  @Input() options: any[] = [];
+  @Input() isFloating = true;
+  @Input() options: any[] = [
+    { key: 0, description: 'Não' },
+    { key: 1, description: 'Sim' },
+  ];
   @Input() bindValue: string = 'id';
   @Input() bindText: string = 'name';
   @Input() prefix!: string;

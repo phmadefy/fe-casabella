@@ -34,7 +34,7 @@
         <button
           class="px-8 py-2 text-cb-base rounded-md"
           routerLink="terms-of-use/add"
-          [state]="{ termsData: { type: 'campaings' } }"
+          [state]="{ termsData: { type: 'incentives' } }"
         >
           Adicionar Termos de Uso
         </button>
@@ -59,7 +59,7 @@
 </card>
 
 <ng-container *ngIf="tab == 'terms-of-use'">
-  <app-terms-of-use type="campaings"></app-terms-of-use>
+  <app-terms-of-use type="incentives"></app-terms-of-use>
 </ng-container>
 
 <ng-container *ngIf="tab == 'gallery'">

@@ -17,8 +17,8 @@
           type="text"
           name="name"
           [(ngModel)]="dados.name"
-          placeholder="Nome da Galeria:"
-          label="Nome da Galeria:"
+          placeholder="Nome da Galeria"
+          label="Nome da Galeria"
           size="md"
           [required]="true"
         />
@@ -30,11 +30,19 @@
           class="input-cb"
           name="description"
           [(ngModel)]="dados.description"
-          placeholder="Descrição da Galeria:"
+          placeholder="Descrição da Galeria"
         ></textarea>
       </div>
 
       <div class="grid md:grid-cols-4 gap-3"></div>
+    </div>
+
+    <div class="grid md:grid-cols-4 gap-2 p-4 border-top border-cb-secondary">
+      <image-preview
+        *ngFor="let item of dados.attachments"
+        [image]="item.path"
+        (onClick)="removeImage(item)"
+      />
     </div>
 
     <div class="card-footer flex items-center gap-3">
@@ -50,13 +58,37 @@
         Excluir
       </button>
 
-      <button class="btn btn-sm text-white rounded-md" [disabled]="loading">
+      <button
+        class="btn btn-sm text-white rounded-md"
+        [disabled]="loading"
+        routerLink="/admin/incentives"
+        [queryParams]="{ tab: 'gallery' }"
+      >
         Cancelar
       </button>
     </div>
   </card>
 
   <div class="col-span-2">
+    <div class="mb-4" *ngIf="dados.id">
+      <card>
+        <div class="card-header">
+          <h2 class="font-semibold text-cb-secondary">Operações</h2>
+        </div>
+
+        <div class="px-4 pb-4">
+          <ul>
+            <li
+              class="p-2 hover:bg-cb-secondary cursor-pointer rounded-md border border-cb-secondary text-sm"
+              (click)="openModalMedia()"
+            >
+              Adicionar imagem/vídeo
+            </li>
+          </ul>
+        </div>
+      </card>
+    </div>
+
     <div class="mb-4">
       <card>
         <div class="card-header">
@@ -68,6 +100,8 @@
             name="fileCapa"
             title="Selecione a capa"
             subtitle="276 x 180"
+            (changeImage)="setImage($event)"
+            [image]="dados.image"
           ></image-select>
         </div>
       </card>
@@ -80,6 +114,7 @@
         bindText="name"
         bindValue="id"
         name="publico"
+        (choose)="dados.public = $event"
       ></card-choose>
     </div>
 
@@ -90,6 +125,7 @@
         bindText="name"
         bindValue="id"
         name="segmento"
+        (choose)="dados.segments = $event"
       ></card-choose>
     </div>
   </div>

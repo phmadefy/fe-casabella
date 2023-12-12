@@ -1,0 +1,69 @@
+<div class="mb-4">
+  <card>
+    <ul class="flex flex-wrap gap-3 text-sm font-medium text-center p-5">
+      <li
+        routerLink="/admin/incentives/ciclos"
+        [queryParams]="{ tab: 'active' }"
+      >
+        <button
+          class="px-8 py-2 text-cb-base rounded-md"
+          [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'active' }"
+        >
+          Ativos
+        </button>
+      </li>
+
+      <li
+        routerLink="/admin/incentives/ciclos"
+        [queryParams]="{ tab: 'suspend' }"
+      >
+        <button
+          class="px-8 py-2 text-cb-base rounded-md"
+          [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'suspend' }"
+        >
+          Inativos
+        </button>
+      </li>
+
+      <li>
+        <button
+          [routerLink]="['add']"
+          class="px-8 py-2 text-cb-base rounded-md"
+        >
+          Cadastrar
+        </button>
+      </li>
+    </ul>
+
+    <div class="p-5 grid grid-cols-2 border-t border-cb-secondary">
+      <input-search></input-search>
+    </div>
+  </card>
+</div>
+
+<div class="grid grid-cols-2 gap-3">
+  <card *ngFor="let item of dataSource.data">
+    <div class="p-4 flex items-center justify-between">
+      <div>
+        <h2 class="text-cb-info text-lg font-semibold">
+          {{ item.description }}
+        </h2>
+        <p class="text-sm text-cb-base">
+          de {{ item.start | date : "dd/MM/yyyy" }} até
+          {{ item.start | date : "dd/MM/yyyy" }}
+        </p>
+      </div>
+      <div class="flex justify-end items-center gap-4">
+        <dropdown-cb
+          icon="fa-solid fa-ellipsis-vertical"
+          classes="justify-end text-md"
+          [btnEdit]="true"
+          (onEdit)="openEdit('item')"
+          [btnDelete]="true"
+          (onDelete)="openDelete('item')"
+        >
+        </dropdown-cb>
+      </div>
+    </div>
+  </card>
+</div>

@@ -1,4 +1,4 @@
-<div class="grid grid-cols-3">
+<div class="grid grid-cols-3 gap-2">
   <button
     *ngIf="tools.checkRouteContainsAdmin()"
     routerLink="gallery/add"
@@ -8,5 +8,24 @@
     <h2 class="text-cb-base my-3">Adicionar Galeria</h2>
   </button>
 
-  <card-image *ngFor="let item of dataSource.data"></card-image>
+  <div
+    class="flex flex-col gap-2 p-2 border border-cb-secondary rounded-md h-48"
+    *ngFor="let item of dataSource.data"
+  >
+    <img
+      [src]="item.image ?? tools.noImageAvatar"
+      alt="image-card"
+      class="w-full rounded-t-md h-[80%]"
+    />
+    <div>
+      <button
+        class="btn btn-sm bg-cb-primary text-white rounded-md w-full"
+        [disabled]="loading"
+        routerLink="/admin/incentives/gallery/edit"
+        [state]="{ gallery_id: item.id }"
+      >
+        Editar
+      </button>
+    </div>
+  </div>
 </div>

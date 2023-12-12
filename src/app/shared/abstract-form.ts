@@ -36,4 +36,14 @@ export abstract class AbstractForms {
       })
       .finally(() => (this.loading = false));
   }
+
+  async delete(id: any) {
+    this.loading = true;
+    await this.service
+      .delete(id)
+      .then((res) => {
+        this.finish(res);
+      })
+      .finally(() => (this.loading = false));
+  }
 }

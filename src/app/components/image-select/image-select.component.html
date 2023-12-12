@@ -8,7 +8,12 @@
     <small class="text-cb-secondary text-xs">{{ subtitle }}</small>
   </div>
 
-  <img class="w-full h-full" [src]="image" *ngIf="image" alt="avatar" />
+  <img
+    class="w-full h-full rounded-md"
+    [src]="image"
+    *ngIf="image"
+    alt="avatar"
+  />
   <input
     type="file"
     [id]="name"

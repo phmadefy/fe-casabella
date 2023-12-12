@@ -44,6 +44,7 @@ export class TermsOfUseFormComponent extends AbstractForms {
   ) {
     service.path = 'v1/terms';
     super(service);
+    this.dados = { type: 'incentives' };
   }
 
   async ngOnInit() {

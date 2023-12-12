@@ -34,6 +34,7 @@ export class ComboboxComponent {
   @Input() options: any[] = [];
   @Input() bindValue: string = 'id';
   @Input() bindText: string = 'name';
+  @Input() bindImage!: string;
   @Input() size: string = 'lg';
   @Input() placeholder: string = ' ';
   @Input() notFoundText: string = 'Nada encontrado!';

@@ -12,6 +12,10 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { EditorConfig } from '@ckeditor/ckeditor5-core';
 import { ImageSelectComponent } from 'src/app/components/image-select/image-select.component';
 import { CardChooseComponent } from 'src/app/components/card-choose/card-choose.component';
+import { InputFloatingComponent } from 'src/app/components/input-floating/input-floating.component';
+import { Status } from 'src/app/shared/properties';
+import { SelectDefaultComponent } from 'src/app/components/select-default/select-default.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-incentive-form',
@@ -26,6 +30,9 @@ import { CardChooseComponent } from 'src/app/components/card-choose/card-choose.
     CKEditorModule,
     ImageSelectComponent,
     CardChooseComponent,
+    InputFloatingComponent,
+    SelectDefaultComponent,
+    RouterLink,
   ],
   providers: [ApiService],
   templateUrl: './incentive-form.component.html',
@@ -37,6 +44,8 @@ export class IncentiveFormComponent extends AbstractForms {
   config: EditorConfig = {
     language: 'pt-br',
   };
+
+  status = Status;
   constructor(service: ApiService) {
     super(service);
   }

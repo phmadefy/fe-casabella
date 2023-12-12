@@ -2,6 +2,12 @@
   class="relative"
   [ngClass]="{ 'is-invalid': !tools.validateInputForm(form, model) }"
 >
+  <label
+    *ngIf="!isFloating && label"
+    [attr.for]="model"
+    class="mb-2 text-sm text-cb-base px-2 peer-focus:px-2 peer-focus:text-cb-base"
+    >{{ label }}</label
+  >
   <input
     *ngIf="!exclude.includes(type)"
     [(ngModel)]="value"
@@ -69,6 +75,7 @@
     </option>
   </select>
   <label
+    *ngIf="isFloating && label"
     [attr.for]="model"
     class="absolute text-sm text-cb-info duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] {{
       colorBgLabel

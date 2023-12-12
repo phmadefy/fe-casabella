@@ -25,7 +25,7 @@ export class ToolsService {
     );
   }
 
-  toBase64(file: File) {
+  toBase64(file: File): Promise<any> {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
@@ -43,7 +43,7 @@ export class ToolsService {
     // console.log('validateInputForm', model, control);
     if (
       control &&
-      control.status != 'VALID' &&
+      control.status == 'INVALID' &&
       (form.submitted || control.touched)
     ) {
       return false;

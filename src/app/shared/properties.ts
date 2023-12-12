@@ -28,7 +28,7 @@ export const UFs = [
   { sigla: 'TO', description: 'Tocantins' },
 ];
 
-export const Status = [
+export const StatusUser = [
   { key: 'active', description: 'Ativo', descriptions: 'Ativos' },
   { key: 'suspend', description: 'Bloqueado', descriptions: 'Bloqueados' },
   {
@@ -41,6 +41,11 @@ export const Status = [
     description: 'Inadimplente',
     descriptions: 'Inadimplentes',
   },
+];
+
+export const Status = [
+  { key: '1', description: 'Ativo' },
+  { key: '0', description: 'Inativo' },
 ];
 
 export const Gender = [

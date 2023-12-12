@@ -18,7 +18,13 @@
     (focus)="onTouchedCb(value)"
   >
     <ng-option *ngFor="let item of options" [value]="item[bindValue]">
-      {{ item[bindText] }}
+      <div class="flex items-center gap-1">
+        <ng-container *ngIf="bindImage">
+          <img [src]="bindImage" alt="image" class="h-5 w-5" />
+        </ng-container>
+
+        {{ item[bindText] }}
+      </div>
     </ng-option>
   </ng-select>
 

@@ -1,8 +1,8 @@
-<div class="border border-cb-secondary rounded-md p-4">
+<div class="border border-cb-secondary rounded-md overflow-hidden {{ height }}">
   <img
     [src]="image ?? tools.noImageAvatar"
     alt="image-card"
-    class="w-full rounded-t-md {{height}}"
+    class="w-full rounded-t-md {{ height }}"
   />
 
   <ng-content></ng-content>

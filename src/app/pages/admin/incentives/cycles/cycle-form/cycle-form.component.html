@@ -1,0 +1,90 @@
+<form #form="ngForm" (ngSubmit)="onSubmit(form)" class="grid">
+  <card>
+    <div class="card-header">
+      <h2 class="text-lg font-semibold">
+        {{ dados.id ? "Editar" : "Adicionar" }} Ciclo de Inentivos
+      </h2>
+    </div>
+
+    <div class="px-4">
+      <div class="grid items-end">
+        <div class="mb-4">
+          <input-floating
+            class="p-0 bg-transparent border-none"
+            label="Nome do Incentivo"
+            [isFloating]="false"
+            model="description"
+            [(ngModel)]="dados.description"
+            name="description"
+            type="text"
+            [required]="true"
+            [form]="form"
+            size="md"
+          />
+        </div>
+      </div>
+
+      <div class="grid items-end grid-cols-12 gap-3">
+        <div class="mb-4 col-span-3">
+          <checkbox
+            label="Início da Vigência"
+            controlName="view_start"
+            name="view_start"
+            [(ngModel)]="dados.view_start"
+          />
+          <input-floating
+            class="p-0 bg-transparent border-none"
+            model="start"
+            [(ngModel)]="dados.start"
+            name="start"
+            type="date"
+            [isFloating]="false"
+            [required]="true"
+            [form]="form"
+            size="md"
+          />
+        </div>
+
+        <div class="mb-4 col-span-3">
+          <checkbox
+            label="Término da Vigência"
+            controlName="view_end"
+            name="view_end"
+            [(ngModel)]="dados.view_end"
+          />
+          <input-floating
+            class="p-0 bg-transparent border-none"
+            model="end"
+            [(ngModel)]="dados.end"
+            name="end"
+            type="date"
+            [isFloating]="false"
+            [required]="true"
+            [form]="form"
+            size="md"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer flex items-center gap-3">
+      <button
+        class="btn btn-sm text-white bg-gradient-cb rounded-md font-semibold"
+        type="submit"
+        [disabled]="loading"
+      >
+        <spinner *ngIf="loading" />
+        <span *ngIf="!loading">Salvar Ciclo</span>
+      </button>
+
+      <button
+        class="btn btn-sm text-white rounded-md"
+        [disabled]="loading"
+        routerLink="/admin/incentives/ciclos"
+        [queryParams]="{ tab: 'active' }"
+      >
+        Cancelar
+      </button>
+    </div>
+  </card>
+</form>

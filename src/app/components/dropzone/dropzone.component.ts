@@ -18,6 +18,7 @@ export class DropzoneComponent {
 
   onFileSelected(event: any) {
     console.log('onFileSelected', event);
+    this.files = event.addedFiles;
     this.changeFile.emit(event.addedFiles);
   }
 
