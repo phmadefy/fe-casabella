@@ -10,7 +10,7 @@ import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
   styleUrls: ['./modal.component.scss'],
 })
 export class ModalComponent {
-  @Input() title!: string;
+  @Input() title: any = '';
   @Input() dialogRef!: DialogRef;
   @Input() data: any;
 }

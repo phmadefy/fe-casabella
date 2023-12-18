@@ -8,6 +8,9 @@ import { InputSearchComponent } from 'src/app/components/input-search/input-sear
 import { ApiService } from 'src/app/services/api.service';
 import { Subscription } from 'rxjs';
 import { ToolsService } from 'src/app/services/tools.service';
+import { MessageService } from 'src/app/services/message.service';
+import { ButtonCbComponent } from 'src/app/components/button-cb/button-cb.component';
+import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
 
 @Component({
   selector: 'app-nft-types',
@@ -19,6 +22,8 @@ import { ToolsService } from 'src/app/services/tools.service';
     RouterLink,
     DropdownCbComponent,
     InputSearchComponent,
+    ButtonCbComponent,
+    SpinnerComponent,
   ],
   providers: [ApiService],
   templateUrl: './nft-types.component.html',
@@ -35,9 +40,10 @@ export class NftTypesComponent {
   constructor(
     private route: ActivatedRoute,
     private service: ApiService,
-    public tools: ToolsService // private dialog: Dialog
+    public tools: ToolsService,
+    private messageService: MessageService // private dialog: Dialog
   ) {
-    service.path = 'v1/nft-segment';
+    service.path = 'v1/admin/nft-type';
   }
 
   ngOnInit(): void {
@@ -69,16 +75,33 @@ export class NftTypesComponent {
     this.getList();
   }
 
-  openEdit(item: any) {}
-  openDelete(item: any) {}
-
   async saveTypes(formSub: NgForm) {
     this.loading = true;
     await this.service
-      .postCustom('v1/nft-categorie', formSub.value)
+      .postCustom('v1/admin/nft-type', formSub.value)
       .then(async () => {
         formSub.resetForm();
         await this.getList();
+      })
+      .finally(() => (this.loading = false));
+  }
+
+  async deleteItem(item: any) {
+    this.messageService
+      .presentAlertConfirm(`Excluir o tipo: <b>${item.name}</b> ?`)
+      .closed.subscribe((res) => {
+        if (res) {
+          this.delete(item.id);
+        }
+      });
+  }
+
+  async delete(id: any) {
+    this.loading = true;
+    await this.service
+      .delete(id)
+      .then((res) => {
+        this.getList();
       })
       .finally(() => (this.loading = false));
   }

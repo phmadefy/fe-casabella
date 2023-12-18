@@ -40,16 +40,18 @@
     <div class="p-4 flex items-center justify-between">
       <div>
         <h2 class="text-cb-info text-lg font-semibold">{{ item.name }}</h2>
-        <p class="text-sm text-cb-base">07 Usuários</p>
+        <p class="text-sm text-cb-base">
+          {{ item?.subclassifications?.length | number }} sub-classificações
+        </p>
       </div>
       <div class="flex justify-end items-center gap-4">
         <dropdown-cb
           icon="fa-solid fa-ellipsis-vertical"
           classes="justify-end text-md"
           [btnEdit]="true"
-          (onEdit)="openEdit('item')"
+          (onEdit)="openEdit(item)"
           [btnDelete]="true"
-          (onDelete)="openDelete('item')"
+          (onDelete)="openDelete(item)"
         >
         </dropdown-cb>
       </div>

@@ -31,13 +31,13 @@ export class NftsComponent {
 
   filters: any = { per_page: 30, page: 1 };
 
-  tab: string = 'all';
+  tab: string = 'active';
   constructor(
     private route: ActivatedRoute,
     private service: ApiService,
     public tools: ToolsService // private dialog: Dialog
   ) {
-    service.path = 'v1/admin/nfts/audit/all';
+    service.path = 'v1/nft';
   }
 
   ngOnInit(): void {

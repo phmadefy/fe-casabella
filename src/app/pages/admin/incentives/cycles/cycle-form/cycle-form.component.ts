@@ -33,6 +33,23 @@ export class CycleFormComponent extends AbstractForms {
     service.path = 'v1/incentives-cycles';
   }
 
+  ngOnInit() {
+    if (history.state?.cycle_id) {
+      console.log('history', history);
+      this.getDados(history.state?.cycle_id);
+    }
+  }
+
+  getDados(id: any) {
+    this.loading = true;
+    this.service
+      .show(id)
+      .then((res) => {
+        this.dados = res;
+      })
+      .finally(() => (this.loading = false));
+  }
+
   override submit(): void {
     if (!this.dados.id) {
       this.create(this.dados);

@@ -24,7 +24,7 @@
       </card>
     </div>
 
-    <div class="mb-4">
+    <div class="mb-4" *ngIf="dados.id">
       <card>
         <form
           #formSub="ngForm"
@@ -52,7 +52,7 @@
         <table class="w-full text-sm text-left table-cb">
           <tbody>
             <tr
-              *ngFor="let item of dados.classifications; let i = index"
+              *ngFor="let item of dados.subclassifications; let i = index"
               [ngClass]="{
                 'bg-transparent': i % 2 !== 0,
                 'bg-cb-secondary': i % 2 === 0
@@ -63,14 +63,14 @@
                   <span>{{ item.name }}</span>
                 </div>
               </td>
-              <td class="">
-                <!-- <dropdown-cb
+              <td class="flex justify-end items-center gap-4">
+                <dropdown-cb
                   icon="fa-solid fa-ellipsis-vertical"
                   classes="justify-end text-md"
                   [btnDelete]="true"
-                  (onDelete)="openDeleteAdmin(item)"
+                  (onDelete)="openDeleteSubClassification(item)"
                 >
-                </dropdown-cb> -->
+                </dropdown-cb>
               </td>
             </tr>
           </tbody>

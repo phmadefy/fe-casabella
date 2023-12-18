@@ -69,3 +69,12 @@ export interface InputProps {
   name?: string;
   value?: string;
 }
+
+export interface ChooseOptionsModalConfig {
+  title: string;
+  bindText?: string;
+  bindValue?: string;
+  endpoint?: string;
+  filters?: any;
+  selected?: any[];
+}

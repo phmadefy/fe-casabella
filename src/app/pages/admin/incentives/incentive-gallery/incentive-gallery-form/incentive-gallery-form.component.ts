@@ -129,4 +129,14 @@ export class IncentiveGalleryFormComponent extends AbstractForms {
       })
       .finally(() => (this.loading = false));
   }
+
+  async deleteItem() {
+    this.messageService
+      .presentAlertConfirm('Excluir a Galeria ?')
+      .closed.subscribe((res) => {
+        if (res) {
+          this.delete(this.dados.id);
+        }
+      });
+  }
 }

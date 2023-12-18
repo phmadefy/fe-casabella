@@ -1,0 +1,42 @@
+<modal [title]="data.title" [dialogRef]="dialogRef">
+  <div class="p-4 grid border-t border-cb-secondary">
+    <input-search (search)="(filter)"></input-search>
+  </div>
+
+  <table class="w-full text-sm text-left table-cb">
+    <tbody>
+      <tr
+        *ngFor="let item of items; let i = index"
+        [ngClass]="{
+          'bg-transparent': i % 2 !== 0,
+          'bg-cb-secondary': i % 2 === 0
+        }"
+      >
+        <td class="align-middle">
+          <checkbox
+            [label]="item[bindText]"
+            [controlName]="'choose-options-' + bindText + '-' + item[bindValue]"
+            (checkedItem)="checked($event, item)"
+          ></checkbox>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="card-footer flex items-center justify-between gap-3">
+    <button-cb
+      classes="btn-sm text-white bg-gradient-cb rounded-md font-semibold"
+      [loading]="loading"
+      label="Confirmar"
+      (click)="dialogRef.close(selected)"
+    />
+
+    <button
+      class="btn btn-sm text-white rounded-md"
+      [disabled]="loading"
+      (click)="dialogRef.close()"
+    >
+      Cancelar
+    </button>
+  </div>
+</modal>

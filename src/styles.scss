@@ -398,3 +398,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .apexcharts-yaxis-title-text {
   color: white;
 }
+
+.clear-fix {
+  @apply p-0 bg-transparent border-none;
+}

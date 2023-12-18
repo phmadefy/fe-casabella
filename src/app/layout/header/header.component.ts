@@ -233,6 +233,7 @@ export class HeaderComponent {
               id: 'admin-nfts-tipos',
               title: 'Tipos de NFTs',
               route: '/types',
+              queryParams: { tab: 'active' },
             },
             {
               id: 'admin-nfts-transfer',

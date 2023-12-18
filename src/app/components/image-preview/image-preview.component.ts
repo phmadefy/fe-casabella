@@ -10,7 +10,7 @@ import { ToolsService } from 'src/app/services/tools.service';
   styleUrls: ['./image-preview.component.scss'],
 })
 export class ImagePreviewComponent {
-  @Input() image!: string;
+  @Input() image: any;
   @Input() width = 'w-full';
   @Input() height = 'h-32';
 

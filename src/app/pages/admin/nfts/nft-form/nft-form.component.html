@@ -29,6 +29,7 @@
                   name="fileCapa"
                   title="Selecionar NFT"
                   subtitle="1080 x 1080"
+                  (changeImage)="chooseImage($event)"
                 ></image-select>
 
                 <textarea
@@ -73,10 +74,11 @@
                   bindText="name"
                   bindValue="id"
                   endpoint="v1/persons-type"
-                  name="public_id"
-                  [(ngModel)]="dados.public_id"
+                  name="public"
+                  [(ngModel)]="dados.public"
                   [required]="true"
                   [form]="form"
+                  [multiple]="true"
                 >
                 </select-default>
 
@@ -86,10 +88,11 @@
                   bindText="name"
                   bindValue="id"
                   endpoint="v1/segments"
-                  name="segment_id"
-                  [(ngModel)]="dados.segment_id"
+                  name="segments"
+                  [(ngModel)]="dados.segments"
                   [required]="true"
                   [form]="form"
+                  [multiple]="true"
                 >
                 </select-default>
               </div>
@@ -137,7 +140,41 @@
       </card>
     </div>
   </div>
+
   <div class="col-span-2">
-    <!-- <card-choose> </card-choose> -->
+    <div class="mb-4">
+      <card-choose
+        inputPlaceholder="Classificação"
+        endpoint="v1/admin/nft-classification"
+        bindText="name"
+        bindValue="id"
+        name="classification"
+        (choose)="chooseClassifications($event)"
+        (chooseOptions)="dados.subclassifications = $event"
+        [showBtn]="true"
+        labelBtn="Nova Classificação"
+        (onClick)="openModalClassification()"
+        bindItemsProp="subclassifications"
+        [chooseOptionsModalConfig]="chooseOptionsModalConfigClassifications"
+        filterBindKey="classificationId"
+        filterBindValue="classificationId"
+        [selected]="dados.classifications"
+        [selectedOptions]="dados.subclassifications"
+      ></card-choose>
+    </div>
+
+    <div class="mb-4">
+      <card-choose
+        inputPlaceholder="Tipo"
+        endpoint="v1/admin/nft-type"
+        bindText="name"
+        bindValue="id"
+        name="type"
+        (choose)="dados.types = $event"
+        [showBtn]="true"
+        labelBtn="Novo Tipo"
+        (onClick)="openModalType()"
+      ></card-choose>
+    </div>
   </div>
 </div>

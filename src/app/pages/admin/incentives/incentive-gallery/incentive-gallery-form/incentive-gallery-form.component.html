@@ -54,7 +54,12 @@
       >
       </button-cb>
 
-      <button class="btn btn-sm text-white rounded-md" [disabled]="loading">
+      <button
+        class="btn btn-sm text-white rounded-md"
+        [disabled]="loading"
+        type="button"
+        (click)="deleteItem()"
+      >
         Excluir
       </button>
 
@@ -63,6 +68,7 @@
         [disabled]="loading"
         routerLink="/admin/incentives"
         [queryParams]="{ tab: 'gallery' }"
+        type="button"
       >
         Cancelar
       </button>

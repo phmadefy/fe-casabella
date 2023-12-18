@@ -1,9 +1,12 @@
 <button
   class="btn {{ classes }}"
-  [type]="type"
+  [attr.type]="type"
   [disabled]="loading || disabled"
   (click)="onClick.emit()"
 >
   <spinner *ngIf="loading"></spinner>
-  <span *ngIf="!loading">{{ label }}</span>
+  <ng-container *ngIf="!loading">
+    <i [class]="icon" *ngIf="icon"></i>
+    <span *ngIf="label">{{ label }}</span>
+  </ng-container>
 </button>

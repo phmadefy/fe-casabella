@@ -6,7 +6,7 @@
           class="px-8 py-2 text-cb-base rounded-md"
           [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'active' }"
         >
-          Classificações
+          Ativos
         </button>
       </li>
 
@@ -16,15 +16,6 @@
           [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'suspend' }"
         >
           Inativos
-        </button>
-      </li>
-
-      <li>
-        <button
-          [routerLink]="['add']"
-          class="px-8 py-2 text-cb-base rounded-md"
-        >
-          Nova Classificação
         </button>
       </li>
     </ul>
@@ -48,9 +39,11 @@
       />
       <button
         type="submit"
+        [disabled]="loading"
         class="absolute top-0 right-0 p-2.5 w-[42px] text-sm flex items-center justify-center font-medium h-full text-cb-primary bg-cb-info rounded-lg border border-cb-secondary focus:outline-none"
       >
-        <i class="fa-solid fa-plus flex items-center"></i>
+        <spinner *ngIf="loading"></spinner>
+        <i class="fa-solid fa-plus flex items-center" *ngIf="!loading"></i>
       </button>
     </div>
   </form>
@@ -69,14 +62,14 @@
             <span>{{ item.name }}</span>
           </div>
         </td>
-        <td class="">
-          <!-- <dropdown-cb
+        <td class="flex justify-end items-center gap-4">
+          <dropdown-cb
             icon="fa-solid fa-ellipsis-vertical"
             classes="justify-end text-md"
             [btnDelete]="true"
-            (onDelete)="openDeleteAdmin(item)"
+            (onDelete)="deleteItem(item)"
           >
-          </dropdown-cb> -->
+          </dropdown-cb>
         </td>
       </tr>
     </tbody>

@@ -221,6 +221,13 @@ export const routes: Routes = [
                     './pages/admin/incentives/cycles/cycle-form/cycle-form.component'
                   ).then((c) => c.CycleFormComponent),
               },
+              {
+                path: 'ciclos/edit',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/incentives/cycles/cycle-form/cycle-form.component'
+                  ).then((c) => c.CycleFormComponent),
+              },
             ],
           },
           {
@@ -268,6 +275,13 @@ export const routes: Routes = [
               },
               {
                 path: 'classifications/add',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/nfts/nft-classifications/nft-classification-form/nft-classification-form.component'
+                  ).then((c) => c.NftClassificationFormComponent),
+              },
+              {
+                path: 'classifications/edit',
                 loadComponent: () =>
                   import(
                     './pages/admin/nfts/nft-classifications/nft-classification-form/nft-classification-form.component'

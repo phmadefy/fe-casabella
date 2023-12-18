@@ -13,6 +13,7 @@ export class ButtonCbComponent {
   @Input() loading = false;
   @Input() disabled = false;
   @Input() label!: string;
+  @Input() icon!: string;
   @Input() classes = '';
   @Input() type = 'button';
 

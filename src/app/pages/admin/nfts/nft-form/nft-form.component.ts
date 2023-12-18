@@ -13,6 +13,7 @@ import { SelectDefaultComponent } from 'src/app/components/select-default/select
 import { ImageSelectComponent } from 'src/app/components/image-select/image-select.component';
 import { CheckboxComponent } from 'src/app/components/checkbox/checkbox.component';
 import { CardChooseComponent } from 'src/app/components/card-choose/card-choose.component';
+import { ChooseOptionsModalConfig } from 'src/app/shared/properties';
 
 @Component({
   selector: 'app-nft-form',
@@ -39,6 +40,13 @@ export class NftFormComponent extends AbstractForms {
   users: any[] = [];
   dados: any = { active: true, balance: 0 };
 
+  chooseOptionsModalConfigClassifications: ChooseOptionsModalConfig = {
+    title: `Selecionar Sub-classificação:`,
+    bindText: 'name',
+    bindValue: 'id',
+    endpoint: 'v1/admin/nft-classification/sub-classification',
+  };
+
   constructor(service: ApiService, public tools: ToolsService) {
     service.path = 'v1/admin/nfts';
     super(service);
@@ -62,14 +70,43 @@ export class NftFormComponent extends AbstractForms {
   }
 
   override submit(): void {
-    // if (this.dados.id) {
-    //   this.update(this.dados, this.dados.id);
-    // } else {
-    //   this.create(this.dados);
-    // }
+    const formData = new FormData();
+    for (let key of Object.keys(this.dados)) {
+      if (Array.isArray(this.dados[key])) {
+        for (let value of this.dados[key]) {
+          formData.append(`${key}[]`, value);
+        }
+      } else {
+        formData.append(key, this.dados[key]);
+      }
+    }
+
+    if (this.dados.id) {
+      this.update(formData, this.dados.id);
+    } else {
+      this.create(formData);
+    }
   }
   override finish(result: any): void {
     // throw new Error('Method not implemented.');
     this.getDados(result.id);
   }
+
+  chooseClassifications(event: any[]) {
+    this.dados.classifications = event;
+    if (event.length <= 0) {
+      this.dados.subclassifications = [];
+    }
+  }
+
+  chooseImage(event: FileList | File[]) {
+    console.log('chooseImage', event);
+    if (event.length > 0) {
+      this.dados.image = event[0];
+    }
+  }
+
+  openModalClassification() {}
+
+  openModalType() {}
 }

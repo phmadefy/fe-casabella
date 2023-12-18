@@ -9,6 +9,7 @@ import { RouterLink } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { AbstractForms } from 'src/app/shared/abstract-form';
 import { ToolsService } from 'src/app/services/tools.service';
+import { MessageService } from 'src/app/services/message.service';
 
 @Component({
   selector: 'app-nft-classification-form',
@@ -30,8 +31,12 @@ import { ToolsService } from 'src/app/services/tools.service';
 export class NftClassificationFormComponent extends AbstractForms {
   dados: any = { classifications: [] };
 
-  constructor(service: ApiService, public tools: ToolsService) {
-    service.path = 'v1/nft-classification';
+  constructor(
+    service: ApiService,
+    public tools: ToolsService,
+    private messageService: MessageService
+  ) {
+    service.path = 'v1/admin/nft-classification';
     super(service);
   }
 
@@ -44,7 +49,7 @@ export class NftClassificationFormComponent extends AbstractForms {
   getDados(id: any) {
     this.loading = true;
     this.service
-      .listing({ id })
+      .show(id)
       .then((res) => {
         console.log('res', res);
         this.dados = res;
@@ -67,10 +72,33 @@ export class NftClassificationFormComponent extends AbstractForms {
   async saveSubClassification(formSub: NgForm) {
     this.loading = true;
     await this.service
-      .postCustom('v1/nft-classification', formSub.value)
+      .postCustom(
+        `v1/admin/nft-classification/${this.dados.id}/sub-classification`,
+        formSub.value
+      )
       .then(async () => {
         formSub.resetForm();
         await this.getDados(this.dados.id);
+      })
+      .finally(() => (this.loading = false));
+  }
+
+  openDeleteSubClassification(item: any) {
+    this.messageService
+      .presentAlertConfirm(`Excluir a sub-classificação: <b>${item.name}</b> ?`)
+      .closed.subscribe((res) => {
+        if (res) {
+          this.deleteSubClassification(item.id);
+        }
+      });
+  }
+
+  async deleteSubClassification(id: any) {
+    this.loading = true;
+    await this.service
+      .deleteCustom(`v1/admin/nft-classification/sub-classification/${id}`)
+      .then((res) => {
+        this.getDados(this.dados.id);
       })
       .finally(() => (this.loading = false));
   }

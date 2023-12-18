@@ -3,20 +3,23 @@ import { CommonModule } from '@angular/common';
 import { CardComponent } from '../card/card.component';
 import { CheckboxComponent } from '../checkbox/checkbox.component';
 import { ApiService } from 'src/app/services/api.service';
-import {
-  Observable,
-  Subject,
-  debounceTime,
-  distinctUntilChanged,
-  map,
-  startWith,
-} from 'rxjs';
+import { Subject } from 'rxjs';
 import { FormsModule } from '@angular/forms';
+import { ButtonCbComponent } from '../button-cb/button-cb.component';
+import { Dialog } from '@angular/cdk/dialog';
+import { ModalChooseOptionsComponent } from 'src/app/shared/modal-choose-options/modal-choose-options.component';
+import { ChooseOptionsModalConfig } from 'src/app/shared/properties';
 
 @Component({
   selector: 'card-choose',
   standalone: true,
-  imports: [CommonModule, FormsModule, CardComponent, CheckboxComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    CardComponent,
+    CheckboxComponent,
+    ButtonCbComponent,
+  ],
   providers: [ApiService],
   templateUrl: './card-choose.component.html',
   styleUrls: ['./card-choose.component.scss'],
@@ -31,17 +34,29 @@ export class CardChooseComponent {
   term!: string;
   termUpdate = new Subject<string>();
 
-  selected: any[] = [];
+  selectedValues: any[] = [];
+
+  @Input() selected: any[] = [];
+  @Input() selectedOptions: any[] = [];
 
   @Input() inputPlaceholder = '';
   @Input() endpoint!: string;
   @Input() bindValue = '';
   @Input() bindText = '';
+  @Input() bindItemsProp!: string;
   @Input() name = '';
+  @Input() showBtn = false;
+  @Input() labelBtn = '';
 
   @Output() choose = new EventEmitter<any>();
+  @Output() chooseOptions = new EventEmitter<any>();
+  @Output() onClick = new EventEmitter<any>();
 
-  constructor(private service: ApiService) {
+  @Input() chooseOptionsModalConfig!: ChooseOptionsModalConfig;
+  @Input() filterBindKey: any;
+  @Input() filterBindValue: any;
+
+  constructor(private service: ApiService, private dialog: Dialog) {
     // this.items = this.termUpdate.pipe(
     //   debounceTime(500),
     //   distinctUntilChanged(),
@@ -66,6 +81,13 @@ export class CardChooseComponent {
       this.service.path = this.endpoint;
       this.getList();
     }
+
+    if (this.selected?.length > 0) {
+      this.selectedValues = this.selected;
+    }
+    if (this.selectedOptions?.length > 0) {
+      this.chooseOptionsModalConfig.selected = this.selectedOptions;
+    }
   }
 
   getList() {
@@ -84,27 +106,55 @@ export class CardChooseComponent {
   }
 
   checked(event: any, item: any) {
+    console.log('checked item', item);
+
     if (event) {
       if (this.isChecked(item) < 0) {
-        this.selected.push(item[this.bindValue]);
+        this.selectedValues.push(item[this.bindValue]);
+
+        if (this.bindItemsProp && item[this.bindItemsProp]) {
+          this.openModalItems(item);
+        }
       }
     } else {
       const index = this.isChecked(item);
       if (index >= 0) {
-        this.selected.splice(index, 1);
+        this.selectedValues.splice(index, 1);
       }
     }
 
-    console.log('selected', this.selected);
-    this.choose.emit(this.selected);
+    console.log('selectedValues', this.selectedValues);
+    this.choose.emit(this.selectedValues);
   }
 
   isChecked(item: any) {
-    const index = this.selected.findIndex((e) => e == item[this.bindValue]);
+    const index = this.selectedValues.findIndex(
+      (e) => e == item[this.bindValue]
+    );
     return index;
   }
 
   filter(event: any) {
     this.items = this._filter(event);
+  }
+
+  openModalItems(item: any) {
+    this.chooseOptionsModalConfig.title += ` ${item[this.bindText]}`;
+    this.chooseOptionsModalConfig.filters = {
+      [this.filterBindKey]: item[this.filterBindValue],
+    };
+
+    const dialogRef = this.dialog.open<any>(ModalChooseOptionsComponent, {
+      width: '95%',
+      maxWidth: '500px',
+      maxHeight: '90%',
+      data: this.chooseOptionsModalConfig,
+    });
+
+    dialogRef.closed.subscribe((res) => {
+      if (res) {
+        this.chooseOptions.emit(res);
+      }
+    });
   }
 }

@@ -22,6 +22,19 @@
       [label]="item[bindText]"
       [controlName]="getName(name, item[bindText])"
       (checkedItem)="checked($event, item)"
+      [checked]="this.isChecked(item) >= 0"
     ></checkbox>
+  </div>
+
+  <div class="card-footer">
+    <button-cb
+      *ngIf="showBtn"
+      type="button"
+      class="w-full"
+      classes="btn-sm btn-md w-full rounded-md bg-gradient-cb font-semibold"
+      [label]="labelBtn"
+      [loading]="loading"
+      (click)="onClick.emit()"
+    ></button-cb>
   </div>
 </card>
