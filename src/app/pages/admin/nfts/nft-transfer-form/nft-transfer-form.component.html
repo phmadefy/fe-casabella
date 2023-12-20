@@ -12,17 +12,17 @@
   <form #form="ngForm" (ngSubmit)="onSubmit(form)">
     <div class="p-4">
       <div class="mb-4">
-        <app-nft-choose></app-nft-choose>
+        <app-nft-choose (chooseNFT)="chooseNFT($event)"></app-nft-choose>
       </div>
 
       <div class="mb-4">
         <select-default
-          endpoint="v1/user?status=active"
+          endpoint="v1/users?status=active"
           inputPlaceholder="Enviar para o usuário @nomedousuário"
           bindText="name"
           bindValue="id"
-          [(ngModel)]="dados.user_id"
-          name="user_id"
+          [(ngModel)]="dados.recipient_id"
+          name="recipient_id"
           [required]="true"
           [form]="form"
         ></select-default>

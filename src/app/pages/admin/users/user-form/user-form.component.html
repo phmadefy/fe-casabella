@@ -70,6 +70,19 @@
         <div class="col-span-3">
           <input-floating
             class="p-0 bg-transparent border-none"
+            label="CPF"
+            model="cpf"
+            [(ngModel)]="dados.cpf"
+            name="cpf"
+            type="text"
+            required
+            [form]="form"
+            size="md"
+            mask="CPF_CNPJ"
+          ></input-floating>
+
+          <!-- <input-floating
+            class="p-0 bg-transparent border-none"
             label="Usuário"
             model="nickname"
             [(ngModel)]="dados.user.nickname"
@@ -77,7 +90,7 @@
             type="text"
             [form]="form"
             size="md"
-          ></input-floating>
+          ></input-floating> -->
         </div>
 
         <div class="col-span-3">
@@ -96,21 +109,22 @@
         <div class="col-span-2">
           <input-floating
             class="p-0 bg-transparent border-none"
-            label="CPF"
-            model="cpf"
-            [(ngModel)]="dados.cpf"
-            name="cpf"
-            type="text"
-            required
+            label="Gênero"
+            model="gender"
+            [(ngModel)]="dados.gender"
+            name="gender"
+            type="select"
+            bindValue="key"
+            bindText="description"
+            [options]="gender"
             [form]="form"
             size="md"
-            mask="CPF_CNPJ"
           ></input-floating>
         </div>
       </div>
 
       <div class="grid grid-cols-12 gap-3 mb-4">
-        <div class="col-span-4">
+        <div class="col-span-6">
           <input-floating
             class="p-0 bg-transparent border-none"
             label="E-mail"
@@ -152,7 +166,7 @@
           ></input-floating>
         </div>
 
-        <div class="col-span-2">
+        <!-- <div class="col-span-2">
           <input-floating
             class="p-0 bg-transparent border-none"
             label="Gênero"
@@ -166,7 +180,7 @@
             [form]="form"
             size="md"
           ></input-floating>
-        </div>
+        </div> -->
       </div>
 
       <div class="grid grid-cols-12 gap-3 mb-4">
@@ -230,7 +244,7 @@
           ></input-floating>
         </div>
 
-        <div class="col-span-2">
+        <!-- <div class="col-span-2">
           <input-floating
             class="p-0 bg-transparent border-none"
             label="UF"
@@ -246,10 +260,10 @@
             (ngModelChange)="getCities($event)"
             [required]="true"
           ></input-floating>
-        </div>
+        </div> -->
 
-        <div class="col-span-3">
-          <combobox
+        <div class="col-span-5">
+          <!-- <combobox
             class="p-0 bg-transparent border-none"
             label="Cidade"
             model="city"
@@ -263,7 +277,25 @@
             [required]="true"
             [form]="form"
             size="md"
-          ></combobox>
+          ></combobox> -->
+
+          <select-default
+            class="p-0 bg-transparent border-none"
+            label="Cidade"
+            model="city"
+            [(ngModel)]="dados.address.city"
+            name="city"
+            type="select"
+            bindValue="name"
+            bindText="name"
+            placeholder="Selecione uma cidade"
+            endpoint="v1/cities?per_page=200"
+            [required]="true"
+            [form]="form"
+            size="md"
+            bindTextSecondaryDivider="/"
+            bindTextSecondary="state.label"
+          />
         </div>
 
         <div class="col-span-2">

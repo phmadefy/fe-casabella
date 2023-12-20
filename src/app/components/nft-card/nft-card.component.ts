@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -10,4 +10,6 @@ import { CommonModule } from '@angular/common';
 })
 export class NftCardComponent {
   @Input() nft: any = {};
+
+  @Output() onClick = new EventEmitter<any>();
 }

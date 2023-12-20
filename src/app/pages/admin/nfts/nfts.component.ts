@@ -8,6 +8,8 @@ import { ApiService } from 'src/app/services/api.service';
 import { ToolsService } from 'src/app/services/tools.service';
 import { Subscription } from 'rxjs';
 import { NftCardComponent } from 'src/app/components/nft-card/nft-card.component';
+import { Dialog } from '@angular/cdk/dialog';
+import { ModalNftDetailComponent } from 'src/app/shared/modal-nft-detail/modal-nft-detail.component';
 
 @Component({
   selector: 'app-nfts',
@@ -35,6 +37,7 @@ export class NftsComponent {
   constructor(
     private route: ActivatedRoute,
     private service: ApiService,
+    public dialog: Dialog,
     public tools: ToolsService // private dialog: Dialog
   ) {
     service.path = 'v1/nft';
@@ -67,5 +70,14 @@ export class NftsComponent {
     this.tab = tab;
     this.filters.status = tab;
     this.getList();
+  }
+
+  openNFT(item: any) {
+    const dialogRef = this.dialog.open<any>(ModalNftDetailComponent, {
+      width: '95%',
+      maxWidth: '850px',
+      height: '90%',
+      data: item,
+    });
   }
 }

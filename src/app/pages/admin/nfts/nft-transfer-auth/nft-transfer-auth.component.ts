@@ -6,6 +6,8 @@ import { InputSearchComponent } from 'src/app/components/input-search/input-sear
 import { Subscription } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 import { ToolsService } from 'src/app/services/tools.service';
+import { Dialog } from '@angular/cdk/dialog';
+import { ModalNftApproveRefuseComponent } from 'src/app/shared/modal-nft-approve-refuse/modal-nft-approve-refuse.component';
 
 @Component({
   selector: 'app-nft-transfer-auth',
@@ -26,9 +28,10 @@ export class NftTransferAuthComponent {
   constructor(
     private route: ActivatedRoute,
     private service: ApiService,
-    public tools: ToolsService // private dialog: Dialog
+    public tools: ToolsService,
+    private dialog: Dialog
   ) {
-    service.path = 'v1/admin/nfts/audit/all';
+    service.path = 'v1/transactions-nft';
   }
 
   ngOnInit(): void {
@@ -57,5 +60,20 @@ export class NftTransferAuthComponent {
     this.tab = tab;
     this.filters.status = tab;
     this.getList();
+  }
+
+  openModalApproveRefuse(item: any, mode: string) {
+    this.dialog
+      .open<any>(ModalNftApproveRefuseComponent, {
+        width: '95%',
+        maxWidth: '500px',
+        maxHeight: '90%',
+        data: { item, mode },
+      })
+      .closed.subscribe((res) => {
+        if (res) {
+          this.getList();
+        }
+      });
   }
 }

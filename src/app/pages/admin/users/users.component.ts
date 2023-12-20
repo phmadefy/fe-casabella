@@ -56,7 +56,7 @@ export class UsersComponent {
       }
     });
 
-    this.getList();
+    // this.getList();
   }
 
   ngOnDestroy(): void {

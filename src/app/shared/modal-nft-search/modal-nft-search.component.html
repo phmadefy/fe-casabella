@@ -2,23 +2,24 @@
   <div class="p-2">
     <input-search
       [(ngModel)]="filters.term"
-      (ngModelChange)="getList()"
+      (search)="getList()"
     ></input-search>
   </div>
 
   <div class="grid grid-cols-2 md:grid-cols-3 gap-2 p-2">
     <div
       class="rounded-md overflow-hidden h-24 w-24 cursor-pointer"
-      (click)="dialogRef.close(true)"
+      *ngFor="let item of dataSource.data"
+      (click)="dialogRef.close(item)"
     >
       <img
-        src="assets/nft1.jpg"
+        [src]="item.image"
         alt="nft1"
-        class="hover:scale-110 transition duration-500 object-cover"
+        class="hover:scale-110 transition duration-500 object-cover w-full h-full"
       />
     </div>
 
-    <div
+    <!-- <div
       class="rounded-md overflow-hidden h-24 w-24"
       (click)="dialogRef.close(true)"
     >
@@ -38,6 +39,6 @@
         alt="nft1"
         class="hover:scale-110 transition duration-500 object-cover"
       />
-    </div>
+    </div> -->
   </div>
 </modal>

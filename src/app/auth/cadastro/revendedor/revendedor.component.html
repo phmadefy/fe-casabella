@@ -115,7 +115,7 @@
         ></input-floating>
       </div> -->
 
-      <div class="grid grid-cols-2 gap-2 mb-3">
+      <div class="grid grid-cols-1 gap-2 mb-3">
         <!-- <input-floating
           class="p-0 bg-transparent border-none"
           label="UF"
@@ -130,7 +130,7 @@
           [form]="form1"
         ></input-floating> -->
 
-        <combobox
+        <!-- <combobox
           class="p-0 bg-transparent border-none"
           label="Estado"
           model="state"
@@ -143,21 +143,24 @@
           [required]="true"
           [form]="form1"
           (selectItem)="getCities($event)"
-        ></combobox>
+        ></combobox> -->
 
-        <combobox
+        <select-default
           class="p-0 bg-transparent border-none"
           label="Cidade"
           model="city"
           [(ngModel)]="dados.address.city"
           name="city"
-          [options]="optionsCities"
+          type="select"
           bindValue="name"
           bindText="name"
           placeholder="Selecione uma cidade"
+          endpoint="v1/cities?per_page=200"
           [required]="true"
           [form]="form1"
-        ></combobox>
+          bindTextSecondaryDivider="/"
+          bindTextSecondary="state.label"
+        />
       </div>
 
       <!-- <button

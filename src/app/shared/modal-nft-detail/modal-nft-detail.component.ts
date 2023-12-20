@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BtnLikeComponent } from 'src/app/components/btn-like/btn-like.component';
 import { DIALOG_DATA, DialogModule, DialogRef } from '@angular/cdk/dialog';
+import { ToolsService } from 'src/app/services/tools.service';
 
 @Component({
   selector: 'modal-nft-detail',
@@ -11,8 +12,17 @@ import { DIALOG_DATA, DialogModule, DialogRef } from '@angular/cdk/dialog';
   styleUrls: ['./modal-nft-detail.component.scss'],
 })
 export class ModalNftDetailComponent {
+  dados: any = {};
   constructor(
     public dialogRef: DialogRef,
-    @Inject(DIALOG_DATA) public data: any
+    @Inject(DIALOG_DATA) public data: any,
+    public tools: ToolsService
   ) {}
+
+  ngOnInit(): void {
+    if (this.data) {
+      console.log('ModalNftDetailComponent', this.data);
+      this.dados = this.data;
+    }
+  }
 }

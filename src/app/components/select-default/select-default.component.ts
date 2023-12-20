@@ -41,6 +41,8 @@ export class SelectDefaultComponent implements ControlValueAccessor {
   @Input() endpoint!: string;
   @Input() bindValue = '';
   @Input() bindText = '';
+  @Input() bindTextSecondary!: string;
+  @Input() bindTextSecondaryDivider!: string;
   @Input() bindImage!: string;
   @Input() size = 'md';
   @Input() name = '';

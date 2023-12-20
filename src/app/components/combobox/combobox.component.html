@@ -23,7 +23,16 @@
           <img [src]="bindImage" alt="image" class="h-5 w-5" />
         </ng-container>
 
-        {{ item[bindText] }}
+        <span>{{ tools.getPropertyMultiLevel(item, bindText) }}</span>
+
+        <ng-container *ngIf="bindTextSecondary">
+          <span *ngIf="bindTextSecondaryDivider">
+            {{ bindTextSecondaryDivider }}
+          </span>
+          <span>
+            {{ tools.getPropertyMultiLevel(item, bindTextSecondary) }}
+          </span>
+        </ng-container>
       </div>
     </ng-option>
   </ng-select>

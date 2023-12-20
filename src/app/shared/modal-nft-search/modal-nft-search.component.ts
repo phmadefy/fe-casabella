@@ -17,6 +17,7 @@ import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 })
 export class ModalNftSearchComponent {
   dataSource: any = { data: [] };
+  loading = false;
   filters: any = {};
 
   constructor(
@@ -25,8 +26,20 @@ export class ModalNftSearchComponent {
     public dialogRef: DialogRef,
     @Inject(DIALOG_DATA) public data: any
   ) {
-    service.path = 'v1/admin/nfts/audit/all';
+    service.path = 'v1/nft';
   }
 
-  getList() {}
+  ngOnInit(): void {
+    this.getList();
+  }
+
+  getList() {
+    this.loading = true;
+    this.service
+      .listing(this.filters)
+      .then((res) => {
+        this.dataSource = res;
+      })
+      .finally(() => (this.loading = false));
+  }
 }

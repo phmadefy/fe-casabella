@@ -1,9 +1,9 @@
 <div
   class="flex relative bg-cb-primary rounded-lg overflow-hidden shadow border border-cb-secondary h-full"
 >
-  <img src="assets/nft1.jpg" alt="nft" class="w-3/5" />
+  <img [src]="dados.image" alt="nft" class="w-3/5" />
   <div class="relative text-white p-4 w-full h-full overflow-y-auto">
-    <h2 class="text-xl font-bold my-2">Macaco com chiclete</h2>
+    <h2 class="text-xl font-bold my-2">{{ dados.name }}</h2>
     <button
       class="absolute right-3 top-3 text-cb-secondary hover:text-cb-base cursor-pointer"
       (click)="dialogRef.close()"
@@ -14,7 +14,9 @@
     <div class="flex justify-between items-center my-1">
       <h2 class="flex gap-2 items-center">
         <i class="fa-solid fa-user text-cb-secondary"></i>
-        <span class="text-cb-info text-sm">@nomedousuário</span>
+        <span class="text-cb-info text-sm">
+          @{{ dados?.user?.name ?? "casabella" }}
+        </span>
       </h2>
 
       <button
@@ -35,26 +37,7 @@
 
     <div class="text-sm">
       <p>Criador por: <strong>casabella</strong></p>
-      <p>
-        descrição descrição descrição descriçãodescriçãodescrição descrição
-        descrição
-      </p>
-      <p>
-        descrição descrição descrição descriçãodescriçãodescrição descrição
-        descrição
-      </p>
-      <p>
-        descrição descrição descrição descriçãodescriçãodescrição descrição
-        descrição
-      </p>
-      <p>
-        descrição descrição descrição descriçãodescriçãodescrição descrição
-        descrição
-      </p>
-      <p>
-        descrição descrição descrição descriçãodescriçãodescrição descrição
-        descrição
-      </p>
+      <p></p>
     </div>
 
     <div class="w-full border-b border-cb-secondary my-3"></div>
@@ -76,12 +59,19 @@
 
     <div class="w-full border-b border-cb-secondary my-3"></div>
 
-    <div>
+    <div class="flex flex-col items-center justify-center gap-3">
       <button
-        type="submit"
+        type="button"
         class="text-white bg-gradient-cb bg-gradient-cb-hover focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md w-full md:w-full px-5 py-2.5 text-center"
       >
         Transferir
+      </button>
+
+      <button
+        type="button"
+        class="text-white bg-cb-secondary focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full md:w-full px-5 py-1.5 text-center"
+      >
+        Editar
       </button>
     </div>
   </div>

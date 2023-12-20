@@ -12,16 +12,16 @@
   <div class="p-2 flex gap-4 text-sm text-cb-secondary" *ngIf="nft.id">
     <button
       class="absolute -right-2 -top-2 bg-cb-secondary text-cb-primary rounded-full h-5 w-5"
-      (click)="nft = {}"
+      (click)="clearChoose()"
     >
       <i class="fa-solid fa-xmark"></i>
     </button>
 
-    <div class="rounded-md h-36 w-36 overflow-hidden">
-      <img [src]="nft.image" alt="nft" />
+    <div class="rounded-md h-32 w-32 overflow-hidden">
+      <img [src]="nft.image" class="w-full h-full object-cover" alt="nft" />
     </div>
     <div class="w-3/4 text-cb-base">
-      <h2 class="text-xl">{{ nft.title }}</h2>
+      <h2 class="text-xl">{{ nft.name }}</h2>
       <p>{{ nft.description }}</p>
     </div>
   </div>

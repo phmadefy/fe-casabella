@@ -93,4 +93,23 @@ export class ToolsService {
 
     return false;
   }
+
+  async isAdmin() {
+    const user = await this.getCurrentUser();
+    if (user) {
+    }
+
+    return false;
+  }
+
+  getPropertyMultiLevel(data: any, property: string) {
+    const properties = property.split('.');
+    let value: any = data;
+    for (let prop of properties) {
+      value = value[prop];
+    }
+    // console.log('getPropertyMultiLevel', value);
+
+    return value;
+  }
 }

@@ -45,10 +45,11 @@
 </div>
 
 <card>
-  <div class="grid grid-cols-5 gap-3 p-4">
+  <div class="grid grid-cols-5 gap-2 p-4">
     <app-nft-card
       *ngFor="let item of dataSource.data"
       [nft]="{ src: item.image }"
+      (onClick)="openNFT(item)"
     ></app-nft-card>
   </div>
 </card>

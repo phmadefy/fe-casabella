@@ -58,7 +58,7 @@ export class UserFormComponent extends AbstractForms {
   }
 
   async ngOnInit() {
-    this.service.getStates().then((res) => (this.states = res));
+    // this.service.getStates().then((res) => (this.states = res));
 
     console.log('state');
     if (history.state?.user_id) {

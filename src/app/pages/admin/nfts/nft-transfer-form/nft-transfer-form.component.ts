@@ -44,7 +44,6 @@ export class NftTransferFormComponent extends AbstractForms {
   userCurrent: any = {};
   modo = 'user';
   constructor(service: ApiService, public tools: ToolsService) {
-    service.path = 'v1/admin/nfts';
     super(service);
   }
 
@@ -55,15 +54,28 @@ export class NftTransferFormComponent extends AbstractForms {
     }
   }
 
-  override submit(): void {
-    // if (this.dados.id) {
-    //   this.update(this.dados, this.dados.id);
-    // } else {
-    //   this.create(this.dados);
-    // }
+  chooseNFT(event: any) {
+    if (event) {
+      this.dados.nft_id = event.id;
+    } else {
+      delete this.dados.nft_id;
+    }
   }
-  override finish(result: any): void {
+
+  override submit(): void {
+    if (!this.dados.nft_id) {
+      return;
+    }
+    this.service.path = `v1/admin/nfts/${this.dados.nft_id}/transfer`;
+    this.create(this.dados);
+  }
+  async finish(result: any) {
     // throw new Error('Method not implemented.');
     // this.getDados(result.id);
+    let route = '/nfts';
+    if (await this.tools.isAdmin()) {
+      route = '/admin/nfts';
+    }
+    this.tools.route.navigate([route], { queryParams: { tab: 'all' } });
   }
 }

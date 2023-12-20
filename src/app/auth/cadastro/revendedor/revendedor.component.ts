@@ -10,6 +10,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { ComboboxComponent } from 'src/app/components/combobox/combobox.component';
 import { AvatarComponent } from 'src/app/components/avatar/avatar.component';
 import { ButtonCbComponent } from 'src/app/components/button-cb/button-cb.component';
+import { SelectDefaultComponent } from 'src/app/components/select-default/select-default.component';
 
 @Component({
   selector: 'app-revendedor',
@@ -24,6 +25,7 @@ import { ButtonCbComponent } from 'src/app/components/button-cb/button-cb.compon
     ComboboxComponent,
     AvatarComponent,
     ButtonCbComponent,
+    SelectDefaultComponent,
   ],
   templateUrl: './revendedor.component.html',
   styleUrls: ['./revendedor.component.scss'],
