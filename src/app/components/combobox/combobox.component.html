@@ -20,7 +20,11 @@
     <ng-option *ngFor="let item of options" [value]="item[bindValue]">
       <div class="flex items-center gap-1">
         <ng-container *ngIf="bindImage">
-          <img [src]="bindImage" alt="image" class="h-5 w-5" />
+          <img
+            [src]="item[bindImage]"
+            alt="image"
+            class="h-10 w-10 rounded-md"
+          />
         </ng-container>
 
         <span>{{ tools.getPropertyMultiLevel(item, bindText) }}</span>

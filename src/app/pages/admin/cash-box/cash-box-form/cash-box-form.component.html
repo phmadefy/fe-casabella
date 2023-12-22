@@ -55,10 +55,10 @@
                     alt="avatar"
                     class="h-10 w-10 rounded-full mr-3"
                   />
-                  <span>{{ item.name }}</span>
+                  <span>{{ item?.user?.name }}</span>
                 </div>
               </td>
-              <td class="">
+              <td class="flex justify-end items-center">
                 <dropdown-cb
                   icon="fa-solid fa-ellipsis-vertical"
                   classes="justify-end text-md"
@@ -105,10 +105,10 @@
                     alt="avatar"
                     class="h-10 w-10 rounded-full mr-3"
                   />
-                  <span>{{ item.name }}</span>
+                  <span>{{ item?.user?.name }}</span>
                 </div>
               </td>
-              <td class="">
+              <td class="flex justify-end items-center">
                 <dropdown-cb
                   icon="fa-solid fa-ellipsis-vertical"
                   classes="justify-end text-md"
@@ -144,7 +144,7 @@
         <button-cb
           (onClick)="onSubmit(form)"
           classes="btn-sm btn-md w-full rounded-md bg-gradient-cb font-semibold"
-          label="Criar Caixa"
+          [label]="dados.id ? 'Editar Caixa' : 'Criar Caixa'"
           [loading]="loading"
         ></button-cb>
 

@@ -28,9 +28,10 @@ import { ToolsService } from 'src/app/services/tools.service';
 })
 export class SponsorFormComponent extends AbstractForms {
   dados: any = { active: true, balance: 0 };
+  file!: File;
 
   constructor(service: ApiService, public tools: ToolsService) {
-    service.path = 'v1/admin/sponsors';
+    service.path = 'v1/partners';
     super(service);
   }
 
@@ -43,7 +44,7 @@ export class SponsorFormComponent extends AbstractForms {
   getDados(id: any) {
     this.loading = true;
     this.service
-      .listing({ id })
+      .show(id)
       .then((res) => {
         console.log('res', res);
         this.dados = res;
@@ -52,14 +53,20 @@ export class SponsorFormComponent extends AbstractForms {
   }
 
   override submit(): void {
-    // if (this.dados.id) {
-    //   this.update(this.dados, this.dados.id);
-    // } else {
-    //   this.create(this.dados);
-    // }
+    const formData = this.tools.generateFormData(this.dados);
+    formData.append('image', this.file);
+
+    if (this.dados.id) {
+      this.update(formData, this.dados.id);
+    } else {
+      this.create(formData);
+    }
   }
   override finish(result: any): void {
     // throw new Error('Method not implemented.');
-    this.getDados(result.id);
+    // this.getDados(result.id);
+    this.tools.route.navigate(['/admin/sponsors'], {
+      queryParams: { tab: 'active' },
+    });
   }
 }

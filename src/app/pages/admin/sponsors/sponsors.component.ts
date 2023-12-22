@@ -37,7 +37,7 @@ export class SponsorsComponent {
     private service: ApiService,
     public tools: ToolsService // private dialog: Dialog
   ) {
-    service.path = 'v1/admin/cashiers';
+    service.path = 'v1/partners';
   }
 
   ngOnInit(): void {

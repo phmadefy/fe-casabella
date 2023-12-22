@@ -5,11 +5,18 @@ import { SelectDefaultComponent } from 'src/app/components/select-default/select
 import { FormsModule } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 import { ToolsService } from 'src/app/services/tools.service';
+import { TimelineComponent } from 'src/app/components/timeline/timeline.component';
 
 @Component({
   selector: 'app-movement-statement',
   standalone: true,
-  imports: [CommonModule, FormsModule, CardComponent, SelectDefaultComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    CardComponent,
+    SelectDefaultComponent,
+    TimelineComponent,
+  ],
   providers: [ApiService],
   templateUrl: './movement-statement.component.html',
   styleUrls: ['./movement-statement.component.scss'],

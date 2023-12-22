@@ -1,7 +1,7 @@
 <div class="mb-4">
   <card>
     <ul class="flex flex-wrap gap-3 text-sm font-medium text-center p-5">
-      <li routerLink="/admin/users">
+      <li routerLink="/fale-conosco" [queryParams]="{ tab: 'all' }">
         <button
           class="px-8 py-2 text-cb-base rounded-md bg-gradient-cb font-semibold"
         >
@@ -49,11 +49,11 @@
           }"
           (dblclick)="edit(item)"
         >
-          <td>2351452696</td>
-          <td>Solicitação de Permissão</td>
-          <td>Fulano de Tal</td>
-          <td>01/10/2023</td>
-          <td>Finalizado</td>
+          <td>{{ item.id }}</td>
+          <td>{{ item.subject }}</td>
+          <td>{{ item?.user?.name }}</td>
+          <td>{{ item.created_at | date : "dd/MM/yyyy" }}</td>
+          <td>{{ item.status }}</td>
         </tr>
       </tbody>
     </table>

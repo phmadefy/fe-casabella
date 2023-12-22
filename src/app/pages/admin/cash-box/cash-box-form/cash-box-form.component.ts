@@ -10,6 +10,7 @@ import { InputFloatingComponent } from 'src/app/components/input-floating/input-
 import { AbstractForms } from 'src/app/shared/abstract-form';
 import { ApiService } from 'src/app/services/api.service';
 import { RouterLink } from '@angular/router';
+import { MessageService } from 'src/app/services/message.service';
 
 @Component({
   selector: 'app-cash-box-form',
@@ -31,26 +32,37 @@ import { RouterLink } from '@angular/router';
 export class CashBoxFormComponent extends AbstractForms {
   admins: any[] = [];
   users: any[] = [];
-  dados: any = { active: true, balance: 0 };
+  dados: any = { active: true, balance: 0, permissions: [] };
 
-  constructor(service: ApiService, public tools: ToolsService) {
+  constructor(
+    service: ApiService,
+    public tools: ToolsService,
+    private messageService: MessageService
+  ) {
     service.path = 'v1/admin/cashiers';
     super(service);
   }
 
   ngOnInit(): void {
-    if (history.state?.cashiers_id) {
-      this.getDados(history.state?.cashiers_id);
+    console.log('history', history.state);
+
+    if (history.state?.cashier_id) {
+      this.getDados(history.state?.cashier_id);
     }
   }
 
   getDados(id: any) {
     this.loading = true;
     this.service
-      .listing({ id })
+      .show(id)
       .then((res) => {
         console.log('res', res);
         this.dados = res;
+        this.admins = this.getPermissionsBy(
+          this.dados.permissions,
+          'administrator'
+        );
+        this.users = this.getPermissionsBy(this.dados.permissions, 'default');
       })
       .finally(() => (this.loading = false));
   }
@@ -67,19 +79,70 @@ export class CashBoxFormComponent extends AbstractForms {
     this.getDados(result.id);
   }
 
-  setAdmin(admin: any) {
+  async setAdmin(admin: any) {
     console.log('setAdmin', admin);
-    if (admin) {
-      this.admins.push(admin);
-    }
+    this.loading = true;
+    await this.service
+      .updateCustom(`v1/admin/cashiers/${this.dados.id}/define-permissions`, {
+        type: 'administrator',
+        userId: admin.id,
+      })
+      .then(async (res) => {
+        await this.getDados(this.dados.id);
+      })
+      .finally(() => (this.loading = false));
   }
-  openDeleteAdmin(item: any) {}
+  openDeleteAdmin(item: any) {
+    this.messageService
+      .presentAlertConfirm(
+        `Remover o administrador : <b>${item?.user?.name}</b> do caixa ?`
+      )
+      .closed.subscribe((res) => {
+        if (res) {
+          this.removeUser(item.id);
+        }
+      });
+  }
 
-  setUser(user: any) {
+  async setUser(user: any) {
     console.log('setUser', user);
-    if (user) {
-      this.users.push(user);
-    }
+    this.loading = true;
+    await this.service
+      .updateCustom(`v1/admin/cashiers/${this.dados.id}/define-permission`, {
+        type: 'default',
+        userId: user.id,
+      })
+      .then(async (res) => {
+        await this.getDados(this.dados.id);
+      })
+      .finally(() => (this.loading = false));
   }
-  openDeleteUser(item: any) {}
+
+  openDeleteUser(item: any) {
+    this.messageService
+      .presentAlertConfirm(
+        `Remover o usuário : <b>${item?.user?.name}</b> do caixa ?`
+      )
+      .closed.subscribe((res) => {
+        if (res) {
+          this.removeUser(item.id);
+        }
+      });
+  }
+
+  removeUser(id: any) {
+    this.loading = true;
+    this.service
+      .deleteCustom(
+        `v1/admin/cashiers/${this.dados.id}/remove-permission/${id}`
+      )
+      .then(async () => {
+        await this.getDados(this.dados.id);
+      })
+      .finally(() => (this.loading = false));
+  }
+
+  getPermissionsBy(permissions: any[], type: string) {
+    return permissions.filter((p) => p.type == type);
+  }
 }

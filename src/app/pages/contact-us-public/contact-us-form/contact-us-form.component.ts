@@ -38,14 +38,14 @@ export class ContactUsFormComponent extends AbstractForms {
   files: File[] = [];
 
   constructor(service: ApiService, public tools: ToolsService) {
-    service.path = 'v1/admin/contact-us';
+    service.path = 'v1/tickets';
     super(service);
   }
 
   ngOnInit(): void {
-    // if (history.state?.sponsor_id) {
-    //   this.getDados(history.state?.sponsor_id);
-    // }
+    if (history.state?.contact_us_id) {
+      this.getDados(history.state?.contact_us_id);
+    }
   }
 
   onFileSelected(event: any): void {
@@ -56,7 +56,7 @@ export class ContactUsFormComponent extends AbstractForms {
   getDados(id: any) {
     this.loading = true;
     this.service
-      .listing({ id })
+      .show(id)
       .then((res) => {
         console.log('res', res);
         this.dados = res;
@@ -78,14 +78,17 @@ export class ContactUsFormComponent extends AbstractForms {
       formData.append('attachments[]', file);
     }
 
-    // if (this.dados.id) {
-    //   this.update(this.dados, this.dados.id);
-    // } else {
-    //   this.create(this.dados);
-    // }
+    if (this.dados.id) {
+      this.update(this.dados, this.dados.id);
+    } else {
+      this.create(this.dados);
+    }
   }
   override finish(result: any): void {
     // throw new Error('Method not implemented.');
-    this.getDados(result.id);
+    // this.getDados(result.id);
+    this.tools.route.navigate(['/fale-conosco'], {
+      queryParams: { tab: 'all' },
+    });
   }
 }

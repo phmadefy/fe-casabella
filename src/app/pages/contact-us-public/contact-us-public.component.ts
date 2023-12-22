@@ -35,7 +35,7 @@ export class ContactUsPublicComponent {
 
   userCurrent: any = {};
   constructor(private service: ApiService, public tools: ToolsService) {
-    service.path = 'v1/users';
+    service.path = 'v1/tickets';
   }
 
   async ngOnInit() {
@@ -61,9 +61,15 @@ export class ContactUsPublicComponent {
   }
 
   edit(item: any) {
-    this.tools.route.navigate([`/admin/contact-us/view`], {
-      state: { contact_us_id: item.id },
-    });
+    if (this.tools.checkRouteContainsAdmin()) {
+      this.tools.route.navigate([`/admin/contact-us/view`], {
+        state: { contact_us_id: item.id },
+      });
+    } else {
+      this.tools.route.navigate([`/fale-conosco/edit`], {
+        state: { contact_us_id: item.id },
+      });
+    }
   }
 
   changePagination(page: number, per_page: number) {

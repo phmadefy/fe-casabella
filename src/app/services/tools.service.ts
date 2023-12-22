@@ -112,4 +112,17 @@ export class ToolsService {
 
     return value;
   }
+
+  generateFormData(dados: any) {
+    const formData = new FormData();
+    for (let key of Object.keys(dados)) {
+      if (typeof dados[key] == 'object') {
+        formData.append(key, JSON.stringify(dados[key]));
+      } else {
+        formData.append(key, dados[key]);
+      }
+    }
+
+    return formData;
+  }
 }

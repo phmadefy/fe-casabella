@@ -155,6 +155,13 @@ export const routes: Routes = [
                 './pages/contact-us-public/contact-us-form/contact-us-form.component'
               ).then((c) => c.ContactUsFormComponent),
           },
+          {
+            path: 'view',
+            loadComponent: () =>
+              import(
+                './pages/contact-us-public/contact-us-form/contact-us-form.component'
+              ).then((c) => c.ContactUsFormComponent),
+          },
         ],
       },
 
@@ -242,6 +249,13 @@ export const routes: Routes = [
               },
               {
                 path: 'add',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/cash-box/cash-box-form/cash-box-form.component'
+                  ).then((c) => c.CashBoxFormComponent),
+              },
+              {
+                path: 'edit',
                 loadComponent: () =>
                   import(
                     './pages/admin/cash-box/cash-box-form/cash-box-form.component'
@@ -364,6 +378,13 @@ export const routes: Routes = [
               },
               {
                 path: 'add',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/sponsors/sponsor-form/sponsor-form.component'
+                  ).then((c) => c.SponsorFormComponent),
+              },
+              {
+                path: 'edit',
                 loadComponent: () =>
                   import(
                     './pages/admin/sponsors/sponsor-form/sponsor-form.component'

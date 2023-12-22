@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { CardComponent } from 'src/app/components/card/card.component';
 import { DropdownCbComponent } from 'src/app/components/dropdown-cb/dropdown-cb.component';
 import { InputSearchComponent } from 'src/app/components/input-search/input-search.component';
+import { MessageService } from 'src/app/services/message.service';
 
 @Component({
   selector: 'app-cash-box',
@@ -36,6 +37,7 @@ export class CashBoxComponent {
   constructor(
     private route: ActivatedRoute,
     private service: ApiService,
+    private messageService: MessageService,
     public tools: ToolsService // private dialog: Dialog
   ) {
     service.path = 'v1/admin/cashiers';
@@ -76,6 +78,28 @@ export class CashBoxComponent {
     this.getList();
   }
 
-  openEdit(item: any) {}
-  openDelete(item: any) {}
+  openEdit(item: any) {
+    this.tools.route.navigate(['/admin/cash-box/edit'], {
+      state: { cashier_id: item.id },
+    });
+  }
+  openDelete(item: any) {
+    this.messageService
+      .presentAlertConfirm(`Excluir o Caixa: <b>${item.name}</b> ?`)
+      .closed.subscribe((res) => {
+        if (res) {
+          this.delete(item.id);
+        }
+      });
+  }
+
+  async delete(id: any) {
+    this.loading = true;
+    await this.service
+      .delete(id)
+      .then((res) => {
+        this.getList();
+      })
+      .finally(() => (this.loading = false));
+  }
 }

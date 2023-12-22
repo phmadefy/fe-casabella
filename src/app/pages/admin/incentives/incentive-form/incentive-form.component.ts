@@ -51,9 +51,13 @@ export class IncentiveFormComponent extends AbstractForms {
   }
 
   override submit(): void {
-    throw new Error('Method not implemented.');
+    if (!this.dados.id) {
+      this.create(this.dados);
+    } else {
+      this.update(this.dados, this.dados.id);
+    }
   }
   override finish(result: any): void {
-    throw new Error('Method not implemented.');
+    // throw new Error('Method not implemented.');
   }
 }

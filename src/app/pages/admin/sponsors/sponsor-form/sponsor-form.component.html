@@ -25,6 +25,8 @@
             name="fileCapa"
             title="Selecionar Imagem"
             subtitle="1350 x 1080"
+            (changeImage)="file = $event[0]"
+            [image]="dados.image_url"
           ></image-select>
 
           <textarea
@@ -32,7 +34,7 @@
             [rows]="15"
             name="description"
             [(ngModel)]="dados.description"
-            placeholder="Descrição da NFT"
+            placeholder="Descrição do Patrocinador"
           ></textarea>
         </div>
 
@@ -54,9 +56,9 @@
           <input-floating
             class="p-0 bg-transparent border-none"
             label="Vigência"
-            model="vigencia"
-            name="vigencia"
-            [(ngModel)]="dados.vigencia"
+            model="deadline_at"
+            name="deadline_at"
+            [(ngModel)]="dados.deadline_at"
             type="date"
             [required]="true"
             [form]="form"
@@ -69,14 +71,14 @@
         <button-cb
           type="submit"
           classes="btn-sm btn-md w-full rounded-md bg-gradient-cb font-semibold"
-          label="Adicionar NFT"
+          label="Salvar"
           [loading]="loading"
         ></button-cb>
 
         <button-cb
           classes="btn-sm btn-md w-full text-white rounded-md"
-          routerLink="/admin/nfts"
-          [queryParams]="{ tab: 'all' }"
+          routerLink="/admin/sponsors"
+          [queryParams]="{ tab: 'active' }"
           label="Cancelar"
           [loading]="loading"
         ></button-cb>
