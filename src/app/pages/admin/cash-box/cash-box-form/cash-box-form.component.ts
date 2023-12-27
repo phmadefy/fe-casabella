@@ -83,7 +83,7 @@ export class CashBoxFormComponent extends AbstractForms {
     console.log('setAdmin', admin);
     this.loading = true;
     await this.service
-      .updateCustom(`v1/admin/cashiers/${this.dados.id}/define-permissions`, {
+      .updateCustom(`v1/admin/cashiers/${this.dados.id}/define-permission`, {
         type: 'administrator',
         userId: admin.id,
       })

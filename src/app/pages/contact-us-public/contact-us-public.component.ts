@@ -62,11 +62,11 @@ export class ContactUsPublicComponent {
 
   edit(item: any) {
     if (this.tools.checkRouteContainsAdmin()) {
-      this.tools.route.navigate([`/admin/contact-us/view`], {
+      this.tools.route.navigate([`/admin/contact-us/detalhes`], {
         state: { contact_us_id: item.id },
       });
     } else {
-      this.tools.route.navigate([`/fale-conosco/edit`], {
+      this.tools.route.navigate([`/fale-conosco/detalhes`], {
         state: { contact_us_id: item.id },
       });
     }

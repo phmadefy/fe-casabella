@@ -1,0 +1,251 @@
+<div class="grid md:grid-cols-8 gap-3">
+  <div
+    [ngClass]="{
+      'col-span-6': tools.checkRouteContainsAdmin(),
+      'col-span-full': !tools.checkRouteContainsAdmin()
+    }"
+  >
+    <div class="mb-4">
+      <card [loading]="loading">
+        <div class="card-header">
+          <h2 class="text-lg font-semibold">Solicitação: #{{ dados.id }}</h2>
+        </div>
+
+        <div class="px-4">
+          <div class="grid grid-cols-4 gap-2 mb-4">
+            <input-floating
+              class="p-0 bg-transparent border-none"
+              label="Protocolo"
+              model="id"
+              name="id"
+              [(ngModel)]="dados.id"
+              type="text"
+              [isReadOnly]="true"
+              size="md"
+            />
+
+            <input-floating
+              class="p-0 bg-transparent border-none"
+              label="Data de Criação"
+              model="created_at"
+              name="created_at"
+              [(ngModel)]="dados.created_at"
+              type="date"
+              [isReadOnly]="true"
+              size="md"
+            />
+
+            <input-floating
+              class="p-0 bg-transparent border-none"
+              label="Status"
+              model="status_label"
+              name="status_label"
+              [(ngModel)]="dados.status_label"
+              type="text"
+              [isReadOnly]="true"
+              size="md"
+            />
+
+            <input-floating
+              class="p-0 bg-transparent border-none"
+              label="Data de Conclusão"
+              model="finished_at"
+              name="finished_at"
+              [(ngModel)]="dados.finished_at"
+              type="date"
+              [isReadOnly]="true"
+              size="md"
+            />
+          </div>
+
+          <div class="grid mb-4">
+            <input-floating
+              class="p-0 bg-transparent border-none"
+              label="Requerente"
+              model="user_id"
+              name="user_id"
+              [(ngModel)]="dados.user.name"
+              type="text"
+              [isReadOnly]="true"
+              size="md"
+            />
+          </div>
+
+          <div class="grid mb-4">
+            <input-floating
+              class="p-0 bg-transparent border-none"
+              label="Atendente"
+              model="attendant_id"
+              name="attendant_id"
+              [(ngModel)]="dados.attendant.name"
+              type="text"
+              [isReadOnly]="true"
+              size="md"
+            />
+          </div>
+
+          <div class="grid grid-cols-3 gap-2 mb-4">
+            <input-floating
+              class="p-0 col-span-2 bg-transparent border-none"
+              label="Assunto"
+              model="subject"
+              name="subject"
+              [(ngModel)]="dados.subject"
+              type="text"
+              [isReadOnly]="true"
+              size="md"
+            />
+
+            <combobox
+              class="p-0 bg-transparent border-none"
+              label="Tipo de Chamado"
+              model="type"
+              [(ngModel)]="dados.type"
+              name="type"
+              [options]="optionsCall"
+              bindValue="key"
+              bindText="description"
+              placeholder="Selecione um tipo"
+              [isReadOnly]="true"
+              size="md"
+            />
+          </div>
+
+          <div class="grid mb-4">
+            <input-floating
+              class="p-0 bg-transparent border-none"
+              label="Descrição da Solicitação"
+              model="description"
+              name="description"
+              [(ngModel)]="dados.description"
+              type="textarea"
+              [isReadOnly]="true"
+              [rows]="3"
+              size="md"
+            />
+          </div>
+
+          <div class="grid mb-4" *ngFor="let item of dados.interactions">
+            <input-floating
+              class="p-0 bg-transparent border-none"
+              [label]="
+                item.user_id == dados.attendant_id
+                  ? 'Mensagem do Atendente'
+                  : 'Mensagem do ' + item?.user?.name
+              "
+              [(ngModel)]="item.message"
+              type="textarea"
+              [isReadOnly]="true"
+              [rows]="2"
+              size="md"
+            />
+          </div>
+        </div>
+
+        <div class="px-4">
+          <div class="flex items-center gap-1">
+            <span class="text-cb-info">Anexos</span>
+            <small>({{ dados.attachments.length }})</small>
+          </div>
+          <div class="py-4 grid grid-cols-10 gap-2">
+            <div
+              *ngFor="let item of dados.attachments"
+              class="h-full w-full rounded-md overflow-hidden"
+            >
+              <img
+                [src]="item.file_url"
+                class="h-full w-full object-cover"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="card-footer flex items-center gap-3"
+          *ngIf="dados.status != 'finished'"
+        >
+          <form
+            #form="ngForm"
+            (ngSubmit)="sendReplay(form)"
+            class="w-full relative"
+          >
+            <input
+              type="text"
+              class="input-cb-rounded"
+              name="message"
+              placeholder="Adicionar resposta"
+              ngModel
+              required
+            />
+            <button
+              class="absolute inset-y-0 right-3 flex items-center pr-3 text-gradient-cb"
+              type="submit"
+            >
+              <i class="fa-solid fa-paper-plane mr-2"></i>
+            </button>
+          </form>
+        </div>
+      </card>
+    </div>
+  </div>
+
+  <div class="col-span-2" *ngIf="tools.checkRouteContainsAdmin()">
+    <div class="mb-4">
+      <card [loading]="loading">
+        <div class="card-header">
+          <h2 class="font-semibold text-cb-secondary">Operações</h2>
+        </div>
+
+        <div class="px-4 pb-4">
+          <ul class="flex flex-col gap-2">
+            <li
+              class="p-2 hover:bg-cb-secondary cursor-pointer rounded-md border border-cb-secondary text-sm"
+              (click)="setInProgress()"
+              *ngIf="
+                dados.status != 'in_progress' && dados.status != 'finished'
+              "
+            >
+              Dar Andamento
+            </li>
+            <ng-container
+              *ngIf="dados.status != 'paused' && dados.status != 'finished'"
+            >
+              <!-- <li
+                class="p-2 hover:bg-cb-secondary cursor-pointer rounded-md border border-cb-secondary text-sm"
+              >
+                Adicionar resposta
+              </li> -->
+              <li
+                class="p-2 hover:bg-cb-secondary cursor-pointer rounded-md border border-cb-secondary text-sm"
+                (click)="openModalMedia()"
+              >
+                Anexar documento
+              </li>
+            </ng-container>
+
+            <li
+              class="p-2 hover:bg-cb-secondary cursor-pointer rounded-md border border-cb-secondary text-sm"
+            >
+              Imprimir
+            </li>
+            <li
+              class="p-2 hover:bg-cb-secondary cursor-pointer rounded-md border border-cb-secondary text-sm"
+              *ngIf="dados.status != 'paused' && dados.status != 'finished'"
+              (click)="setPaused()"
+            >
+              Pausar
+            </li>
+            <li
+              class="p-2 hover:bg-cb-secondary cursor-pointer rounded-md border border-cb-secondary text-sm"
+              *ngIf="dados.status != 'finished'"
+              (click)="setFinished()"
+            >
+              Finalizar
+            </li>
+          </ul>
+        </div>
+      </card>
+    </div>
+  </div>
+</div>

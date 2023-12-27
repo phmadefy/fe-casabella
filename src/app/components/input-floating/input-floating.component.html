@@ -19,7 +19,7 @@
       'px-2 pb-2 pt-2': size == 'md'
     }"
     [placeholder]="placeholder"
-    [readonly]="!!isReadOnly"
+    [attr.readonly]="isReadOnly ? true : null"
     [required]="isRequired"
     [mask]="mask"
     (focus)="onTouchedCb(value)"
@@ -35,7 +35,7 @@
       'px-2 pb-2 pt-2': size == 'md'
     }"
     [placeholder]="placeholder"
-    [readonly]="!!isReadOnly"
+    [attr.readonly]="isReadOnly ? true : null"
     [required]="isRequired"
     mask="(00) 0000-0000||(00) 0 0000-0000"
     (focus)="onTouchedCb(value)"
@@ -51,12 +51,29 @@
       'px-2 pb-2 pt-2': size == 'md'
     }"
     [placeholder]="placeholder"
-    [readonly]="!!isReadOnly"
+    [attr.readonly]="isReadOnly ? true : null"
     [required]="isRequired"
     currencyMask
     [options]="optionsMoney"
     (focus)="onTouchedCb(value)"
   />
+
+  <textarea
+    *ngIf="type == 'textarea'"
+    [(ngModel)]="value"
+    [id]="model"
+    class="block w-full text-sm text-cb-base bg-cb-primary rounded-lg border-1 border-cb-secondary appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-cb-secondary peer autofill:shadow-cb-primary"
+    [ngClass]="{
+      'px-2.5 pb-2.5 pt-4': size == 'lg',
+      'px-2 pb-2 pt-2': size == 'md'
+    }"
+    [placeholder]="placeholder"
+    [attr.readonly]="isReadOnly ? true : null"
+    [required]="isRequired"
+    (focus)="onTouchedCb(value)"
+    [rows]="rows"
+  ></textarea>
+
   <select
     *ngIf="type === 'select'"
     [(ngModel)]="value"
@@ -66,7 +83,7 @@
       'px-2.5 pb-2.5 pt-4': size == 'lg',
       'px-2 pb-2 pt-2': size == 'md'
     }"
-    [disabled]="!!isReadOnly"
+    [disabled]="!isReadOnly"
     [required]="isRequired"
     (focus)="onTouchedCb(value)"
   >

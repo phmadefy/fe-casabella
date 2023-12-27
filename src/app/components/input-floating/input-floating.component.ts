@@ -47,13 +47,14 @@ export class InputFloatingComponent implements ControlValueAccessor {
   ];
   @Input() bindValue: string = 'id';
   @Input() bindText: string = 'name';
+  @Input() rows: any = 4;
   @Input() prefix!: string;
   @Input() suffix!: string;
   @Input() precision!: number;
 
   optionsMoney!: NgxCurrencyConfig;
 
-  exclude = ['select', 'phone', 'money'];
+  exclude = ['select', 'phone', 'money', 'textarea'];
 
   constructor(public tools: ToolsService) {}
   ngOnInit(): void {

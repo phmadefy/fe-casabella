@@ -38,9 +38,10 @@ export class ModalMediaUploadComponent {
   }
 
   sendFiles() {
+    const inputFile = this.data?.inputFileName ?? 'file';
     const formData = new FormData();
     for (let file of this.files) {
-      formData.append('file[]', file);
+      formData.append(`${inputFile}[]`, file);
     }
 
     this.loading = true;

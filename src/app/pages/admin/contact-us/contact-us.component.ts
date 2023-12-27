@@ -33,7 +33,7 @@ export class ContactUsComponent {
 
   tab: string = 'actives';
   constructor(private service: ApiService, public tools: ToolsService) {
-    service.path = 'v1/users';
+    service.path = 'v1/tickets';
   }
 
   ngOnInit(): void {
@@ -57,7 +57,7 @@ export class ContactUsComponent {
   }
 
   edit(item: any) {
-    this.tools.route.navigate([`/admin/contact-us/view`], {
+    this.tools.route.navigate([`/admin/contact-us/detalhes`], {
       state: { contact_us_id: item.id },
     });
   }

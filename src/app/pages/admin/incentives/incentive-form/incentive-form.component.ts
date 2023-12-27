@@ -16,6 +16,8 @@ import { InputFloatingComponent } from 'src/app/components/input-floating/input-
 import { Status } from 'src/app/shared/properties';
 import { SelectDefaultComponent } from 'src/app/components/select-default/select-default.component';
 import { RouterLink } from '@angular/router';
+import { ToolsService } from 'src/app/services/tools.service';
+import { MessageService } from 'src/app/services/message.service';
 
 @Component({
   selector: 'app-incentive-form',
@@ -39,25 +41,93 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./incentive-form.component.scss'],
 })
 export class IncentiveFormComponent extends AbstractForms {
-  dados: any = { editorData: '' };
+  dados: any = {
+    editorData: '',
+    public: [],
+    segments_participate: [],
+    segments_view: [],
+    cities: [],
+  };
   Editor = ClassicEditor;
   config: EditorConfig = {
     language: 'pt-br',
   };
 
   status = Status;
-  constructor(service: ApiService) {
+
+  constructor(
+    service: ApiService,
+    public tools: ToolsService,
+    private messageService: MessageService
+  ) {
+    service.path = 'v1/incentives';
     super(service);
   }
 
+  async ngOnInit() {
+    if (history.state?.incentive_id) {
+      console.log('history', history);
+      this.getDados(history.state?.incentive_id);
+    }
+  }
+
+  getDados(id: any) {
+    this.loading = true;
+    this.service
+      .show(id)
+      .then((res) => {
+        console.log('res', res);
+        this.dados = res;
+      })
+      .finally(() => (this.loading = false));
+  }
+
   override submit(): void {
+    const formData = this.tools.generateFormData(this.dados);
+
     if (!this.dados.id) {
-      this.create(this.dados);
+      this.create(formData);
     } else {
-      this.update(this.dados, this.dados.id);
+      this.update(formData, this.dados.id);
     }
   }
   override finish(result: any): void {
     // throw new Error('Method not implemented.');
+    this.tools.route.navigate(['/admin/incentives'], {
+      queryParams: { tab: 'all' },
+    });
+  }
+
+  async deleteItem() {
+    this.messageService
+      .presentAlertConfirm(
+        'Você está <b>EXCLUINDO</b> esta campanha. A exclusão é irreversível, deseja continuar ?'
+      )
+      .closed.subscribe((res) => {
+        if (res) {
+          this.delete(this.dados.id);
+        }
+      });
+  }
+
+  getPublicSelected() {
+    return this.dados?.public?.map((f: any) => f?.pivot?.person_type_id);
+  }
+
+  getSegmentParticipateSelected() {
+    return this.dados?.segments_participate?.map(
+      (f: any) => f?.pivot?.segment_id
+    );
+  }
+
+  getSegmentViewSelected() {
+    const data = this.dados?.segments_view?.map(
+      (f: any) => f?.pivot?.segment_id
+    );
+    return data;
+  }
+
+  getCities() {
+    return this.dados?.cities?.map((f: any) => f?.pivot?.city_id);
   }
 }

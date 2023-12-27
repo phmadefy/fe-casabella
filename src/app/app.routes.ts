@@ -156,11 +156,11 @@ export const routes: Routes = [
               ).then((c) => c.ContactUsFormComponent),
           },
           {
-            path: 'view',
+            path: 'detalhes',
             loadComponent: () =>
               import(
-                './pages/contact-us-public/contact-us-form/contact-us-form.component'
-              ).then((c) => c.ContactUsFormComponent),
+                './pages/admin/contact-us/contact-us-view/contact-us-view.component'
+              ).then((c) => c.ContactUsViewComponent),
           },
         ],
       },
@@ -181,6 +181,13 @@ export const routes: Routes = [
               },
               {
                 path: 'add',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/incentives/incentive-form/incentive-form.component'
+                  ).then((c) => c.IncentiveFormComponent),
+              },
+              {
+                path: 'edit',
                 loadComponent: () =>
                   import(
                     './pages/admin/incentives/incentive-form/incentive-form.component'
@@ -394,10 +401,22 @@ export const routes: Routes = [
           },
           {
             path: 'contact-us',
-            loadComponent: () =>
-              import('./pages/admin/contact-us/contact-us.component').then(
-                (c) => c.ContactUsComponent
-              ),
+            children: [
+              {
+                path: '',
+                loadComponent: () =>
+                  import('./pages/admin/contact-us/contact-us.component').then(
+                    (c) => c.ContactUsComponent
+                  ),
+              },
+              {
+                path: 'detalhes',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/contact-us/contact-us-view/contact-us-view.component'
+                  ).then((c) => c.ContactUsViewComponent),
+              },
+            ],
           },
           {
             path: 'terms-of-use',

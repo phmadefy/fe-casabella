@@ -3,7 +3,7 @@
   (ngSubmit)="onSubmit(form)"
   class="grid md:grid-cols-8 gap-3"
 >
-  <card class="col-span-6">
+  <card class="col-span-6" [loading]="loading">
     <div class="card-header">
       <h2 class="text-lg font-semibold">
         {{ dados.id ? "Editar" : "Adicionar" }} Incentivo
@@ -17,9 +17,9 @@
             class="p-0 bg-transparent border-none"
             label="Nome do Incentivo"
             [isFloating]="false"
-            model="title"
-            [(ngModel)]="dados.title"
-            name="title"
+            model="name"
+            [(ngModel)]="dados.name"
+            name="name"
             type="text"
             [required]="true"
             [form]="form"
@@ -85,7 +85,6 @@
             bindValue="key"
             bindText="description"
             [isFloating]="false"
-            [required]="true"
             [form]="form"
             size="md"
           />
@@ -149,7 +148,6 @@
             bindValue="key"
             bindText="description"
             [isFloating]="false"
-            [required]="true"
             [form]="form"
             size="md"
           />
@@ -186,7 +184,6 @@
             bindImage="image"
             [(ngModel)]="dados.nft_id"
             name="nft_id"
-            [required]="true"
             [form]="form"
             [multiple]="true"
           />
@@ -244,7 +241,6 @@
             bindValue="id"
             [(ngModel)]="dados.incentive_cycle_id"
             name="incentive_cycle_id"
-            [required]="true"
             [form]="form"
           />
         </div>
@@ -282,7 +278,6 @@
             bindImage="image"
             [(ngModel)]="dados.gallery_id"
             name="gallery_id"
-            [required]="true"
             [form]="form"
           />
         </div>
@@ -339,7 +334,6 @@
             bindText="description"
             [options]="status"
             [isFloating]="false"
-            [required]="true"
             [form]="form"
             size="md"
           />
@@ -376,15 +370,16 @@
             name="view_term_id"
             [(ngModel)]="dados.view_term_id"
           />
-          <select
-            type="text"
-            class="input-cb"
-            name="term_id"
+          <select-default
+            endpoint="v1/terms"
+            inputPlaceholder="Selecione um álbum"
+            bindText="name"
+            bindValue="id"
             [(ngModel)]="dados.term_id"
-          >
-            <option value="0">Não</option>
-            <option value="1">Sim</option>
-          </select>
+            name="term_id"
+            [required]="true"
+            [form]="form"
+          />
         </div>
 
         <div class="mb-4">
@@ -398,7 +393,6 @@
             bindValue="key"
             bindText="description"
             [isFloating]="false"
-            [required]="true"
             [form]="form"
             size="md"
           />
@@ -416,7 +410,13 @@
         <span *ngIf="!loading">Salvar Incentivo</span>
       </button>
 
-      <button class="btn btn-sm text-white rounded-md" [disabled]="loading">
+      <button
+        class="btn btn-sm text-white rounded-md"
+        [disabled]="loading"
+        *ngIf="dados.id"
+        (click)="deleteItem()"
+        type="button"
+      >
         Excluir incentivo
       </button>
 
@@ -425,13 +425,14 @@
         [disabled]="loading"
         [type]="'button'"
         routerLink="/admin/incentives"
+        [queryParams]="{ tab: 'all' }"
       >
         Cancelar
       </button>
     </div>
   </card>
 
-  <div class="col-span-2">
+  <div class="col-span-2" *ngIf="!loading">
     <div class="mb-4">
       <card>
         <div class="card-header">
@@ -443,6 +444,8 @@
             name="fileCapa"
             title="Selecione a capa"
             subtitle="800 x 540"
+            (changeImage)="dados.image = $event[0]"
+            [image]="dados.image"
           ></image-select>
         </div>
       </card>
@@ -459,6 +462,8 @@
             name="fileBanner"
             title="Selecione o banner"
             subtitle="770 x 470"
+            (changeImage)="dados.image_feed = $event[0]"
+            [image]="dados.image_feed"
           ></image-select>
         </div>
       </card>
@@ -471,6 +476,8 @@
         bindText="name"
         bindValue="id"
         name="publico"
+        (choose)="dados.public = $event"
+        [selected]="getPublicSelected()"
       ></card-choose>
     </div>
 
@@ -481,6 +488,8 @@
         bindText="name"
         bindValue="id"
         name="segment"
+        (choose)="dados.segments_participate = $event"
+        [selected]="getSegmentParticipateSelected()"
       ></card-choose>
     </div>
 
@@ -491,6 +500,8 @@
         bindText="name"
         bindValue="id"
         name="view_segments"
+        (choose)="dados.segments_view = $event"
+        [selected]="getSegmentViewSelected()"
       ></card-choose>
     </div>
 
@@ -501,6 +512,8 @@
         bindText="name"
         bindValue="id"
         name="cities"
+        (choose)="dados.cities = $event"
+        [selected]="getCities()"
       ></card-choose>
     </div>
   </div>

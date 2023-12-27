@@ -116,7 +116,17 @@ export class ToolsService {
   generateFormData(dados: any) {
     const formData = new FormData();
     for (let key of Object.keys(dados)) {
-      if (typeof dados[key] == 'object') {
+      if (!dados[key]) {
+        continue;
+      }
+
+      console.log('is array', key, Array.isArray(dados[key]));
+
+      if (Array.isArray(dados[key])) {
+        for (let value of dados[key]) {
+          formData.append(`${key}[]`, value);
+        }
+      } else if (typeof dados[key] == 'object') {
         formData.append(key, JSON.stringify(dados[key]));
       } else {
         formData.append(key, dados[key]);
