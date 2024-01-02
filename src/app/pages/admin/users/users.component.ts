@@ -34,7 +34,7 @@ export class UsersComponent {
   queryParamsObs!: Subscription;
   loading = false;
 
-  filters: any = { per_page: 50, page: 1 };
+  filters: any = { per_page: 50, page: 1, search: '' };
 
   tab: string = 'actives';
   constructor(
@@ -102,7 +102,9 @@ export class UsersComponent {
     });
 
     dialogRef.closed.subscribe((result) => {
-      console.log('The dialog was closed', result);
+      if (result) {
+        this.getList();
+      }
     });
     // this.service.update(`v1/users/${item.id}/update-status`, {
     //   approved_at,

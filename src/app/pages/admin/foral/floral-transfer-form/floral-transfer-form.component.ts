@@ -31,11 +31,11 @@ import { AlertDisplayComponent } from 'src/app/components/alert-display/alert-di
   styleUrls: ['./floral-transfer-form.component.scss'],
 })
 export class FloralTransferFormComponent extends AbstractForms {
-  dados: any = { amount: 0 };
+  dados: any = { amount: 0, movement: 'input', to: 'to_user' };
   userCurrent: any = {};
   modo = 'user';
   constructor(service: ApiService, public tools: ToolsService) {
-    service.path = 'v1/admin/floral';
+    service.path = 'v1/floral';
     super(service);
   }
 
@@ -43,18 +43,25 @@ export class FloralTransferFormComponent extends AbstractForms {
     this.userCurrent = await this.tools.getCurrentUser();
     if (this.tools.checkRouteContainsAdmin()) {
       this.modo = 'admin';
+    } else {
+      this.dados.from_user_id = this.userCurrent.id;
     }
   }
 
   override submit(): void {
-    // if (this.dados.id) {
-    //   this.update(this.dados, this.dados.id);
-    // } else {
-    //   this.create(this.dados);
-    // }
+    if (this.dados.id) {
+      this.update(this.dados, this.dados.id);
+    } else {
+      this.create(this.dados);
+    }
   }
   override finish(result: any): void {
-    // throw new Error('Method not implemented.');
-    // this.getDados(result.id);
+    this.tools.route.navigate(['/admin/floral/transfer-auth'], {
+      queryParams: { tab: 'authorize' },
+    });
+  }
+
+  changeTo(to: string) {
+    this.dados = { amount: 0, movement: 'input', to };
   }
 }

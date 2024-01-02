@@ -29,19 +29,20 @@ import { NgxCurrencyDirective } from 'ngx-currency';
 export class FloralDepositComponent extends AbstractForms {
   dados: any = { amount: 0 };
   constructor(service: ApiService, public tools: ToolsService) {
-    service.path = 'v1/admin/floral';
+    service.path = 'v1/floral';
     super(service);
   }
 
   override submit(): void {
-    // if (this.dados.id) {
-    //   this.update(this.dados, this.dados.id);
-    // } else {
-    //   this.create(this.dados);
-    // }
+    if (this.dados.id) {
+      this.update(this.dados, this.dados.id);
+    } else {
+      this.create(this.dados);
+    }
   }
   override finish(result: any): void {
-    // throw new Error('Method not implemented.');
-    // this.getDados(result.id);
+    this.tools.route.navigate(['/admin/floral'], {
+      queryParams: { tab: 'pending' },
+    });
   }
 }

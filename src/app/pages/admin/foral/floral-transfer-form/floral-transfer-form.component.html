@@ -15,6 +15,37 @@
   </div>
 
   <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <ul
+      class="flex flex-wrap gap-3 text-sm font-medium text-center px-4 mb-3"
+      *ngIf="modo == 'admin'"
+    >
+      <li>
+        <button
+          class="px-4 py-2 text-cb-base rounded-md"
+          type="button"
+          [ngClass]="{
+            'bg-gradient-cb font-semibold': dados.to == 'to_cashier'
+          }"
+          (click)="changeTo('to_cashier')"
+        >
+          Para caixa
+        </button>
+      </li>
+
+      <li>
+        <button
+          class="px-4 py-2 text-cb-base rounded-md"
+          type="button"
+          [ngClass]="{
+            'bg-gradient-cb font-semibold': dados.to == 'to_user'
+          }"
+          (click)="changeTo('to_user')"
+        >
+          Para usuário
+        </button>
+      </li>
+    </ul>
+
     <div class="px-4">
       <div class="grid grid-cols-2 gap-3" *ngIf="modo == 'admin'">
         <div class="mb-4">
@@ -23,21 +54,34 @@
             inputPlaceholder="Informe o caixa de origem"
             bindText="name"
             bindValue="id"
-            [(ngModel)]="dados.cashier_from"
-            name="cashier_from"
+            [(ngModel)]="dados.from_cashier_id"
+            name="from_cashier_id"
             [required]="true"
             [form]="form"
           ></select-default>
         </div>
 
-        <div class="mb-4">
+        <div class="mb-4" *ngIf="dados.to == 'to_cashier'">
           <select-default
             endpoint="v1/admin/cashiers?status=active"
             inputPlaceholder="Informe o caixa de destino"
             bindText="name"
             bindValue="id"
-            [(ngModel)]="dados.cashier_to"
-            name="cashier_to"
+            [(ngModel)]="dados.to_cashier_id"
+            name="to_cashier_id"
+            [required]="true"
+            [form]="form"
+          ></select-default>
+        </div>
+
+        <div class="mb-4" *ngIf="dados.to == 'to_user'">
+          <select-default
+            endpoint="v1/users?status=active"
+            inputPlaceholder="Informe o usuário de destino"
+            bindText="name"
+            bindValue="id"
+            [(ngModel)]="dados.to_user_id"
+            name="to_user_id"
             [required]="true"
             [form]="form"
           ></select-default>
@@ -46,12 +90,12 @@
 
       <div class="mb-4" *ngIf="modo == 'user'">
         <select-default
-          endpoint="v1/admin/cashiers?status=active"
+          endpoint="v1/users?status=active"
           inputPlaceholder="Informe o Usuário"
           bindText="name"
           bindValue="id"
-          [(ngModel)]="dados.user_id"
-          name="user_id"
+          [(ngModel)]="dados.to_user_id"
+          name="to_user_id"
           [required]="true"
           [form]="form"
         ></select-default>
@@ -90,8 +134,8 @@
         <textarea
           class="input-cb"
           rows="5"
-          name="description"
-          [(ngModel)]="dados.description"
+          name="observation"
+          [(ngModel)]="dados.observation"
           placeholder="Escreva uma observação"
           [required]="true"
         ></textarea>

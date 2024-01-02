@@ -13,6 +13,7 @@
                 name="fileCapa"
                 title="Selecione uma foto ou video."
                 subtitle="922 x 560"
+                (changeImage)="chooseImage($event)"
               ></image-select>
             </div>
 
@@ -94,12 +95,13 @@
         endpoint="v1/persons-type"
         bindText="name"
         bindValue="id"
+        (choose)="dados.types = $event"
       />
     </div>
 
     <div class="mb-2">
       <card-choose
-        inputPlaceholder="Segmento"
+        inputPlaceholder="Segmentos"
         endpoint="v1/segments"
         bindText="name"
         bindValue="id"

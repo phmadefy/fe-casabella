@@ -33,13 +33,13 @@
 </div>
 
 <div
-  class="rounded-md border border-cb-secondary flex justify-between text-cb-base"
+  class="rounded-md border border-cb-secondary flex justify-between text-cb-base mb-3"
+  *ngFor="let item of dataSource.data"
 >
   <div
     class="py-2 px-4 flex flex-col justify-center border-r border-cb-secondary text-2xl text-cb-success font-bold w-1/6"
   >
-    <!-- <img src="assets/nft1.jpg" alt="nft" class="h-24 w-32 object-cover" /> -->
-    F$ 371,00
+    {{ item?.amount | currency : "F$ " }}
   </div>
 
   <div

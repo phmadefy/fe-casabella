@@ -49,9 +49,24 @@
 </div>
 
 <div class="grid md:grid-cols-3 gap-3" *ngIf="tab != 'galeria'">
-  <card [loading]="loading">
-    <!-- *ngFor="let item of dataSource.data" -->
-    <card-image></card-image>
+  <card [loading]="loading" *ngFor="let item of dataSource.data">
+    <div class="p-2">
+      <card-image [image]=""></card-image>
+    </div>
+    <div class="p-2 flex items-center gap-2">
+      <button
+        class="btn btn-sm bg-cb-primary text-white rounded-md w-2/3"
+        [disabled]="loading"
+      >
+        Conferir detalhes
+      </button>
+      <button
+        class="btn btn-sm bg-cb-primary text-white rounded-md w-1/3"
+        [disabled]="loading"
+      >
+        Ranking
+      </button>
+    </div>
   </card>
 </div>
 

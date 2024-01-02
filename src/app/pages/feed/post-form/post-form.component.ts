@@ -72,4 +72,11 @@ export class PostFormComponent extends AbstractForms {
     // throw new Error('Method not implemented.');
     this.getDados(result.id);
   }
+
+  chooseImage(event: FileList | File[]) {
+    console.log('chooseImage', event);
+    if (event.length > 0) {
+      this.dados.attachment = event[0];
+    }
+  }
 }

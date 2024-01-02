@@ -291,6 +291,7 @@ export class HeaderComponent {
               id: 'admin-floral-transfer-auth',
               title: 'Autorizar Tranferência de Floral',
               route: '/transfer-auth',
+              queryParams: { tab: 'authorize' },
             },
           ],
         },

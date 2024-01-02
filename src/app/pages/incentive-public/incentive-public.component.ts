@@ -40,7 +40,7 @@ export class IncentivePublicComponent {
     private service: ApiService,
     public tools: ToolsService // private dialog: Dialog
   ) {
-    service.path = 'v1/admin/nfts/audit/all';
+    service.path = 'v1/incentives';
   }
 
   ngOnInit(): void {
