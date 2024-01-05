@@ -31,7 +31,7 @@ import { AlertDisplayComponent } from 'src/app/components/alert-display/alert-di
   styleUrls: ['./floral-transfer-form.component.scss'],
 })
 export class FloralTransferFormComponent extends AbstractForms {
-  dados: any = { amount: 0, movement: 'input', to: 'to_user' };
+  dados: any = { amount: 0, to: 'to_user' };
   userCurrent: any = {};
   modo = 'user';
   constructor(service: ApiService, public tools: ToolsService) {
@@ -62,6 +62,6 @@ export class FloralTransferFormComponent extends AbstractForms {
   }
 
   changeTo(to: string) {
-    this.dados = { amount: 0, movement: 'input', to };
+    this.dados = { amount: 0, to };
   }
 }

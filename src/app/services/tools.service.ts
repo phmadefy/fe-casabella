@@ -126,6 +126,8 @@ export class ToolsService {
         for (let value of dados[key]) {
           formData.append(`${key}[]`, value);
         }
+      } else if (dados[key] instanceof Blob) {
+        formData.append(key, dados[key]);
       } else if (typeof dados[key] == 'object') {
         formData.append(key, JSON.stringify(dados[key]));
       } else {

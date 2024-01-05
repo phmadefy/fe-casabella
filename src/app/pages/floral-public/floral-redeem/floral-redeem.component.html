@@ -13,8 +13,10 @@
     <li>
       <button
         class="px-4 py-2 text-cb-base rounded-md"
-        [ngClass]="{ 'bg-gradient-cb font-semibold': dados.mode == 'products' }"
-        (click)="dados.mode = 'products'"
+        [ngClass]="{
+          'bg-gradient-cb font-semibold': dados.rescue_type == 'products'
+        }"
+        (click)="dados.rescue_type = 'products'"
       >
         Em produtos
       </button>
@@ -23,8 +25,10 @@
     <li>
       <button
         class="px-4 py-2 text-cb-base rounded-md"
-        [ngClass]="{ 'bg-gradient-cb font-semibold': dados.mode == 'money' }"
-        (click)="dados.mode = 'money'"
+        [ngClass]="{
+          'bg-gradient-cb font-semibold': dados.rescue_type == 'money'
+        }"
+        (click)="dados.rescue_type = 'money'"
       >
         Em dinheiro
       </button>

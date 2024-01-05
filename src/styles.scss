@@ -402,3 +402,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .clear-fix {
   @apply p-0 bg-transparent border-none;
 }
+
+.radio-default {
+  @apply w-4 h-4 text-cb-info bg-gray-100 border-gray-300 focus:ring-cb-info  focus:ring-2;
+}

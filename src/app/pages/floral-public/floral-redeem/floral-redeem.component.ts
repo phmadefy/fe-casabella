@@ -29,7 +29,7 @@ import { AbstractForms } from 'src/app/shared/abstract-form';
   styleUrls: ['./floral-redeem.component.scss'],
 })
 export class FloralRedeemComponent extends AbstractForms {
-  dados: any = { mode: 'products' };
+  dados: any = { rescue_type: 'products', amount: 0 };
   types = [
     { id: 'definitiva', description: 'Definitiva' },
     { id: 'temporaria', description: 'Temporária' },
@@ -38,7 +38,7 @@ export class FloralRedeemComponent extends AbstractForms {
   userCurrent: any = {};
   modo = 'user';
   constructor(service: ApiService, public tools: ToolsService) {
-    service.path = 'v1/admin/nfts';
+    service.path = 'v1/rescue-florals';
     super(service);
   }
 
@@ -50,14 +50,15 @@ export class FloralRedeemComponent extends AbstractForms {
   }
 
   override submit(): void {
-    // if (this.dados.id) {
-    //   this.update(this.dados, this.dados.id);
-    // } else {
-    //   this.create(this.dados);
-    // }
+    if (this.dados.id) {
+      this.update(this.dados, this.dados.id);
+    } else {
+      this.create(this.dados);
+    }
   }
   override finish(result: any): void {
     // throw new Error('Method not implemented.');
     // this.getDados(result.id);
+    this.tools.route.navigate(['/floral'], { queryParams: { tab: 'my' } });
   }
 }

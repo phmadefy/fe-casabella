@@ -13,6 +13,7 @@ import { CardChooseComponent } from 'src/app/components/card-choose/card-choose.
 import { ApiService } from 'src/app/services/api.service';
 import { AbstractForms } from 'src/app/shared/abstract-form';
 import { ToolsService } from 'src/app/services/tools.service';
+import { RadioButtonComponent } from 'src/app/components/radio-button/radio-button.component';
 
 @Component({
   selector: 'app-post-form',
@@ -29,6 +30,7 @@ import { ToolsService } from 'src/app/services/tools.service';
     ImageSelectComponent,
     CheckboxComponent,
     CardChooseComponent,
+    RadioButtonComponent,
   ],
   providers: [ApiService],
   templateUrl: './post-form.component.html',
@@ -40,13 +42,13 @@ export class PostFormComponent extends AbstractForms {
   dados: any = { active: true, balance: 0 };
 
   constructor(service: ApiService, public tools: ToolsService) {
-    service.path = 'v1/admin/nfts';
+    service.path = 'v1/posts';
     super(service);
   }
 
   ngOnInit(): void {
-    if (history.state?.nft_id) {
-      this.getDados(history.state?.nft_id);
+    if (history.state?.post_id) {
+      this.getDados(history.state?.post_id);
     }
   }
 
@@ -55,22 +57,22 @@ export class PostFormComponent extends AbstractForms {
     this.service
       .listing({ id })
       .then((res) => {
-        console.log('res', res);
         this.dados = res;
       })
       .finally(() => (this.loading = false));
   }
 
   override submit(): void {
-    // if (this.dados.id) {
-    //   this.update(this.dados, this.dados.id);
-    // } else {
-    //   this.create(this.dados);
-    // }
+    const formData = this.tools.generateFormData(this.dados);
+
+    if (this.dados.id) {
+      this.update(formData, this.dados.id);
+    } else {
+      this.create(formData);
+    }
   }
   override finish(result: any): void {
-    // throw new Error('Method not implemented.');
-    this.getDados(result.id);
+    this.tools.route.navigate(['/feed']);
   }
 
   chooseImage(event: FileList | File[]) {

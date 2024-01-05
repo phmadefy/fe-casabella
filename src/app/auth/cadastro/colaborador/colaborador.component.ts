@@ -91,8 +91,9 @@ export class ColaboradorComponent {
   }
 
   async changeAvatar(event: any) {
-    this.dados.avatar = await this.tools.toBase64(event.target.files[0]);
-    console.log('changeAvatar', this.dados);
+    // this.dados.avatar = await this.tools.toBase64(event.target.files[0]);
+    this.dados.avatar = event.target.files[0];
+    // console.log('changeAvatar', this.dados);
   }
 
   finish(): void {

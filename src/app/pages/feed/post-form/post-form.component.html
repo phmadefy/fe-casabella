@@ -40,9 +40,8 @@
                   bindText="name"
                   bindValue="id"
                   endpoint="v1/incentives"
-                  name="incentives"
-                  [(ngModel)]="dados.incentives"
-                  [required]="true"
+                  name="incentive_id"
+                  [(ngModel)]="dados.incentive_id"
                   [form]="form"
                 />
               </div>
@@ -59,9 +58,8 @@
                   bindText="name"
                   bindValue="id"
                   endpoint="v1/incentives-gallery"
-                  name="gallery"
-                  [(ngModel)]="dados.gallery"
-                  [required]="true"
+                  name="incentive_gallery_id"
+                  [(ngModel)]="dados.incentive_gallery_id"
                   [form]="form"
                 />
               </div>
@@ -95,7 +93,7 @@
         endpoint="v1/persons-type"
         bindText="name"
         bindValue="id"
-        (choose)="dados.types = $event"
+        (choose)="dados.public = $event"
       />
     </div>
 
@@ -105,7 +103,24 @@
         endpoint="v1/segments"
         bindText="name"
         bindValue="id"
+        (choose)="dados.segments = $event"
       />
+    </div>
+
+    <div class="mb-2">
+      <card [loading]="loading">
+        <div class="card-header">
+          <h2 class="font-semibold text-cb-secondary">Operações</h2>
+        </div>
+
+        <div class="px-4 pb-4">
+          <radio-button
+            controlName="allow_coments"
+            name="allow_coments"
+            [(ngModel)]="dados.allow_coments"
+          />
+        </div>
+      </card>
     </div>
   </div>
 </div>

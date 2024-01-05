@@ -1,0 +1,46 @@
+<div
+  class="flex flex-col justify-center mb-2"
+  [ngClass]="{ 'is-invalid': !tools.validateInputForm(form, controlName) }"
+>
+  <div *ngFor="let item of options; let i = index">
+    <input
+      [id]="controlName + i"
+      [name]="controlName"
+      [disabled]="disabled"
+      [(ngModel)]="value"
+      (ngModelChange)="choose.emit(value)"
+      [required]="required"
+      type="radio"
+      class="radio-default"
+      [value]="item.value"
+    />
+    <label
+      [attr.for]="controlName + i"
+      class="ml-2 text-sm font-medium"
+      *ngIf="item.description"
+    >
+      {{ item.description }}
+    </label>
+  </div>
+
+  <!-- <ng-container *ngIf="options.length <= 0">
+    <input
+      [id]="controlName"
+      [name]="controlName"
+      [disabled]="disabled"
+      [(ngModel)]="value"
+      (ngModelChange)="choose.emit(value)"
+      [required]="required"
+      type="radio"
+      class="radio-default"
+      [value]="value"
+    />
+    <label
+      [attr.for]="controlName"
+      class="ml-2 text-sm font-medium"
+      *ngIf="label"
+    >
+      {{ label }}
+    </label>
+  </ng-container> -->
+</div>
