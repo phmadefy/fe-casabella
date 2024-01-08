@@ -7,7 +7,7 @@
     <div class="px-4">
       <div class="mb-4">
         <select-default
-          endpoint="v1/user?status=active"
+          endpoint="v1/users?status=active"
           inputPlaceholder="Informe o usuário"
           bindText="name"
           bindValue="id"
@@ -23,7 +23,7 @@
           class="p-0 bg-transparent border-none"
           model="type"
           name="type"
-          [(ngModel)]="dados.type"
+          [(ngModel)]="dados.type_return"
           type="select"
           required
           [form]="form"
@@ -34,7 +34,10 @@
           bindValue="id"
         ></combobox>
 
-        <app-nft-choose *ngIf="dados.type === 'specific'"></app-nft-choose>
+        <app-nft-choose
+          *ngIf="dados.type_return === 'one'"
+          (chooseNFT)="dados.nft_id = $event.id"
+        ></app-nft-choose>
       </div>
     </div>
 
@@ -68,17 +71,17 @@
       <button-cb
         type="submit"
         classes="btn-sm btn-md w-full rounded-md bg-gradient-cb font-semibold"
-        label="Adicionar NFT"
+        label="Devolver"
         [loading]="loading"
       ></button-cb>
 
-      <!-- <button-cb
+      <button-cb
         classes="btn-sm btn-md w-full text-white rounded-md"
         routerLink="/admin/nfts"
         [queryParams]="{ tab: 'all' }"
         label="Cancelar"
         [loading]="loading"
-      ></button-cb> -->
+      ></button-cb>
     </div>
   </form>
 </card>

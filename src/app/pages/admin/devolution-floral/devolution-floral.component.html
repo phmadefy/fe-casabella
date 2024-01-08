@@ -7,14 +7,15 @@
     <div class="px-4">
       <div class="mb-4">
         <select-default
-          endpoint="v1/user?status=active"
+          endpoint="v1/users?status=active"
           inputPlaceholder="Informe o usuário"
           bindText="name"
           bindValue="id"
-          [(ngModel)]="dados.user_id"
-          name="user_id"
+          [(ngModel)]="dados.from_user_id"
+          name="from_user_id"
           [required]="true"
           [form]="form"
+          (selectItem)="setUser($event)"
         ></select-default>
       </div>
 
@@ -22,7 +23,7 @@
         <div>
           <span class="text-cb-info">Saldo do Usuário</span>
           <h2 class="text-cb-base text-lg font-semibold">
-            F$ {{ "11124,1216" }}
+            {{ user?.floral_amount | currency : "BRL" : "F$" : "1.4-4" }}
           </h2>
         </div>
 

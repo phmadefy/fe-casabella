@@ -372,7 +372,7 @@
           />
           <select-default
             endpoint="v1/terms"
-            inputPlaceholder="Selecione um álbum"
+            inputPlaceholder="Selecione um Termo"
             bindText="name"
             bindValue="id"
             [(ngModel)]="dados.term_id"
@@ -445,8 +445,8 @@
             title="Selecione a capa"
             subtitle="800 x 540"
             (changeImage)="dados.image = $event[0]"
-            [image]="dados.image"
           ></image-select>
+          <!-- [image]="dados.image" -->
         </div>
       </card>
     </div>
@@ -463,8 +463,8 @@
             title="Selecione o banner"
             subtitle="770 x 470"
             (changeImage)="dados.image_feed = $event[0]"
-            [image]="dados.image_feed"
           ></image-select>
+          <!-- [image]="dados.image_feed" -->
         </div>
       </card>
     </div>

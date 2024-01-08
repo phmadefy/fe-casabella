@@ -1,0 +1,36 @@
+<modal title="Adicionar Tipos" [dialogRef]="dialogRef">
+  <form #form="ngForm">
+    <div class="p-4 border-b border-cb-secondary">
+      <input-floating
+        class="p-0 bg-transparent border-none"
+        label="Tipo:"
+        model="name"
+        name="name"
+        [(ngModel)]="dados.name"
+        type="text"
+        required
+        [form]="form"
+        size="md"
+      />
+    </div>
+  </form>
+
+  <div class="card-footer flex items-center justify-between gap-3">
+    <button-cb
+      class="w-full"
+      classes="btn-sm text-white bg-gradient-cb rounded-md font-semibold w-full"
+      [loading]="loading"
+      label="Cadastrar"
+      type="button"
+      (onClick)="submit(form)"
+    />
+
+    <button
+      class="btn btn-sm text-white rounded-md w-full"
+      [disabled]="loading"
+      (click)="dialogRef.close()"
+    >
+      Cancelar
+    </button>
+  </div>
+</modal>

@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
 import { InputSearchComponent } from 'src/app/components/input-search/input-search.component';
 import { PaginationComponent } from 'src/app/components/pagination/pagination.component';
+import { ModalFloralRescueApproveRefuseComponent } from 'src/app/shared/modal-floral-rescue-approve-refuse/modal-floral-rescue-approve-refuse.component';
 
 @Component({
   selector: 'app-foral',
@@ -34,7 +35,7 @@ export class ForalComponent {
   queryParamsObs!: Subscription;
   loading = false;
 
-  filters: any = { per_page: 50, page: 1 };
+  filters: any = { per_page: 50, page: 1, rescues: true };
 
   tab: string = 'actives';
   constructor(
@@ -43,7 +44,7 @@ export class ForalComponent {
     public tools: ToolsService,
     private dialog: Dialog
   ) {
-    service.path = 'v1/users';
+    service.path = 'v1/floral';
   }
 
   ngOnInit(): void {
@@ -56,7 +57,7 @@ export class ForalComponent {
       }
     });
 
-    this.getList();
+    // this.getList();
   }
 
   ngOnDestroy(): void {
@@ -87,22 +88,19 @@ export class ForalComponent {
     });
   }
 
-  approve(item: any, approved_at = true) {
-    // const dialogRef = this.dialog.open<any>(ModalApproveComponent, {
-    //   width: '95%',
-    //   maxWidth: '500px',
-    //   maxHeight: '90%',
-    //   data: {
-    //     item,
-    //     approved_at,
-    //     title: approved_at
-    //       ? 'Aprovar cadastro de usuário'
-    //       : 'Reprovar cadastro de usuário',
-    //   },
-    // });
-    // dialogRef.closed.subscribe((result) => {
-    //   console.log('The dialog was closed', result);
-    // });
+  openModalApproveRefuse(item: any, mode: string) {
+    this.dialog
+      .open<any>(ModalFloralRescueApproveRefuseComponent, {
+        width: '95%',
+        maxWidth: '500px',
+        maxHeight: '90%',
+        data: { item, mode },
+      })
+      .closed.subscribe((res) => {
+        if (res) {
+          this.getList();
+        }
+      });
   }
 
   changePagination(page: number, per_page: number) {

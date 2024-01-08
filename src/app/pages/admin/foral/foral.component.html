@@ -45,12 +45,13 @@
   <card>
     <div
       class="rounded-md border border-cb-secondary flex justify-between text-cb-base"
+      *ngFor="let item of dataSource.data"
     >
       <div
         class="py-2 px-3 flex flex-col justify-center border-r border-cb-secondary text-2xl text-cb-success font-bold w-1/6"
       >
         <!-- <img src="assets/nft1.jpg" alt="nft" class="h-24 w-32 object-cover" /> -->
-        F$ 371,00
+        {{ item.amount | currency : "BRL" : "F$" : "1.4-4" }}
       </div>
 
       <div
@@ -77,8 +78,16 @@
       >
         <div>
           <p>Solicitante:</p>
-          <p><span class="text-cb-info text-sm">Usuário da Silva</span></p>
-          <p><span class="text-gray-500 text-sm">@usuário</span></p>
+          <p>
+            <span class="text-cb-info text-sm">
+              {{ item?.user?.name }}
+            </span>
+          </p>
+          <p>
+            <span class="text-gray-500 text-sm">
+              {{ item?.user?.nickname }}
+            </span>
+          </p>
         </div>
       </div>
 
@@ -88,7 +97,11 @@
       >
         <div>
           <p>Data:</p>
-          <p><span class="text-cb-info text-sm">12/10/2022</span></p>
+          <p>
+            <span class="text-cb-info text-sm">
+              {{ item.created_at | date : "dd/MM/yyyy" }}
+            </span>
+          </p>
         </div>
       </div>
 
@@ -107,8 +120,16 @@
       >
         <div>
           <p>Aprovado por:</p>
-          <p><span class="text-cb-info text-sm">Fulano de tal</span></p>
-          <p><span class="text-gray-500 text-sm">20/01/2023</span></p>
+          <p>
+            <span class="text-cb-info text-sm">
+              {{ item?.approved?.nickname }}
+            </span>
+          </p>
+          <p>
+            <span class="text-gray-500 text-sm">
+              {{ item?.approved_at | date : "dd/MM/yyyy" }}
+            </span>
+          </p>
         </div>
       </div>
 
@@ -116,8 +137,16 @@
         <div class="py-2 px-3 flex flex-col justify-center w-1/6">
           <div>
             <p>Rejeitado por:</p>
-            <p><span class="text-cb-info text-sm">Fulano de tal</span></p>
-            <p><span class="text-gray-500 text-sm">20/01/2023</span></p>
+            <p>
+              <span class="text-cb-info text-sm">
+                {{ item?.transaction?.user_rejected?.nickname }}
+              </span>
+            </p>
+            <p>
+              <span class="text-gray-500 text-sm">
+                {{ item?.transaction?.rejected_at | date : "dd/MM/yyyy" }}
+              </span>
+            </p>
           </div>
         </div>
 
@@ -126,9 +155,9 @@
         >
           <div>
             <p>Motivo:</p>
-            <span class="text-cb-info text-sm"
-              >Descrição da mensagem do us...</span
-            >
+            <span class="text-cb-info text-sm">
+              {{ item?.transaction?.observation }}
+            </span>
           </div>
         </div>
       </ng-container>
@@ -138,12 +167,14 @@
           <div class="flex gap-2">
             <button
               class="btn-sm btn-md w-full rounded-md bg-gradient-cb font-semibold"
+              (click)="openModalApproveRefuse(item, 'approve')"
             >
               Aprovar
             </button>
 
             <button
               class="btn-sm btn-md w-full text-white rounded-md border border-cb-secondary"
+              (click)="openModalApproveRefuse(item, 'refuse')"
             >
               Rejeitar
             </button>

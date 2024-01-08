@@ -144,6 +144,7 @@
   <div class="col-span-2">
     <div class="mb-4">
       <card-choose
+        #inputChooseClassifications
         inputPlaceholder="Classificação"
         endpoint="v1/admin/nft-classification"
         bindText="name"
@@ -153,7 +154,7 @@
         (chooseOptions)="dados.subclassifications = $event"
         [showBtn]="true"
         labelBtn="Nova Classificação"
-        (onClick)="openModalClassification()"
+        (onClick)="openModalClassification(inputChooseClassifications)"
         bindItemsProp="subclassifications"
         [chooseOptionsModalConfig]="chooseOptionsModalConfigClassifications"
         filterBindKey="classificationId"
@@ -165,6 +166,7 @@
 
     <div class="mb-4">
       <card-choose
+        #inputChooseType
         inputPlaceholder="Tipo"
         endpoint="v1/admin/nft-type"
         bindText="name"
@@ -173,7 +175,7 @@
         (choose)="dados.types = $event"
         [showBtn]="true"
         labelBtn="Novo Tipo"
-        (onClick)="openModalType()"
+        (onClick)="openModalType(inputChooseType)"
       ></card-choose>
     </div>
   </div>

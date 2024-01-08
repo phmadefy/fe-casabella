@@ -1,0 +1,76 @@
+<modal title="Adicionar Classificação" [dialogRef]="dialogRef">
+  <form #form="ngForm">
+    <div class="p-4 border-b border-cb-secondary">
+      <input-floating
+        class="p-0 bg-transparent border-none"
+        label="Classificação"
+        model="name"
+        name="name"
+        [(ngModel)]="dados.name"
+        type="text"
+        required
+        [form]="form"
+        size="md"
+      />
+    </div>
+  </form>
+
+  <div>
+    <form
+      #formClass="ngForm"
+      (ngSubmit)="addSub(formClass)"
+      class="flex items-center gap-2 w-full p-4"
+    >
+      <input
+        type="text"
+        name="name"
+        ngModel
+        class="block p-2.5 w-full z-20 text-sm rounded-lg bg-cb-primary border-l-cb-secondary border border-cb-secondary focus:border-cb-info"
+        placeholder="Adicionar Sub-classificação..."
+      />
+      <button
+        type="submit"
+        class="p-2.5 w-[42px] text-sm flex items-center justify-center font-medium h-full text-cb-primary bg-cb-info rounded-lg border border-cb-secondary focus:outline-none"
+      >
+        <i class="fa-solid fa-plus flex items-center"></i>
+      </button>
+    </form>
+
+    <div
+      class="my-2 px-4 flex items-center justify-between border-t border-b border-cb-secondary"
+      *ngFor="let item of dados.subclassifications; let i = index"
+    >
+      <div>
+        <h2 class="">{{ item.name }}</h2>
+      </div>
+      <div class="flex justify-end items-center gap-4">
+        <button
+          class="dropdown-cb-item btn-xs"
+          cdkMenuItem
+          (click)="removeSub(i)"
+        >
+          <i class="fa-solid fa-trash-can btn-xs"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-footer flex items-center justify-between gap-3">
+    <button-cb
+      class="w-full"
+      classes="btn-sm text-white bg-gradient-cb rounded-md font-semibold w-full"
+      [loading]="loading"
+      label="Cadastrar"
+      type="button"
+      (onClick)="submit(form)"
+    />
+
+    <button
+      class="btn btn-sm text-white rounded-md w-full"
+      [disabled]="loading"
+      (click)="dialogRef.close()"
+    >
+      Cancelar
+    </button>
+  </div>
+</modal>

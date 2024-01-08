@@ -14,6 +14,9 @@ import { ImageSelectComponent } from 'src/app/components/image-select/image-sele
 import { CheckboxComponent } from 'src/app/components/checkbox/checkbox.component';
 import { CardChooseComponent } from 'src/app/components/card-choose/card-choose.component';
 import { ChooseOptionsModalConfig } from 'src/app/shared/properties';
+import { ModalClassificationNftFormComponent } from 'src/app/shared/modal-classification-nft-form/modal-classification-nft-form.component';
+import { Dialog } from '@angular/cdk/dialog';
+import { ModalTypeNftFormComponent } from 'src/app/shared/modal-type-nft-form/modal-type-nft-form.component';
 
 @Component({
   selector: 'app-nft-form',
@@ -47,7 +50,11 @@ export class NftFormComponent extends AbstractForms {
     endpoint: 'v1/admin/nft-classification/sub-classification',
   };
 
-  constructor(service: ApiService, public tools: ToolsService) {
+  constructor(
+    service: ApiService,
+    public tools: ToolsService,
+    private dialog: Dialog
+  ) {
     service.path = 'v1/admin/nfts';
     super(service);
   }
@@ -89,7 +96,8 @@ export class NftFormComponent extends AbstractForms {
   }
   override finish(result: any): void {
     // throw new Error('Method not implemented.');
-    this.getDados(result.id);
+    // this.getDados(result.id);
+    this.tools.route.navigate(['/admin/nfts'], { queryParams: { tab: 'all' } });
   }
 
   chooseClassifications(event: any[]) {
@@ -106,7 +114,31 @@ export class NftFormComponent extends AbstractForms {
     }
   }
 
-  openModalClassification() {}
+  openModalClassification(element: any) {
+    this.dialog
+      .open<any>(ModalClassificationNftFormComponent, {
+        width: '95%',
+        maxWidth: '550px',
+        // height: '90%',
+      })
+      .closed.subscribe((res) => {
+        if (res) {
+          element.getList();
+        }
+      });
+  }
 
-  openModalType() {}
+  openModalType(element: any) {
+    this.dialog
+      .open<any>(ModalTypeNftFormComponent, {
+        width: '95%',
+        maxWidth: '400px',
+        // height: '90%',
+      })
+      .closed.subscribe((res) => {
+        if (res) {
+          element.getList();
+        }
+      });
+  }
 }

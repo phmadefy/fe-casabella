@@ -54,54 +54,56 @@
   </div>
 </card>
 
-<div
-  *ngIf="tab == 'pending'"
-  class="rounded-md border border-cb-secondary flex justify-between text-cb-base"
->
+<ng-container *ngIf="tab == 'pending'">
   <div
-    class="py-2 px-4 flex flex-col justify-center border-r border-cb-secondary text-2xl text-cb-success font-bold min-w-max"
+    class="rounded-md border border-cb-secondary flex justify-between text-cb-base"
+    *ngFor="let item of dataSource.data"
   >
-    F$ 520,0000
-  </div>
+    <div
+      class="py-2 px-4 flex flex-col justify-center border-r border-cb-secondary text-2xl text-cb-success font-bold min-w-max"
+    >
+      F$ 520,0000
+    </div>
 
-  <div class="p-4 flex flex-col justify-center border-r border-cb-secondary">
-    <p class="text-cb-success flex gap-2">
-      <i class="fa-solid fa-circle"></i>
-      <span class="">Recebido</span>
-    </p>
-  </div>
+    <div class="p-4 flex flex-col justify-center border-r border-cb-secondary">
+      <p class="text-cb-success flex gap-2">
+        <i class="fa-solid fa-circle"></i>
+        <span class="">Recebido</span>
+      </p>
+    </div>
 
-  <div
-    class="p-4 flex flex-col justify-center border-r border-cb-secondary w-full"
-  >
-    <div class="text-center">
-      <p>Recebido de:</p>
-      <p><span class="text-cb-info text-sm">@NomeDoUsuário</span></p>
+    <div
+      class="p-4 flex flex-col justify-center border-r border-cb-secondary w-full"
+    >
+      <div class="text-center">
+        <p>Recebido de:</p>
+        <p><span class="text-cb-info text-sm">@NomeDoUsuário</span></p>
+      </div>
+    </div>
+
+    <div class="p-4 flex flex-col justify-center text-center w-full">
+      <div>
+        <p>Data:</p>
+        <p><span class="text-cb-info text-sm">12/10/2023</span></p>
+      </div>
+    </div>
+
+    <div
+      class="p-4 flex flex-col justify-center border-l border-cb-secondary gap-2 w-full"
+    >
+      <div class="flex gap-2">
+        <button
+          class="btn-sm btn-md w-full rounded-md bg-gradient-cb font-semibold"
+        >
+          Aceitar
+        </button>
+
+        <button
+          class="btn-sm btn-md w-full text-white rounded-md border border-cb-secondary"
+        >
+          Rejeitar
+        </button>
+      </div>
     </div>
   </div>
-
-  <div class="p-4 flex flex-col justify-center text-center w-full">
-    <div>
-      <p>Data:</p>
-      <p><span class="text-cb-info text-sm">12/10/2023</span></p>
-    </div>
-  </div>
-
-  <div
-    class="p-4 flex flex-col justify-center border-l border-cb-secondary gap-2 w-full"
-  >
-    <div class="flex gap-2">
-      <button
-        class="btn-sm btn-md w-full rounded-md bg-gradient-cb font-semibold"
-      >
-        Aceitar
-      </button>
-
-      <button
-        class="btn-sm btn-md w-full text-white rounded-md border border-cb-secondary"
-      >
-        Rejeitar
-      </button>
-    </div>
-  </div>
-</div>
+</ng-container>

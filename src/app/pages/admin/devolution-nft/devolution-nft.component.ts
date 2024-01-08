@@ -36,10 +36,10 @@ export class DevolutionNftComponent extends AbstractForms {
   dados: any = {};
   types = [
     { id: 'all', description: 'Todos os NFTs' },
-    { id: 'specific', description: 'Especificar NFT' },
+    { id: 'one', description: 'Especificar NFT' },
   ];
   constructor(service: ApiService, public tools: ToolsService) {
-    service.path = 'v1/admin/nfts';
+    service.path = 'v1/admin/nfts/return';
     super(service);
   }
 
@@ -47,8 +47,8 @@ export class DevolutionNftComponent extends AbstractForms {
     // if (this.dados.id) {
     //   this.update(this.dados, this.dados.id);
     // } else {
-    //   this.create(this.dados);
     // }
+    this.create(this.dados);
   }
   override finish(result: any): void {
     // throw new Error('Method not implemented.');

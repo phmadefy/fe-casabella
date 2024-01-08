@@ -37,7 +37,7 @@ export class FloralPublicComponent {
     private service: ApiService,
     public tools: ToolsService // private dialog: Dialog
   ) {
-    service.path = 'v1/admin/nfts/audit/all';
+    service.path = 'v1/floral';
   }
 
   ngOnInit(): void {

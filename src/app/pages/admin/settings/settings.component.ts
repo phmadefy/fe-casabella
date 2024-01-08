@@ -27,8 +27,8 @@ import { AbstractForms } from 'src/app/shared/abstract-form';
 })
 export class SettingsComponent extends AbstractForms {
   dados: any = {};
-  formData = new FormData();
 
+  images: any = {};
   constructor(
     service: ApiService,
     private messageService: MessageService,
@@ -73,22 +73,27 @@ export class SettingsComponent extends AbstractForms {
 
   parseFiles(event: any[], model: string) {
     console.log('parseFiles', model, event);
-    if (this.formData.has(model)) {
-      this.formData.set(model, event[0]);
-    } else {
-      this.formData.append(model, event[0]);
-    }
+    this.images[model] = event[0];
+    console.log('images', this.images);
+
+    // if (this.formData.has(model)) {
+    //   this.formData.set(model, event[0]);
+    // } else {
+    //   this.formData.append(model, event[0]);
+    // }
   }
 
   submit(): void {
-    for (let key of Object.keys(this.dados)) {
-      if (key == 'ImagemOuVideoTelaLogin' || key == 'ImagemAnimadaMenu') {
-        continue;
-      }
-      this.formData.append(key, this.dados[key]);
-    }
+    // for (let key of Object.keys(this.dados)) {
+    //   if (key == 'ImagemOuVideoTelaLogin' || key == 'ImagemAnimadaMenu') {
+    //     continue;
+    //   }
+    //   this.formData.append(key, this.dados[key]);
+    // }
+    const formData = this.tools.generateFormData(this.dados);
 
-    this.save(this.formData);
+    // this.save(formData);
+    this.save(this.dados);
   }
   finish(result: any): void {}
 }

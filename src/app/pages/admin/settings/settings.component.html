@@ -13,7 +13,6 @@
           [(ngModel)]="dados.TaxaTransferenciaUsuarios"
           name="TaxaTransferenciaUsuarios"
           type="currency"
-          required
           [form]="form"
           [optionsCurrency]="{
             prefix: ' ',
@@ -30,7 +29,6 @@
           [(ngModel)]="dados.CotacaoFloral"
           name="CotacaoFloral"
           type="currency"
-          required
           [form]="form"
           [optionsCurrency]="{
             prefix: 'F$ ',
@@ -47,7 +45,6 @@
           [(ngModel)]="dados.TaxaDescontoCompraFloral"
           name="TaxaDescontoCompraFloral"
           type="currency"
-          required
           [form]="form"
           [optionsCurrency]="{
             prefix: ' ',
@@ -65,7 +62,6 @@
           [(ngModel)]="dados.CotacaoFloralColaborador"
           name="CotacaoFloralColaborador"
           type="currency"
-          required
           [form]="form"
           [optionsCurrency]="{
             prefix: 'R$ ',
@@ -82,7 +78,6 @@
           [(ngModel)]="dados.ValorizacaoFloralCicloAnterior"
           name="ValorizacaoFloralCicloAnterior"
           type="currency"
-          required
           [form]="form"
           [optionsCurrency]="{
             prefix: ' ',
@@ -104,7 +99,6 @@
           [(ngModel)]="dados.FraseExibidaMenu"
           name="FraseExibidaMenu"
           type="text"
-          required
           [form]="form"
         ></input-inline>
       </div>
@@ -113,10 +107,7 @@
         <div
           class="flex flex-row items-center gap-3"
           [ngClass]="{
-            'is-invalid': !tools.validateInputForm(
-              form,
-              'ImagemAnimadaMenu'
-            )
+            'is-invalid': !tools.validateInputForm(form, 'ImagemAnimadaMenu')
           }"
         >
           <label class="text-sm text-gray-300 px-2 w-1/2">
@@ -126,8 +117,6 @@
             class="w-full"
             controlName="ImagemAnimadaMenu"
             [form]="form"
-            [required]="true"
-            [(ngModel)]="dados.ImagemAnimadaMenu"
             (selectFile)="parseFiles($event, 'ImagemAnimadaMenu')"
             name="ImagemAnimadaMenu"
           ></input-file>
@@ -139,7 +128,6 @@
           [(ngModel)]="dados.ImagemAnimadaMenu"
           name="ImagemAnimadaMenu"
           type="text"
-          required
           [form]="form"
         ></input-inline> -->
       </div>
@@ -152,7 +140,6 @@
           [(ngModel)]="dados.LinkRedirecionamentoGif"
           name="LinkRedirecionamentoGif"
           type="text"
-          required
           [form]="form"
         ></input-inline>
       </div>
@@ -169,7 +156,6 @@
           [(ngModel)]="dados.FraseExibidaTelaLogin"
           name="FraseExibidaTelaLogin"
           type="text"
-          required
           [form]="form"
         ></input-inline>
       </div>
@@ -195,8 +181,6 @@
             class="w-full"
             controlName="ImagemOuVideoTelaLogin"
             [form]="form"
-            [required]="true"
-            [(ngModel)]="dados.ImagemOuVideoTelaLogin"
             (selectFile)="parseFiles($event, 'ImagemOuVideoTelaLogin')"
             name="ImagemOuVideoTelaLogin"
           ></input-file>
@@ -208,7 +192,6 @@
           [(ngModel)]="dados.ImagemOuVideoTelaLogin"
           name="ImagemOuVideoTelaLogin"
           type="text"
-          required
           [form]="form"
         ></input-inline> -->
       </div>
@@ -221,7 +204,6 @@
           [(ngModel)]="dados.LinkRedirecionamentoTelaLogin"
           name="LinkRedirecionamentoTelaLogin"
           type="text"
-          required
           [form]="form"
         ></input-inline>
       </div>
