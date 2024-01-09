@@ -26,9 +26,9 @@
       <button
         class="px-4 py-2 text-cb-base rounded-md"
         [ngClass]="{
-          'bg-gradient-cb font-semibold': dados.rescue_type == 'money'
+          'bg-gradient-cb font-semibold': dados.rescue_type == 'cash'
         }"
-        (click)="dados.rescue_type = 'money'"
+        (click)="dados.rescue_type = 'cash'"
       >
         Em dinheiro
       </button>
@@ -62,7 +62,8 @@
           </p>
         </div>
         <div class="w-1/2 text-3xl text-cb-success font-bold">
-          R$ 100,00 (em produtos)
+          R$ 100,00
+          <span *ngIf="dados.rescue_type == 'products'">(em produtos)</span>
         </div>
       </div>
 
@@ -70,8 +71,8 @@
         <textarea
           class="input-cb"
           rows="5"
-          name="description"
-          [(ngModel)]="dados.description"
+          name="observation"
+          [(ngModel)]="dados.observation"
           placeholder="Escreva uma observação"
           [required]="true"
         ></textarea>

@@ -50,7 +50,39 @@
 
 <card *ngIf="tab != 'pending'">
   <div class="md:px-10 px-5 p-5">
-    <app-timeline></app-timeline>
+    <app-timeline>
+      <li class="mb-10 ms-6" *ngFor="let item of extract.data">
+        <div class="absolute flex items-center justify-center -start-3">
+          <span class="w-6 h-6 bg-cb-info rounded-full"></span>
+        </div>
+        <h3 class="text-sm font-semibold">
+          {{ item?.transaction_date | date : "EE d, MMM y" }}
+        </h3>
+
+        <div
+          *ngFor="let row of item.list"
+          [ngClass]="{
+            'bg-gradient-item-positive': row?.movement == 'input',
+            'bg-gradient-item-negative': row?.movement == 'output'
+          }"
+          class="bg-gradient-item-positive flex items-center justify-between gap-2 p-2 my-1 rounded-md"
+        >
+          <span [innerHTML]="tools.getDescriptionTransaction(row)"></span>
+          <div class="flex items-center gap-2">
+            <i
+              class="fa-solid fa-plus"
+              [ngClass]="{
+                'text-cb-success': row?.movement == 'input',
+                'text-cb-red': row?.movement == 'output'
+              }"
+            ></i>
+            <span>
+              {{ row?.amount | currency : "BRL" : "F$" : "1.4-4" }}
+            </span>
+          </div>
+        </div>
+      </li>
+    </app-timeline>
   </div>
 </card>
 
@@ -62,7 +94,7 @@
     <div
       class="py-2 px-4 flex flex-col justify-center border-r border-cb-secondary text-2xl text-cb-success font-bold min-w-max"
     >
-      F$ 520,0000
+      {{ item?.amount | currency : "BRL" : "F$" : "1.4-4" }}
     </div>
 
     <div class="p-4 flex flex-col justify-center border-r border-cb-secondary">
@@ -77,14 +109,22 @@
     >
       <div class="text-center">
         <p>Recebido de:</p>
-        <p><span class="text-cb-info text-sm">@NomeDoUsuário</span></p>
+        <p>
+          <span class="text-cb-info text-sm">
+            {{ item?.transaction?.user_from?.nickname }}
+          </span>
+        </p>
       </div>
     </div>
 
     <div class="p-4 flex flex-col justify-center text-center w-full">
       <div>
         <p>Data:</p>
-        <p><span class="text-cb-info text-sm">12/10/2023</span></p>
+        <p>
+          <span class="text-cb-info text-sm">
+            {{ item?.created_at | date : "dd/MM/yyyy" }}
+          </span>
+        </p>
       </div>
     </div>
 
@@ -94,12 +134,14 @@
       <div class="flex gap-2">
         <button
           class="btn-sm btn-md w-full rounded-md bg-gradient-cb font-semibold"
+          (click)="openModalApproveRefuse(item, 'approve')"
         >
           Aceitar
         </button>
 
         <button
           class="btn-sm btn-md w-full text-white rounded-md border border-cb-secondary"
+          (click)="openModalApproveRefuse(item, 'refuse')"
         >
           Rejeitar
         </button>

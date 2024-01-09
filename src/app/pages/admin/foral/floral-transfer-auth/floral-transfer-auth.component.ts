@@ -59,9 +59,9 @@ export class FloralTransferAuthComponent {
   setTab(tab: string) {
     this.tab = tab;
     if (tab == 'authorize') {
-      this.filters.status = 'pending';
+      this.filters.authorized = true;
     } else if (tab == 'refused') {
-      this.filters.status = 'rejected';
+      this.filters.unauthorized = true;
     }
 
     this.getList();

@@ -137,4 +137,33 @@ export class ToolsService {
 
     return formData;
   }
+
+  getDescriptionTransaction(row: any) {
+    if (
+      !row?.transaction?.from_cashier_id &&
+      !row?.transaction?.from_user_id &&
+      !row?.transaction?.to_cashier_id &&
+      !row?.transaction?.to_user_id
+    ) {
+      return `Depósito ao caixa <b>${row?.cashier?.name}</b>`;
+    }
+
+    if (row?.transaction?.cashier_from && row?.transaction?.user_to) {
+      return `Transferência do caixa <b>${row?.transaction?.cashier_from?.name}</b> para <b>${row?.transaction?.user_to?.name}</b>`;
+    }
+
+    if (row?.transaction?.cashier_from && row?.transaction?.cashier_to) {
+      return `Transferência do caixa <b>${row?.transaction?.cashier_from?.name}</b> para o caixa <b>${row?.transaction?.cashier_to?.name}</b>`;
+    }
+
+    if (row?.transaction?.user_from && row?.transaction?.cashier_to) {
+      return `Transferência do usuário <b>${row?.transaction?.user_from?.name}</b> para o caixa <b>${row?.transaction?.cashier_to?.name}</b>`;
+    }
+
+    if (row?.transaction?.user_from && row?.transaction?.user_to) {
+      return `Transferência do usuário <b>${row?.transaction?.user_from?.name}</b> para o usuário <b>${row?.transaction?.user_to?.name}</b>`;
+    }
+
+    return '';
+  }
 }

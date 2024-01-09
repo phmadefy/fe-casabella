@@ -582,9 +582,12 @@ export class HeaderComponent {
 
   params: any = {};
 
+  userCurrent: any = {};
+
   constructor(public tools: ToolsService, private service: ApiService) {}
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.userCurrent = await this.tools.getCurrentUser();
     // this.service.getSettings().then((res) => {
     //   for (const item of res) {
     //     this.params[item.parameter] = item.value;

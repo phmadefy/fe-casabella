@@ -33,7 +33,8 @@ export class ModalFloralApproveRefuseComponent {
     if (this.data?.item) {
       this.mode = this.data?.mode;
       this.dados = this.data?.item;
-      this.service.path = `v1/floral/${this.dados.id}/approve`;
+      this.service.path =
+        this.data?.endpoint ?? `v1/floral/${this.dados.id}/authorize`;
     }
   }
 
@@ -42,7 +43,11 @@ export class ModalFloralApproveRefuseComponent {
       return;
     }
 
-    this.formData.approved = this.mode == 'approve' ? true : false;
+    if (this.data?.user) {
+      this.formData.approved = this.mode == 'approve' ? true : false;
+    } else {
+      this.formData.authorized = this.mode == 'approve' ? true : false;
+    }
 
     this.loading = true;
     this.service
@@ -51,5 +56,22 @@ export class ModalFloralApproveRefuseComponent {
         this.dialogRef.close(true);
       })
       .finally(() => (this.loading = false));
+  }
+
+  getTitle() {
+    if (this.data?.user) {
+      return 'Transferência';
+    }
+
+    return this.mode == 'approve'
+      ? 'Autorizar Transferência'
+      : 'Recusar Transferência';
+  }
+
+  getLabelButton() {
+    if (this.data?.user) {
+      return this.mode == 'approve' ? 'De acordo' : 'Recusar';
+    }
+    return this.mode == 'approve' ? 'Autorizar' : 'Recusar';
   }
 }

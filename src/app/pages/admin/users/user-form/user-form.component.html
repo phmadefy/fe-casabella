@@ -67,7 +67,7 @@
           ></input-floating>
         </div>
 
-        <div class="col-span-3">
+        <div class="col-span-2">
           <input-floating
             class="p-0 bg-transparent border-none"
             label="CPF"
@@ -106,8 +106,21 @@
           ></input-floating>
         </div>
 
-        <div class="col-span-2">
-          <input-floating
+        <div class="col-span-3">
+          <combobox
+            class="p-0 bg-transparent border-none"
+            label="Gênero"
+            model="gender"
+            [(ngModel)]="dados.gender"
+            name="gender"
+            [options]="gender"
+            bindValue="key"
+            bindText="description"
+            placeholder="Selecione uma opção"
+            [form]="form"
+            size="md"
+          />
+          <!-- <input-floating
             class="p-0 bg-transparent border-none"
             label="Gênero"
             model="gender"
@@ -119,7 +132,7 @@
             [options]="gender"
             [form]="form"
             size="md"
-          ></input-floating>
+          ></input-floating> -->
         </div>
       </div>
 
@@ -298,8 +311,21 @@
           />
         </div>
 
-        <div class="col-span-2">
-          <input-floating
+        <div class="col-span-3">
+          <combobox
+            class="p-0 bg-transparent border-none"
+            label="Status"
+            model="status"
+            [(ngModel)]="dados.status"
+            name="status"
+            [options]="status"
+            bindValue="key"
+            bindText="description"
+            placeholder="Selecione uma opção"
+            [form]="form"
+            size="md"
+          />
+          <!-- <input-floating
             class="p-0 bg-transparent border-none"
             label="Status"
             model="status"
@@ -311,7 +337,7 @@
             [options]="status"
             [form]="form"
             size="md"
-          ></input-floating>
+          ></input-floating> -->
         </div>
       </div>
     </div>

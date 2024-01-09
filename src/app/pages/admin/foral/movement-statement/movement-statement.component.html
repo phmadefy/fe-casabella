@@ -9,6 +9,7 @@
         [(ngModel)]="filters.user_id"
         name="user_id"
         [required]="true"
+        (selectItem)="getList()"
       ></select-default>
     </div>
 
@@ -16,7 +17,49 @@
       <!-- component -->
 
       <div class="p-4">
-        <app-timeline></app-timeline>
+        <app-timeline>
+          <li class="mb-10 ms-6" *ngFor="let item of dataSource.data">
+            <div class="absolute flex items-center justify-center -start-3">
+              <span class="w-6 h-6 bg-cb-info rounded-full"></span>
+            </div>
+            <h3 class="text-sm font-semibold">
+              {{ item?.transaction_date | date : "EE d, MMM y" }}
+            </h3>
+
+            <div
+              *ngFor="let row of item.list"
+              [ngClass]="{
+                'bg-gradient-item-positive': row?.movement == 'input',
+                'bg-gradient-item-negative': row?.movement == 'output'
+              }"
+              class="bg-gradient-item-positive flex items-center justify-between gap-2 p-2 my-1 rounded-md"
+            >
+              <span [innerHTML]="tools.getDescriptionTransaction(row)"></span>
+              <div class="flex items-center gap-2">
+                <i
+                  class="fa-solid fa-plus"
+                  [ngClass]="{
+                    'text-cb-success': row?.movement == 'input',
+                    'text-cb-red': row?.movement == 'output'
+                  }"
+                ></i>
+                <span>
+                  {{ row?.amount | currency : "BRL" : "F$" : "1.4-4" }}
+                </span>
+              </div>
+            </div>
+
+            <!-- <div
+              class="bg-gradient-item-negative flex items-center justify-between gap-2 p-2 my-1 rounded-md"
+            >
+              <span> Transferência de Caixa para Usuário 1 </span>
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-minus text-cb-red"></i>
+                <span>F$ 500,0000</span>
+              </div>
+            </div> -->
+          </li>
+        </app-timeline>
       </div>
 
       <!-- end component -->

@@ -87,7 +87,9 @@
     >
       <div>
         <p>Motivo:</p>
-        <span class="text-cb-info text-sm">Descrição da mensagem do us...</span>
+        <span class="text-cb-info text-sm">{{
+          item?.transaction?.observation
+        }}</span>
       </div>
     </div>
   </ng-container>
@@ -96,7 +98,7 @@
     <div class="py-2 px-4 flex flex-col justify-center">
       <div>
         <p>Mensagem:</p>
-        <span class="text-cb-info text-sm">Descrição da mensagem do us...</span>
+        <span class="text-cb-info text-sm">{{ item.observation }}</span>
       </div>
     </div>
 
@@ -108,7 +110,7 @@
           class="btn-sm btn-md w-full rounded-md bg-gradient-cb font-semibold"
           (click)="openModalApproveRefuse(item, 'approve')"
         >
-          Aceitar
+          Aprovar
         </button>
 
         <button

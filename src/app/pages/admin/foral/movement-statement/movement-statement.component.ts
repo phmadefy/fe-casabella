@@ -34,10 +34,12 @@ export class MovementStatementComponent {
     private service: ApiService,
     public tools: ToolsService // private dialog: Dialog
   ) {
-    service.path = 'v1/admin/nfts/audit/all';
+    service.path = 'v1/floral/extract';
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getList();
+  }
 
   getList() {
     this.loading = true;

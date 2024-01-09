@@ -83,7 +83,7 @@
       'px-2.5 pb-2.5 pt-4': size == 'lg',
       'px-2 pb-2 pt-2': size == 'md'
     }"
-    [disabled]="!isReadOnly"
+    [disabled]="isReadOnly"
     [required]="isRequired"
     (focus)="onTouchedCb(value)"
   >
