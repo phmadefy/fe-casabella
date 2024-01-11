@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CardComponent } from 'src/app/components/card/card.component';
@@ -35,6 +35,7 @@ import { AlertDisplayComponent } from 'src/app/components/alert-display/alert-di
   styleUrls: ['./nft-transfer-form.component.scss'],
 })
 export class NftTransferFormComponent extends AbstractForms {
+  @ViewChild('nftChoose', { static: true }) nftChoose!: NftChooseComponent;
   dados: any = {};
   types = [
     { id: 'definitiva', description: 'Definitiva' },
@@ -51,6 +52,8 @@ export class NftTransferFormComponent extends AbstractForms {
     this.userCurrent = await this.tools.getCurrentUser();
     if (this.tools.checkRouteContainsAdmin()) {
       this.modo = 'admin';
+    } else {
+      this.nftChoose.user_id = this.userCurrent.id;
     }
   }
 

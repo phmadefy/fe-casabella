@@ -56,4 +56,14 @@ export class MovementStatementComponent {
     this.filters.status = tab;
     this.getList();
   }
+
+  changeMovement(movement: string) {
+    if (this.filters.movement == movement) {
+      delete this.filters.movement;
+    } else {
+      this.filters.movement = movement;
+    }
+
+    this.getList();
+  }
 }

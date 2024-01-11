@@ -16,6 +16,50 @@
     <div class="border border-cb-secondary">
       <!-- component -->
 
+      <div class="flex items-center gap-3 p-4">
+        <div class="flex items-center gap-2">
+          <input
+            type="date"
+            class="input-cb"
+            [(ngModel)]="filters.startDate"
+            (ngModelChange)="getList()"
+          />
+
+          <input
+            type="date"
+            class="input-cb"
+            [(ngModel)]="filters.endDate"
+            (ngModelChange)="getList()"
+          />
+        </div>
+
+        <ul class="flex flex-wrap gap-3 text-sm font-medium text-center">
+          <li>
+            <button
+              class="px-4 py-2 text-cb-base rounded-md border border-cb-secondary"
+              [ngClass]="{
+                'bg-gradient-cb font-semibold': filters.movement == 'input'
+              }"
+              (click)="changeMovement('input')"
+            >
+              Entrada
+            </button>
+          </li>
+
+          <li>
+            <button
+              class="px-4 py-2 text-cb-base rounded-md border border-cb-secondary"
+              [ngClass]="{
+                'bg-gradient-cb font-semibold': filters.movement == 'output'
+              }"
+              (click)="changeMovement('output')"
+            >
+              Saída
+            </button>
+          </li>
+        </ul>
+      </div>
+
       <div class="p-4">
         <app-timeline>
           <li class="mb-10 ms-6" *ngFor="let item of dataSource.data">

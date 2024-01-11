@@ -12,7 +12,10 @@
   <form #form="ngForm" (ngSubmit)="onSubmit(form)">
     <div class="p-4">
       <div class="mb-4">
-        <app-nft-choose (chooseNFT)="chooseNFT($event)"></app-nft-choose>
+        <app-nft-choose
+          (chooseNFT)="chooseNFT($event)"
+          #nftChoose
+        ></app-nft-choose>
       </div>
 
       <div class="mb-4">

@@ -49,8 +49,52 @@
 </div>
 
 <card *ngIf="tab != 'pending'">
+  <div class="flex items-center gap-3 p-4">
+    <div class="flex items-center gap-2">
+      <input
+        type="date"
+        class="input-cb"
+        [(ngModel)]="filtersExtract.startDate"
+        (ngModelChange)="getExtract()"
+      />
+
+      <input
+        type="date"
+        class="input-cb"
+        [(ngModel)]="filtersExtract.endDate"
+        (ngModelChange)="getExtract()"
+      />
+    </div>
+
+    <ul class="flex flex-wrap gap-3 text-sm font-medium text-center">
+      <li>
+        <button
+          class="px-4 py-2 text-cb-base rounded-md border border-cb-secondary"
+          [ngClass]="{
+            'bg-gradient-cb font-semibold': filtersExtract.movement == 'input'
+          }"
+          (click)="changeMovement('input')"
+        >
+          Entrada
+        </button>
+      </li>
+
+      <li>
+        <button
+          class="px-4 py-2 text-cb-base rounded-md border border-cb-secondary"
+          [ngClass]="{
+            'bg-gradient-cb font-semibold': filtersExtract.movement == 'output'
+          }"
+          (click)="changeMovement('output')"
+        >
+          Saída
+        </button>
+      </li>
+    </ul>
+  </div>
+
   <div class="md:px-10 px-5 p-5">
-    <app-timeline>
+    <app-timeline [loading]="loading">
       <li class="mb-10 ms-6" *ngFor="let item of extract.data">
         <div class="absolute flex items-center justify-center -start-3">
           <span class="w-6 h-6 bg-cb-info rounded-full"></span>

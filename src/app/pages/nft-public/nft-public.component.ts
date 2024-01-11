@@ -32,15 +32,18 @@ export class NftPublicComponent {
   filters: any = { per_page: 30, page: 1 };
 
   tab: string = 'my';
+
+  userCurrent: any = {};
   constructor(
     private route: ActivatedRoute,
     private service: ApiService,
     public tools: ToolsService // private dialog: Dialog
   ) {
-    service.path = 'v1/admin/nfts/audit/all';
+    service.path = 'v1/nft';
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    this.userCurrent = await this.tools.getCurrentUser();
     this.queryParamsObs = this.route.queryParams.subscribe((res: any) => {
       console.log('queryParams', res);
       if (res?.tab) {
@@ -65,7 +68,17 @@ export class NftPublicComponent {
 
   setTab(tab: string) {
     this.tab = tab;
-    this.filters.status = tab;
+    this.filters = { per_page: 30, page: 1 };
+    if (tab == 'my') {
+      this.filters.user_id = this.userCurrent.id;
+    }
+    if (tab == 'pending') {
+      this.service.path = 'v1/transactions-nft';
+      this.filters.status = 'pending';
+      this.filters.reciver_id = this.userCurrent.id;
+    } else {
+      this.service.path = 'v1/nft';
+    }
     this.getList();
   }
 }

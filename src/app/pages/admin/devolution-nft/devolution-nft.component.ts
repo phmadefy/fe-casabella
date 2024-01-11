@@ -53,5 +53,6 @@ export class DevolutionNftComponent extends AbstractForms {
   override finish(result: any): void {
     // throw new Error('Method not implemented.');
     // this.getDados(result.id);
+    this.tools.route.navigate(['/admin/nfts'], { queryParams: { tab: 'all' } });
   }
 }

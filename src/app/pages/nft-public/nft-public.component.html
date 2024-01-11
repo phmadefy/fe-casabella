@@ -50,58 +50,83 @@
 
 <card *ngIf="tab != 'pending'">
   <div class="grid grid-cols-5 gap-3 p-4">
-    <app-nft-card [nft]="{ src: 'assets/nft2.jpg' }"></app-nft-card>
+    <app-nft-card
+      [nft]="{ src: item.image }"
+      *ngFor="let item of dataSource.data"
+    ></app-nft-card>
   </div>
 </card>
-
-<div
-  *ngIf="tab == 'pending'"
-  class="rounded-md border border-cb-secondary flex justify-between text-cb-base"
->
+<ng-container *ngIf="tab == 'pending'">
   <div
-    class="overflow-hidden rounded-s-md border-r border-cb-secondary min-w-max"
+    class="rounded-md border border-cb-secondary flex justify-between text-cb-base mb-2"
+    *ngFor="let item of dataSource.data"
   >
-    <img src="assets/nft1.jpg" alt="nft" class="h-24 w-32 object-cover" />
-  </div>
+    <div
+      class="overflow-hidden rounded-s-md border-r border-cb-secondary min-w-max"
+    >
+      <img [src]="item?.nft?.image" alt="nft" class="h-24 w-32 object-cover" />
+    </div>
 
-  <div class="p-4 flex flex-col justify-center border-r border-cb-secondary">
-    <p class="text-cb-success flex gap-2">
-      <i class="fa-solid fa-circle"></i>
-      <span class="">Recebido</span>
-    </p>
-  </div>
+    <div class="p-4 flex flex-col justify-center border-r border-cb-secondary">
+      <p class="flex gap-2" *ngIf="item?.reciver_id == userCurrent.id">
+        <i class="fa-solid fa-circle flex text-cb-success"></i>
+        <span class="">Recebido</span>
+      </p>
+      <p class="flex gap-2" *ngIf="item?.nft?.user_id == userCurrent.id">
+        <i class="fa-solid fa-circle flex text-cb-red"></i>
+        <span class="">Enviado</span>
+      </p>
+    </div>
 
-  <div
-    class="p-4 flex flex-col justify-center border-r border-cb-secondary w-full"
-  >
-    <div class="text-center">
-      <p>Recebido de:</p>
-      <p><span class="text-cb-info text-sm">@NomeDoUsuário</span></p>
+    <div
+      class="p-4 flex flex-col justify-center border-r border-cb-secondary w-full"
+    >
+      <div class="text-center" *ngIf="item?.reciver_id == userCurrent.id">
+        <p>Recebido de:</p>
+        <p>
+          <span class="text-cb-info text-sm">
+            {{ item?.user?.nickname ?? "@casabella" }}
+          </span>
+        </p>
+      </div>
+
+      <div class="text-center" *ngIf="item?.nft?.user_id == userCurrent.id">
+        <p>Enviado para:</p>
+        <p>
+          <span class="text-cb-info text-sm">
+            {{ item?.reciver?.nickname ?? "@casabella" }}
+          </span>
+        </p>
+      </div>
+    </div>
+
+    <div class="p-4 flex flex-col justify-center text-center w-full">
+      <div>
+        <p>Data:</p>
+        <p>
+          <span class="text-cb-info text-sm">
+            {{ item.created_at | date : "dd/MM/yyyy" }}
+          </span>
+        </p>
+      </div>
+    </div>
+
+    <div
+      class="p-4 flex flex-col justify-center border-l border-cb-secondary gap-2 w-full"
+    >
+      <div class="flex gap-2">
+        <button
+          class="btn-sm btn-md w-full rounded-md bg-gradient-cb font-semibold"
+        >
+          Aceitar
+        </button>
+
+        <button
+          class="btn-sm btn-md w-full text-white rounded-md border border-cb-secondary"
+        >
+          Rejeitar
+        </button>
+      </div>
     </div>
   </div>
-
-  <div class="p-4 flex flex-col justify-center text-center w-full">
-    <div>
-      <p>Data:</p>
-      <p><span class="text-cb-info text-sm">12/10/2023</span></p>
-    </div>
-  </div>
-
-  <div
-    class="p-4 flex flex-col justify-center border-l border-cb-secondary gap-2 w-full"
-  >
-    <div class="flex gap-2">
-      <button
-        class="btn-sm btn-md w-full rounded-md bg-gradient-cb font-semibold"
-      >
-        Aceitar
-      </button>
-
-      <button
-        class="btn-sm btn-md w-full text-white rounded-md border border-cb-secondary"
-      >
-        Rejeitar
-      </button>
-    </div>
-  </div>
-</div>
+</ng-container>

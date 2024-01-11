@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Dialog, DialogModule } from '@angular/cdk/dialog';
 import { ModalNftSearchComponent } from 'src/app/shared/modal-nft-search/modal-nft-search.component';
@@ -13,6 +13,8 @@ import { ModalNftSearchComponent } from 'src/app/shared/modal-nft-search/modal-n
 export class NftChooseComponent {
   nft: any = {};
 
+  @Input() user_id: any;
+
   @Output() chooseNFT = new EventEmitter<any>();
 
   constructor(private dialog: Dialog) {}
@@ -22,6 +24,7 @@ export class NftChooseComponent {
       maxWidth: '335px',
       width: '95%',
       height: '90%',
+      data: { user_id: this.user_id },
     });
 
     dialogRef.closed.subscribe((result) => {

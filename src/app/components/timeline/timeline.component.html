@@ -1,5 +1,11 @@
 <ol class="relative border-s border-gray-200">
-  <ng-content></ng-content>
+  <div
+    class="absolute z-[1010] bg-cb-contrast h-full overflow-hidden p-10 rounded-lg text-center w-full"
+    *ngIf="loading"
+  >
+    <spinner [size]="8" color="cb"></spinner>
+  </div>
+  <ng-content *ngIf="!loading"></ng-content>
 
   <!-- <li class="mb-10 ms-6">
     <div class="absolute flex items-center justify-center -start-3">

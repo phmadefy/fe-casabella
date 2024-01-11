@@ -30,6 +30,9 @@ export class ModalNftSearchComponent {
   }
 
   ngOnInit(): void {
+    if (this.data?.user_id) {
+      this.filters.user_id = this.data?.user_id;
+    }
     this.getList();
   }
 

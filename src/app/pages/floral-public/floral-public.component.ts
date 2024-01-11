@@ -10,12 +10,14 @@ import { ToolsService } from 'src/app/services/tools.service';
 import { TimelineComponent } from 'src/app/components/timeline/timeline.component';
 import { Dialog } from '@angular/cdk/dialog';
 import { ModalFloralApproveRefuseComponent } from 'src/app/shared/modal-floral-approve-refuse/modal-floral-approve-refuse.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-floral-public',
   standalone: true,
   imports: [
     CommonModule,
+    FormsModule,
     CardComponent,
     RouterLink,
     DropdownCbComponent,
@@ -114,5 +116,15 @@ export class FloralPublicComponent {
           this.getList();
         }
       });
+  }
+
+  changeMovement(movement: string) {
+    if (this.filtersExtract.movement == movement) {
+      delete this.filtersExtract.movement;
+    } else {
+      this.filtersExtract.movement = movement;
+    }
+
+    this.getExtract();
   }
 }
