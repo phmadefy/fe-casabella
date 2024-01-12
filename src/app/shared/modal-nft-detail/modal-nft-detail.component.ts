@@ -12,7 +12,12 @@ import { ToolsService } from 'src/app/services/tools.service';
   styleUrls: ['./modal-nft-detail.component.scss'],
 })
 export class ModalNftDetailComponent {
-  dados: any = {};
+  dados: any = {
+    classifications: [],
+    subclassifications: [],
+    types: [],
+    public: [],
+  };
   constructor(
     public dialogRef: DialogRef,
     @Inject(DIALOG_DATA) public data: any,
@@ -24,5 +29,13 @@ export class ModalNftDetailComponent {
       console.log('ModalNftDetailComponent', this.data);
       this.dados = this.data;
     }
+  }
+
+  getSubClassifications(item: any) {
+    return '';
+  }
+
+  getTypes() {
+    return this.dados.types.join(',');
   }
 }

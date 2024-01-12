@@ -37,7 +37,9 @@
             "styles": ["src/styles.scss"],
             "scripts": [
               "node_modules/@ckeditor/ckeditor5-build-classic/build/translations/pt-br.js",
-              "node_modules/apexcharts/dist/apexcharts.min.js"
+              "node_modules/apexcharts/dist/apexcharts.min.js",
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/slick-carousel/slick/slick.min.js"
             ],
             "allowedCommonJsDependencies": [
               "@ckeditor/ckeditor5-build-classic",

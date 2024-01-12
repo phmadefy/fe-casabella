@@ -2,33 +2,39 @@
   <card>
     <div class="px2 py-4 text-center">
       <p class="text-sm">Quantidade NFT</p>
-      <h2 class="text-cb-orange font-semibold text-3xl">125</h2>
+      <h2 class="text-cb-orange font-semibold text-3xl">{{ dados.nfts }}</h2>
     </div>
   </card>
 
   <card>
     <div class="px2 py-4 text-center">
       <p class="text-sm">Saldo Floral (F$)</p>
-      <h2 class="text-cb-success font-semibold text-3xl">3.532,0000</h2>
+      <h2 class="text-cb-success font-semibold text-3xl">
+        {{ dados.balance | currency : "BRL" : "F$" : "1.4-4" }}
+      </h2>
     </div>
   </card>
 
   <card>
     <div class="px2 py-4 text-center">
       <p class="text-sm">Entrada Floral (F$)</p>
-      <h2 class="text-cb-success font-semibold text-3xl">157,0100</h2>
+      <h2 class="text-cb-success font-semibold text-3xl">
+        {{ dados.inputs | currency : "BRL" : "F$" : "1.4-4" }}
+      </h2>
     </div>
   </card>
 
   <card>
     <div class="px2 py-4 text-center">
       <p class="text-sm">Saída Floral (F$)</p>
-      <h2 class="text-cb-red font-semibold text-3xl">543,2000</h2>
+      <h2 class="text-cb-red font-semibold text-3xl">
+        {{ dados.outputs | currency : "BRL" : "F$" : "1.4-4" }}
+      </h2>
     </div>
   </card>
 </div>
 
-<card>
+<!-- <card>
   <div id="chart" class="p-4">
     <apx-chart
       [series]="chartOptions.series"
@@ -41,4 +47,4 @@
       [title]="chartOptions.title"
     ></apx-chart>
   </div>
-</card>
+</card> -->

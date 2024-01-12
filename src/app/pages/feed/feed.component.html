@@ -1,22 +1,24 @@
 <div
   class="flex gap-3 border border-cb-secondary overflow-x-auto rounded p-4 mb-3"
 >
-  <app-nft-card
-    [nft]="{ src: 'assets/nft1.jpg' }"
-    (click)="openModalNFT()"
-  ></app-nft-card>
-  <app-nft-card [nft]="{ src: 'assets/nft2.jpg' }"></app-nft-card>
-  <app-nft-card [nft]="{ src: 'assets/nft3.jpg' }"></app-nft-card>
-  <app-nft-card [nft]="{ src: 'assets/nft4.jpg' }"></app-nft-card>
-  <app-nft-card [nft]="{ src: 'assets/nft4.jpg' }"></app-nft-card>
-  <app-nft-card [nft]="{ src: 'assets/nft4.jpg' }"></app-nft-card>
-  <app-nft-card [nft]="{ src: 'assets/nft4.jpg' }"></app-nft-card>
-  <app-nft-card [nft]="{ src: 'assets/nft4.jpg' }"></app-nft-card>
-  <app-nft-card [nft]="{ src: 'assets/nft4.jpg' }"></app-nft-card>
-  <app-nft-card [nft]="{ src: 'assets/nft4.jpg' }"></app-nft-card>
-  <app-nft-card [nft]="{ src: 'assets/nft4.jpg' }"></app-nft-card>
+  <ngx-slick-carousel
+    class="carousel w-full"
+    #slickModal="slick-carousel"
+    [config]="slideConfig"
+    (init)="slickInit($event)"
+    (breakpoint)="breakpoint($event)"
+    (afterChange)="afterChange($event)"
+    (beforeChange)="beforeChange($event)"
+  >
+    <div ngxSlickItem *ngFor="let item of nfts" class="slide">
+      <app-nft-card
+        [nft]="{ src: item.image }"
+        (click)="openModalNFT(item)"
+      ></app-nft-card>
+    </div>
+  </ngx-slick-carousel>
 </div>
 
 <div class="mb-3">
-  <post-card></post-card>
+  <post-card *ngFor="let item of posts.data" [dados]="item"></post-card>
 </div>

@@ -43,10 +43,10 @@
     <div class="w-full border-b border-cb-secondary my-3"></div>
 
     <div class="text-sm">
-      <p><strong>Classificação 1:</strong> Música, rock</p>
-      <p><strong>Classificação 2:</strong> Música, rock</p>
-      <p><strong>Classificação 3:</strong> Música, rock</p>
-      <p><strong>Tipo:</strong> Tipo 1, Tipo 2</p>
+      <p *ngFor="let item of dados.classifications">
+        <strong>{{ item.name }}:</strong> {{ getSubClassifications(item) }}
+      </p>
+      <p><strong>Tipo:</strong> {{ getTypes() }}</p>
     </div>
 
     <div class="w-full border-b border-cb-secondary my-3"></div>

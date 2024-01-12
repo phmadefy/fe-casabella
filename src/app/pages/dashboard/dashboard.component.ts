@@ -16,6 +16,7 @@ import {
   ApexTooltip,
 } from 'ng-apexcharts';
 import { CardComponent } from 'src/app/components/card/card.component';
+import { ApiService } from 'src/app/services/api.service';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -34,6 +35,7 @@ export type ChartOptions = {
   selector: 'app-dashboard',
   standalone: true,
   imports: [CommonModule, NgApexchartsModule, CardComponent],
+  providers: [ApiService],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
@@ -41,7 +43,11 @@ export class DashboardComponent {
   @ViewChild('chart') chart!: ChartComponent;
   public chartOptions: any;
 
-  constructor() {
+  loading = false;
+  dados: any = {};
+
+  constructor(private service: ApiService) {
+    service.path = 'v1/my-dashboard';
     // this.chartOptions = {
     //   series: [
     //     {
@@ -227,5 +233,19 @@ export class DashboardComponent {
         },
       },
     };
+  }
+
+  ngOnInit(): void {
+    this.getData();
+  }
+
+  getData() {
+    this.loading = true;
+    this.service
+      .listing()
+      .then((res) => {
+        this.dados = res;
+      })
+      .finally(() => (this.loading = false));
   }
 }
