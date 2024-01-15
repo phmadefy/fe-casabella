@@ -445,6 +445,7 @@
             title="Selecione a capa"
             subtitle="800 x 540"
             (changeImage)="dados.image = $event[0]"
+            [image]="dados.image_url"
           ></image-select>
           <!-- [image]="dados.image" -->
         </div>
@@ -463,6 +464,7 @@
             title="Selecione o banner"
             subtitle="770 x 470"
             (changeImage)="dados.image_feed = $event[0]"
+            [image]="dados.image_feed_url"
           ></image-select>
           <!-- [image]="dados.image_feed" -->
         </div>

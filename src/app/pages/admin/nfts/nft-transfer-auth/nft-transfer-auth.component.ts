@@ -58,7 +58,9 @@ export class NftTransferAuthComponent {
 
   setTab(tab: string) {
     this.tab = tab;
-    this.filters.status = tab;
+    this.filters = { per_page: 30, page: 1 };
+    this.filters[tab] = true;
+    // this.filters.status = tab;
     this.getList();
   }
 

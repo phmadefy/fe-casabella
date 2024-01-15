@@ -5,39 +5,43 @@
         class="rounded-full ring-4 bg-conic-gradient(from 0deg at 50% 50%, red, green) w-12 h-12 overflow-hidden"
       >
         <img
-          src="assets/avatar.jpg"
+          [src]="dados?.user?.avatar ?? tools.noImageAvatar"
           class="object-cover w-full h-full"
           alt=""
         />
       </div>
       <div>
-        <h2 class="m-0">Fernando Vidal</h2>
-        <p class="text-sm">2 horas</p>
+        <h2 class="m-0">{{ dados?.user?.name }}</h2>
+        <p class="text-sm">{{ tools.getTimeFrom(dados.created_at) }}</p>
       </div>
     </div>
 
-    <div></div>
+    <div *ngIf="dados?.user?.id == userCurrent.id" class="p-4">
+      <button class="" routerLink="editar-post" [state]="{ post_id: dados.id }">
+        <i class="fa-solid fa-pen"></i>
+      </button>
+    </div>
   </div>
 
   <div class="p-4">
-    No meu xinélo da humildade eu gostaria muito de ver o Neymar e o Ganso. Por
-    que eu acho que 11 entre 10 brasileiros gostariam. Você veja, eu já vi,
-    parei de ver. Voltei a ver, e acho que o Neymar e o Ganso têm essa
-    capacidade de fazer a gente olhar.
+    {{ dados?.description }}
   </div>
 
-  <img src="assets/post.jpg" alt="" />
+  <img *ngIf="dados?.attachment_url" [src]="dados.attachment_url" alt="" />
 
   <div
     class="p-4 flex items-center justify-between border-b border-cb-secondary"
   >
     <div></div>
-    <div class="text-sm">22 comentários</div>
+    <div class="text-sm">{{ dados?.comments?.length }} comentários</div>
   </div>
-  <div class="p-4 flex items-center justify-between gap-4">
-    <div class="min-w-max">
-      <btn-like></btn-like>
-    </div>
+  <div
+    class="p-4 flex items-center justify-between gap-4"
+    *ngIf="dados?.allow_comments"
+  >
+    <btn-like class="min-w-max"></btn-like>
+    <!-- <div class="min-w-max">
+    </div> -->
     <div class="w-full relative">
       <input
         type="text"

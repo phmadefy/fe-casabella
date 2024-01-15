@@ -55,18 +55,24 @@ export class PostFormComponent extends AbstractForms {
   getDados(id: any) {
     this.loading = true;
     this.service
-      .listing({ id })
+      .show(id)
       .then((res) => {
         this.dados = res;
       })
       .finally(() => (this.loading = false));
   }
 
-  override submit(): void {
+  override async submit() {
     const formData = this.tools.generateFormData(this.dados);
 
     if (this.dados.id) {
-      this.update(formData, this.dados.id);
+      this.loading = true;
+      await this.service
+        .postCustom(`v1/posts/${this.dados.id}`, formData)
+        .then((res) => {
+          this.finish(res);
+        })
+        .finally(() => (this.loading = false));
     } else {
       this.create(formData);
     }
@@ -80,5 +86,14 @@ export class PostFormComponent extends AbstractForms {
     if (event.length > 0) {
       this.dados.attachment = event[0];
     }
+  }
+
+  getPivotProperty(propertyArray: string, propertyReturn: string) {
+    const data = this.dados[propertyArray]?.map(
+      (f: any) => f?.pivot?.[propertyReturn]
+    );
+    // console.log('getPivotProperty', data);
+
+    return data;
   }
 }

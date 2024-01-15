@@ -7,7 +7,7 @@
     />
   </div>
 
-  <div class="h-full overflow-y-auto py-6 px-10">
+  <div class="h-full overflow-y-auto py-6 px-10 lg:px-20">
     <div class="flex justify-center">
       <img class="w-1/2 md:w-1/3" src="assets/casabella.svg" alt="" />
     </div>
@@ -17,7 +17,7 @@
       Plataforma de Incentivos Exclusiva da Casabella Inspirada no Metaverso
     </h1>
     <p
-      class="text-lg font-normal text-white text-center md:text-lg dark:text-gray-400 mb-4"
+      class="font-normal text-white text-center md:text-lg dark:text-gray-400 mb-6"
     >
       Informe seu usuário e senha para acessar
     </p>
@@ -49,7 +49,7 @@
           required
         ></input-floating>
 
-        <div class="flex items-center justify-between mb-6 p-1">
+        <div class="flex items-center justify-between p-1">
           <div class="flex items-center">
             <input
               id="remember"
@@ -65,8 +65,9 @@
           </div>
           <div class="flex flex-row justify-center items-center">
             <button
-              (click)="showModal()"
+              (click)="openModalForgot()"
               class="font-medium text-cb-red dark:text-blue-600 hover:underline"
+              type="button"
             >
               Esqueceu a senha?
             </button>
@@ -74,7 +75,7 @@
         </div>
         <button
           type="submit"
-          class="text-white bg-gradient-cb bg-gradient-cb-hover focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md w-full h-14 md:w-full px-5 py-2.5 text-center"
+          class="text-white bg-gradient-cb bg-gradient-cb-hover focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-md w-full h-14 md:w-full px-5 py-2.5 text-center"
         >
           <spinner *ngIf="loading"></spinner>
           <span *ngIf="!loading">Entrar</span>
@@ -83,7 +84,7 @@
 
       <hr class="h-px my-4 md:my-8 bg-cb-secondary border-0 dark:bg-gray-700" />
       <h1
-        class="lg:text-xl font-extrabold leading-none tracking-tight text-cb-base md:text-base text-center dark:text-white"
+        class="lg:text-xl leading-none tracking-tight text-cb-base md:text-base text-center dark:text-white"
       >
         Não tem conta?
         <a

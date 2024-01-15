@@ -24,8 +24,8 @@
           inputPlaceholder="Enviar para o usuário @nomedousuário"
           bindText="name"
           bindValue="id"
-          [(ngModel)]="dados.recipient_id"
-          name="recipient_id"
+          [(ngModel)]="dados.to_user_id"
+          name="to_user_id"
           [required]="true"
           [form]="form"
         ></select-default>
@@ -35,8 +35,8 @@
         <textarea
           class="input-cb"
           rows="5"
-          name="description"
-          [(ngModel)]="dados.description"
+          name="observation"
+          [(ngModel)]="dados.observation"
           placeholder="Escreva uma observação"
           [required]="true"
         ></textarea>
@@ -67,6 +67,7 @@
           required
           [form]="form"
           size="md"
+          *ngIf="dados.type == 'temporary'"
         ></input-floating>
       </div>
     </div>

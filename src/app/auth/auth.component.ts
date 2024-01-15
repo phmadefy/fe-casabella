@@ -8,6 +8,8 @@ import { SpinnerComponent } from '../components/spinner/spinner.component';
 import { Store } from '@ngrx/store';
 import { Login } from '../core/actions/auth.action';
 import { InputFloatingComponent } from '../components/input-floating/input-floating.component';
+import { Dialog } from '@angular/cdk/dialog';
+import { ModalForgotPasswordComponent } from '../shared/modal-forgot-password/modal-forgot-password.component';
 
 @Component({
   selector: 'app-auth',
@@ -23,7 +25,7 @@ import { InputFloatingComponent } from '../components/input-floating/input-float
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss'],
 })
-export class AuthComponent implements AfterViewInit {
+export class AuthComponent {
   // @ViewChild('app-modal') modalComponent!: ModalComponent;
   dados: any = {};
   loading = false;
@@ -31,19 +33,18 @@ export class AuthComponent implements AfterViewInit {
   constructor(
     private service: AuthService,
     private router: Router,
-    private store: Store
+    private store: Store,
+    private dialog: Dialog
   ) {}
 
   ngOnInit() {}
 
-  ngAfterViewInit() {
-    this.showModal();
-  }
-
-  showModal() {
-    // if (this.modalComponent) {
-    //   this.modalComponent.show();
-    // }
+  openModalForgot() {
+    this.dialog.open<any>(ModalForgotPasswordComponent, {
+      width: '95%',
+      maxWidth: '500px',
+      maxHeight: '90%',
+    });
   }
 
   onSubmit(form: NgForm) {

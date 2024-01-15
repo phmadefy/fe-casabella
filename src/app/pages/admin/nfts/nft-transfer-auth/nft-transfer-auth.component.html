@@ -45,13 +45,13 @@
       <p>
         De:
         <span class="text-cb-info text-sm">
-          {{ item?.nft?.user?.name ?? "@casabella" }}
+          {{ item?.from_user?.nickname ?? "@casabella" }}
         </span>
       </p>
       <p>
         Para:
         <span class="text-cb-info text-sm">
-          {{ item?.reciver?.nickname }}
+          {{ item?.to_user?.nickname }}
         </span>
       </p>
     </div>
@@ -83,7 +83,7 @@
     >
       <div>
         <p>Motivo:</p>
-        <span class="text-cb-info text-sm">{{ item?.details }}</span>
+        <span class="text-cb-info text-sm">{{ item?.observation }}</span>
       </div>
     </div>
   </ng-container>
@@ -92,7 +92,7 @@
     <div class="p-4 flex flex-col justify-center">
       <div>
         <p>Mensagem:</p>
-        <span class="text-cb-info text-sm">{{ item?.details }}</span>
+        <span class="text-cb-info text-sm">{{ item?.observation }}</span>
       </div>
     </div>
 
@@ -104,14 +104,14 @@
           class="btn-sm btn-md w-full rounded-md bg-gradient-cb font-semibold"
           (click)="openModalApproveRefuse(item, 'approve')"
         >
-          Aceitar
+          Autorizar
         </button>
 
         <button
           class="btn-sm btn-md w-full text-white rounded-md border border-cb-secondary"
           (click)="openModalApproveRefuse(item, 'refuse')"
         >
-          Recusar
+          Rejeitar
         </button>
       </div>
     </div>

@@ -67,6 +67,13 @@ export const routes: Routes = [
                 (c) => c.PostFormComponent
               ),
           },
+          {
+            path: 'editar-post',
+            loadComponent: () =>
+              import('./pages/feed/post-form/post-form.component').then(
+                (c) => c.PostFormComponent
+              ),
+          },
         ],
       },
       {

@@ -59,6 +59,7 @@
         [disabled]="loading"
         type="button"
         (click)="deleteItem()"
+        *ngIf="dados.id"
       >
         Excluir
       </button>
@@ -107,7 +108,7 @@
             title="Selecione a capa"
             subtitle="276 x 180"
             (changeImage)="setImage($event)"
-            [image]="dados.image"
+            [image]="dados.image_url"
           ></image-select>
         </div>
       </card>

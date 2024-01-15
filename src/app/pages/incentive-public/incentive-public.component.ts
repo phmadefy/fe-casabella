@@ -68,7 +68,14 @@ export class IncentivePublicComponent {
 
   setTab(tab: string) {
     this.tab = tab;
-    this.filters.status = tab;
+    this.filters = { per_page: 30, page: 1 };
+    if (tab == 'active') {
+      this.filters.active = 1;
+    } else if (tab == 'inactives') {
+      this.filters.active = 0;
+    } else if (tab == 'my') {
+      this.filters.active = 0;
+    }
     this.getList();
   }
 }

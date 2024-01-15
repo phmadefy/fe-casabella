@@ -52,14 +52,14 @@
   </card>
 </div>
 
-<card [loading]="loading" *ngIf="tab == 'all'">
+<div *ngIf="tab == 'all'">
   <div class="grid md:grid-cols-3 gap-3">
     <div
-      class="flex flex-col gap-2 p-2 border border-cb-secondary rounded-md h-48"
+      class="flex flex-col gap-2 p-2 border border-cb-secondary rounded-md h-56"
       *ngFor="let item of dataSource.data"
     >
       <img
-        [src]="item.image ?? tools.noImageAvatar"
+        [src]="item.image_url ?? tools.noImageAvatar"
         alt="image-card"
         class="w-full rounded-t-md h-[80%]"
       />
@@ -81,7 +81,7 @@
       </div>
     </div>
   </div>
-</card>
+</div>
 
 <ng-container *ngIf="tab == 'terms-of-use'">
   <app-terms-of-use type="incentives"></app-terms-of-use>

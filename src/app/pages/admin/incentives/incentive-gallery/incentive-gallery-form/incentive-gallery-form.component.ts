@@ -63,7 +63,7 @@ export class IncentiveGalleryFormComponent extends AbstractForms {
       .finally(() => (this.loading = false));
   }
 
-  override submit(): void {
+  override async submit() {
     console.log('dados', this.dados);
     const formData = new FormData();
     for (let key of Object.keys(this.dados)) {
@@ -79,7 +79,14 @@ export class IncentiveGalleryFormComponent extends AbstractForms {
     if (!this.dados.id) {
       this.create(formData);
     } else {
-      this.update(formData, this.dados.id);
+      // this.update(formData, this.dados.id);
+      this.loading = true;
+      await this.service
+        .postCustom(`v1/incentives-gallery/${this.dados.id}`, formData)
+        .then((res) => {
+          this.finish(res);
+        })
+        .finally(() => (this.loading = false));
     }
   }
   override finish(result: any): void {

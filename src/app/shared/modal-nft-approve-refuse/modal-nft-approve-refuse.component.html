@@ -5,7 +5,7 @@
   [dialogRef]="dialogRef"
 >
   <form #form="ngForm" (ngSubmit)="submit(form)">
-    <div class="p-4">
+    <div class="p-4" *ngIf="!data?.user">
       <div class="mb-4 text-sm">
         Você está
         <span *ngIf="mode == 'approve'" class="text-cb-success font-bold"
@@ -28,20 +28,20 @@
             {{ dados?.nft?.name }}
           </h2>
           <p>
-            De:
+            <span class="font-semibold">De:</span>
             <span class="text-cb-info text-sm">
-              {{ dados?.nft?.user?.name ?? "@casabella" }}
+              {{ dados?.from_user?.nickname ?? "@casabella" }}
             </span>
           </p>
           <p>
-            Para:
+            <span class="font-semibold">Para:</span>
             <span class="text-cb-info text-sm">
-              {{ dados?.reciver?.nickname }}
+              {{ dados?.to_user?.nickname }}
             </span>
           </p>
           <p>
-            Data:
-            <span class="text-cb-info text-sm">
+            <span class="font-semibold">Data:</span>
+            <span class="text-sm">
               {{ dados?.created_at | date : "dd/MM/yyyy" }}
             </span>
           </p>
@@ -52,8 +52,72 @@
         <textarea
           class="input-cb"
           rows="5"
-          name="details"
-          [(ngModel)]="formData.details"
+          name="observation"
+          [(ngModel)]="formData.observation"
+          placeholder="Escreva uma observação"
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="p-4" *ngIf="data?.user">
+      <div class="mb-4 text-sm">
+        Você está
+        <span *ngIf="mode == 'approve'" class="text-cb-success font-bold"
+          >ACEITANDO</span
+        >
+        <span
+          *ngIf="mode != 'approve' && userCurrent.id == dados?.to_user_id"
+          class="text-cb-red font-bold"
+          >REJITANDO</span
+        >
+        <span
+          *ngIf="mode != 'approve' && userCurrent.id == dados?.from_user_id"
+          class="text-cb-red font-bold"
+          >CANCELANDO</span
+        >
+        a transferência de NFT conforme nossos
+        <a href="#" target="_blank" class="text-cb-info"
+          >Termos e Condições de Uso.</a
+        >
+      </div>
+      <div class="grid grid-cols-12 gap-2 mb-4">
+        <div class="col-span-4">
+          <img [src]="dados?.nft?.image" class="w-full rounded-md" alt="" />
+        </div>
+        <div class="col-span-8">
+          <h2 class="font-semibold text-cb-info">
+            {{ dados?.nft?.name }}
+          </h2>
+          <p *ngIf="dados?.nft?.classifications">
+            <span class="font-semibold">Classificações:</span>
+            <span class="text-sm">
+              {{ parseArray(dados?.nft?.classifications) }}
+            </span>
+          </p>
+          <p *ngIf="dados?.nft?.subclassifications">
+            <span class="font-semibold">Sub-Classificações:</span>
+            <span class="text-sm">
+              {{ parseArray(dados?.nft?.subclassifications) }}
+            </span>
+          </p>
+          <p *ngIf="dados?.nft?.types">
+            <span class="font-semibold">Tipos:</span>
+            <span class="text-sm">
+              {{ parseArray(dados?.nft?.types) }}
+            </span>
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="mb-2"
+        *ngIf="mode != 'approve' && userCurrent.id == dados?.to_user_id"
+      >
+        <textarea
+          class="input-cb"
+          rows="5"
+          name="observation"
+          [(ngModel)]="formData.observation"
           placeholder="Escreva uma observação"
         ></textarea>
       </div>
@@ -64,7 +128,7 @@
         class="w-full"
         classes="btn-sm text-white bg-gradient-cb rounded-md font-semibold w-full"
         [loading]="loading"
-        [label]="mode == 'approve' ? 'Autorizar' : 'Recusar'"
+        [label]="getLabel()"
         type="submit"
       />
 

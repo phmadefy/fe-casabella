@@ -64,7 +64,7 @@ export class SettingsComponent extends AbstractForms {
   async save(data: any) {
     this.loading = true;
     await this.service
-      .updateCustom('v1/parameters', data)
+      .postCustom('v1/parameters', data)
       .then((res: any) => {
         this.messageService.toastSuccess(res.message, '');
       })
@@ -92,8 +92,8 @@ export class SettingsComponent extends AbstractForms {
     // }
     const formData = this.tools.generateFormData(this.dados);
 
-    // this.save(formData);
-    this.save(this.dados);
+    this.save(formData);
+    // this.save(this.dados);
   }
   finish(result: any): void {}
 }

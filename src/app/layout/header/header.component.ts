@@ -174,6 +174,7 @@ export class HeaderComponent {
               id: 'admin-incentivos-todos',
               title: 'Todos Incentivos',
               route: '/',
+              queryParams: { tab: 'all' },
             },
             {
               id: 'admin-incentives-add',

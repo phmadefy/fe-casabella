@@ -38,8 +38,8 @@ export class NftTransferFormComponent extends AbstractForms {
   @ViewChild('nftChoose', { static: true }) nftChoose!: NftChooseComponent;
   dados: any = {};
   types = [
-    { id: 'definitiva', description: 'Definitiva' },
-    { id: 'temporaria', description: 'Temporária' },
+    { id: 'definitive', description: 'Definitiva' },
+    { id: 'temporary', description: 'Temporária' },
   ];
 
   userCurrent: any = {};

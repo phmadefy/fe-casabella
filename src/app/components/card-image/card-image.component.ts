@@ -12,6 +12,7 @@ import { ToolsService } from 'src/app/services/tools.service';
 export class CardImageComponent {
   @Input() image: any;
   @Input() height = 'h-48';
+  @Input() disabled = false;
 
   constructor(public tools: ToolsService) {}
 }

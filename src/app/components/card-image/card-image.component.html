@@ -3,6 +3,7 @@
     [src]="image ?? tools.noImageAvatar"
     alt="image-card"
     class="w-full rounded-t-md {{ height }}"
+    [ngClass]="{ grayscale: disabled }"
   />
 
   <ng-content></ng-content>

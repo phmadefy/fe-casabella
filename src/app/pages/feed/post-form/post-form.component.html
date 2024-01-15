@@ -1,9 +1,11 @@
 <div class="grid md:grid-cols-8 gap-3">
   <div class="col-span-6">
     <div class="mb-4">
-      <card>
+      <card [loading]="loading">
         <div class="card-header">
-          <h2 class="text-lg font-semibold">Adicionar novo post</h2>
+          <h2 class="text-lg font-semibold">
+            {{ dados?.id ? "Editar post" : "Adicionar novo post" }}
+          </h2>
         </div>
 
         <form #form="ngForm" (ngSubmit)="onSubmit(form)">
@@ -14,6 +16,7 @@
                 title="Selecione uma foto ou video."
                 subtitle="922 x 560"
                 (changeImage)="chooseImage($event)"
+                [image]="dados?.attachment_url"
               ></image-select>
             </div>
 
@@ -70,7 +73,7 @@
             <button-cb
               type="submit"
               classes="btn-sm btn-md w-full rounded-md bg-gradient-cb font-semibold"
-              label="Postar agora"
+              [label]="dados?.id ? 'Atualizar' : 'Postar'"
               [loading]="loading"
             ></button-cb>
 
@@ -86,7 +89,7 @@
       </card>
     </div>
   </div>
-  <div class="col-span-2">
+  <div class="col-span-2" *ngIf="!loading">
     <div class="mb-2">
       <card-choose
         inputPlaceholder="Público"
@@ -94,6 +97,7 @@
         bindText="name"
         bindValue="id"
         (choose)="dados.public = $event"
+        [selected]="getPivotProperty('public', 'person_type_id')"
       />
     </div>
 
@@ -104,13 +108,14 @@
         bindText="name"
         bindValue="id"
         (choose)="dados.segments = $event"
+        [selected]="getPivotProperty('segments', 'segment_id')"
       />
     </div>
 
     <div class="mb-2">
       <card [loading]="loading">
         <div class="card-header">
-          <h2 class="font-semibold text-cb-secondary">Operações</h2>
+          <h2 class="font-semibold text-cb-secondary">Permitir Comentários</h2>
         </div>
 
         <div class="px-4 pb-4">

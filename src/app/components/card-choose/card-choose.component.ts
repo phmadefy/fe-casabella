@@ -25,7 +25,7 @@ import { ChooseOptionsModalConfig } from 'src/app/shared/properties';
   styleUrls: ['./card-choose.component.scss'],
 })
 export class CardChooseComponent {
-  loading = false;
+  @Input() loading = false;
 
   dataSource: any[] = [];
   items: any[] = [];

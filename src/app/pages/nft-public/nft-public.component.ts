@@ -8,6 +8,8 @@ import { NftCardComponent } from 'src/app/components/nft-card/nft-card.component
 import { ApiService } from 'src/app/services/api.service';
 import { Subscription } from 'rxjs';
 import { ToolsService } from 'src/app/services/tools.service';
+import { Dialog } from '@angular/cdk/dialog';
+import { ModalNftApproveRefuseComponent } from 'src/app/shared/modal-nft-approve-refuse/modal-nft-approve-refuse.component';
 
 @Component({
   selector: 'app-nft-public',
@@ -37,7 +39,8 @@ export class NftPublicComponent {
   constructor(
     private route: ActivatedRoute,
     private service: ApiService,
-    public tools: ToolsService // private dialog: Dialog
+    public tools: ToolsService,
+    private dialog: Dialog
   ) {
     service.path = 'v1/nft';
   }
@@ -80,5 +83,32 @@ export class NftPublicComponent {
       this.service.path = 'v1/nft';
     }
     this.getList();
+  }
+
+  openModalApproveRefuse(item: any, mode: string) {
+    this.dialog
+      .open<any>(ModalNftApproveRefuseComponent, {
+        width: '95%',
+        maxWidth: '500px',
+        maxHeight: '90%',
+        data: {
+          item,
+          mode,
+          user: true,
+          endpoint: `v1/nft/${item?.nft?.id}/approve`,
+        },
+      })
+      .closed.subscribe((res) => {
+        if (res) {
+          this.getList();
+        }
+      });
+  }
+
+  isReceive(item: any) {
+    return item?.from_user_id != this.userCurrent.id;
+  }
+  isSend(item: any) {
+    return item?.from_user_id == this.userCurrent.id;
   }
 }
