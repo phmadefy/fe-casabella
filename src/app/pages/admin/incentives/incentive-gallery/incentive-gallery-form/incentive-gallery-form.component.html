@@ -3,7 +3,7 @@
   (ngSubmit)="onSubmit(form)"
   class="grid md:grid-cols-8 gap-3"
 >
-  <card class="col-span-6">
+  <card class="col-span-6" [loading]="loading">
     <div class="card-header">
       <h2 class="text-lg font-semibold">
         {{ dados.id ? "Editar" : "Adicionar" }} Galeria
@@ -76,7 +76,7 @@
     </div>
   </card>
 
-  <div class="col-span-2">
+  <div class="col-span-2" *ngIf="!loading">
     <div class="mb-4" *ngIf="dados.id">
       <card>
         <div class="card-header">
@@ -107,7 +107,7 @@
             name="fileCapa"
             title="Selecione a capa"
             subtitle="276 x 180"
-            (changeImage)="setImage($event)"
+            (changeImage)="dados.image = $event[0]"
             [image]="dados.image_url"
           ></image-select>
         </div>
@@ -122,6 +122,7 @@
         bindValue="id"
         name="publico"
         (choose)="dados.public = $event"
+        [selected]="dados.public"
       ></card-choose>
     </div>
 
@@ -133,6 +134,7 @@
         bindValue="id"
         name="segmento"
         (choose)="dados.segments = $event"
+        [selected]="dados.segments"
       ></card-choose>
     </div>
   </div>

@@ -74,7 +74,9 @@
     <div class="p-4 flex flex-col justify-center">
       <div>
         <p>Recusado por:</p>
-        <span class="text-cb-info text-sm">{{ item?.refuser?.nickname }}</span>
+        <span class="text-cb-info text-sm">{{
+          item?.unauthorized_by?.nickname
+        }}</span>
       </div>
     </div>
 
@@ -111,7 +113,7 @@
           class="btn-sm btn-md w-full text-white rounded-md border border-cb-secondary"
           (click)="openModalApproveRefuse(item, 'refuse')"
         >
-          Rejeitar
+          Recusar
         </button>
       </div>
     </div>

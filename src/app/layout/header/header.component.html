@@ -124,7 +124,8 @@
         <ul class="py-2 text-sm font-semibold border-0">
           <li>
             <a
-              href="/profile"
+              href="javascript:void(0)"
+              routerLink="/profile"
               class="block px-2 py-2 text-cb-base bg-gradient-cb-hover"
             >
               <i class="fa-solid fa-user mr-2"></i> Perfil
@@ -134,6 +135,7 @@
             <a
               href="javascript:void(0)"
               class="block px-2 py-2 text-cb-base bg-gradient-cb-hover"
+              (click)="openChangePassword()"
             >
               <i class="fa-solid fa-lock mr-2"></i> Alterar Senha
             </a>

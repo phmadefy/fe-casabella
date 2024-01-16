@@ -13,6 +13,7 @@ import { ModalMediaUploadComponent } from 'src/app/shared/modal-media-upload/mod
 import { Router, RouterLink } from '@angular/router';
 import { ImagePreviewComponent } from 'src/app/components/image-preview/image-preview.component';
 import { MessageService } from 'src/app/services/message.service';
+import { ToolsService } from 'src/app/services/tools.service';
 
 @Component({
   selector: 'app-incentive-gallery-form',
@@ -37,6 +38,7 @@ export class IncentiveGalleryFormComponent extends AbstractForms {
 
   constructor(
     service: ApiService,
+    public tools: ToolsService,
     private dialog: Dialog,
     private router: Router,
     private messageService: MessageService
@@ -59,22 +61,20 @@ export class IncentiveGalleryFormComponent extends AbstractForms {
       .then((res) => {
         console.log('res', res);
         this.dados = res;
+        this.dados.public = this.dados.public?.map(
+          (i: any) => i.person_type_id
+        );
+        this.dados.segments = this.dados.segments?.map(
+          (i: any) => i.segment_id
+        );
       })
       .finally(() => (this.loading = false));
   }
 
   override async submit() {
     console.log('dados', this.dados);
-    const formData = new FormData();
-    for (let key of Object.keys(this.dados)) {
-      if (Array.isArray(this.dados[key])) {
-        for (let value of this.dados[key]) {
-          formData.append(`${key}[]`, value);
-        }
-      } else {
-        formData.append(key, this.dados[key]);
-      }
-    }
+    const formData = this.tools.generateFormData(this.dados);
+    console.log('formData', formData);
 
     if (!this.dados.id) {
       this.create(formData);
@@ -112,6 +112,8 @@ export class IncentiveGalleryFormComponent extends AbstractForms {
   }
 
   setImage(event: File[]) {
+    console.log('setImage', event);
+
     if (event.length > 0) {
       this.dados.image = event[0];
     }
@@ -145,5 +147,14 @@ export class IncentiveGalleryFormComponent extends AbstractForms {
           this.delete(this.dados.id);
         }
       });
+  }
+
+  getPivotProperty(propertyArray: string, propertyReturn: string) {
+    const data = this.dados[propertyArray]?.map(
+      (f: any) => f?.pivot?.[propertyReturn]
+    );
+    // console.log('getPivotProperty', data);
+
+    return data;
   }
 }

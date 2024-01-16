@@ -479,7 +479,7 @@
         bindValue="id"
         name="publico"
         (choose)="dados.public = $event"
-        [selected]="getPublicSelected()"
+        [selected]="dados.public"
       ></card-choose>
     </div>
 
@@ -491,7 +491,7 @@
         bindValue="id"
         name="segment"
         (choose)="dados.segments_participate = $event"
-        [selected]="getSegmentParticipateSelected()"
+        [selected]="dados.segments_participate"
       ></card-choose>
     </div>
 
@@ -503,7 +503,7 @@
         bindValue="id"
         name="view_segments"
         (choose)="dados.segments_view = $event"
-        [selected]="getSegmentViewSelected()"
+        [selected]="dados.segments_view"
       ></card-choose>
     </div>
 
@@ -515,7 +515,7 @@
         bindValue="id"
         name="cities"
         (choose)="dados.cities = $event"
-        [selected]="getCities()"
+        [selected]="dados.cities"
       ></card-choose>
     </div>
   </div>

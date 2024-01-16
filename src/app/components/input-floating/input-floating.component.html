@@ -57,6 +57,32 @@
     [options]="optionsMoney"
     (focus)="onTouchedCb(value)"
   />
+  <ng-container *ngIf="type == 'password'">
+    <input
+      [(ngModel)]="value"
+      [type]="showPass ? 'text' : 'password'"
+      [id]="model"
+      class="block w-full text-sm text-cb-base bg-cb-primary rounded-lg border-1 border-cb-secondary appearance-none dark:text-white dark:border-gray-600 dark:focus:border-white focus:outline-none focus:ring-0 focus:border-cb-secondary peer autofill:shadow-cb-primary"
+      [ngClass]="{
+        'px-2.5 pb-2.5 pt-4': size == 'lg',
+        'px-2 pb-2 pt-2': size == 'md'
+      }"
+      [placeholder]="placeholder"
+      [attr.readonly]="isReadOnly ? true : null"
+      [required]="isRequired"
+      (focus)="onTouchedCb(value)"
+    />
+
+    <button
+      type="button"
+      class="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-cb-info"
+      (click)="showPass = !showPass"
+    >
+      <i class="fa-solid fa-eye" *ngIf="!showPass"></i>
+      <i class="fa-solid fa-eye-slash" *ngIf="showPass"></i>
+      <span class="sr-only">Search</span>
+    </button>
+  </ng-container>
 
   <textarea
     *ngIf="type == 'textarea'"

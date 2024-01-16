@@ -126,6 +126,9 @@ export class ToolsService {
         for (let value of dados[key]) {
           formData.append(`${key}[]`, value);
         }
+        // if (dados[key]?.length <= 0) {
+        //   formData.append(`${key}[]`, '');
+        // }
       } else if (dados[key] instanceof Blob) {
         formData.append(key, dados[key]);
       } else if (typeof dados[key] == 'object') {

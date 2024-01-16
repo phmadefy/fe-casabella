@@ -6,14 +6,14 @@ export abstract class AbstractForms {
 
   constructor(public service: ApiService) {}
 
-  abstract submit(): void;
+  abstract submit(form:NgForm): void;
   abstract finish(result: any): void;
 
   onSubmit(form: NgForm) {
     console.log('onSubmit', form);
 
     if (form.status == 'VALID') {
-      this.submit();
+      this.submit(form);
     }
   }
 

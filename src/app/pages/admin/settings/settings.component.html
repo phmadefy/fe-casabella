@@ -117,7 +117,7 @@
             class="w-full"
             controlName="ImagemAnimadaMenu"
             [form]="form"
-            (selectFile)="parseFiles($event, 'ImagemAnimadaMenu')"
+            (selectFile)="dados.ImagemAnimadaMenu = $event[0]"
             name="ImagemAnimadaMenu"
           ></input-file>
         </div>
@@ -181,7 +181,7 @@
             class="w-full"
             controlName="ImagemOuVideoTelaLogin"
             [form]="form"
-            (selectFile)="parseFiles($event, 'ImagemOuVideoTelaLogin')"
+            (selectFile)="dados.ImagemOuVideoTelaLogin = $event[0]"
             name="ImagemOuVideoTelaLogin"
           ></input-file>
         </div>

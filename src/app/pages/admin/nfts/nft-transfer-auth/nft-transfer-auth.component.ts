@@ -30,9 +30,7 @@ export class NftTransferAuthComponent {
     private service: ApiService,
     public tools: ToolsService,
     private dialog: Dialog
-  ) {
-    service.path = 'v1/transactions-nft';
-  }
+  ) {}
 
   ngOnInit(): void {
     this.queryParamsObs = this.route.queryParams.subscribe((res: any) => {
@@ -60,6 +58,11 @@ export class NftTransferAuthComponent {
     this.tab = tab;
     this.filters = { per_page: 30, page: 1 };
     this.filters[tab] = true;
+    if (tab == 'refused') {
+      this.service.path = 'v1/nft-history';
+    } else {
+      this.service.path = 'v1/transactions-nft';
+    }
     // this.filters.status = tab;
     this.getList();
   }

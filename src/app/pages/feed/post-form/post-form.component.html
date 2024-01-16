@@ -97,7 +97,7 @@
         bindText="name"
         bindValue="id"
         (choose)="dados.public = $event"
-        [selected]="getPivotProperty('public', 'person_type_id')"
+        [selected]="dados.public"
       />
     </div>
 
@@ -108,7 +108,7 @@
         bindText="name"
         bindValue="id"
         (choose)="dados.segments = $event"
-        [selected]="getPivotProperty('segments', 'segment_id')"
+        [selected]="dados.segments"
       />
     </div>
 

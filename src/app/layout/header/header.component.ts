@@ -5,6 +5,8 @@ import { ToolsService } from 'src/app/services/tools.service';
 import { ApiService } from 'src/app/services/api.service';
 import { FloralPriceComponent } from 'src/app/components/floral-price/floral-price.component';
 import { MyFloralComponent } from 'src/app/components/my-floral/my-floral.component';
+import { Dialog } from '@angular/cdk/dialog';
+import { ModalChangePasswordComponent } from 'src/app/shared/modal-change-password/modal-change-password.component';
 
 @Component({
   selector: 'app-header',
@@ -585,7 +587,11 @@ export class HeaderComponent {
 
   userCurrent: any = {};
 
-  constructor(public tools: ToolsService, private service: ApiService) {}
+  constructor(
+    public tools: ToolsService,
+    private service: ApiService,
+    private dialog: Dialog
+  ) {}
 
   async ngOnInit() {
     this.userCurrent = await this.tools.getCurrentUser();
@@ -603,5 +609,13 @@ export class HeaderComponent {
         e.remove();
       });
     }, 150);
+  }
+
+  openChangePassword() {
+    this.dialog.open<any>(ModalChangePasswordComponent, {
+      width: '95%',
+      maxWidth: '400px',
+      maxHeight: '90%',
+    });
   }
 }

@@ -78,17 +78,28 @@ export class IncentiveFormComponent extends AbstractForms {
       .then((res) => {
         console.log('res', res);
         this.dados = res;
+        this.dados.public = this.getPublicSelected();
+        this.dados.segments_participate = this.getSegmentParticipateSelected();
+        this.dados.segments_view = this.getSegmentViewSelected();
+        this.dados.cities = this.getCities();
       })
       .finally(() => (this.loading = false));
   }
 
-  override submit(): void {
+  override async submit() {
     const formData = this.tools.generateFormData(this.dados);
 
     if (!this.dados.id) {
       this.create(formData);
     } else {
-      this.update(formData, this.dados.id);
+      // this.update(formData, this.dados.id);
+      this.loading = true;
+      await this.service
+        .postCustom(`v1/incentives/${this.dados.id}`, formData)
+        .then((res) => {
+          this.finish(res);
+        })
+        .finally(() => (this.loading = false));
     }
   }
   override finish(result: any): void {

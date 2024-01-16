@@ -26,9 +26,8 @@
     ></checkbox>
   </div>
 
-  <div class="card-footer">
+  <div class="card-footer" *ngIf="showBtn">
     <button-cb
-      *ngIf="showBtn"
       type="button"
       class="w-full"
       classes="btn-sm btn-md w-full rounded-md bg-gradient-cb font-semibold"

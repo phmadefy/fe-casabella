@@ -58,6 +58,8 @@ export class PostFormComponent extends AbstractForms {
       .show(id)
       .then((res) => {
         this.dados = res;
+        this.dados.public = this.getPivotProperty('public', 'person_type_id');
+        this.dados.segments = this.getPivotProperty('segments', 'segment_id');
       })
       .finally(() => (this.loading = false));
   }

@@ -54,7 +54,9 @@ export class InputFloatingComponent implements ControlValueAccessor {
 
   optionsMoney!: NgxCurrencyConfig;
 
-  exclude = ['select', 'phone', 'money', 'textarea'];
+  exclude = ['select', 'phone', 'money', 'textarea', 'password'];
+
+  showPass = false;
 
   constructor(public tools: ToolsService) {}
   ngOnInit(): void {
