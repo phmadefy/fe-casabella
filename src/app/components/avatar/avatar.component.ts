@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ToolsService } from 'src/app/services/tools.service';
 
 @Component({
   selector: 'avatar',
@@ -14,7 +15,10 @@ export class AvatarComponent {
 
   @Output() changeImage = new EventEmitter<any>();
 
-  onFileSelected(event: any) {
+  constructor(private tools: ToolsService) {}
+
+  async onFileSelected(event: any) {
+    this.image = await this.tools.toBase64(event?.target?.files[0]);
     this.changeImage.emit(event);
   }
 }

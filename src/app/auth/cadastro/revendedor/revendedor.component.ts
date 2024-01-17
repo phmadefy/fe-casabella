@@ -84,14 +84,7 @@ export class RevendedorComponent {
   }
 
   finish(): void {
-    const formData = new FormData();
-    Object.keys(this.dados).forEach((key) => {
-      if (typeof this.dados[key] == 'object') {
-        formData.append(key, JSON.stringify(this.dados[key]));
-      } else {
-        formData.append(key, this.dados[key]);
-      }
-    });
+    const formData = this.tools.generateFormData(this.dados);
 
     for (let file of this.files) {
       formData.append('attachments[]', file);

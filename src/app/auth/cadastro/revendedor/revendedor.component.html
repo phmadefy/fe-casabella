@@ -243,9 +243,9 @@
 
       <div class="flex items-center justify-center py-2">
         <avatar
-          (changeImage)="changeAvatar($event)"
-          [image]="dados.avatar"
+          (changeImage)="dados.avatar = $event?.target?.files[0]"
         ></avatar>
+        <!-- [image]="dados.avatar" -->
       </div>
 
       <h2 class="text-sm text-center text-cb-base py-3">

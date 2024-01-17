@@ -45,7 +45,7 @@
           *ngFor="let item of dataSource.data; let i = index"
           [ngClass]="{
             'bg-transparent': i % 2 !== 0,
-            'bg-cb-secondary': i % 2 === 0
+            'bg-cb-tertiary': i % 2 === 0
           }"
           (dblclick)="edit(item)"
         >

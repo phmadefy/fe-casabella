@@ -8,6 +8,7 @@ module.exports = {
       current: "currentColor",
       "cb-primary": "#131E39",
       "cb-secondary": "#344A6A",
+      "cb-tertiary": "#1B284A",
       "cb-contrast": "#162446",
       "cb-red": "#DD1650",
       "cb-base": "#F7F7F7",
