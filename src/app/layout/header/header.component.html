@@ -92,20 +92,21 @@
         </div>
       </div>
 
-      <a
+      <button
         id="dropdownProfile"
         data-dropdown-toggle="dropdown"
         type="button"
         data-dropdown-offset-distance="-50"
         data-dropdown-offset-skidding="80"
         data-dropdown-placement="left"
+        class="rounded-md overflow-hidden"
       >
         <img
-          src="https://flowbite.com/docs/images/logo.svg"
+          [src]="userCurrent?.avatar ?? tools.noImageAvatar"
           class="h-[40px] w-[40px]"
           alt="Avatar"
         />
-      </a>
+      </button>
       <!-- Dropdown menu -->
       <div
         id="dropdown"
@@ -116,8 +117,9 @@
         >
           <span class="text-gradient-cb">{{ userCurrent?.name }}</span>
           <img
-            src="https://flowbite.com/docs/images/logo.svg"
+            [src]="userCurrent?.avatar ?? tools.noImageAvatar"
             class="h-[40px] w-[40px]"
+            class="rounded-md"
             alt="Avatar"
           />
         </div>
