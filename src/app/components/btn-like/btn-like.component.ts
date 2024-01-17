@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { initFlowbite } from 'flowbite';
 
@@ -10,6 +10,7 @@ import { initFlowbite } from 'flowbite';
   styleUrls: ['./btn-like.component.scss'],
 })
 export class BtnLikeComponent {
+  @Input() id = 'btn-like';
   active = false;
 
   ngOnInit(): void {

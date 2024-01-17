@@ -10,7 +10,7 @@
 
   <div
     class="flex flex-col gap-2 p-2 border border-cb-secondary rounded-md h-48"
-    *ngFor="let item of dataSource.data"
+    *ngFor="let item of dataSource.data; let i = index"
   >
     <img
       [src]="item.image ?? tools.noImageAvatar"
@@ -38,7 +38,7 @@
       >
         Conferir Detalhes
       </button>
-      <btn-like class="min-w-max"></btn-like>
+      <btn-like class="min-w-max" [id]="'gl' + i"></btn-like>
     </div>
   </div>
 </div>

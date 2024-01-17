@@ -1,6 +1,6 @@
 <button
   type="button"
-  data-dropdown-toggle="drop-like"
+  [attr.data-dropdown-toggle]="id"
   data-dropdown-trigger="hover"
   data-dropdown-delay="200"
   data-dropdown-placement="top"
@@ -14,7 +14,7 @@
   <span>{{ active ? "Curtiu" : "Curtir" }}</span>
 </button>
 <div
-  id="drop-like"
+  [attr.id]="id"
   class="z-10 hidden bg-cb-secondary divide-y divide-gray-100 rounded-full shadow w-auto py-2 px-4"
 >
   <div class="flex gap-2 items-center justify-center">
