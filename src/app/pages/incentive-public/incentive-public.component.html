@@ -51,7 +51,10 @@
 <div class="grid md:grid-cols-3 gap-3" *ngIf="tab != 'galeria'">
   <card [loading]="loading" *ngFor="let item of dataSource.data">
     <div class="p-2">
-      <card-image [image]="" [disabled]="tab == 'inactives'"></card-image>
+      <card-image
+        [image]="item.image_url"
+        [disabled]="tab == 'inactives'"
+      ></card-image>
     </div>
     <div class="p-2 flex items-center gap-2">
       <button

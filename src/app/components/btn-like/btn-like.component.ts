@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'btn-like',
@@ -10,4 +11,8 @@ import { CommonModule } from '@angular/common';
 })
 export class BtnLikeComponent {
   active = false;
+
+  ngOnInit(): void {
+    initFlowbite();
+  }
 }
