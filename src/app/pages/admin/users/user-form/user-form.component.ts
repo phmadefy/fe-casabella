@@ -85,11 +85,20 @@ export class UserFormComponent extends AbstractForms {
       .finally(() => (this.loading = false));
   }
 
-  submit(): void {
+  async submit() {
+    const formData = this.tools.generateFormData(this.dados);
+
     if (!this.dados.id) {
-      this.create(this.dados);
+      this.create(formData);
     } else {
-      this.update(this.dados, this.dados.id);
+      // this.update(this.dados, this.dados.id);
+      this.loading = true;
+      await this.service
+        .postCustom(`v1/users/${this.dados.id}`, formData)
+        .then((res) => {
+          this.finish(res);
+        })
+        .finally(() => (this.loading = false));
     }
   }
 
@@ -98,8 +107,7 @@ export class UserFormComponent extends AbstractForms {
   }
 
   async changeAvatar(event: any) {
-    console.log('changeAvatar', event);
-    this.dados.user.avatar = await this.tools.toBase64(event.target.files[0]);
+    this.dados.avatar = event.target.files[0];
   }
 
   async getCities(uf: string) {
