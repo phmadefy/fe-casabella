@@ -598,6 +598,9 @@ export class HeaderComponent {
 
   userCurrent: any = {};
 
+  imagemAnimadaMenu = null;
+  FraseExibidaMenu = null;
+
   constructor(
     public tools: ToolsService,
     private service: ApiService,
@@ -605,6 +608,25 @@ export class HeaderComponent {
   ) {}
 
   async ngOnInit() {
+    const parameters = this.tools.getParameters();
+    const paramImage = this.tools.getItemArray(
+      parameters,
+      'parameter',
+      'ImagemAnimadaMenu'
+    );
+    if (paramImage) {
+      this.imagemAnimadaMenu = paramImage.value;
+    }
+
+    const paramFrase = this.tools.getItemArray(
+      parameters,
+      'parameter',
+      'FraseExibidaMenu'
+    );
+    if (paramFrase) {
+      this.FraseExibidaMenu = paramFrase.value;
+    }
+
     this.userCurrent = await this.tools.getCurrentUser();
     // this.service.getSettings().then((res) => {
     //   for (const item of res) {

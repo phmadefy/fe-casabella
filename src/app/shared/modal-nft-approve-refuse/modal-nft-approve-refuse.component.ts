@@ -54,7 +54,7 @@ export class ModalNftApproveRefuseComponent {
         this.mode == 'approve'
           ? 'approved'
           : this.mode == 'cancel'
-          ? 'cancelled'
+          ? 'canceled'
           : 'rejected';
       this.formData.to_user_id = this.userCurrent.id;
     }

@@ -48,8 +48,15 @@
       </a>
 
       <span class="font-semibold text-xs text-orange-400 w-[150px]">
-        {{ params.FraseExibidaMenu }}
+        {{ FraseExibidaMenu }}
       </span>
+
+      <img
+        [src]="imagemAnimadaMenu"
+        class="h-14 w-12"
+        alt=""
+        *ngIf="imagemAnimadaMenu"
+      />
     </div>
 
     <div

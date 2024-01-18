@@ -2,8 +2,9 @@
   <div class="h-screen hidden md:block">
     <img
       class="w-full h-full object-cover"
-      src="../../assets/image-mall.png"
+      [src]="ImagemOuVideoTelaLogin"
       alt="banner image"
+      *ngIf="ImagemOuVideoTelaLogin"
     />
   </div>
 
@@ -13,8 +14,9 @@
     </div>
     <h1
       class="font-extrabold my-4 leading-none tracking-tight text-white max-2xl:text-xl text-center dark:text-white"
+      *ngIf="FraseExibidaTelaLogin"
     >
-      Plataforma de Incentivos Exclusiva da Casabella Inspirada no Metaverso
+      {{ FraseExibidaTelaLogin }}
     </h1>
     <p
       class="font-normal text-white text-center md:text-lg dark:text-gray-400 mb-6"

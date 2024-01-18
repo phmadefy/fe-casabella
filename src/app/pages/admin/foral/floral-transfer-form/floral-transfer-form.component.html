@@ -122,11 +122,13 @@
         <div class="text-right w-1/2">
           <span class="font-semibold">Valor equivalente em Reais (R$)</span>
           <p class="text-sm text-cb-orange">
-            F$ 1,00 Floral equivalente a R$ 0,06
+            {{ 1 | currency : "BRL" : "F$" : "1.4-4" }}
+            Floral equivalente a
+            {{ CotacaoFloral * 1 | currency : "R$ " }}
           </p>
         </div>
         <div class="w-1/2 text-3xl text-cb-success font-bold">
-          R$ 100,00 (em produtos)
+          {{ CotacaoFloral * dados.amount | currency : "R$ " }} (em produtos)
         </div>
       </div>
 
@@ -137,7 +139,6 @@
           name="observation"
           [(ngModel)]="dados.observation"
           placeholder="Escreva uma observação"
-          [required]="true"
         ></textarea>
       </div>
     </div>

@@ -10,6 +10,7 @@ import { Login } from '../core/actions/auth.action';
 import { InputFloatingComponent } from '../components/input-floating/input-floating.component';
 import { Dialog } from '@angular/cdk/dialog';
 import { ModalForgotPasswordComponent } from '../shared/modal-forgot-password/modal-forgot-password.component';
+import { ToolsService } from '../services/tools.service';
 
 @Component({
   selector: 'app-auth',
@@ -30,14 +31,37 @@ export class AuthComponent {
   dados: any = {};
   loading = false;
 
+  FraseExibidaTelaLogin = null;
+  ImagemOuVideoTelaLogin = null;
+
   constructor(
     private service: AuthService,
     private router: Router,
     private store: Store,
-    private dialog: Dialog
+    private dialog: Dialog,
+    private tools: ToolsService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    const parameters = this.tools.getParameters();
+    const paramFrase = this.tools.getItemArray(
+      parameters,
+      'parameter',
+      'FraseExibidaTelaLogin'
+    );
+    if (paramFrase) {
+      this.FraseExibidaTelaLogin = paramFrase.value;
+    }
+
+    const paramImage = this.tools.getItemArray(
+      parameters,
+      'parameter',
+      'ImagemOuVideoTelaLogin'
+    );
+    if (paramImage) {
+      this.ImagemOuVideoTelaLogin = paramImage.value;
+    }
+  }
 
   openModalForgot() {
     this.dialog.open<any>(ModalForgotPasswordComponent, {

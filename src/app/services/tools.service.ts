@@ -228,4 +228,8 @@ export class ToolsService {
     // Verifica se a extensão está na lista de extensões de imagem
     return imageExtensions.includes(`.${fileExtension.toLowerCase()}`);
   }
+
+  getItemArray(array: any[], property: string, search: string) {
+    return array.find((i: any) => i[property] == search);
+  }
 }

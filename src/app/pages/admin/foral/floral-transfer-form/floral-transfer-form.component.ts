@@ -34,12 +34,24 @@ export class FloralTransferFormComponent extends AbstractForms {
   dados: any = { amount: 0, to: 'to_user' };
   userCurrent: any = {};
   modo = 'user';
+
+  CotacaoFloral = 0;
   constructor(service: ApiService, public tools: ToolsService) {
     service.path = 'v1/floral';
     super(service);
   }
 
   async ngOnInit() {
+    const parameters = this.tools.getParameters();
+    const paramCotacao = this.tools.getItemArray(
+      parameters,
+      'parameter',
+      'CotacaoFloral'
+    );
+    if (paramCotacao) {
+      this.CotacaoFloral = paramCotacao.value;
+    }
+
     this.userCurrent = await this.tools.getCurrentUser();
     if (this.tools.checkRouteContainsAdmin()) {
       this.modo = 'admin';
