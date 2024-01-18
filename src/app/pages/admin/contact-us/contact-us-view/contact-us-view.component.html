@@ -1,10 +1,5 @@
 <div class="grid md:grid-cols-8 gap-3">
-  <div
-    [ngClass]="{
-      'col-span-6': tools.checkRouteContainsAdmin(),
-      'col-span-full': !tools.checkRouteContainsAdmin()
-    }"
-  >
+  <div class="col-span-6">
     <div class="mb-4">
       <card [loading]="loading">
         <div class="card-header">
@@ -190,7 +185,7 @@
     </div>
   </div>
 
-  <div class="col-span-2" *ngIf="tools.checkRouteContainsAdmin()">
+  <div class="col-span-2">
     <div class="mb-4">
       <card [loading]="loading">
         <div class="card-header">
@@ -203,7 +198,9 @@
               class="p-2 hover:bg-cb-secondary cursor-pointer rounded-md border border-cb-secondary text-sm"
               (click)="setInProgress()"
               *ngIf="
-                dados.status != 'in_progress' && dados.status != 'finished'
+                dados.status != 'in_progress' &&
+                dados.status != 'finished' &&
+                tools.checkRouteContainsAdmin()
               "
             >
               Dar Andamento
@@ -211,11 +208,6 @@
             <ng-container
               *ngIf="dados.status != 'paused' && dados.status != 'finished'"
             >
-              <!-- <li
-                class="p-2 hover:bg-cb-secondary cursor-pointer rounded-md border border-cb-secondary text-sm"
-              >
-                Adicionar resposta
-              </li> -->
               <li
                 class="p-2 hover:bg-cb-secondary cursor-pointer rounded-md border border-cb-secondary text-sm"
                 (click)="openModalMedia()"
@@ -226,12 +218,17 @@
 
             <li
               class="p-2 hover:bg-cb-secondary cursor-pointer rounded-md border border-cb-secondary text-sm"
+              *ngIf="tools.checkRouteContainsAdmin()"
             >
               Imprimir
             </li>
             <li
               class="p-2 hover:bg-cb-secondary cursor-pointer rounded-md border border-cb-secondary text-sm"
-              *ngIf="dados.status != 'paused' && dados.status != 'finished'"
+              *ngIf="
+                dados.status != 'paused' &&
+                dados.status != 'finished' &&
+                tools.checkRouteContainsAdmin()
+              "
               (click)="setPaused()"
             >
               Pausar

@@ -1,6 +1,6 @@
 <modal title="Adicionar imagens/vídeos/documentos" [dialogRef]="dialogRef">
   <div class="p-4">
-    <dropzone (changeFile)="processFile($event)" />
+    <dropzone (changeFile)="processFile($event)" [extends]="accept" />
   </div>
 
   <div class="card-footer flex items-center justify-between gap-3">

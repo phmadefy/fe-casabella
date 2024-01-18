@@ -21,6 +21,9 @@ export class ModalMediaUploadComponent {
 
   files: File[] = [];
 
+  accept =
+    'image/*,application/msword,application/vnd.ms-excel,text/plain,application/pdf, video/*';
+
   constructor(
     private service: ApiService,
     public tools: ToolsService,

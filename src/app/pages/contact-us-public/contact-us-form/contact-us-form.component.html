@@ -56,6 +56,7 @@
           <dropzone
             (changeFile)="onFileSelected($event)"
             [files]="files"
+            extends="image/*,application/msword,application/vnd.ms-excel,text/plain,application/pdf, video/*"
           ></dropzone>
         </div>
       </div>

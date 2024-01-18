@@ -38,6 +38,7 @@ export class InputFloatingComponent implements ControlValueAccessor {
   @Input() colorBgLabel = 'bg-cb-primary';
   @Input() mask!: string;
   @Input() form!: NgForm;
+  @Input() isDisabled = false;
   @Input() isReadOnly = false;
   @Input() isRequired = false;
   @Input() isFloating = true;
@@ -109,6 +110,6 @@ export class InputFloatingComponent implements ControlValueAccessor {
     // }
   }
   setDisabledState?(isDisabled: boolean): void {
-    this.isReadOnly = isDisabled;
+    this.isDisabled = isDisabled;
   }
 }

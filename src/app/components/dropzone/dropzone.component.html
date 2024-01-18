@@ -2,7 +2,7 @@
   class="!border-cb-info !h-[210px] !bg-cb-primary"
   ngx-dropzone
   (change)="onFileSelected($event)"
-  accept="image/*"
+  [accept]="extends"
 >
   <ngx-dropzone-label>
     <div>

@@ -52,12 +52,19 @@ export class SponsorFormComponent extends AbstractForms {
       .finally(() => (this.loading = false));
   }
 
-  override submit(): void {
+  override async submit() {
     const formData = this.tools.generateFormData(this.dados);
     formData.append('image', this.file);
 
     if (this.dados.id) {
-      this.update(formData, this.dados.id);
+      // this.update(formData, this.dados.id);
+      this.loading = true;
+      await this.service
+        .postCustom(`v1/partners/${this.dados.id}`, formData)
+        .then((res) => {
+          this.finish(res);
+        })
+        .finally(() => (this.loading = false));
     } else {
       this.create(formData);
     }

@@ -500,6 +500,14 @@ export const routes: Routes = [
               },
 
               {
+                path: 'cities-states',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/users/cities-states/cities-states.component'
+                  ).then((c) => c.CitiesStatesComponent),
+              },
+
+              {
                 path: 'import-defaulters',
                 loadComponent: () =>
                   import(

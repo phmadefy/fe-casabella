@@ -79,9 +79,9 @@ export class ContactUsFormComponent extends AbstractForms {
     }
 
     if (this.dados.id) {
-      this.update(this.dados, this.dados.id);
+      this.update(formData, this.dados.id);
     } else {
-      this.create(this.dados);
+      this.create(formData);
     }
   }
   override finish(result: any): void {

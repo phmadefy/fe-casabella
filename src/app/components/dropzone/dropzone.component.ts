@@ -12,9 +12,14 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 export class DropzoneComponent {
   fileToUpload!: File;
   @Input() files: File[] = [];
+  @Input() extends = 'image/*';
 
   @Output()
   changeFile: EventEmitter<File | File[]> = new EventEmitter<File | File[]>();
+
+  ngOnInit() {
+    console.log('extends', this.extends);
+  }
 
   onFileSelected(event: any) {
     console.log('onFileSelected', event);

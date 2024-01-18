@@ -523,6 +523,11 @@ export class HeaderComponent {
               title: 'Cargo e Setores',
               route: '/office-sectors',
             },
+            {
+              id: 'admin-users-cities-states',
+              title: 'Cidade e Estados',
+              route: '/cities-states',
+            },
             // {
             //   id: 'admin-users-city-state',
             //   title: 'Cidades e Estados',

@@ -169,4 +169,17 @@ export class ToolsService {
 
     return '';
   }
+
+  getParameters() {
+    const parameters = localStorage.getItem('parameters');
+    if (parameters) {
+      return JSON.parse(parameters);
+    }
+
+    return {};
+  }
+
+  setParameters(parameters: any) {
+    localStorage.setItem('parameters', JSON.stringify(parameters));
+  }
 }
