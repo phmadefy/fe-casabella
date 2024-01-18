@@ -41,8 +41,8 @@ export class FloralDepositComponent extends AbstractForms {
     }
   }
   override finish(result: any): void {
-    this.tools.route.navigate(['/admin/floral'], {
-      queryParams: { tab: 'pending' },
+    this.tools.route.navigate(['/admin/cash-box'], {
+      queryParams: { tab: 'active' },
     });
   }
 }

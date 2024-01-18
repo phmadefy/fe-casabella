@@ -295,6 +295,13 @@ export const routes: Routes = [
                   ),
               },
               {
+                path: 'editar',
+                loadComponent: () =>
+                  import('./pages/admin/nfts/nft-form/nft-form.component').then(
+                    (c) => c.NftFormComponent
+                  ),
+              },
+              {
                 path: 'classifications',
                 loadComponent: () =>
                   import(

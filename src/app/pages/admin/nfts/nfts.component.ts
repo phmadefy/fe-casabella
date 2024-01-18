@@ -76,7 +76,7 @@ export class NftsComponent {
     const dialogRef = this.dialog.open<any>(ModalNftDetailComponent, {
       width: '95%',
       maxWidth: '850px',
-      height: '90%',
+      // height: '90%',
       data: item,
     });
   }

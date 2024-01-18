@@ -32,10 +32,24 @@ export class ModalNftDetailComponent {
   }
 
   getSubClassifications(item: any) {
-    return '';
+    return this.dados?.subclassifications.map((t: any) => t.name).join(', ');
   }
 
   getTypes() {
-    return this.dados.types.join(',');
+    return this.dados.types.map((t: any) => t.name).join(',');
+  }
+
+  openEdit() {
+    this.tools.route.navigate(['/admin/nfts/editar'], {
+      state: { nft_id: this.dados.id },
+    });
+    this.dialogRef.close();
+  }
+
+  openTransfer() {
+    this.tools.route.navigate(['/nfts/transferir'], {
+      state: { nft_id: this.dados.id },
+    });
+    this.dialogRef.close();
   }
 }

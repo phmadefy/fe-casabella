@@ -1,7 +1,7 @@
 <div class="grid md:grid-cols-8 gap-3">
   <div class="col-span-6">
     <div class="mb-4">
-      <card>
+      <card [loading]="loading">
         <div class="card-header">
           <h2 class="text-lg font-semibold">Adicionar Nova NFT</h2>
         </div>
@@ -44,10 +44,20 @@
               <div class="flex flex-col gap-4">
                 <input-floating
                   class="p-0 bg-transparent border-none"
+                  label="Criado por"
+                  model="artist"
+                  name="artist"
+                  [(ngModel)]="dados.artist"
+                  [form]="form"
+                  size="md"
+                ></input-floating>
+
+                <input-floating
+                  class="p-0 bg-transparent border-none"
                   label="Valor da NFT em Real (R$)"
-                  model="price"
-                  name="price"
-                  [(ngModel)]="dados.price"
+                  model="value"
+                  name="value"
+                  [(ngModel)]="dados.value"
                   type="money"
                   required
                   [form]="form"
@@ -57,9 +67,9 @@
                 <input-floating
                   class="p-0 bg-transparent border-none"
                   label="Valor da NFT em Foral (F$)"
-                  model="price_floral"
-                  name="price_floral"
-                  [(ngModel)]="dados.price_floral"
+                  model="value_in_floral"
+                  name="value_in_floral"
+                  [(ngModel)]="dados.value_in_floral"
                   type="money"
                   prefix="F$ "
                   [precision]="4"
@@ -141,7 +151,7 @@
     </div>
   </div>
 
-  <div class="col-span-2">
+  <div class="col-span-2" *ngIf="!loading">
     <div class="mb-4">
       <card-choose
         #inputChooseClassifications
@@ -173,6 +183,7 @@
         bindValue="id"
         name="type"
         (choose)="dados.types = $event"
+        [selected]="dados.types"
         [showBtn]="true"
         labelBtn="Novo Tipo"
         (onClick)="openModalType(inputChooseType)"

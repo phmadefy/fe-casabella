@@ -19,13 +19,13 @@
         </span>
       </h2>
 
-      <button
+      <!-- <button
         type="button"
         class="text-xs text-gradient-cb !font-normal hover:text-cb-info focus:z-10"
       >
         <i class="fa-solid fa-paper-plane mr-2"></i>
         <span class="text-cb-base hover:text-cb-info">Enviar mensagem</span>
-      </button>
+      </button> -->
     </div>
 
     <div class="flex items-end gap-4">
@@ -63,6 +63,7 @@
       <button
         type="button"
         class="text-white bg-gradient-cb bg-gradient-cb-hover focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md w-full md:w-full px-5 py-2.5 text-center"
+        (click)="openTransfer()"
       >
         Transferir
       </button>
@@ -70,6 +71,7 @@
       <button
         type="button"
         class="text-white bg-cb-secondary focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full md:w-full px-5 py-1.5 text-center"
+        (click)="openEdit()"
       >
         Editar
       </button>

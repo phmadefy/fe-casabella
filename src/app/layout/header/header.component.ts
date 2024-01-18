@@ -200,6 +200,12 @@ export class HeaderComponent {
               route: '/ciclos',
               queryParams: { tab: 'active' },
             },
+            {
+              id: 'admin-incentives-gallery',
+              title: 'Galeria de Imagens e Vídeos',
+              route: '/',
+              queryParams: { tab: 'gallery' },
+            },
           ],
         },
         {

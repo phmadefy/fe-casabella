@@ -11,7 +11,7 @@ import { ModalNftSearchComponent } from 'src/app/shared/modal-nft-search/modal-n
   styleUrls: ['./nft-choose.component.scss'],
 })
 export class NftChooseComponent {
-  nft: any = {};
+  @Input() nft: any = {};
 
   @Input() user_id: any;
 
@@ -30,10 +30,14 @@ export class NftChooseComponent {
     dialogRef.closed.subscribe((result) => {
       console.log('The dialog was closed');
       if (result) {
-        this.nft = result;
-        this.chooseNFT.emit(result);
+        this.setNFT(result);
       }
     });
+  }
+
+  setNFT(nft: any) {
+    this.nft = nft;
+    this.chooseNFT.emit(nft);
   }
 
   clearChoose() {

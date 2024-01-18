@@ -46,6 +46,7 @@ export class NftTransferFormComponent extends AbstractForms {
   modo = 'user';
   constructor(service: ApiService, public tools: ToolsService) {
     super(service);
+    service.path = 'v1/admin/nfts';
   }
 
   async ngOnInit() {
@@ -55,6 +56,21 @@ export class NftTransferFormComponent extends AbstractForms {
     } else {
       this.nftChoose.user_id = this.userCurrent.id;
     }
+
+    if (history.state?.nft_id) {
+      this.getDados(history.state?.nft_id);
+    }
+  }
+
+  getDados(id: any) {
+    this.loading = true;
+    this.service
+      .show(id)
+      .then((res) => {
+        this.dados = res;
+        this.nftChoose.setNFT(res);
+      })
+      .finally(() => (this.loading = false));
   }
 
   chooseNFT(event: any) {

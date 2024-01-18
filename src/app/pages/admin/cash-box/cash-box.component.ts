@@ -74,7 +74,11 @@ export class CashBoxComponent {
 
   setTab(tab: string) {
     this.tab = tab;
-    this.filters.status = tab;
+    if (tab == 'active') {
+      this.filters.active = 1;
+    } else {
+      this.filters.active = 0;
+    }
     this.getList();
   }
 

@@ -70,27 +70,27 @@ export class CitiesStatesComponent {
       })
       .finally(() => (this.loading = false));
   }
-  // openEdit(item: any) {
-  //   const modalRef = this.messageService.presentAlertPrompt(
-  //     '',
-  //     'Editar Cargo',
-  //     {
-  //       value: item.name,
-  //     }
-  //   );
-  //   modalRef.closed.subscribe((result) => {
-  //     if (result) {
-  //       this.loading = true;
-  //       this.service
-  //         .updateCustom(`v1/admin/roles/update/${item.id}`, { name: result })
-  //         .then(async () => {
-  //           this.messageService.presentAlert('Cargo atualizado com sucesso.');
-  //           await this.getList();
-  //         })
-  //         .finally(() => (this.loading = false));
-  //     }
-  //   });
-  // }
+  openEdit(item: any) {
+    const modalRef = this.messageService.presentAlertPrompt(
+      '',
+      'Editar Cidade',
+      {
+        value: item.name,
+      }
+    );
+    modalRef.closed.subscribe((result) => {
+      if (result) {
+        this.loading = true;
+        this.service
+          .updateCustom(`v1/admin/cities/${item.id}`, { name: result })
+          .then(async () => {
+            this.messageService.presentAlert('Cidade atualizado com sucesso.');
+            await this.getList();
+          })
+          .finally(() => (this.loading = false));
+      }
+    });
+  }
   openDelete(item: any) {
     const dialogRef = this.messageService.presentAlertConfirm(
       `Excluir <b>${item.name}</b> ?`,

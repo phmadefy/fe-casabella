@@ -68,28 +68,47 @@ export class NftFormComponent extends AbstractForms {
   getDados(id: any) {
     this.loading = true;
     this.service
-      .listing({ id })
+      .show(id)
       .then((res) => {
         console.log('res', res);
         this.dados = res;
+
+        this.dados.public = this.tools.getPropertiesPivot(
+          this.dados.public,
+          'person_type_id'
+        );
+        this.dados.segments = this.tools.getPropertiesPivot(
+          this.dados.segments,
+          'segment_id'
+        );
+        this.dados.types = this.tools.getPropertiesPivot(
+          this.dados.types,
+          'nft_type_id'
+        );
+        this.dados.subclassifications = this.tools.getPropertiesPivot(
+          this.dados.subclassifications,
+          'nft_sub_classification_id'
+        );
+        this.dados.classifications = this.tools.getPropertiesPivot(
+          this.dados.classifications,
+          'nft_classification_id'
+        );
       })
       .finally(() => (this.loading = false));
   }
 
-  override submit(): void {
-    const formData = new FormData();
-    for (let key of Object.keys(this.dados)) {
-      if (Array.isArray(this.dados[key])) {
-        for (let value of this.dados[key]) {
-          formData.append(`${key}[]`, value);
-        }
-      } else {
-        formData.append(key, this.dados[key]);
-      }
-    }
+  override async submit() {
+    const formData = this.tools.generateFormData(this.dados);
 
     if (this.dados.id) {
-      this.update(formData, this.dados.id);
+      // this.update(formData, this.dados.id);
+      this.loading = true;
+      await this.service
+        .postCustom(`v1/admin/nfts/${this.dados.id}`, formData)
+        .then((res) => {
+          this.finish(res);
+        })
+        .finally(() => (this.loading = false));
     } else {
       this.create(formData);
     }
