@@ -36,7 +36,7 @@ export class ContactUsViewComponent {
   optionsCall = OptionsCall;
   userCurrent: any = {};
   constructor(
-    private service: ApiService,
+    public service: ApiService,
     public tools: ToolsService,
     private dialog: Dialog,
     private messageService: MessageService

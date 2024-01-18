@@ -97,7 +97,10 @@
             </ng-container>
           </td>
           <td class="text-center" *ngIf="tab == 'waiting approve'">
-            <i class="fa-solid fa-paperclip text-gradient-cb text-xl"></i>
+            <i
+              class="fa-solid fa-paperclip text-gradient-cb text-xl hover:cursor-pointer"
+              (click)="openModalViewDocs(item)"
+            ></i>
           </td>
           <td class="flex items-center gap-2" *ngIf="tab == 'waiting approve'">
             <button

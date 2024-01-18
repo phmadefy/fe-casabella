@@ -7,12 +7,14 @@ import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { lastValueFrom, skipWhile, take } from 'rxjs';
 import { currentUser } from '../core/selectors/auth.selector';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ToolsService {
   noImageAvatar = 'assets/sem-foto.png';
+  baseUrl = environment.url;
   constructor(private store: Store<AppState>, public route: Router) {}
 
   async getCurrentUser() {
@@ -86,7 +88,7 @@ export class ToolsService {
 
   checkRouteContainsAdmin() {
     const paths = location.pathname.split('/');
-    console.log('checkRouteContainsAdmin', paths);
+    // console.log('checkRouteContainsAdmin', paths);
     if (paths.includes('admin')) {
       return true;
     }
@@ -181,5 +183,49 @@ export class ToolsService {
 
   setParameters(parameters: any) {
     localStorage.setItem('parameters', JSON.stringify(parameters));
+  }
+
+  getPropertiesPivot(array: any[], property: string) {
+    if (array && array.length > 0) {
+      return array.map((a: any) => a?.pivot[property]);
+    }
+    return [];
+  }
+
+  isFileType(type: string, filePath: string) {
+    // Lista de extensões de imagem suportadas
+    let imageExtensions: any = [];
+    if (type == 'image') {
+      imageExtensions = [
+        '.jpg',
+        '.jpeg',
+        '.png',
+        '.gif',
+        '.bmp',
+        '.svg',
+        '.webp',
+      ];
+    }
+    if (type == 'pdf') {
+      imageExtensions = ['.pdf'];
+    }
+    if (type == 'excel') {
+      imageExtensions = [
+        '.csv',
+        '.xls',
+        '.xlsx',
+        '.xlsm',
+        '.xlsb',
+        '.xltx',
+        '.xltm',
+      ];
+    }
+    // Obtém a extensão do arquivo a partir do caminho
+    const fileExtension = filePath.slice(
+      ((filePath.lastIndexOf('.') - 1) >>> 0) + 2
+    );
+
+    // Verifica se a extensão está na lista de extensões de imagem
+    return imageExtensions.includes(`.${fileExtension.toLowerCase()}`);
   }
 }

@@ -11,6 +11,7 @@ import { Dialog, DialogModule } from '@angular/cdk/dialog';
 import { ModalApproveComponent } from './modal-approve/modal-approve.component';
 import { InputSearchComponent } from 'src/app/components/input-search/input-search.component';
 import { PaginationComponent } from 'src/app/components/pagination/pagination.component';
+import { ModalViewDocsComponent } from 'src/app/shared/modal-view-docs/modal-view-docs.component';
 
 @Component({
   selector: 'app-users',
@@ -114,5 +115,14 @@ export class UsersComponent {
   changePagination(page: number, per_page: number) {
     this.filters = { ...this.filters, page, per_page };
     this.getList();
+  }
+
+  openModalViewDocs(item: any) {
+    const dialogRef = this.dialog.open<any>(ModalViewDocsComponent, {
+      width: '95%',
+      maxWidth: '950px',
+      maxHeight: '90%',
+      data: item,
+    });
   }
 }

@@ -142,17 +142,39 @@
             <span class="text-cb-info">Anexos</span>
             <small>({{ dados.attachments.length }})</small>
           </div>
-          <div class="py-4 grid grid-cols-10 gap-2">
-            <div
+          <div class="py-4 grid grid-cols-10 items-baseline gap-2">
+            <a
+              [href]="item.file_url"
+              target="_blank"
               *ngFor="let item of dados.attachments"
-              class="h-full w-full rounded-md overflow-hidden"
+              class="h-full w-full overflow-hidden"
             >
               <img
                 [src]="item.file_url"
-                class="h-full w-full object-cover"
+                class="max-h-14 rounded-md hover:cursor-pointer"
                 alt=""
+                *ngIf="tools.isFileType('image', item.file)"
               />
-            </div>
+
+              <i
+                class="fa-solid fa-file-excel text-cb-orange hover:cursor-pointer text-5xl"
+                *ngIf="tools.isFileType('excel', item.file)"
+              ></i>
+
+              <i
+                class="fa-solid fa-file-pdf text-cb-orange hover:cursor-pointer text-5xl"
+                *ngIf="tools.isFileType('pdf', item.file)"
+              ></i>
+
+              <i
+                class="fa-solid fa-file text-cb-orange hover:cursor-pointer text-5xl"
+                *ngIf="
+                  !tools.isFileType('image', item.file) &&
+                  !tools.isFileType('excel', item.file) &&
+                  !tools.isFileType('pdf', item.file)
+                "
+              ></i>
+            </a>
           </div>
         </div>
 

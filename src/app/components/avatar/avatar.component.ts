@@ -12,6 +12,7 @@ import { ToolsService } from 'src/app/services/tools.service';
 export class AvatarComponent {
   @Input() image!: string;
   @Input() size = '48';
+  @Input() disabled = false;
 
   @Output() changeImage = new EventEmitter<any>();
 

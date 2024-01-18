@@ -10,8 +10,8 @@
           <div class="flex items-center justify-center py-2">
             <avatar
               size="40"
-              (changeImage)="changeAvatar($event)"
               [image]="dados?.user?.avatar_url"
+              [disabled]="true"
             ></avatar>
           </div>
         </div>

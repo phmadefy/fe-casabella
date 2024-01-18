@@ -97,15 +97,15 @@ select:-webkit-autofill:focus {
 }
 
 .bg-gradient-cb-hover:hover {
-  background-image: linear-gradient(to right, #20d4e9, #8620BF);
+  background-image: linear-gradient(to right, #20d4e9, #8620bf);
 }
 .bg-gradient-cb-border {
-  border-image: linear-gradient(to right, #20d4e9, #8620BF);
+  border-image: linear-gradient(to right, #20d4e9, #8620bf);
   border-image-slice: 1;
   border-color: transparent;
 }
 .bg-gradient-cb-border-hover:hover {
-  border-image: linear-gradient(to right, #20d4e9, #8620BF);
+  border-image: linear-gradient(to right, #20d4e9, #8620bf);
   border-image-slice: 1;
   border-color: transparent;
   color: #20d4e9;
@@ -407,4 +407,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .radio-default {
   @apply w-4 h-4 text-cb-info bg-gray-100 border-gray-300 focus:ring-cb-info  focus:ring-2;
+}
+
+.ngxImageZoomContainer {
+  width: 100% !important;
+  height: auto !important;
 }

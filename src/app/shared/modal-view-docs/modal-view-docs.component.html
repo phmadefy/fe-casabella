@@ -1,0 +1,18 @@
+<modal
+  [title]="'Documentos de: ' + data?.name"
+  [dialogRef]="dialogRef"
+  [loading]="loading"
+>
+  <div class="flex items-center p-4">
+    <div *ngFor="let item of dataSource" class="rounded-md overflow-hidden">
+      <img [src]="item.file_url" class="max-w-sm" alt="" NotContextMenu />
+      <!-- <lib-ngx-image-zoom
+        [thumbImage]="item.file_url"
+        [fullImage]="item.file_url"
+        [zoomMode]="'hover'"
+      ></lib-ngx-image-zoom> -->
+      <!-- <lib-ngx-image-zoom>
+      </lib-ngx-image-zoom> -->
+    </div>
+  </div>
+</modal>

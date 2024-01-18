@@ -77,9 +77,10 @@ export class UserFormComponent extends AbstractForms {
           this.dados.address = {};
         }
         if (res?.user?.group) {
-          this.dados.user.group = res.user.group.map((e: any) => {
-            return e.id;
-          });
+          this.dados.user.group = this.tools.getPropertiesPivot(
+            this.dados.user.group,
+            'group_id'
+          );
         }
       })
       .finally(() => (this.loading = false));
@@ -89,16 +90,16 @@ export class UserFormComponent extends AbstractForms {
     const formData = this.tools.generateFormData(this.dados);
 
     if (!this.dados.id) {
-      this.create(formData);
+      this.create(this.dados);
     } else {
-      // this.update(this.dados, this.dados.id);
-      this.loading = true;
-      await this.service
-        .postCustom(`v1/users/${this.dados.id}`, formData)
-        .then((res) => {
-          this.finish(res);
-        })
-        .finally(() => (this.loading = false));
+      this.update(this.dados, this.dados.id);
+      // this.loading = true;
+      // await this.service
+      //   .postCustom(`v1/users/${this.dados.id}`, formData)
+      //   .then((res) => {
+      //     this.finish(res);
+      //   })
+      //   .finally(() => (this.loading = false));
     }
   }
 

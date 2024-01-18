@@ -60,7 +60,8 @@ export class InterceptService implements HttpInterceptor {
           if (error.status == 0) {
             // this.message.alertNet();
           } else if (error.status == 401) {
-            this.messageService.presentAlertError(error.error.message);
+            // this.messageService.presentAlertError(error.error.message);
+            this.messageService.toastError(error.error.message);
 
             // this.modalCtrl.dismissAll();
 
