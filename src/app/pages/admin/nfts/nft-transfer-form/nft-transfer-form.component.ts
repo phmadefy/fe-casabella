@@ -53,6 +53,7 @@ export class NftTransferFormComponent extends AbstractForms {
     this.userCurrent = await this.tools.getCurrentUser();
     if (this.tools.checkRouteContainsAdmin()) {
       this.modo = 'admin';
+      this.nftChoose.user_id = 'null';
     } else {
       this.nftChoose.user_id = this.userCurrent.id;
     }

@@ -51,8 +51,9 @@
 <card *ngIf="tab != 'pending'">
   <div class="grid grid-cols-5 gap-3 p-4">
     <app-nft-card
-      [nft]="{ src: item.image }"
+      [nft]="{ src: item.image_url }"
       *ngFor="let item of dataSource.data"
+      (onClick)="openNFT(item)"
     ></app-nft-card>
   </div>
 </card>

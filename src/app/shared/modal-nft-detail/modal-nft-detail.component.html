@@ -1,7 +1,7 @@
 <div
   class="flex relative bg-cb-primary rounded-lg overflow-hidden shadow border border-cb-secondary h-full"
 >
-  <img [src]="dados.image" alt="nft" class="w-3/5" />
+  <img [src]="dados.image_url" alt="nft" class="w-3/5" />
   <div class="relative text-white p-4 w-full h-full overflow-y-auto">
     <h2 class="text-xl font-bold my-2">{{ dados.name }}</h2>
     <button
@@ -29,15 +29,17 @@
     </div>
 
     <div class="flex items-end gap-4">
-      <btn-like></btn-like>
+      <btn-like class="min-w-max" [id]="'nft' + dados.id"></btn-like>
       <span class="text-sm pb-1">Curtido por 94 pessoas</span>
     </div>
 
     <div class="w-full border-b border-cb-secondary my-3"></div>
 
     <div class="text-sm">
-      <p>Criador por: <strong>casabella</strong></p>
-      <p></p>
+      <p>
+        Criador por: <strong>{{ dados?.artist ?? "Casabella" }}</strong>
+      </p>
+      <p [innerText]="dados.description"></p>
     </div>
 
     <div class="w-full border-b border-cb-secondary my-3"></div>

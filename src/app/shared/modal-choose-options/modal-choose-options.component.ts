@@ -74,7 +74,7 @@ export class ModalChooseOptionsComponent {
   getList() {
     this.loading = true;
     this.service
-      .listing()
+      .listing(this.filters)
       .then((res) => {
         this.dataSource = res.data;
         this.items = res.data;

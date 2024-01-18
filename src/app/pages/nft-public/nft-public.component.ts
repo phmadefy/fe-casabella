@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 import { ToolsService } from 'src/app/services/tools.service';
 import { Dialog } from '@angular/cdk/dialog';
 import { ModalNftApproveRefuseComponent } from 'src/app/shared/modal-nft-approve-refuse/modal-nft-approve-refuse.component';
+import { ModalNftDetailComponent } from 'src/app/shared/modal-nft-detail/modal-nft-detail.component';
 
 @Component({
   selector: 'app-nft-public',
@@ -110,5 +111,14 @@ export class NftPublicComponent {
   }
   isSend(item: any) {
     return item?.from_user_id == this.userCurrent.id;
+  }
+
+  openNFT(item: any) {
+    const dialogRef = this.dialog.open<any>(ModalNftDetailComponent, {
+      width: '95%',
+      maxWidth: '850px',
+      // height: '90%',
+      data: item,
+    });
   }
 }

@@ -12,7 +12,7 @@
   >
     <div ngxSlickItem *ngFor="let item of nfts" class="slide">
       <app-nft-card
-        [nft]="{ src: item.image }"
+        [nft]="{ src: item.image_url }"
         (click)="openModalNFT(item)"
       ></app-nft-card>
     </div>
