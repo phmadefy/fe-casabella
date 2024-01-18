@@ -1,4 +1,4 @@
-<modal title="Pesquisa NFT" [dialogRef]="dialogRef">
+<modal title="Pesquisar NFT" [dialogRef]="dialogRef">
   <div class="p-2">
     <input-search
       [(ngModel)]="filters.term"
@@ -13,7 +13,7 @@
       (click)="dialogRef.close(item)"
     >
       <img
-        [src]="item.image"
+        [src]="item.image_url"
         alt="nft1"
         class="hover:scale-110 transition duration-500 object-cover w-full h-full"
       />
