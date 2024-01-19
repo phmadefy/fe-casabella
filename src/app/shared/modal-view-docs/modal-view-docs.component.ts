@@ -5,11 +5,17 @@ import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { ModalComponent } from 'src/app/components/modal/modal.component';
 import { ApiService } from 'src/app/services/api.service';
 import { NotContextMenuDirective } from 'src/app/directives/not-context-menu.directive';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @Component({
   selector: 'app-modal-view-docs',
   standalone: true,
-  imports: [CommonModule, ModalComponent, NotContextMenuDirective],
+  imports: [
+    CommonModule,
+    ModalComponent,
+    NotContextMenuDirective,
+    PdfViewerModule,
+  ],
   providers: [ApiService],
   templateUrl: './modal-view-docs.component.html',
   styleUrls: ['./modal-view-docs.component.scss'],
@@ -17,6 +23,8 @@ import { NotContextMenuDirective } from 'src/app/directives/not-context-menu.dir
 export class ModalViewDocsComponent {
   loading = false;
   dataSource: any[] = [];
+
+  fileView: any = null;
   constructor(
     private service: ApiService,
     public tools: ToolsService,
@@ -29,7 +37,7 @@ export class ModalViewDocsComponent {
   }
 
   ngOnInit(): void {
-    this.getDados(this.data?.id);
+    this.getDados(this.data?.user_id);
   }
 
   getDados(id: any) {

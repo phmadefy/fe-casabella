@@ -1,7 +1,11 @@
 <div
   class="flex relative bg-cb-primary rounded-lg overflow-hidden shadow border border-cb-secondary h-full"
 >
-  <img [src]="dados.image_url" alt="nft" class="w-3/5" />
+  <img
+    [src]="dados.image_url"
+    alt="nft"
+    class="w-full md:w-[500px] md:h-[500px]"
+  />
   <div class="relative text-white p-4 w-full h-full overflow-y-auto">
     <h2 class="text-xl font-bold my-2">{{ dados.name }}</h2>
     <button

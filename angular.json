@@ -44,7 +44,9 @@
             "allowedCommonJsDependencies": [
               "@ckeditor/ckeditor5-build-classic",
               "moment",
-              "apexcharts"
+              "apexcharts",
+              "pdfjs-dist/build/pdf",
+              "pdfjs-dist/web/pdf_viewer"
             ],
             "preserveSymlinks": true
           },
@@ -82,6 +84,9 @@
           "defaultConfiguration": "production"
         },
         "serve": {
+          "options": {
+            "proxyConfig": "src/proxy.conf.json"
+          },
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {

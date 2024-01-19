@@ -100,7 +100,7 @@ export class PostCardComponent {
   async sendReact(event: any) {
     this.loading = true;
     await this.service
-      .getCustom(`v1/posts/${this.dados.id}/interaction`, { name: event })
+      .updateCustom(`v1/posts/${this.dados.id}/interaction`, { name: event })
       .then(() => {
         this.getDados(this.dados.id);
       })

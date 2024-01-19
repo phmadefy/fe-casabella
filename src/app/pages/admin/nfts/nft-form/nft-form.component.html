@@ -30,6 +30,7 @@
                   title="Selecionar NFT"
                   subtitle="1080 x 1080"
                   (changeImage)="chooseImage($event)"
+                  [image]="dados.image_url"
                 ></image-select>
 
                 <textarea
@@ -116,10 +117,15 @@
                 label="Estou ciente que esta transferência é irreversível"
                 controlName="check1"
                 name="check1"
+                [required]="true"
               ></checkbox>
             </div>
             <div class="flex item-center gap-2">
-              <checkbox controlName="check2" name="check2"></checkbox>
+              <checkbox
+                controlName="check2"
+                name="check2"
+                [required]="true"
+              ></checkbox>
               <label class="text-sm font-medium" for="check2"
                 >Eu aceito os
                 <a href="javascript:void(0)" class="text-blue-500">
