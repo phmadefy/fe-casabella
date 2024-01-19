@@ -48,15 +48,14 @@
     </div>
 
     <div class="p-4 border-b border-cb-secondary text-cb-secondary">
-      <button
-        (click)="
-          service.download(service.getBaseUrl() + 'v1/users/import/sample-all')
-        "
+      <a
+        [href]="service.getBaseUrl() + 'v1/sample-import-user'"
+        target="_blank"
         class="flex items-center gap-3 text-cb-secondary cursor-pointer hover:text-orange-500 w-max"
       >
         <i class="fa-solid fa-file-arrow-down text-3xl"></i>
         <span>Baixar Modelo</span>
-      </button>
+      </a>
     </div>
 
     <div class="card-footer flex items-center gap-3">

@@ -33,12 +33,22 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class ProfileComponent {
   loading = false;
-  userCurrent: any = { person: { address: {} } };
+  dados: any = {};
   gender = Gender;
+
+  userCurrent: any = { group: [] };
 
   constructor(public tool: ToolsService, private service: ApiService) {}
   async ngOnInit() {
     this.userCurrent = await this.tool.getCurrentUser();
+    this.dados.name = this.userCurrent.name;
+    this.dados.cpf = this.userCurrent?.person?.cpf;
+    this.dados.birthdate = this.userCurrent?.person?.birthdate;
+    this.dados.email = this.userCurrent.email;
+    this.dados.phone = this.userCurrent?.person?.phone;
+    this.dados.phone2 = this.userCurrent?.person?.phone2;
+    this.dados.gender = this.userCurrent?.person?.gender;
+    this.dados.city = this.userCurrent?.person?.address?.city ?? '';
   }
 
   getGroups() {
@@ -51,9 +61,11 @@ export class ProfileComponent {
       return;
     }
 
+    const formData = this.tool.generateFormData(this.dados);
+
     this.loading = true;
     await this.service
-      .postCustom('v1/parameters', form.value)
+      .postCustom('v1/profile', formData)
       .finally(() => (this.loading = false));
   }
 }

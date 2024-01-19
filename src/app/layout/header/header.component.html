@@ -111,7 +111,7 @@
         class="rounded-md overflow-hidden"
       >
         <img
-          [src]="userCurrent?.avatar ?? tools.noImageAvatar"
+          [src]="userCurrent?.avatar_url ?? tools.noImageAvatar"
           class="h-[40px] w-[40px]"
           alt="Avatar"
         />
@@ -126,7 +126,7 @@
         >
           <span class="text-gradient-cb">{{ userCurrent?.name }}</span>
           <img
-            [src]="userCurrent?.avatar ?? tools.noImageAvatar"
+            [src]="userCurrent?.avatar_url ?? tools.noImageAvatar"
             class="rounded-md h-[40px] w-[40px]"
             alt="Avatar"
           />

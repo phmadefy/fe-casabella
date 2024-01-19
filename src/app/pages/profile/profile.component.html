@@ -6,7 +6,11 @@
 
     <div class="p-4">
       <div class="flex items-center py-2 gap-6 mb-6">
-        <avatar size="40" [image]="userCurrent?.avatar"></avatar>
+        <avatar
+          size="40"
+          [image]="userCurrent?.avatar_url"
+          (changeImage)="dados.avatar = $event?.target?.files[0]"
+        ></avatar>
         <div class="flex flex-col justify-center">
           <h2 class="text-gradient-cb text-2xl">{{ userCurrent?.nickname }}</h2>
           <p class="text-sm font-semibold">
@@ -21,7 +25,7 @@
             class="p-0 bg-transparent border-none"
             label="Nome Completo"
             model="name"
-            [(ngModel)]="userCurrent.person.name"
+            [(ngModel)]="dados.name"
             name="name"
             type="text"
             required
@@ -35,7 +39,7 @@
             class="p-0 bg-transparent border-none"
             label="CPF"
             model="cpf"
-            [(ngModel)]="userCurrent.person.cpf"
+            [(ngModel)]="dados.cpf"
             name="cpf"
             type="text"
             required
@@ -50,7 +54,7 @@
             class="p-0 bg-transparent border-none"
             label="Data de Nascimento"
             model="birthdate"
-            [(ngModel)]="userCurrent.person.birthdate"
+            [(ngModel)]="dados.birthdate"
             name="birthdate"
             type="date"
             [form]="form"
@@ -65,7 +69,7 @@
             class="p-0 bg-transparent border-none"
             label="E-mail"
             model="email"
-            [(ngModel)]="userCurrent.email"
+            [(ngModel)]="dados.email"
             email
             name="email"
             type="text"
@@ -80,7 +84,7 @@
             class="p-0 bg-transparent border-none"
             label="Telefone 1"
             model="phone"
-            [(ngModel)]="userCurrent.person.phone"
+            [(ngModel)]="dados.phone"
             name="phone"
             type="phone"
             required
@@ -94,7 +98,7 @@
             class="p-0 bg-transparent border-none"
             label="Telefone 2"
             model="phone_2"
-            [(ngModel)]="userCurrent.person.phone_2"
+            [(ngModel)]="dados.phone_2"
             name="phone_2"
             type="phone"
             [form]="form"
@@ -108,7 +112,7 @@
           class="p-0 bg-transparent border-none"
           label="Gênero"
           model="gender"
-          [(ngModel)]="userCurrent.person.gender"
+          [(ngModel)]="dados.gender"
           name="gender"
           [options]="gender"
           bindValue="key"
@@ -122,7 +126,7 @@
           class="p-0 bg-transparent border-none"
           label="Cidade"
           model="city"
-          [(ngModel)]="userCurrent.person.address.city"
+          [(ngModel)]="dados.city"
           name="city"
           type="select"
           bindValue="name"

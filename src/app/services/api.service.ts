@@ -69,7 +69,7 @@ export class ApiService {
       var downloadURL = window.URL.createObjectURL(blob);
       var link = document.createElement('a');
       link.href = downloadURL;
-      link.download = 'exemplo-importação.csv';
+      link.download = 'exemplo-importação.xls';
       link.click();
       link.remove();
     });
