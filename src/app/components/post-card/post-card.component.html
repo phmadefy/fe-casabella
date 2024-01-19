@@ -16,10 +16,19 @@
       </div>
     </div>
 
-    <div *ngIf="dados?.user?.id == userCurrent.id" class="p-4">
-      <button class="" routerLink="editar-post" [state]="{ post_id: dados.id }">
+    <div class="p-4">
+      <!-- <button class="" routerLink="editar-post" [state]="{ post_id: dados.id }">
         <i class="fa-solid fa-pen"></i>
-      </button>
+      </button> -->
+      <dropdown-cb
+        icon="fa-solid fa-ellipsis-vertical"
+        classes="justify-end text-md"
+        [btnEdit]="dados?.user?.id == userCurrent.id"
+        (onEdit)="openEdit()"
+        [btnDelete]="dados?.user?.id == userCurrent.id"
+        (onDelete)="openDelete()"
+      >
+      </dropdown-cb>
     </div>
   </div>
 
@@ -27,44 +36,60 @@
     {{ dados?.description }}
   </div>
 
-  <img *ngIf="dados?.attachment_url" [src]="dados.attachment_url" alt="" />
-
-  <div
-    class="p-4 flex items-center justify-between border-b border-cb-secondary"
-  >
-    <div class="flex items-center">
-      <img src="assets/icons/like.svg" class="z-30" width="15" height="15" />
-      <img
-        src="assets/icons/adorei.svg"
-        class="-m-1 z-20"
-        width="15"
-        height="15"
-      />
-      <img src="assets/icons/feliz.svg" class="-m-1" width="15" height="15" />
-      <!-- <img src="assets/icons/apaixonado.svg" alt="" width="15" height="15" /> -->
-      <!-- <img src="assets/icons/nice-guy.svg" alt="" width="15" height="15" /> -->
-    </div>
-    <div class="text-sm">{{ dados?.comments?.length }} comentários</div>
+  <div class="w-full flex items-center justify-center">
+    <img *ngIf="dados?.attachment_url" [src]="dados.attachment_url" alt="" />
   </div>
-  <div
-    class="p-4 flex items-center justify-between gap-4"
-    *ngIf="dados?.allow_comments"
-  >
-    <btn-like class="min-w-max" [id]="'post' + dados.id"></btn-like>
+
+  <div class="p-4 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="flex items-center">
+        <img src="assets/icons/like.svg" class="z-30" width="15" height="15" />
+        <img
+          src="assets/icons/adorei.svg"
+          class="-m-1 z-20"
+          width="15"
+          height="15"
+        />
+        <img src="assets/icons/feliz.svg" class="-m-1" width="15" height="15" />
+        <!-- <img src="assets/icons/apaixonado.svg" alt="" width="15" height="15" /> -->
+        <!-- <img src="assets/icons/nice-guy.svg" alt="" width="15" height="15" /> -->
+      </div>
+      <span class="text-sm"> {{ getPersonsComments() }}</span>
+    </div>
+    <button (click)="openComments()" class="text-sm">
+      {{ dados?.comments?.length }} comentários
+    </button>
+  </div>
+  <div class="mx-4 border-b border-t border-cb-secondary"></div>
+  <div class="p-4 flex items-center justify-between gap-4">
+    <btn-like
+      (changeOption)="sendReact($event)"
+      class="min-w-max"
+      [id]="'post' + dados.id"
+    ></btn-like>
     <!-- <div class="min-w-max">
     </div> -->
-    <div class="w-full relative">
+    <form
+      class="w-full relative"
+      #formComment="ngForm"
+      *ngIf="dados?.allow_comments"
+    >
       <input
         type="text"
         class="input-cb-rounded"
-        name="name"
+        name="description"
+        ngModel
         placeholder="Deixe o seu comentário"
+        required
+        [disabled]="loading"
       />
       <button
         class="absolute inset-y-0 right-3 flex items-center pr-3 text-gradient-cb"
+        (click)="sendComment(formComment)"
+        [disabled]="loading"
       >
         <i class="fa-solid fa-paper-plane mr-2"></i>
       </button>
-    </div>
+    </form>
   </div>
 </card>

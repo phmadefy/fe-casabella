@@ -600,6 +600,7 @@ export class HeaderComponent {
 
   imagemAnimadaMenu = null;
   FraseExibidaMenu = null;
+  LinkRedirecionamentoGif = null;
 
   constructor(
     public tools: ToolsService,
@@ -616,6 +617,15 @@ export class HeaderComponent {
     );
     if (paramImage) {
       this.imagemAnimadaMenu = paramImage.value;
+    }
+
+    const paramLinkGif = this.tools.getItemArray(
+      parameters,
+      'parameter',
+      'LinkRedirecionamentoGif'
+    );
+    if (paramLinkGif) {
+      this.LinkRedirecionamentoGif = paramLinkGif.value ?? 'javascript:void(0)';
     }
 
     const paramFrase = this.tools.getItemArray(

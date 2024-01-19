@@ -1,7 +1,13 @@
-<div
-  class="flex gap-3 border border-cb-secondary overflow-x-auto rounded p-4 mb-3"
->
+<div class="border border-cb-secondary rounded p-4 mb-3 relative">
+  <div
+    class="bg-cb-contrast h-full overflow-hidden p-16 rounded-lg text-center w-full"
+    *ngIf="loadingNFT"
+  >
+    <spinner [size]="8" color="cb"></spinner>
+  </div>
+
   <ngx-slick-carousel
+    *ngIf="!loadingNFT"
     class="carousel w-full"
     #slickModal="slick-carousel"
     [config]="slideConfig"
@@ -19,6 +25,6 @@
   </ngx-slick-carousel>
 </div>
 
-<div class="mb-3">
+<div class="flex flex-col gap-3 mb-3">
   <post-card *ngFor="let item of posts.data" [dados]="item"></post-card>
 </div>

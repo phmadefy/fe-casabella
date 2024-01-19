@@ -1,0 +1,42 @@
+<modal title="Comentários" [dialogRef]="dialogRef" [loading]="loading">
+  <div class="p-4">
+    <div
+      class="border border-cb-secondary rounded-md mb-4"
+      *ngFor="let item of comments"
+    >
+      <div class="flex justify-between">
+        <div class="flex items-center gap-4 p-4">
+          <div
+            class="rounded-full ring-4 bg-conic-gradient(from 0deg at 50% 50%, red, green) w-12 h-12 overflow-hidden"
+          >
+            <img
+              [src]="item?.user?.avatar ?? tools.noImageAvatar"
+              class="object-cover w-full h-full"
+              alt=""
+            />
+          </div>
+          <div>
+            <h2 class="m-0">{{ item?.user?.name }}</h2>
+            <p class="text-sm">{{ tools.getTimeFrom(item.created_at) }}</p>
+          </div>
+        </div>
+
+        <div class="p-4">
+          <dropdown-cb
+            icon="fa-solid fa-ellipsis-vertical"
+            classes="justify-end text-md"
+            [btnEdit]="userCurrent.id == item?.user_id"
+            (onEdit)="openEdit(item)"
+            [btnDelete]="
+              userCurrent.id == item?.user_id || userCurrent.id == user_id
+            "
+            (onDelete)="openDelete(item)"
+          >
+          </dropdown-cb>
+        </div>
+      </div>
+
+      <div class="px-4 mb-4" [innerText]="item?.description"></div>
+    </div>
+  </div>
+</modal>

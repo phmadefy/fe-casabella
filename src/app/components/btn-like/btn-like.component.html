@@ -1,10 +1,7 @@
 <button
   type="button"
-  [attr.data-dropdown-toggle]="id"
-  data-dropdown-trigger="hover"
-  data-dropdown-delay="200"
-  data-dropdown-placement="top"
-  class="focus:z-10 ring-0"
+  [attr.id]="'dropBtn' + id"
+  class="focus:z-20 ring-0"
   [ngClass]="{
     'text-cb-info font-semibold': active,
     'text-cb-secondary': !active
@@ -14,31 +11,31 @@
   <span>{{ active ? "Curtiu" : "Curtir" }}</span>
 </button>
 <div
-  [attr.id]="id"
-  class="z-10 hidden bg-cb-secondary divide-y divide-gray-100 rounded-full shadow w-auto py-2 px-4"
+  [attr.id]="'dropMenu' + id"
+  class="z-50 hidden bg-cb-secondary divide-y divide-gray-100 rounded-full shadow w-auto py-2 px-4"
 >
   <div class="flex gap-2 items-center justify-center">
-    <button class="">
+    <button (click)="changeOption.emit('like'); dropdown.toggle()">
       <!-- <i class="fa-solid fa-thumbs-up text-2xl mr-2"></i> -->
       <img src="assets/icons/like.svg" alt="" width="30" height="30" />
     </button>
 
-    <button class="">
+    <button (click)="changeOption.emit('loved_it'); dropdown.toggle()">
       <!-- <i class="fa-solid fa-heart text-2xl mr-2"></i> -->
       <img src="assets/icons/adorei.svg" alt="" width="30" height="30" />
     </button>
 
-    <button>
+    <button (click)="changeOption.emit('happy'); dropdown.toggle()">
       <!-- <i class="fa-solid fa-face-grin-hearts text-2xl mr-2"></i> -->
       <img src="assets/icons/feliz.svg" alt="" width="30" height="30" />
     </button>
 
-    <button>
+    <button (click)="changeOption.emit('fall_love'); dropdown.toggle()">
       <!-- <i class="fa-solid fa-face-laugh text-2xl mr-2 text-yellow-500"></i> -->
       <img src="assets/icons/apaixonado.svg" alt="" width="30" height="30" />
     </button>
 
-    <button>
+    <button (click)="changeOption.emit('nice_guy'); dropdown.toggle()">
       <!-- <i class="fa-solid fa-face-grin-hearts text-2xl mr-2"></i> -->
       <img src="assets/icons/nice-guy.svg" alt="" width="30" height="30" />
     </button>

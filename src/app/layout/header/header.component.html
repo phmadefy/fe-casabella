@@ -51,12 +51,14 @@
         {{ FraseExibidaMenu }}
       </span>
 
-      <img
-        [src]="imagemAnimadaMenu"
-        class="h-14 w-12"
-        alt=""
-        *ngIf="imagemAnimadaMenu"
-      />
+      <a [href]="LinkRedirecionamentoGif" target="_blank">
+        <img
+          [src]="imagemAnimadaMenu"
+          class="h-14 w-12"
+          alt=""
+          *ngIf="imagemAnimadaMenu"
+        />
+      </a>
     </div>
 
     <div

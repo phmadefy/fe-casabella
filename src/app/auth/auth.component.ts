@@ -33,6 +33,7 @@ export class AuthComponent {
 
   FraseExibidaTelaLogin = null;
   ImagemOuVideoTelaLogin = null;
+  LinkRedirecionamentoTelaLogin = null;
 
   constructor(
     private service: AuthService,
@@ -60,6 +61,16 @@ export class AuthComponent {
     );
     if (paramImage) {
       this.ImagemOuVideoTelaLogin = paramImage.value;
+    }
+
+    const paramLinkLogin = this.tools.getItemArray(
+      parameters,
+      'parameter',
+      'LinkRedirecionamentoTelaLogin'
+    );
+    if (paramLinkLogin) {
+      this.LinkRedirecionamentoTelaLogin =
+        paramLinkLogin.value ?? 'javascript:void(0)';
     }
   }
 

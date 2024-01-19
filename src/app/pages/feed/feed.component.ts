@@ -6,6 +6,7 @@ import { Dialog, DialogModule } from '@angular/cdk/dialog';
 import { PostCardComponent } from 'src/app/components/post-card/post-card.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { ApiService } from 'src/app/services/api.service';
+import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
 
 @Component({
   selector: 'app-feed',
@@ -17,13 +18,15 @@ import { ApiService } from 'src/app/services/api.service';
     DialogModule,
     PostCardComponent,
     SlickCarouselModule,
+    SpinnerComponent,
   ],
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.scss'],
 })
 export class FeedComponent {
-  slideConfig = { slidesToShow: 4, slidesToScroll: 4 };
-
+  slideConfig = { slidesToShow: 5, slidesToScroll: 4 };
+  loadingNFT = false;
+  loadingFeed = false;
   nfts: any[] = [];
   posts: any = { data: [] };
 
@@ -34,15 +37,23 @@ export class FeedComponent {
   }
 
   getNFTs() {
-    this.service.getCustom('v1/nft', { perPage: 500 }).then((res) => {
-      this.nfts = res?.data;
-    });
+    this.loadingNFT = true;
+    this.service
+      .getCustom('v1/nft', { perPage: 500 })
+      .then((res) => {
+        this.nfts = res?.data;
+      })
+      .finally(() => (this.loadingNFT = false));
   }
 
   getPosts() {
-    this.service.getCustom('v1/posts').then((res) => {
-      this.posts = res;
-    });
+    this.loadingFeed = true;
+    this.service
+      .getCustom('v1/posts')
+      .then((res) => {
+        this.posts = res;
+      })
+      .finally(() => (this.loadingFeed = false));
   }
 
   slickInit(e: any) {
