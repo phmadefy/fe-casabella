@@ -15,6 +15,7 @@
           name="user_id"
           [required]="true"
           [form]="form"
+          (selectItem)="changeUser($event)"
         ></select-default>
       </div>
 
@@ -32,11 +33,13 @@
           [options]="types"
           bindText="description"
           bindValue="id"
+          (selectItem)="changeType($event)"
         ></combobox>
 
         <app-nft-choose
-          *ngIf="dados.type_return === 'one'"
+          [ngClass]="{ hidden: dados.type_return != 'one' }"
           (chooseNFT)="dados.nft_id = $event.id"
+          #NftChoose
         ></app-nft-choose>
       </div>
     </div>

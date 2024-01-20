@@ -21,7 +21,7 @@ export class NftChooseComponent {
 
   openModalNFTSearch() {
     const dialogRef = this.dialog.open<any>(ModalNftSearchComponent, {
-      maxWidth: '335px',
+      maxWidth: '350px',
       width: '95%',
       height: '90%',
       data: { user_id: this.user_id },

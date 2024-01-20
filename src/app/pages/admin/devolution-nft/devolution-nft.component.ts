@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CardComponent } from 'src/app/components/card/card.component';
@@ -33,6 +33,7 @@ import { NftChooseComponent } from 'src/app/components/nft-choose/nft-choose.com
   styleUrls: ['./devolution-nft.component.scss'],
 })
 export class DevolutionNftComponent extends AbstractForms {
+  @ViewChild('NftChoose', { static: true }) NftChoose!: NftChooseComponent;
   dados: any = {};
   types = [
     { id: 'all', description: 'Todos os NFTs' },
@@ -54,5 +55,16 @@ export class DevolutionNftComponent extends AbstractForms {
     // throw new Error('Method not implemented.');
     // this.getDados(result.id);
     this.tools.route.navigate(['/admin/nfts'], { queryParams: { tab: 'all' } });
+  }
+
+  changeUser(event: any) {
+    // console.log('changeUser', event, this.NftChoose);
+    this.NftChoose.user_id = event?.user_id;
+  }
+
+  changeType(event: any) {
+    if (event != 'one') {
+      delete this.dados.nft_id;
+    }
   }
 }

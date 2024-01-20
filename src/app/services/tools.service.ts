@@ -98,6 +98,8 @@ export class ToolsService {
 
   async isAdmin() {
     const user = await this.getCurrentUser();
+    console.log('user');
+
     if (user) {
     }
 
