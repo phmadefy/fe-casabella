@@ -85,7 +85,7 @@ export class CashBoxFormComponent extends AbstractForms {
     await this.service
       .updateCustom(`v1/admin/cashiers/${this.dados.id}/define-permission`, {
         type: 'administrator',
-        userId: admin.id,
+        userId: admin.user_id,
       })
       .then(async (res) => {
         await this.getDados(this.dados.id);
@@ -110,7 +110,7 @@ export class CashBoxFormComponent extends AbstractForms {
     await this.service
       .updateCustom(`v1/admin/cashiers/${this.dados.id}/define-permission`, {
         type: 'default',
-        userId: user.id,
+        userId: user.user_id,
       })
       .then(async (res) => {
         await this.getDados(this.dados.id);
