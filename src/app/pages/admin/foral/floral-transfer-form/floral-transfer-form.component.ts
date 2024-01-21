@@ -68,9 +68,15 @@ export class FloralTransferFormComponent extends AbstractForms {
     }
   }
   override finish(result: any): void {
-    this.tools.route.navigate(['/admin/floral/transfer-auth'], {
-      queryParams: { tab: 'authorize' },
-    });
+    if (this.tools.checkRouteContainsAdmin()) {
+      this.tools.route.navigate(['/admin/floral/transfer-auth'], {
+        queryParams: { tab: 'authorize' },
+      });
+    } else {
+      this.tools.route.navigate(['/floral'], {
+        queryParams: { tab: 'pending' },
+      });
+    }
   }
 
   changeTo(to: string) {
