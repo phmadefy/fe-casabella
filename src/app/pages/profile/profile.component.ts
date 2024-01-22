@@ -42,14 +42,16 @@ export class ProfileComponent {
   async ngOnInit() {
     this.userCurrent = await this.tool.getCurrentUser();
 
-    this.dados.name = this.userCurrent.name;
-    this.dados.cpf = this.userCurrent?.person?.cpf;
-    this.dados.birthdate = this.userCurrent?.person?.birthdate;
-    this.dados.email = this.userCurrent.email;
-    this.dados.phone = this.userCurrent?.person?.phone;
-    this.dados.phone2 = this.userCurrent?.person?.phone2;
-    this.dados.gender = this.userCurrent?.person?.gender;
-    this.dados.city = this.userCurrent?.person?.address?.city ?? '';
+    setTimeout(() => {
+      this.dados.name = this.userCurrent.name;
+      this.dados.cpf = this.userCurrent?.person?.cpf;
+      this.dados.birthdate = this.userCurrent?.person?.birthdate;
+      this.dados.email = this.userCurrent.email;
+      this.dados.phone = this.userCurrent?.person?.phone;
+      this.dados.phone_2 = this.userCurrent?.person?.phone_2;
+      this.dados.gender = this.userCurrent?.person?.gender;
+      this.dados.city = this.userCurrent?.person?.address?.city ?? '';
+    }, 500);
   }
 
   getGroups() {
