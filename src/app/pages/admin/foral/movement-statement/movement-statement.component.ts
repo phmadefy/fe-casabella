@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 import { ToolsService } from 'src/app/services/tools.service';
 import { TimelineComponent } from 'src/app/components/timeline/timeline.component';
+import { ComboboxComponent } from 'src/app/components/combobox/combobox.component';
 
 @Component({
   selector: 'app-movement-statement',
@@ -16,6 +17,7 @@ import { TimelineComponent } from 'src/app/components/timeline/timeline.componen
     CardComponent,
     SelectDefaultComponent,
     TimelineComponent,
+    ComboboxComponent,
   ],
   providers: [ApiService],
   templateUrl: './movement-statement.component.html',
@@ -26,7 +28,12 @@ export class MovementStatementComponent {
   // queryParamsObs!: Subscription;
   loading = false;
 
-  filters: any = { per_page: 30, page: 1 };
+  filters: any = { per_page: 30, page: 1, origin: 'users' };
+
+  origem = [
+    { key: 'users', description: 'Usuários' },
+    { key: 'cashier', description: 'Caixas' },
+  ];
 
   tab: string = 'all';
   constructor(
@@ -38,7 +45,7 @@ export class MovementStatementComponent {
   }
 
   ngOnInit(): void {
-    this.getList();
+    // this.getList();
   }
 
   getList() {
@@ -65,5 +72,10 @@ export class MovementStatementComponent {
     }
 
     this.getList();
+  }
+
+  changeOrigin() {
+    delete this.filters.cashier_id;
+    delete this.filters.user_id;
   }
 }

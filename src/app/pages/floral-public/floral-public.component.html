@@ -106,8 +106,10 @@
         <div
           *ngFor="let row of item.list"
           [ngClass]="{
-            'bg-gradient-item-positive': row?.movement == 'input',
-            'bg-gradient-item-negative': row?.movement == 'output'
+            'bg-gradient-item-positive':
+              tools.getMovementType(row, userCurrent.id) == 'input',
+            'bg-gradient-item-negative':
+              tools.getMovementType(row, userCurrent.id) == 'output'
           }"
           class="bg-gradient-item-positive flex items-center justify-between gap-2 p-2 my-1 rounded-md"
         >
@@ -116,12 +118,14 @@
             <i
               class="fa-solid fa-plus"
               [ngClass]="{
-                'text-cb-success': row?.movement == 'input',
-                'text-cb-red': row?.movement == 'output'
+                'text-cb-success':
+                  tools.getMovementType(row, userCurrent.id) == 'input',
+                'text-cb-red':
+                  tools.getMovementType(row, userCurrent.id) == 'output'
               }"
             ></i>
             <span>
-              {{ row?.amount | currency : "BRL" : "F$" : "1.4-4" }}
+              {{ row?.value | currency : "BRL" : "F$" : "1.4-4" }}
             </span>
           </div>
         </div>

@@ -31,8 +31,8 @@
           <select-default
             inputPlaceholder="Adicionar administrador"
             bindText="name"
-            bindValue="id"
-            endpoint="v1/users"
+            bindValue="user_id"
+            endpoint="v1/users?status=active"
             (selectItem)="setAdmin($event)"
             [autoClear]="true"
           >
@@ -82,8 +82,8 @@
           <select-default
             inputPlaceholder="Adicionar utilizador"
             bindText="name"
-            bindValue="id"
-            endpoint="v1/users"
+            bindValue="user_id"
+            endpoint="v1/users?status=active"
             (selectItem)="setUser($event)"
             [autoClear]="true"
           >
