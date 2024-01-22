@@ -93,7 +93,9 @@ export class FloralPublicComponent {
     if (tab == 'my') {
       this.getExtract();
     } else {
-      this.filters.status = tab;
+      if (tab == 'pending') {
+        this.filters.status = tab;
+      }
       this.getList();
     }
   }
@@ -126,5 +128,15 @@ export class FloralPublicComponent {
     }
 
     this.getExtract();
+  }
+
+  isReceive(item: any) {
+    return item?.from_user_id != this.userCurrent.id;
+  }
+  isSend(item: any) {
+    return item?.from_user_id == this.userCurrent.id;
+  }
+  isRescue(item: any) {
+    return item?.rescue_type != null ? true : false;
   }
 }
