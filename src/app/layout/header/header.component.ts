@@ -7,6 +7,7 @@ import { FloralPriceComponent } from 'src/app/components/floral-price/floral-pri
 import { MyFloralComponent } from 'src/app/components/my-floral/my-floral.component';
 import { Dialog } from '@angular/cdk/dialog';
 import { ModalChangePasswordComponent } from 'src/app/shared/modal-change-password/modal-change-password.component';
+import { initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'app-header',
@@ -705,6 +706,7 @@ export class HeaderComponent {
     this.userCurrent = await this.tools.getCurrentUser();
     this.rules = this.tools.getRules(this.userCurrent.group ?? []);
     console.log('rules', this.rules);
+    initFlowbite();
 
     // this.service.getSettings().then((res) => {
     //   for (const item of res) {
