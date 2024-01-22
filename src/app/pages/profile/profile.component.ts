@@ -41,6 +41,7 @@ export class ProfileComponent {
   constructor(public tool: ToolsService, private service: ApiService) {}
   async ngOnInit() {
     this.userCurrent = await this.tool.getCurrentUser();
+
     this.dados.name = this.userCurrent.name;
     this.dados.cpf = this.userCurrent?.person?.cpf;
     this.dados.birthdate = this.userCurrent?.person?.birthdate;

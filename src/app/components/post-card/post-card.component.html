@@ -54,7 +54,7 @@
         <!-- <img src="assets/icons/apaixonado.svg" alt="" width="15" height="15" /> -->
         <!-- <img src="assets/icons/nice-guy.svg" alt="" width="15" height="15" /> -->
       </div>
-      <span class="text-sm"> {{ getPersonsComments() }}</span>
+      <span class="text-sm"> {{ getPersonsInteractions() }}</span>
     </div>
     <button (click)="openComments()" class="text-sm">
       {{ dados?.comments?.length }} comentários
@@ -66,6 +66,7 @@
       (changeOption)="sendReact($event)"
       class="min-w-max"
       [id]="'post' + dados.id"
+      [interaction]="getMyInteraction()"
     ></btn-like>
     <!-- <div class="min-w-max">
     </div> -->

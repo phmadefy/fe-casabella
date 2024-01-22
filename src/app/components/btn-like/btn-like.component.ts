@@ -13,6 +13,7 @@ import type { DropdownOptions, DropdownInterface } from 'flowbite';
 })
 export class BtnLikeComponent {
   @Input() id = 'btn-like';
+  @Input() interaction = '';
   active = false;
 
   @Output() changeOption = new EventEmitter<any>();

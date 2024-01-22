@@ -48,17 +48,23 @@ export class PermissionsAccessGroupComponent {
 
   listPermissions() {
     this.service.listing({ perPage: 100 }).then((res) => {
-      console.log('listPermissions', res);
+      // console.log('listPermissions', res);
       const list: any[] = res.data;
 
       list.forEach((i) => {
-        const index = this.permissionsBase.findIndex((p) => p.name == i.module);
+        const index = this.permissionsBase.findIndex(
+          (p) => p.module == i.module
+        );
         if (index >= 0) {
           this.permissionsBase[index].items
             ? this.permissionsBase[index].items.push(i)
             : (this.permissionsBase[index].items = [i]);
         } else {
-          this.permissionsBase.push({ name: i.module, items: [i] });
+          this.permissionsBase.push({
+            name: i.module_label,
+            module: i.module,
+            items: [i],
+          });
         }
       });
 
@@ -81,7 +87,7 @@ export class PermissionsAccessGroupComponent {
 
   checkMarkItem(item: any) {
     const findIndex = this.group.rules.findIndex((i: any) => i.id == item.id);
-    console.log('checkMarkItem', findIndex, item);
+    // console.log('checkMarkItem', findIndex, item);
 
     return findIndex;
   }

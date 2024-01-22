@@ -7,6 +7,7 @@ import { PostCardComponent } from 'src/app/components/post-card/post-card.compon
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { ApiService } from 'src/app/services/api.service';
 import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
+import { ToolsService } from 'src/app/services/tools.service';
 
 @Component({
   selector: 'app-feed',
@@ -30,9 +31,23 @@ export class FeedComponent {
   nfts: any[] = [];
   posts: any = { data: [] };
 
-  constructor(private service: ApiService, private dialog: Dialog) {}
-  ngOnInit(): void {
-    this.getNFTs();
+  userCurrent: any = {};
+  rules: any[] = [];
+
+  constructor(
+    private service: ApiService,
+    private dialog: Dialog,
+    public tools: ToolsService
+  ) {}
+  async ngOnInit() {
+    this.userCurrent = await this.tools.getCurrentUser();
+
+    this.rules = this.tools.getRules(this.userCurrent.group ?? []);
+    console.log('rules', this.rules);
+
+    if (this.tools.getRule('nft', this.rules)) {
+      this.getNFTs();
+    }
     this.getPosts();
   }
 

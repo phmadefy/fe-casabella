@@ -28,18 +28,21 @@ export class HeaderComponent {
       title: 'Feed',
       route: 'feed',
       icon: '',
+      permissions: 'feed,add_feed',
       items: [
         {
           id: 'feed-pg-inicial',
           title: 'Página Inicial',
           route: '/feed',
           icon: '',
+          permissions: 'feed',
         },
         {
           id: 'feed-pg-add-post',
           title: 'Adicionar Post',
           route: '/novo-post',
           icon: '',
+          permissions: 'add_feed',
         },
       ],
     },
@@ -54,6 +57,7 @@ export class HeaderComponent {
       title: 'Incentivos',
       route: 'incentivo',
       icon: '',
+      permissions: 'incentive',
       items: [
         {
           id: 'incentivos-ativos',
@@ -61,6 +65,7 @@ export class HeaderComponent {
           route: '/',
           queryParams: { tab: 'active' },
           icon: '',
+          permissions: '',
         },
         {
           id: 'incentivos-inativos',
@@ -68,6 +73,7 @@ export class HeaderComponent {
           route: '/',
           queryParams: { tab: 'inactive' },
           icon: '',
+          permissions: '',
         },
         {
           id: 'meus-incentivos',
@@ -75,6 +81,7 @@ export class HeaderComponent {
           route: '/meus',
           queryParams: { tab: 'my' },
           icon: '',
+          permissions: '',
         },
         {
           id: 'gallery',
@@ -82,6 +89,7 @@ export class HeaderComponent {
           route: '/',
           queryParams: { tab: 'galeria' },
           icon: '',
+          permissions: '',
         },
       ],
     },
@@ -90,6 +98,7 @@ export class HeaderComponent {
       title: 'Floral',
       route: 'floral',
       icon: '',
+      permissions: 'floral,movement_floral',
       items: [
         {
           id: 'meu-floral',
@@ -104,18 +113,21 @@ export class HeaderComponent {
           route: '/',
           queryParams: { tab: 'pending' },
           icon: '',
+          permissions: 'movement_floral',
         },
         {
           id: 'transferir-floral',
           title: 'Transferir Floral',
           route: '/transferir',
           icon: '',
+          permissions: 'movement_floral',
         },
         {
           id: 'resgatar-floral',
           title: 'Resgatar Floral',
           route: '/resgatar',
           icon: '',
+          permissions: 'movement_floral',
         },
       ],
     },
@@ -124,6 +136,7 @@ export class HeaderComponent {
       title: 'NFTs',
       route: 'nfts',
       icon: '',
+      permissions: 'nft,movement_nft',
       items: [
         {
           id: 'meus-nfts',
@@ -131,6 +144,7 @@ export class HeaderComponent {
           route: '/',
           queryParams: { tab: 'my' },
           icon: '',
+          permissions: 'nft',
         },
         {
           id: 'todos-nfts',
@@ -138,6 +152,7 @@ export class HeaderComponent {
           route: '/',
           queryParams: { tab: 'all' },
           icon: '',
+          permissions: 'nft',
         },
         {
           id: 'transferencias-pendentes-nfts',
@@ -145,12 +160,14 @@ export class HeaderComponent {
           route: '/',
           queryParams: { tab: 'pending' },
           icon: '',
+          permissions: 'movement_nft',
         },
         {
           id: 'transferir-nfts',
           title: 'Transferir NFTs',
           route: '/transferir',
           icon: '',
+          permissions: 'movement_nft',
         },
       ],
     },
@@ -159,52 +176,62 @@ export class HeaderComponent {
       title: 'Fale Conosco',
       route: 'fale-conosco',
       icon: '',
+      permissions: 'tickets',
     },
     {
       id: 'admin',
       title: 'Admin',
       route: 'admin',
       subtitle: 'Administração',
+      permissions:
+        'add_incentive,add_terms,add_terms,cycles,pictures,cashier,nft,add_nft,classification_nft,add_type_nft,movement_nft,details_floral,movement_floral,approve_floral,partner,add_partner,tickets,chat,terms,audit,approve_nft,reports,users,add_user,groups_and_segments,roles_and_departments,cities_and_states,import_defaulters,import_users,params',
       items: [
         {
           id: 'admin-incentivos',
           title: 'Incentivos',
           route: 'admin/incentives',
           icon: 'fa-solid fa-flag',
+          permissions: 'add_incentive,add_terms,add_terms,cycles,pictures',
           items: [
             {
               id: 'admin-incentivos-todos',
               title: 'Todos Incentivos',
               route: '/',
               queryParams: { tab: 'all' },
+              permissions: 'add_incentive',
             },
             {
               id: 'admin-incentives-add',
               title: 'Adicionar Incentivo',
               route: '/add',
+              permissions: 'add_incentive',
             },
             {
               id: 'admin-incentives-terms-of-use',
               title: 'Termos de Uso',
               route: '/',
               queryParams: { tab: 'terms-of-use' },
+              permissions: 'add_terms',
             },
             {
               id: 'admin-incentives-terms-of-use-add',
               title: 'Adicionar Termo de Uso',
               route: '/terms-of-use/add',
+              permissions: 'add_terms',
             },
             {
               id: 'admin-incentives-cycle',
               title: 'Ciclos de Incentivo',
               route: '/ciclos',
               queryParams: { tab: 'active' },
+              permissions: 'cycles',
             },
             {
               id: 'admin-incentives-gallery',
               title: 'Galeria de Imagens e Vídeos',
               route: '/',
               queryParams: { tab: 'gallery' },
+              permissions: 'pictures',
             },
           ],
         },
@@ -214,46 +241,55 @@ export class HeaderComponent {
           route: '/cash-box',
           queryParams: { tab: 'active' },
           icon: 'fa-solid fa-building-columns',
+          permissions: 'cashier',
         },
         {
           id: 'admin-nfts',
           title: 'NFT',
           route: 'admin/nfts',
           icon: 'fa-solid fa-panorama',
+          permissions:
+            'nft,add_nft,classification_nft,add_type_nft,movement_nft',
           items: [
             {
               id: 'admin-nfts-todos',
               title: 'Todos NFTs',
               route: '/',
               queryParams: { tab: 'all' },
+              permissions: 'nft',
             },
             {
               id: 'admin-nfts-add',
               title: 'Cadastrar NFTs',
               route: '/add',
+              permissions: 'add_nft',
             },
             {
               id: 'admin-cassificacao-nfts',
               title: 'Classificação NFTs',
               route: '/classifications',
               queryParams: { tab: 'active' },
+              permissions: 'classification_nft',
             },
             {
               id: 'admin-nfts-tipos',
               title: 'Tipos de NFTs',
               route: '/types',
               queryParams: { tab: 'active' },
+              permissions: 'add_type_nft',
             },
             {
               id: 'admin-nfts-transfer',
               title: 'Transferir Propriedade de NFTs',
               route: '/transfer',
+              permissions: 'movement_nft',
             },
             {
               id: 'admin-nfts-transfer-auth',
               title: 'Autorizar Transferências de NFTs',
               route: '/transfer-auth',
               queryParams: { tab: 'authorize' },
+              permissions: 'movement_nft',
             },
           ],
         },
@@ -262,45 +298,53 @@ export class HeaderComponent {
           title: 'Floral',
           route: 'admin/floral',
           icon: 'fa-solid fa-fan',
+          permissions: 'details_floral,movement_floral,approve_floral',
           items: [
             {
               id: 'admin-floral-extrato',
               title: 'Extrato de Movimentação',
               route: '/movement-statement',
+              permissions: 'details_floral',
             },
             {
               id: 'admin-floral-resgate-pending',
               title: 'Resgates Pendentes',
               route: '/',
               queryParams: { tab: 'pending' },
+              permissions: 'approve_floral',
             },
             {
               id: 'admin-floral-resgate-approve',
               title: 'Resgates Aprovados',
               route: '/',
               queryParams: { tab: 'approve' },
+              permissions: 'approve_floral',
             },
             {
               id: 'admin-floral-resgate-rejects',
               title: 'Resgates Rejeitados',
               route: '/',
               queryParams: { tab: 'rejected' },
+              permissions: 'approve_floral',
             },
             {
               id: 'admin-floral-deposit-caixa',
               title: 'Depósito de Floral Caixa Casabella',
               route: '/deposit',
+              permissions: 'approve_floral',
             },
             {
               id: 'admin-floral-transfer',
               title: 'Tranferência Floral (Caixa / Usuário)',
               route: '/transfer',
+              permissions: 'approve_floral',
             },
             {
               id: 'admin-floral-transfer-auth',
               title: 'Autorizar Tranferência de Floral',
               route: '/transfer-auth',
               queryParams: { tab: 'authorize' },
+              permissions: 'approve_floral',
             },
           ],
         },
@@ -309,23 +353,27 @@ export class HeaderComponent {
           title: 'Patrocinador',
           route: 'admin/sponsors',
           icon: 'fa-solid fa-circle-dollar-to-slot',
+          permissions: 'partner,add_partner',
           items: [
             {
               id: 'admin-patrocinio-actives',
               title: 'Patrocínios Ativos',
               route: '/',
               queryParams: { tab: 'active' },
+              permissions: 'partner',
             },
             {
               id: 'admin-patrocinio-inactives',
               title: 'Patrocínios Inativos',
               route: '/',
               queryParams: { tab: 'suspend' },
+              permissions: 'partner',
             },
             {
               id: 'admin-patrocinio-add',
               title: 'Adicionar Patrocinador',
               route: '/add',
+              permissions: 'add_partner',
             },
           ],
         },
@@ -334,12 +382,14 @@ export class HeaderComponent {
           title: 'Fale Conosco',
           route: '/contact-us',
           icon: 'fa-solid fa-ticket',
+          permissions: 'tickets',
         },
         {
           id: 'admin-chat',
           title: 'Chat',
           route: 'admin/chat',
           icon: 'fa-solid fa-message',
+          permissions: 'chat',
         },
         {
           id: 'admin-termos',
@@ -347,28 +397,33 @@ export class HeaderComponent {
           icon: 'fa-solid fa-file-lines',
           route: '/terms-of-use',
           queryParams: { type: 'login' },
+          permissions: 'terms',
         },
         {
           id: 'admin-audit',
           title: 'Auditoria',
           route: '/audit',
           icon: 'fa-solid fa-clipboard-check',
+          permissions: 'audit',
         },
         {
           id: 'admin-floral-nft-devolution',
           title: 'Devolução de Floral/NFT',
           route: 'admin/devolution',
           icon: 'fa-solid fa-right-left',
+          permissions: 'approve_nft,approve_floral',
           items: [
             {
               id: 'admin-nft-devolution-caixa',
               title: 'Devolução de NFT ao Caixa',
               route: '/nft',
+              permissions: 'approve_nft',
             },
             {
               id: 'admin-floral-devolution-caixa',
               title: 'Devolução de Floral ao Caixa',
               route: '/floral',
+              permissions: 'approve_floral',
             },
           ],
         },
@@ -377,6 +432,7 @@ export class HeaderComponent {
           title: 'Relatórios',
           route: 'admin/reports',
           icon: 'fa-solid fa-file-invoice',
+          permissions: 'reports',
           items: [
             {
               id: 'admin-report-floral',
@@ -489,65 +545,72 @@ export class HeaderComponent {
           title: 'Usuários',
           route: '/admin/users',
           icon: 'fa-solid fa-user',
+          permissions:
+            'users,add_user,groups_and_segments,roles_and_departments,cities_and_states,import_defaulters,import_users',
           items: [
             {
               id: 'admin-users-active',
               title: 'Usuários Ativos',
               route: '/',
               queryParams: { tab: 'active' },
+              permissions: 'users',
             },
             {
               id: 'admin-users-inactive',
               title: 'Usuários Inativos',
               route: '/',
               queryParams: { tab: 'suspend' },
+              permissions: 'users',
             },
             {
               id: 'admin-users-pending',
               title: 'Cadastros Pendentes',
               route: '/',
               queryParams: { tab: 'waiting approve' },
+              permissions: 'add_user',
             },
             {
               id: 'admin-user-add',
               title: 'Cadastrar Usuário',
               route: '/add',
+              permissions: 'add_user',
             },
 
             {
               id: 'admin-users-access-group',
               title: 'Grupo de Acesso e Segmentos',
               route: '/segment-access-group',
+              permissions: 'groups_and_segments',
             },
             {
               id: 'admin-users-permissions-access-group',
               title: 'Permissões de Grupos de Acessos',
               route: '/permissions-access-group',
+              permissions: 'groups_and_segments',
             },
             {
               id: 'admin-users-office-sector',
               title: 'Cargo e Setores',
               route: '/office-sectors',
+              permissions: 'roles_and_departments',
             },
             {
               id: 'admin-users-cities-states',
               title: 'Cidade e Estados',
               route: '/cities-states',
+              permissions: 'cities_and_states',
             },
-            // {
-            //   id: 'admin-users-city-state',
-            //   title: 'Cidades e Estados',
-            //   route: '/cities-states',
-            // },
             {
               id: 'admin-users-import-defaulters',
               title: 'Importar inadimplentes',
               route: '/import-defaulters',
+              permissions: 'import_defaulters',
             },
             {
               id: 'admin-users-imports',
               title: 'Importar Usuários',
               route: '/imports',
+              permissions: 'import_users',
             },
           ],
         },
@@ -556,6 +619,7 @@ export class HeaderComponent {
           title: 'Configurações',
           route: '/settings',
           icon: 'fa-solid fa-sliders',
+          permissions: 'params',
         },
       ],
     },
@@ -597,6 +661,7 @@ export class HeaderComponent {
   params: any = {};
 
   userCurrent: any = {};
+  rules: any[] = [];
 
   imagemAnimadaMenu = null;
   FraseExibidaMenu = null;
@@ -638,6 +703,9 @@ export class HeaderComponent {
     }
 
     this.userCurrent = await this.tools.getCurrentUser();
+    this.rules = this.tools.getRules(this.userCurrent.group ?? []);
+    console.log('rules', this.rules);
+
     // this.service.getSettings().then((res) => {
     //   for (const item of res) {
     //     this.params[item.parameter] = item.value;

@@ -1,11 +1,13 @@
-<div class="border border-cb-secondary rounded p-4 mb-3 relative">
-  <div
-    class="bg-cb-contrast h-full overflow-hidden p-16 rounded-lg text-center w-full"
-    *ngIf="loadingNFT"
-  >
+<div class="relative" *ngIf="loadingNFT || loadingFeed">
+  <div class="text-center w-full">
     <spinner [size]="8" color="cb"></spinner>
   </div>
+</div>
 
+<div
+  class="border border-cb-secondary rounded p-4 mb-3 relative"
+  *ngIf="nfts.length > 0"
+>
   <ngx-slick-carousel
     *ngIf="!loadingNFT"
     class="carousel w-full"

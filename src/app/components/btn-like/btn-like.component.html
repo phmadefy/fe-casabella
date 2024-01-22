@@ -7,8 +7,30 @@
     'text-cb-secondary': !active
   }"
 >
-  <i class="fa-solid fa-thumbs-up text-2xl mr-2"></i>
-  <span>{{ active ? "Curtiu" : "Curtir" }}</span>
+  <div class="flex items-center gap-2" *ngIf="interaction == ''">
+    <i class="fa-solid fa-thumbs-up text-2xl"></i>
+    <span>Curtir</span>
+  </div>
+  <div class="flex items-center gap-2" *ngIf="interaction == 'like'">
+    <img src="assets/icons/like.svg" alt="" width="30" height="30" />
+    <span>Curtiu</span>
+  </div>
+  <div class="flex items-center gap-2" *ngIf="interaction == 'loved_it'">
+    <img src="assets/icons/adorei.svg" alt="" width="30" height="30" />
+    <span>Adorei</span>
+  </div>
+  <div class="flex items-center gap-2" *ngIf="interaction == 'happy'">
+    <img src="assets/icons/feliz.svg" alt="" width="30" height="30" />
+    <span>Feliz</span>
+  </div>
+  <div class="flex items-center gap-2" *ngIf="interaction == 'fall_love'">
+    <img src="assets/icons/apaixonado.svg" alt="" width="30" height="30" />
+    <span>Amei</span>
+  </div>
+  <div class="flex items-center gap-2" *ngIf="interaction == 'nice_guy'">
+    <img src="assets/icons/nice-guy.svg" alt="" width="30" height="30" />
+    <span>Demais</span>
+  </div>
 </button>
 <div
   [attr.id]="'dropMenu' + id"

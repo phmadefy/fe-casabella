@@ -234,4 +234,30 @@ export class ToolsService {
   getItemArray(array: any[], property: string, search: string) {
     return array.find((i: any) => i[property] == search);
   }
+
+  getRules(groups: any[]) {
+    const rules: any = [];
+    for (const group of groups) {
+      for (const rule of group.rules) {
+        const find = rules.find((r: any) => r == rule.name);
+        if (!find) {
+          rules.push(rule.name);
+        }
+      }
+    }
+
+    return rules;
+  }
+
+  getRule(permissions: any, rules: any[]) {
+    let visible = false;
+    if (permissions && permissions != '') {
+      permissions = permissions.split(',');
+      visible = permissions.some((p: any) => rules.includes(p));
+    } else {
+      visible = true;
+    }
+
+    return visible;
+  }
 }

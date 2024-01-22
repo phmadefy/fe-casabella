@@ -39,7 +39,7 @@
   <div
     class="py-2 px-4 flex flex-col justify-center border-r border-cb-secondary text-2xl text-cb-success font-bold w-1/6"
   >
-    {{ item?.amount | currency : "F$ " }}
+    {{ item?.amount | currency : "BRL" : "F$" : "1.4-4" }}
   </div>
 
   <div

@@ -187,6 +187,7 @@
         exact: false,
         fragment: 'ignored'
       }"
+      *ngIf="tools.getRule(item.permissions, rules)"
     >
       <i [class]="item.icon + ' mr-3'" *ngIf="item.icon"></i>
       <span class="">{{ item.title }}</span>
@@ -215,7 +216,7 @@
             [routerLink]="[item.route + subItem.route]"
             [queryParams]="subItem?.queryParams"
             routerLinkActive="activeItem"
-            *ngIf="!subItem.items"
+            *ngIf="!subItem.items && tools.getRule(subItem.permissions, rules)"
           >
             <i [class]="subItem.icon + ' mr-3'" *ngIf="subItem.icon"></i>
             <span class="">{{ subItem.title }}</span>
@@ -235,6 +236,7 @@
       [routerLink]="[item.route]"
       routerLinkActive="activeMenu"
       [queryParams]="item?.queryParams"
+      *ngIf="tools.getRule(item.permissions, rules)"
     >
       <i [class]="item.icon + ' mr-3'" *ngIf="item.icon"></i>
       <span class="">{{ item.title }}</span>
@@ -251,6 +253,7 @@
       data-dropdown-offset-distance="0"
       type="button"
       class="flex items-center justify-between px-4 py-2 text-cb-base bg-gradient-cb-hover w-full"
+      *ngIf="tools.getRule(item.permissions, rules)"
     >
       <span>
         <i [class]="item.icon + ' mr-3'" *ngIf="item.icon"></i>
@@ -280,35 +283,37 @@
       <ul
         class="text-sm text-gray-700 dark:text-gray-200 overflow-y-auto max-h-screen"
       >
-        <li
-          class="border-b border-b-cb-secondary"
-          *ngFor="let subItem of item.items"
-        >
-          <ng-container *ngIf="!subItem.items">
-            <a
-              href="javascript:void(0)"
-              class="w-full flex justify-start items-center px-4 py-2 text-cb-base bg-gradient-cb-hover"
-              *ngIf="subItem.route"
-              [routerLink]="[item.route + subItem.route]"
-              routerLinkActive="activeItem"
-              [routerLinkActiveOptions]="{
-                exact: true,
-                fragment: 'ignored'
-              }"
-              [queryParams]="subItem?.queryParams"
-            >
-              <i [class]="subItem.icon + ' mr-3'" *ngIf="subItem.icon"></i>
-              <span class="">{{ subItem.title }}</span>
-            </a>
-            <span
-              class="flex justify-start items-center px-4 py-2 text-gradient-cb"
-              *ngIf="!subItem.route"
-            >
-              <i [class]="subItem.icon + ' mr-3'" *ngIf="subItem.icon"></i>
-              <span class="">{{ subItem.title }}</span>
-            </span>
-          </ng-container>
-        </li>
+        <ng-container *ngFor="let subItem of item.items">
+          <li
+            class="border-b border-b-cb-secondary"
+            *ngIf="tools.getRule(subItem.permissions, rules)"
+          >
+            <ng-container *ngIf="!subItem.items">
+              <a
+                href="javascript:void(0)"
+                class="w-full flex justify-start items-center px-4 py-2 text-cb-base bg-gradient-cb-hover"
+                *ngIf="subItem.route"
+                [routerLink]="[item.route + subItem.route]"
+                routerLinkActive="activeItem"
+                [routerLinkActiveOptions]="{
+                  exact: true,
+                  fragment: 'ignored'
+                }"
+                [queryParams]="subItem?.queryParams"
+              >
+                <i [class]="subItem.icon + ' mr-3'" *ngIf="subItem.icon"></i>
+                <span class="">{{ subItem.title }}</span>
+              </a>
+              <span
+                class="flex justify-start items-center px-4 py-2 text-gradient-cb"
+                *ngIf="!subItem.route"
+              >
+                <i [class]="subItem.icon + ' mr-3'" *ngIf="subItem.icon"></i>
+                <span class="">{{ subItem.title }}</span>
+              </span>
+            </ng-container>
+          </li>
+        </ng-container>
       </ul>
     </div>
   </div>

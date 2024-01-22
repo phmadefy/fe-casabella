@@ -46,7 +46,7 @@
       </div>
       <div class="flex justify-end items-center gap-4">
         <h2 class="text-xl text-cb-success font-bold">
-          {{ item.balance | currency : "F$" }}
+          {{ item.balance | currency : "BRL" : "F$" : "1.4-4" }}
         </h2>
         <dropdown-cb
           icon="fa-solid fa-ellipsis-vertical"
