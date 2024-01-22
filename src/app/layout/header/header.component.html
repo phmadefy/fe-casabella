@@ -248,7 +248,7 @@
 <ng-template #menuV let-item="item">
   <div>
     <button
-      [attr.data-dropdown-toggle]="'dropdown-' + item.id"
+      [attr.data-dropdown-toggle]="'dropdown2-' + item.id"
       data-dropdown-placement="right-start"
       data-dropdown-offset-distance="0"
       type="button"
@@ -277,7 +277,7 @@
       </svg>
     </button>
     <div
-      [id]="'dropdown-' + item.id"
+      [id]="'dropdown2-' + item.id"
       class="z-10 hidden bg-cb-primary border-[#21ACBE] min-w-[250px] border rounded shadow w-48"
     >
       <ul

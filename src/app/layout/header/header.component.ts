@@ -706,7 +706,9 @@ export class HeaderComponent {
     this.userCurrent = await this.tools.getCurrentUser();
     this.rules = this.tools.getRules(this.userCurrent.group ?? []);
     console.log('rules', this.rules);
-    initFlowbite();
+    setTimeout(() => {
+      initFlowbite();
+    }, 500);
 
     // this.service.getSettings().then((res) => {
     //   for (const item of res) {
