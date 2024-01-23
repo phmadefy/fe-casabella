@@ -15,7 +15,7 @@
     <img
       [src]="item.image ?? tools.noImageAvatar"
       alt="image-card"
-      class="w-full rounded-t-md h-[80%]"
+      class="w-full rounded-t-md h-[80%] object-cover"
     />
     <div *ngIf="tools.checkRouteContainsAdmin()">
       <button
