@@ -138,9 +138,10 @@
             controlName="view_has_nft"
             name="view_has_nft"
             [(ngModel)]="dados.view_has_nft"
+            [checked]="dados.view_has_nft"
           />
           <input-floating
-            class="p-0 bg-transparent border-none"
+            class="p-0 bg-transparent border-none col-span-1"
             model="has_nft"
             [(ngModel)]="dados.has_nft"
             name="has_nft"
@@ -153,7 +154,7 @@
           />
         </div>
 
-        <div class="mb-4">
+        <!-- <div class="mb-4">
           <checkbox
             label="Quanditade de NFT"
             controlName="view_quantity_nft"
@@ -167,16 +168,18 @@
             [(ngModel)]="dados.quantity_nft"
             placeholder="Quanditade de NFT"
           />
-        </div>
+        </div> -->
 
-        <div class="mb-4">
-          <checkbox
+        <div class="mb-4 col-span-2">
+          <!-- <checkbox
             label="Vincular NFT"
             controlName="view_nft_id"
             name="view_nft_id"
             [(ngModel)]="dados.view_nft_id"
-          />
+          /> -->
           <select-default
+            label="Vincular NFT"
+            [isFloating]="false"
             endpoint="v1/nft"
             inputPlaceholder="Selecione um NFT"
             bindText="name"
@@ -326,9 +329,9 @@
           <input-floating
             class="p-0 bg-transparent border-none"
             label="Status"
-            model="status"
-            [(ngModel)]="dados.status"
-            name="status"
+            model="active"
+            [(ngModel)]="dados.active"
+            name="active"
             type="select"
             bindValue="key"
             bindText="description"

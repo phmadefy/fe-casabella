@@ -1,0 +1,114 @@
+<card [loading]="loading">
+  <div
+    class="flex items-center justify-between border-b border-cb-secondary p-4"
+  >
+    <h2 class="font-semibold text-cb-info text-lg">
+      {{ dados?.name }}
+    </h2>
+    <div class="flex items-center gap-3">
+      <button-cb
+        class="w-full"
+        classes="btn btn-sm bg-cb-primary text-cb-base rounded-md w-full min-w-max"
+        label="Regulamento"
+      />
+      <button-cb
+        class="w-full"
+        classes="btn btn-sm bg-cb-primary text-cb-base rounded-md w-full min-w-max"
+        label="Ranking"
+      />
+    </div>
+  </div>
+
+  <div class="p-4 flex justify-center">
+    <img [src]="dados?.image_url" class="rounded-md" alt="" />
+  </div>
+
+  <div class="p-4" *ngIf="dados?.nfts?.length > 0">
+    <h2 class="font-semibold text-cb-info text-lg">NFTs da campanha</h2>
+
+    <div class="flex items-center gap-3">
+      <app-nft-card
+        *ngFor="let item of dados?.nfts"
+        [size]="24"
+        [nft]="{ src: item.image_url }"
+        (click)="openModalNFT(item)"
+      />
+    </div>
+  </div>
+
+  <div class="p-4">
+    <div class="mb-3">
+      <h2 class="font-semibold text-cb-info text-lg">Descrição do Incentivo</h2>
+      <p class="text-sm">
+        {{ dados?.description }}
+      </p>
+    </div>
+
+    <div class="mb-3">
+      <h2 class="font-semibold text-cb-info text-lg">Sobre o Incentivo</h2>
+      <p class="text-sm" [innerHTML]="dados?.information"></p>
+    </div>
+
+    <div class="mb-3">
+      <h2 class="font-semibold text-cb-info text-lg">Premiação</h2>
+      <p class="text-sm">
+        {{ dados?.award }}
+      </p>
+    </div>
+
+    <div class="mb-3">
+      <h2 class="font-semibold text-cb-info text-lg">Contém Florais (F$)</h2>
+      <p class="text-sm">
+        {{ dados?.has_floral ? "Sim" : "Não" }}
+      </p>
+    </div>
+
+    <div class="mb-3">
+      <h2 class="font-semibold text-cb-info text-lg">
+        Quantidade de Florais (F$)
+      </h2>
+      <p class="text-sm">
+        Quem ganhar leva
+        {{ dados?.quantity_floral | currency : "BRL" : "F$" : "1.4-4" }}
+      </p>
+    </div>
+
+    <div class="mb-3">
+      <h2 class="font-semibold text-cb-info text-lg">Período do incentivo</h2>
+      <p class="text-sm">Início: {{ dados?.start | date : "dd/MM/yyyy" }}</p>
+      <p class="text-sm" *ngIf="dados?.view_end">
+        Término: {{ dados?.end | date : "dd/MM/yyyy" }}
+      </p>
+    </div>
+
+    <div class="mb-3">
+      <h2 class="font-semibold text-cb-info text-lg">Cíclo do incentivo</h2>
+      <p class="text-sm">- {{ dados?.cycle?.description }}</p>
+    </div>
+
+    <div class="mb-3">
+      <h2 class="font-semibold text-cb-info text-lg">
+        Público que participa do incentivo:
+      </h2>
+      <p *ngFor="let item of dados?.public" class="text-sm">
+        - {{ item.name }}
+      </p>
+    </div>
+
+    <div class="mb-3">
+      <h2 class="font-semibold text-cb-info text-lg">
+        Segmentos participante:
+      </h2>
+      <p *ngFor="let item of dados?.segments_participate" class="text-sm">
+        - {{ item.name }}
+      </p>
+    </div>
+
+    <div class="mb-3">
+      <h2 class="font-semibold text-cb-info text-lg">Cidades participante:</h2>
+      <p *ngFor="let item of dados?.cities" class="text-sm">
+        - {{ item.name }}
+      </p>
+    </div>
+  </div>
+</card>

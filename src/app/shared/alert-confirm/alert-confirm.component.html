@@ -2,13 +2,13 @@
   <div class="p-4 text-sm text-center" [innerHTML]="data?.message"></div>
   <div class="flex items-center border-t border-cb-secondary p-4 gap-4">
     <button
-      class="btn btn-sm btn-md rounded-md bg-gradient-cb font-semibold"
+      class="btn btn-sm btn-md rounded-md bg-gradient-cb font-semibold w-full"
       (click)="dialogRef.close(true)"
     >
       {{ data?.confirmText ?? "Sim" }}
     </button>
     <button
-      class="btn btn-sm btn-md rounded-md"
+      class="btn btn-sm btn-md rounded-md w-full"
       (click)="dialogRef.close(false)"
     >
       {{ data?.cancelText ?? "Não" }}

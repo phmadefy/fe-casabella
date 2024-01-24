@@ -53,12 +53,13 @@ export class MessageService {
     return dialogRef;
   }
 
-  presentAlertConfirm(message: string, title = 'Aviso!') {
+  presentAlertConfirm(message: string, title = 'Aviso!', options: any = {}) {
     const dialogRef = this.dialog.open<any>(AlertConfirmComponent, {
       width: '95%',
       maxWidth: '500px',
       maxHeight: '90%',
       data: {
+        ...options,
         title,
         message,
       },

@@ -43,6 +43,8 @@ export class ComboboxComponent {
   @Input() loading = false;
   @Input() autoClear = false;
 
+  @Input() isFloating = true;
+
   @Output() selectItem = new EventEmitter<any>();
 
   constructor(public tools: ToolsService) {}

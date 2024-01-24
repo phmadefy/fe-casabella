@@ -78,6 +78,10 @@ export class IncentiveFormComponent extends AbstractForms {
       .then((res) => {
         console.log('res', res);
         this.dados = res;
+        this.dados.nfts = this.tools.getPropertiesPivot(
+          this.dados.nfts,
+          'nft_id'
+        );
         this.dados.public = this.getPublicSelected();
         this.dados.segments_participate = this.getSegmentParticipateSelected();
         this.dados.segments_view = this.getSegmentViewSelected();

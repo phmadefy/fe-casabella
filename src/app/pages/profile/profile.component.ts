@@ -50,7 +50,7 @@ export class ProfileComponent {
       this.dados.phone = this.userCurrent?.person?.phone;
       this.dados.phone_2 = this.userCurrent?.person?.phone_2;
       this.dados.gender = this.userCurrent?.person?.gender;
-      this.dados.city = this.userCurrent?.person?.address?.city ?? '';
+      this.dados.city_id = this.userCurrent?.person?.address?.city_id ?? '';
     }, 500);
   }
 

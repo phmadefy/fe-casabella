@@ -9,6 +9,8 @@ import { Subscription } from 'rxjs';
 import { ToolsService } from 'src/app/services/tools.service';
 import { CardImageComponent } from 'src/app/components/card-image/card-image.component';
 import { IncentiveGalleryComponent } from '../admin/incentives/incentive-gallery/incentive-gallery.component';
+import { Dialog } from '@angular/cdk/dialog';
+import { ModalIncentiveTermAcceptComponent } from 'src/app/shared/modal-incentive-term-accept/modal-incentive-term-accept.component';
 
 @Component({
   selector: 'app-incentive-public',
@@ -35,21 +37,25 @@ export class IncentivePublicComponent {
   filters: any = { per_page: 30, page: 1 };
 
   tab: string = 'my';
+  userCurrent: any = { terms: [] };
   constructor(
     private route: ActivatedRoute,
     private service: ApiService,
-    public tools: ToolsService // private dialog: Dialog
+    public tools: ToolsService,
+    private dialog: Dialog
   ) {
     service.path = 'v1/incentives';
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.queryParamsObs = this.route.queryParams.subscribe((res: any) => {
       console.log('queryParams', res);
       if (res?.tab) {
         this.setTab(res.tab);
       }
     });
+
+    this.userCurrent = await this.tools.getCurrentUser();
   }
 
   ngOnDestroy(): void {
@@ -77,5 +83,41 @@ export class IncentivePublicComponent {
       this.filters.active = 0;
     }
     this.getList();
+  }
+
+  openIncentive(item: any) {
+    const find = this.userCurrent.terms.find(
+      (t: any) => t.id == item?.term?.id
+    );
+
+    if (find) {
+      this.toIncentive(item.id);
+    } else {
+      const dialogRef = this.dialog.open<any>(
+        ModalIncentiveTermAcceptComponent,
+        {
+          width: '95%',
+          maxWidth: '1055px',
+          data: item,
+          disableClose: true,
+        }
+      );
+
+      dialogRef.closed.subscribe(async (res) => {
+        if (res) {
+          this.toIncentive(item.id);
+        }
+      });
+    }
+  }
+
+  toIncentive(incentive_id: any) {
+    this.tools.route
+      .navigateByUrl('/', { skipLocationChange: true })
+      .then(() => {
+        this.tools.route.navigate(['/incentivo/detalhe'], {
+          state: { incentive_id },
+        });
+      });
   }
 }

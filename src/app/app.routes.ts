@@ -98,6 +98,13 @@ export const routes: Routes = [
                 './pages/incentive-public/incentive-public.component'
               ).then((c) => c.IncentivePublicComponent),
           },
+          {
+            path: 'detalhe',
+            loadComponent: () =>
+              import(
+                './pages/incentive-public/incentive-details/incentive-details.component'
+              ).then((c) => c.IncentiveDetailsComponent),
+          },
         ],
       },
       {

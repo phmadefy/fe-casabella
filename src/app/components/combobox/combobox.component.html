@@ -2,6 +2,13 @@
   class="relative"
   [ngClass]="{ 'is-invalid': !tools.validateInputForm(form, model) }"
 >
+  <label
+    *ngIf="!isFloating && label"
+    [attr.for]="model"
+    class="mb-2 text-sm text-cb-base px-2 peer-focus:px-2 peer-focus:text-cb-base"
+    >{{ label }}</label
+  >
+
   <ng-select
     [(ngModel)]="value"
     [id]="model"
@@ -43,7 +50,7 @@
   </ng-select>
 
   <label
-    *ngIf="label"
+    *ngIf="label && isFloating"
     [attr.for]="model"
     class="absolute text-sm text-cb-info duration-300 transform -translate-y-4 scale-75 top-2 z-[1002] origin-[0] bg-cb-primary dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-cb-base peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
     >{{ label }}</label

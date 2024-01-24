@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 })
 export class NftCardComponent {
   @Input() nft: any = {};
+  @Input() size = 40;
 
   @Output() onClick = new EventEmitter<any>();
 }

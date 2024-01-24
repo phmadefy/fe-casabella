@@ -52,6 +52,7 @@ export class SelectDefaultComponent implements ControlValueAccessor {
   @Input() all = false;
   @Input() multiple = false;
   @Input() autoClear = false;
+  @Input() isFloating = true;
 
   @Output() selectItem = new EventEmitter<any>();
 

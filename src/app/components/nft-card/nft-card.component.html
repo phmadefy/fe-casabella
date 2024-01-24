@@ -1,10 +1,10 @@
 <div
-  class="relative inline-block group rounded-lg overflow-hidden border border-cb-secondary w-40 h-40 cursor-pointer"
+  class="relative inline-block group rounded-lg overflow-hidden border border-cb-secondary w-{{size}} h-{{size}} cursor-pointer"
   (click)="onClick.emit()"
 >
   <img
     [src]="nft.src"
-    class="w-40 h-40 object-cover group-hover:opacity-75 transition-transform transform-gpu hover:scale-110 hover:duration-500"
+    class="w-{{size}} h-{{size}} object-cover group-hover:opacity-75 transition-transform transform-gpu hover:scale-110 hover:duration-500"
     alt="NFT"
   />
 </div>

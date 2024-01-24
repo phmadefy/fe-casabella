@@ -1,0 +1,42 @@
+<div
+  class="slide bg-cb-modal text-cb-base rounded-md shadow border border-cb-secondary h-full relative"
+>
+  <div class="flex justify-between p-4 border-b border-cb-secondary">
+    <h2 class="text-lg font-bold">Termos de uso do Incentivo</h2>
+  </div>
+
+  <div
+    [innerHTML]="dados?.term?.description"
+    class="max-h-[450px] overflow-y-auto p-4"
+  ></div>
+
+  <div class="card-footer flex items-center justify-between gap-3">
+    <div class="w-1/2 font-semibold">
+      Antes de prosseguir, por favor leia e aceite o regulamento.
+    </div>
+    <div class="flex item-center gap-3">
+      <button-cb
+        class="w-full"
+        classes="btn btn-md text-cb-info rounded-md w-full min-w-max"
+        label="Download"
+        [loading]="loading"
+      />
+
+      <button-cb
+        class="w-full"
+        classes="btn btn-md text-cb-info rounded-md w-full min-w-max"
+        label="Decidir Depois"
+        [loading]="loading"
+        (click)="reject()"
+      />
+
+      <button-cb
+        class="w-full"
+        classes="btn btn-md text-white bg-gradient-cb rounded-md font-semibold w-full"
+        label="Aceitar"
+        [loading]="loading"
+        (click)="accept()"
+      />
+    </div>
+  </div>
+</div>
