@@ -10,6 +10,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { ToolsService } from 'src/app/services/tools.service';
 import { Dialog } from '@angular/cdk/dialog';
 import { ModalTermAcceptComponent } from 'src/app/shared/modal-term-accept/modal-term-accept.component';
+import { ModalSlideComponent } from 'src/app/shared/modal-slide/modal-slide.component';
 
 @Component({
   selector: 'app-base',
@@ -27,7 +28,7 @@ import { ModalTermAcceptComponent } from 'src/app/shared/modal-term-accept/modal
   styleUrls: ['./base.component.scss'],
 })
 export class BaseComponent {
-  loadingTerms = false;
+  loading = false;
   dataSource: any = { data: [] };
   userCurrent: any = {};
 
@@ -47,14 +48,14 @@ export class BaseComponent {
   }
 
   async getTerms() {
-    this.loadingTerms = true;
+    this.loading = true;
     await this.service
       .getCustom(`v1/terms?type=login`)
       .then((res) => {
         this.dataSource = res;
         this.checkTerms();
       })
-      .finally(() => (this.loadingTerms = false));
+      .finally(() => (this.loading = false));
   }
 
   async checkTerms() {
@@ -70,6 +71,8 @@ export class BaseComponent {
 
     if (this.termsPending.length > 0) {
       this.openTerms();
+    } else {
+      this.getIncentivesBanners();
     }
   }
 
@@ -87,6 +90,34 @@ export class BaseComponent {
       if (!res) {
         this.tools.logout();
       }
+    });
+  }
+
+  getIncentivesBanners() {
+    this.loading = true;
+    this.service
+      .getCustom(`v1/incentives`, {
+        has_banner: true,
+        limit: 500,
+        active: 1,
+      })
+      .then((res) => {
+        const banners: any[] = res?.data?.map((i: any) => {
+          return { image_url: i.image_feed_url };
+        });
+
+        this.openIncentivesBanners(banners);
+      })
+      .finally(() => (this.loading = false));
+  }
+
+  openIncentivesBanners(banners: any[]) {
+    const dialogRef = this.dialog.open<any>(ModalSlideComponent, {
+      width: '95%',
+      maxWidth: '900px',
+      height: '90%',
+      maxHeight: '600px',
+      data: banners,
     });
   }
 }

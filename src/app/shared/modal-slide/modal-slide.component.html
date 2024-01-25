@@ -1,0 +1,31 @@
+<ngx-slick-carousel
+  class="carousel w-full"
+  #slickModalPartner="slick-carousel"
+  [config]="slideConfig"
+>
+  <div ngxSlickItem class="slide">
+    <div class="flex justify-end p-2">
+      <button
+        class="text-cb-secondary hover:text-cb-base cursor-pointer"
+        (click)="dialogRef.close()"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="flex items-center justify-center gap-2">
+      <button class="text-white text-sm" (click)="prev(slickModalPartner)">
+        <i class="fa-solid fa-chevron-left text-lg"></i>
+      </button>
+      <div
+        *ngFor="let item of dataSource; let i = index"
+        class="max-h-[500px] overflow-y-auto p-2 bg-cb-modal text-cb-base rounded-md shadow border border-cb-secondary h-full relative"
+      >
+        <img [src]="item.image_url" class="rounded-md" alt="" />
+      </div>
+      <button class="text-white text-sm" (click)="next(slickModalPartner)">
+        <i class="fa-solid fa-chevron-right text-lg"></i>
+      </button>
+    </div>
+  </div>
+</ngx-slick-carousel>

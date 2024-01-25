@@ -414,3 +414,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   width: 100% !important;
   height: auto !important;
 }
+
+.slick-dots li button:before {
+  font-size: 0.7rem;
+  color: white;
+}
+.slick-dots li.slick-active button:before {
+  color: white;
+  opacity: 0.75;
+}
