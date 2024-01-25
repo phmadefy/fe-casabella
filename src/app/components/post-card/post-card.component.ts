@@ -68,49 +68,6 @@ export class PostCardComponent {
       .finally(() => (this.loading = false));
   }
 
-  getPersonsInteractions() {
-    let text = '';
-    if (this.dados?.interactions?.length > 3) {
-      const interactionOne = this.dados?.interactions[0];
-      const interactionTwo = this.dados?.interactions[1];
-      // const interactionThree = this.dados?.interactions[2];
-      if (interactionOne) {
-        text += `${interactionOne?.user?.name}`;
-      }
-      if (interactionTwo) {
-        text += `, ${interactionOne?.user?.name}`;
-      }
-
-      text += ` e outras ${this.dados?.interactions?.length - 2} pessoas`;
-    } else {
-      const interactionOne = this.dados?.interactions[0];
-      const interactionTwo = this.dados?.interactions[1];
-      // const interactionThree = this.dados?.interactions[2];
-      if (interactionOne) {
-        text += `${interactionOne?.user?.name}`;
-      }
-      if (interactionTwo) {
-        text += `, ${interactionOne?.user?.name}`;
-      }
-    }
-
-    return text;
-  }
-
-  getMyInteraction() {
-    let interaction = '';
-    if (this.dados?.interactions.length > 0) {
-      const find = this.dados?.interactions.find(
-        (i: any) => i.user_id == this.userCurrent.id
-      );
-      if (find) {
-        interaction = find.name;
-      }
-    }
-
-    return interaction;
-  }
-
   async sendReact(event: any) {
     this.loading = true;
     await this.service

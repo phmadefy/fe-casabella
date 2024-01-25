@@ -111,13 +111,10 @@ export class IncentivePublicComponent {
     }
   }
 
-  toIncentive(incentive_id: any) {
-    this.tools.route
-      .navigateByUrl('/', { skipLocationChange: true })
-      .then(() => {
-        this.tools.route.navigate(['/incentivo/detalhe'], {
-          state: { incentive_id },
-        });
-      });
+  async toIncentive(incentive_id: any) {
+    await this.tools.route.navigate(['/incentivo/detalhe'], {
+      state: { incentive_id },
+    });
+    location.reload();
   }
 }

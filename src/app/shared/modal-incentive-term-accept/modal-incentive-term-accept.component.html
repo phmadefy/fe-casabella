@@ -3,6 +3,13 @@
 >
   <div class="flex justify-between p-4 border-b border-cb-secondary">
     <h2 class="text-lg font-bold">Termos de uso do Incentivo</h2>
+    <button
+      class="text-cb-secondary hover:text-cb-base cursor-pointer"
+      (click)="dialogRef.close()"
+      *ngIf="dados?.accept"
+    >
+      <i class="fa-solid fa-xmark"></i>
+    </button>
   </div>
 
   <div
@@ -28,6 +35,7 @@
         label="Decidir Depois"
         [loading]="loading"
         (click)="reject()"
+        *ngIf="!dados?.accept"
       />
 
       <button-cb
@@ -36,6 +44,7 @@
         label="Aceitar"
         [loading]="loading"
         (click)="accept()"
+        *ngIf="!dados?.accept"
       />
     </div>
   </div>

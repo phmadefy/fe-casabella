@@ -276,4 +276,47 @@ export class ToolsService {
     }
     return '';
   }
+
+  getPersonsInteractions(dados: any) {
+    let text = '';
+    if (dados?.interactions?.length > 3) {
+      const interactionOne = dados?.interactions[0];
+      const interactionTwo = dados?.interactions[1];
+      // const interactionThree = dados?.interactions[2];
+      if (interactionOne) {
+        text += `${interactionOne?.user?.name}`;
+      }
+      if (interactionTwo) {
+        text += `, ${interactionOne?.user?.name}`;
+      }
+
+      text += ` e outras ${dados?.interactions?.length - 2} pessoas`;
+    } else if (dados?.interactions) {
+      const interactionOne = dados?.interactions[0];
+      const interactionTwo = dados?.interactions[1];
+      // const interactionThree = dados?.interactions[2];
+      if (interactionOne) {
+        text += `${interactionOne?.user?.name}`;
+      }
+      if (interactionTwo) {
+        text += `, ${interactionOne?.user?.name}`;
+      }
+    }
+
+    return text;
+  }
+
+  getMyInteraction(dados: any, userCurrent: any) {
+    let interaction = '';
+    if (dados?.interactions?.length > 0) {
+      const find = dados?.interactions.find(
+        (i: any) => i.user_id == userCurrent.id
+      );
+      if (find) {
+        interaction = find.name;
+      }
+    }
+
+    return interaction;
+  }
 }
