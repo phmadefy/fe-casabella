@@ -35,6 +35,7 @@ export class TermsOfUseFormComponent extends AbstractForms {
   config: EditorConfig = {
     language: 'pt-br',
   };
+  back_url: any = {};
 
   constructor(
     service: ApiService,
@@ -51,6 +52,9 @@ export class TermsOfUseFormComponent extends AbstractForms {
     if (history.state?.termsData) {
       this.dados = history.state?.termsData;
       // this.getDados(history.state?.termsData);
+    }
+    if (history.state?.back_url) {
+      this.back_url = history.state?.back_url;
     }
   }
 
@@ -69,20 +73,20 @@ export class TermsOfUseFormComponent extends AbstractForms {
     if (!this.dados.id) {
       this.create(this.dados);
     } else {
-      // this.update(this.dados, this.dados.id);
-      this.loading = true;
-      this.service
-        .postCustom(`v1/terms/` + this.dados.id, this.dados)
-        .then((res) => {
-          this.finish(res);
-        })
-        .finally(() => (this.loading = false));
+      this.update(this.dados, this.dados.id);
+      // this.loading = true;
+      // this.service
+      //   .postCustom(`v1/terms/` + this.dados.id, this.dados)
+      //   .then((res) => {
+      //     this.finish(res);
+      //   })
+      //   .finally(() => (this.loading = false));
     }
   }
 
   finish(result: any): void {
-    this.route.navigate(['/admin/incentives'], {
-      queryParams: { tab: 'terms-of-use' },
+    this.route.navigate([this.back_url.url], {
+      queryParams: this.back_url.params,
     });
   }
 }

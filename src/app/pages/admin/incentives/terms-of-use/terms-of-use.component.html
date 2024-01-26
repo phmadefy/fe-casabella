@@ -39,8 +39,8 @@
   </div>
   <div class="p-4">
     <button-cb
-      routerLink="terms-of-use/edit"
-      [state]="{ termsData: item }"
+      [routerLink]="url_edit"
+      [state]="{ termsData: item, back_url }"
       classes="btn-sm btn-md rounded-md bg-gradient-cb text-white w-max"
       label="Atualizar Termo"
     ></button-cb>

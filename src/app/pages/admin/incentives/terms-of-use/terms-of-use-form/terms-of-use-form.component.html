@@ -43,8 +43,8 @@
       <button
         class="btn btn-sm text-white rounded-md"
         [disabled]="loading"
-        routerLink="/admin/incentives"
-        [queryParams]="{ tab: 'terms-of-use' }"
+        [routerLink]="back_url.url"
+        [queryParams]="back_url.params"
       >
         Cancelar
       </button>

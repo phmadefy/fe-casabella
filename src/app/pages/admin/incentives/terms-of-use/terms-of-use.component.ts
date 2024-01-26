@@ -28,6 +28,8 @@ export class TermsOfUseComponent {
   filters: any = { per_page: 50, page: 1, type: 'incentives' };
 
   @Input() type: any;
+  back_url: any = {};
+  url_edit: any;
 
   constructor(
     private service: ApiService,
@@ -41,9 +43,19 @@ export class TermsOfUseComponent {
     const type = this.activeRoute.snapshot.queryParamMap.get('type');
     if (this.type) {
       this.filters.type = this.type;
+      this.back_url = {
+        url: '/admin/incentives',
+        params: { tab: 'terms-of-use' },
+      };
+      this.url_edit = 'termos-de-uso/editar';
     } else if (type) {
       this.type = type;
       this.filters.type = type;
+      this.back_url = {
+        url: '/admin/termos-de-uso',
+        params: { type: 'login' },
+      };
+      this.url_edit = '/admin/termos-de-uso/editar';
     }
     this.getList();
   }

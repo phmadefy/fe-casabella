@@ -19,8 +19,8 @@
         </div>
       </div>
 
-      <div class="grid grid-cols-12 gap-3 mb-4">
-        <div class="col-span-6">
+      <div class="grid grid-cols-2 gap-3 mb-4">
+        <div class="">
           <input-floating
             class="p-0 bg-transparent border-none"
             label="Nome Completo"
@@ -34,37 +34,7 @@
           />
         </div>
 
-        <div class="col-span-3">
-          <input-floating
-            class="p-0 bg-transparent border-none"
-            label="CPF"
-            model="cpf"
-            [(ngModel)]="dados.cpf"
-            name="cpf"
-            type="text"
-            required
-            [form]="form"
-            size="md"
-            mask="CPF_CNPJ"
-          />
-        </div>
-
-        <div class="col-span-3">
-          <input-floating
-            class="p-0 bg-transparent border-none"
-            label="Data de Nascimento"
-            model="birthdate"
-            [(ngModel)]="dados.birthdate"
-            name="birthdate"
-            type="date"
-            [form]="form"
-            size="md"
-          />
-        </div>
-      </div>
-
-      <div class="grid grid-cols-12 gap-3 mb-4">
-        <div class="col-span-6">
+        <div class="">
           <input-floating
             class="p-0 bg-transparent border-none"
             label="E-mail"
@@ -79,7 +49,37 @@
           ></input-floating>
         </div>
 
-        <div class="col-span-3">
+        <!-- <div class="">
+          <input-floating
+            class="p-0 bg-transparent border-none"
+            label="CPF"
+            model="cpf"
+            [(ngModel)]="dados.cpf"
+            name="cpf"
+            type="text"
+            required
+            [form]="form"
+            size="md"
+            mask="CPF_CNPJ"
+          />
+        </div> -->
+      </div>
+
+      <div class="grid grid-cols-4 gap-3 mb-4">
+        <div class="">
+          <input-floating
+            class="p-0 bg-transparent border-none"
+            label="Data de Nascimento"
+            model="birthdate"
+            [(ngModel)]="dados.birthdate"
+            name="birthdate"
+            type="date"
+            [form]="form"
+            size="md"
+          />
+        </div>
+
+        <div class="">
           <input-floating
             class="p-0 bg-transparent border-none"
             label="Telefone 1"
@@ -93,7 +93,7 @@
           ></input-floating>
         </div>
 
-        <div class="col-span-3">
+        <div class="">
           <input-floating
             class="p-0 bg-transparent border-none"
             label="Telefone 2"
@@ -105,9 +105,7 @@
             size="md"
           ></input-floating>
         </div>
-      </div>
 
-      <div class="grid grid-cols-3 gap-3 mb-4">
         <combobox
           class="p-0 bg-transparent border-none"
           label="Gênero"
@@ -121,7 +119,9 @@
           [form]="form"
           size="md"
         />
+      </div>
 
+      <div class="grid grid-cols-3 gap-3 mb-4">
         <select-default
           class="p-0 bg-transparent border-none"
           label="Cidade"

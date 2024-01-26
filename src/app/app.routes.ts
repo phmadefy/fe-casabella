@@ -208,14 +208,14 @@ export const routes: Routes = [
                   ).then((c) => c.IncentiveFormComponent),
               },
               {
-                path: 'terms-of-use/add',
+                path: 'termos-de-uso/add',
                 loadComponent: () =>
                   import(
                     './pages/admin/incentives/terms-of-use/terms-of-use-form/terms-of-use-form.component'
                   ).then((c) => c.TermsOfUseFormComponent),
               },
               {
-                path: 'terms-of-use/edit',
+                path: 'termos-de-uso/editar',
                 loadComponent: () =>
                   import(
                     './pages/admin/incentives/terms-of-use/terms-of-use-form/terms-of-use-form.component'
@@ -440,11 +440,23 @@ export const routes: Routes = [
             ],
           },
           {
-            path: 'terms-of-use',
-            loadComponent: () =>
-              import(
-                './pages/admin/incentives/terms-of-use/terms-of-use.component'
-              ).then((c) => c.TermsOfUseComponent),
+            path: 'termos-de-uso',
+            children: [
+              {
+                path: '',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/incentives/terms-of-use/terms-of-use.component'
+                  ).then((c) => c.TermsOfUseComponent),
+              },
+              {
+                path: 'editar',
+                loadComponent: () =>
+                  import(
+                    './pages/admin/incentives/terms-of-use/terms-of-use-form/terms-of-use-form.component'
+                  ).then((c) => c.TermsOfUseFormComponent),
+              },
+            ],
           },
           {
             path: 'audit',

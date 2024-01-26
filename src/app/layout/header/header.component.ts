@@ -217,7 +217,7 @@ export class HeaderComponent {
             {
               id: 'admin-incentives-terms-of-use-add',
               title: 'Adicionar Termo de Uso',
-              route: '/terms-of-use/add',
+              route: '/termos-de-uso/add',
               permissions: 'add_terms',
             },
             {
@@ -396,7 +396,7 @@ export class HeaderComponent {
           id: 'admin-termos',
           title: 'Termos',
           icon: 'fa-solid fa-file-lines',
-          route: '/terms-of-use',
+          route: '/termos-de-uso',
           queryParams: { type: 'login' },
           permissions: 'terms',
         },

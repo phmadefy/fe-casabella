@@ -30,13 +30,15 @@
     <div class="mb-4" *ngFor="let permission of permissionsBase">
       <label>{{ permission.name }}</label>
       <div class="bg-cb-primary p-4 rounded-md border border-cb-secondary">
-        <checkbox
-          *ngFor="let item of permission.items"
-          [label]="item.label"
-          [controlName]="item.name"
-          (checkedItem)="checkedItem($event, item)"
-          [checked]="checkMarkItem(item) < 0 ? false : true"
-        ></checkbox>
+        <div class="mb-4" *ngFor="let item of permission.items">
+          <checkbox
+            [label]="item.label"
+            [controlName]="item.name"
+            (checkedItem)="checkedItem($event, item)"
+            [checked]="checkMarkItem(item) < 0 ? false : true"
+          />
+          <p class="text-xs">{{ item.description }}</p>
+        </div>
       </div>
     </div>
   </div>
