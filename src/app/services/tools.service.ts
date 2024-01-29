@@ -287,7 +287,7 @@ export class ToolsService {
         text += `${interactionOne?.user?.name}`;
       }
       if (interactionTwo) {
-        text += `, ${interactionOne?.user?.name}`;
+        text += `, ${interactionTwo?.user?.name}`;
       }
 
       text += ` e outras ${dados?.interactions?.length - 2} pessoas`;
@@ -299,7 +299,7 @@ export class ToolsService {
         text += `${interactionOne?.user?.name}`;
       }
       if (interactionTwo) {
-        text += `, ${interactionOne?.user?.name}`;
+        text += `, ${interactionTwo?.user?.name}`;
       }
     }
 
@@ -318,5 +318,11 @@ export class ToolsService {
     }
 
     return interaction;
+  }
+
+  isInRoute(path: string, type: string) {
+    console.log('isInRoute', type, path, location.pathname);
+    const endPoints = location.pathname.split('/');
+    return endPoints.includes(path);
   }
 }

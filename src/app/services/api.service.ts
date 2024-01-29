@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { lastValueFrom } from 'rxjs';
+import { Observable, lastValueFrom } from 'rxjs';
+import { PDFSource } from 'ng2-pdf-viewer';
 
 @Injectable({
   providedIn: 'root',
@@ -72,6 +73,24 @@ export class ApiService {
       link.download = 'exemplo-importação.xls';
       link.click();
       link.remove();
+    });
+  }
+
+  downloadPdf(url: string): Observable<PDFSource> {
+    return new Observable((observer) => {
+      this.http.get(url, { responseType: 'arraybuffer' }).subscribe(
+        (data: ArrayBuffer) => {
+          const typedArray = new Uint8Array(data);
+          const pdfSource: PDFSource = {
+            data: typedArray,
+          };
+          observer.next(pdfSource);
+          observer.complete();
+        },
+        (error) => {
+          observer.error(error);
+        }
+      );
     });
   }
 

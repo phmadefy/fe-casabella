@@ -1,0 +1,41 @@
+<div class="text-cb-base rounded-md h-full relative">
+  <div
+    class="h-full overflow-hidden p-16 rounded-lg text-center w-full"
+    *ngIf="loading"
+  >
+    <spinner [size]="8" color="cb"></spinner>
+  </div>
+
+  <div class="flex justify-end items-start p-1">
+    <button
+      class="text-cb-secondary hover:text-cb-base cursor-pointer"
+      (click)="dialogRef.close()"
+    >
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+
+  <div *ngIf="data" class="flex items-center justify-center">
+    <!-- <iframe
+      frameborder="0"
+      [src]="data.file_url"
+      *ngIf="tools.isFileType('pdf', data.path)"
+      class="w-full h-80"
+    >
+    </iframe> -->
+    <img
+      [src]="data.file_url"
+      NotContextMenu
+      alt=""
+      class="rounded-md max-h-[70vh]"
+      *ngIf="tools.isFileType('image', data.path)"
+    />
+    <pdf-viewer
+      *ngIf="tools.isFileType('pdf', data.path)"
+      [render-text]="true"
+      [original-size]="false"
+      [src]="data.file_url"
+      class="w-full h-[70vh]"
+    ></pdf-viewer>
+  </div>
+</div>
