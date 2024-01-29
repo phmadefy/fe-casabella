@@ -306,14 +306,12 @@ export class ToolsService {
     return text;
   }
 
-  getMyInteraction(dados: any, userCurrent: any) {
+  getMyInteraction(interactions: any[], userCurrent: any) {
     let interaction = '';
-    if (dados?.interactions?.length > 0) {
-      const find = dados?.interactions.find(
-        (i: any) => i.user_id == userCurrent.id
-      );
+    if (interactions?.length > 0) {
+      const find = interactions.find((i: any) => i.user_id == userCurrent.id);
       if (find) {
-        interaction = find.name;
+        interaction = find.name ?? find.interaction;
       }
     }
 

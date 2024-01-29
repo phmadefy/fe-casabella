@@ -19,7 +19,7 @@
       <h2 class="flex gap-2 items-center">
         <i class="fa-solid fa-user text-cb-secondary"></i>
         <span class="text-cb-info text-sm">
-          @{{ dados?.user?.name ?? "casabella" }}
+          {{ dados?.user?.nickname ?? "@casabella" }}
         </span>
       </h2>
 
@@ -32,12 +32,21 @@
       </button> -->
     </div>
 
-    <div class="flex items-end gap-4">
-      <btn-like class="min-w-max" [id]="'nft' + dados.id"></btn-like>
-      <span class="text-sm pb-1">Curtido por 94 pessoas</span>
+    <div class="flex items-center justify-between gap-4 my-3">
+      <btn-like
+        class="min-w-max"
+        [id]="'nft' + dados.id"
+        (changeOption)="sendReact($event)"
+        [interaction]="
+          tools.getMyInteraction(dados.interactions ?? [], userCurrent)
+        "
+      ></btn-like>
+      <span class="text-sm pb-1"
+        >Curtido por {{ dados?.interactions?.length }} pessoas</span
+      >
     </div>
 
-    <div class="w-full border-b border-cb-secondary my-3"></div>
+    <div class="w-full border-b border-cb-secondary mb-3"></div>
 
     <div class="text-sm">
       <p>
@@ -59,7 +68,8 @@
 
     <div>
       <p class="text-orange-400 italic text-sm">
-        Vinculado à campanha de incentivo de Páscoa
+        Vinculado à campanha:
+        <strong>{{ getCampaigns(dados.incentives ?? []) }}</strong>
       </p>
     </div>
 
@@ -70,6 +80,7 @@
         type="button"
         class="text-white bg-gradient-cb bg-gradient-cb-hover focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md w-full md:w-full px-5 py-2.5 text-center"
         (click)="openTransfer()"
+        *ngIf="userCurrent.id == dados.user_id"
       >
         Transferir
       </button>
@@ -78,6 +89,7 @@
         type="button"
         class="text-white bg-cb-secondary focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full md:w-full px-5 py-1.5 text-center"
         (click)="openEdit()"
+        *ngIf="tools.getRule('add_nft', rules)"
       >
         Editar
       </button>

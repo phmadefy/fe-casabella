@@ -17,12 +17,16 @@ import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 })
 export class ModalSlideComponent {
   slideConfig = {
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: false,
-    dots: true,
-    adaptiveHeight: false,
-    autoplay: false,
+    // slidesToShow: 1,
+    // arrows: false,
+    // dots: true,
+    // adaptiveHeight: true,
+    // respondTo: 'slider',
+    // autoplay: false,
+    // infinite: false,
+    // speed: 300,
+    // centerMode: true,
+    // variableWidth: true,
   };
 
   dataSource: any[] = [];
@@ -39,10 +43,10 @@ export class ModalSlideComponent {
     this.dataSource = data ?? [];
   }
 
-  prev(slickModalPartner: SlickCarouselComponent) {
-    slickModalPartner.slickPrev();
+  prev(slickModal: SlickCarouselComponent) {
+    slickModal.slickPrev();
   }
-  next(slickModalPartner: SlickCarouselComponent) {
-    slickModalPartner.slickNext();
+  next(slickModal: SlickCarouselComponent) {
+    slickModal.slickNext();
   }
 }
