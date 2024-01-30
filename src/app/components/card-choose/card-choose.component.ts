@@ -56,6 +56,8 @@ export class CardChooseComponent {
   @Input() filterBindKey: any;
   @Input() filterBindValue: any;
 
+  chooseOptionsModalConfigLocal: any = {};
+
   constructor(private service: ApiService, private dialog: Dialog) {
     // this.items = this.termUpdate.pipe(
     //   debounceTime(500),
@@ -82,11 +84,15 @@ export class CardChooseComponent {
       this.getList();
     }
 
+    if (this.chooseOptionsModalConfig) {
+      this.chooseOptionsModalConfigLocal = { ...this.chooseOptionsModalConfig };
+    }
+
     if (this.selected?.length > 0) {
       this.selectedValues = this.selected;
     }
     if (this.selectedOptions?.length > 0) {
-      this.chooseOptionsModalConfig.selected = this.selectedOptions;
+      this.chooseOptionsModalConfigLocal.selected = this.selectedOptions;
     }
   }
 
@@ -139,8 +145,10 @@ export class CardChooseComponent {
   }
 
   openModalItems(item: any) {
-    this.chooseOptionsModalConfig.title += ` ${item[this.bindText]}`;
-    this.chooseOptionsModalConfig.filters = {
+    this.chooseOptionsModalConfigLocal.title = `${
+      this.chooseOptionsModalConfig.title
+    } ${item[this.bindText]}`;
+    this.chooseOptionsModalConfigLocal.filters = {
       [this.filterBindKey]: item[this.filterBindValue],
     };
 
@@ -148,12 +156,14 @@ export class CardChooseComponent {
       width: '95%',
       maxWidth: '500px',
       maxHeight: '90%',
-      data: this.chooseOptionsModalConfig,
+      data: this.chooseOptionsModalConfigLocal,
     });
 
     dialogRef.closed.subscribe((res) => {
       if (res) {
         this.chooseOptions.emit(res);
+      } else {
+        this.checked(false, item);
       }
     });
   }
