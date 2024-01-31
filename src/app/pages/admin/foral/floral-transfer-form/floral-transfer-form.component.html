@@ -133,13 +133,25 @@
       </div>
 
       <div class="mb-4">
-        <textarea
+        <input-floating
+          class="p-0 bg-transparent border-none"
+          type="textarea"
+          rows="5"
+          [form]="form"
+          size="md"
+          model="observation"
+          name="observation"
+          [(ngModel)]="dados.observation"
+          placeholder="Escreva uma observação"
+          [required]="true"
+        />
+        <!-- <textarea
           class="input-cb"
           rows="5"
           name="observation"
           [(ngModel)]="dados.observation"
           placeholder="Escreva uma observação"
-        ></textarea>
+        ></textarea> -->
       </div>
     </div>
 

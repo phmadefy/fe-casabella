@@ -58,7 +58,11 @@ export class FloralTransferAuthComponent {
 
   setTab(tab: string) {
     this.tab = tab;
+    this.filters = { per_page: 30, page: 1 };
+
     if (tab == 'authorize') {
+      this.filters.authorize = true;
+    } else if (tab == 'authorized') {
       this.filters.authorized = true;
     } else if (tab == 'refused') {
       this.filters.unauthorized = true;

@@ -15,6 +15,18 @@
 
       <li
         routerLink="/admin/nfts/transfer-auth"
+        [queryParams]="{ tab: 'authorized' }"
+      >
+        <button
+          class="px-8 py-2 text-cb-base rounded-md"
+          [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'authorized' }"
+        >
+          Autorizados
+        </button>
+      </li>
+
+      <li
+        routerLink="/admin/nfts/transfer-auth"
         [queryParams]="{ tab: 'refused' }"
       >
         <button
@@ -33,10 +45,10 @@
 </div>
 
 <div
-  class="rounded-md border border-cb-secondary flex justify-between text-cb-base"
+  class="rounded-md border border-cb-secondary grid grid-flow-col justify-stretch text-cb-base mb-3"
   *ngFor="let item of dataSource.data"
 >
-  <div class="overflow-hidden rounded-s-md border-r border-cb-secondary">
+  <div class="overflow-hidden rounded-s-md">
     <img [src]="item?.nft?.image" alt="nft" class="h-24 w-32 object-cover" />
   </div>
 
@@ -70,6 +82,26 @@
     </div>
   </div>
 
+  <ng-container *ngIf="tab === 'authorized'">
+    <div class="p-4 flex flex-col justify-center">
+      <div>
+        <p>Autorizado por:</p>
+        <span class="text-cb-info text-sm">{{
+          item?.authorized_by?.nickname
+        }}</span>
+      </div>
+    </div>
+
+    <!-- <div
+      class="p-4 flex flex-col justify-center border-l border-cb-secondary gap-2 w-3/12"
+    >
+      <div>
+        <p>Motivo:</p>
+        <span class="text-cb-info text-sm">{{ item?.observation }}</span>
+      </div>
+    </div> -->
+  </ng-container>
+
   <ng-container *ngIf="tab === 'refused'">
     <div class="p-4 flex flex-col justify-center">
       <div>
@@ -81,7 +113,7 @@
     </div>
 
     <div
-      class="p-4 flex flex-col justify-center border-l border-cb-secondary gap-2 w-3/12"
+      class="p-4 flex flex-col justify-center border-l border-cb-secondary gap-2"
     >
       <div>
         <p>Motivo:</p>

@@ -32,7 +32,7 @@
             inputPlaceholder="Adicionar administrador"
             bindText="name"
             bindValue="user_id"
-            endpoint="v1/users?status=active"
+            endpoint="v1/users?status=active&public=colaborador"
             (selectItem)="setAdmin($event)"
             [autoClear]="true"
           >
@@ -83,7 +83,7 @@
             inputPlaceholder="Adicionar utilizador"
             bindText="name"
             bindValue="user_id"
-            endpoint="v1/users?status=active"
+            endpoint="v1/users?status=active&public=colaborador"
             (selectItem)="setUser($event)"
             [autoClear]="true"
           >

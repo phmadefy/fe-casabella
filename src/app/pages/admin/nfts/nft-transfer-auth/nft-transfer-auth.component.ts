@@ -58,7 +58,9 @@ export class NftTransferAuthComponent {
     this.tab = tab;
     this.filters = { per_page: 30, page: 1 };
     this.filters[tab] = true;
-    if (tab == 'refused') {
+    if (tab == 'authorized') {
+      this.service.path = 'v1/nft-history';
+    } else if (tab == 'refused') {
       this.service.path = 'v1/nft-history';
     } else {
       this.service.path = 'v1/transactions-nft';

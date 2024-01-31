@@ -8,6 +8,9 @@
     *ngFor="let item of dataSource.data"
     class="slide rounded-md overflow-hidden"
   >
-    <img [src]="item?.image_url" alt="..." />
+    <a [href]="item.url" target="_blank" *ngIf="item.url">
+      <img [src]="item?.image_url" alt="..." />
+    </a>
+    <img [src]="item?.image_url" alt="..." *ngIf="!item.url" />
   </div>
 </ngx-slick-carousel>

@@ -15,6 +15,18 @@
 
       <li
         routerLink="/admin/floral/transfer-auth"
+        [queryParams]="{ tab: 'authorized' }"
+      >
+        <button
+          class="px-8 py-2 text-cb-base rounded-md"
+          [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'authorized' }"
+        >
+          Autorizados
+        </button>
+      </li>
+
+      <li
+        routerLink="/admin/floral/transfer-auth"
         [queryParams]="{ tab: 'refused' }"
       >
         <button
@@ -33,11 +45,11 @@
 </div>
 
 <div
-  class="rounded-md border border-cb-secondary flex justify-between text-cb-base mb-3"
+  class="rounded-md border border-cb-secondary grid grid-flow-col justify-stretch text-cb-base mb-3"
   *ngFor="let item of dataSource.data"
 >
   <div
-    class="py-2 px-4 flex flex-col justify-center border-r border-cb-secondary text-2xl text-cb-success font-bold w-1/6"
+    class="py-2 px-4 flex flex-col justify-center border-r border-cb-secondary text-2xl text-cb-success font-bold"
   >
     {{ item?.amount | currency : "BRL" : "F$" : "1.4-4" }}
   </div>
@@ -74,11 +86,35 @@
     </div>
   </div>
 
+  <ng-container *ngIf="tab === 'authorized'">
+    <div class="py-2 px-4 flex flex-col justify-center">
+      <div>
+        <p>Autorizado por:</p>
+        <span class="text-cb-info text-sm">
+          {{ item?.transaction?.authorized?.name }}
+        </span>
+      </div>
+    </div>
+
+    <!-- <div
+      class="py-2 px-4 flex flex-col justify-center border-l border-cb-secondary gap-2"
+    >
+      <div>
+        <p>Motivo:</p>
+        <span class="text-cb-info text-sm">
+          {{ item?.transaction?.observation }}
+        </span>
+      </div>
+    </div> -->
+  </ng-container>
+
   <ng-container *ngIf="tab === 'refused'">
     <div class="py-2 px-4 flex flex-col justify-center">
       <div>
         <p>Recusado por:</p>
-        <span class="text-cb-info text-sm">Fulano de tal</span>
+        <span class="text-cb-info text-sm">
+          {{ item?.transaction?.unauthorized?.name }}
+        </span>
       </div>
     </div>
 
@@ -87,9 +123,9 @@
     >
       <div>
         <p>Motivo:</p>
-        <span class="text-cb-info text-sm">{{
-          item?.transaction?.observation
-        }}</span>
+        <span class="text-cb-info text-sm">
+          {{ item?.transaction?.observation }}
+        </span>
       </div>
     </div>
   </ng-container>

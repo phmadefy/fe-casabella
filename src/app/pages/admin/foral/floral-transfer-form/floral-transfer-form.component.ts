@@ -11,6 +11,7 @@ import { RouterLink } from '@angular/router';
 import { NgxCurrencyDirective } from 'ngx-currency';
 import { SelectDefaultComponent } from 'src/app/components/select-default/select-default.component';
 import { AlertDisplayComponent } from 'src/app/components/alert-display/alert-display.component';
+import { InputFloatingComponent } from 'src/app/components/input-floating/input-floating.component';
 
 @Component({
   selector: 'app-floral-transfer-form',
@@ -25,6 +26,7 @@ import { AlertDisplayComponent } from 'src/app/components/alert-display/alert-di
     NgxCurrencyDirective,
     SelectDefaultComponent,
     AlertDisplayComponent,
+    InputFloatingComponent,
   ],
   providers: [ApiService],
   templateUrl: './floral-transfer-form.component.html',

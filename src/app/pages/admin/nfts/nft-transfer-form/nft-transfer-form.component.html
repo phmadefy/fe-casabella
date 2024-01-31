@@ -32,14 +32,18 @@
       </div>
 
       <div class="mb-4">
-        <textarea
-          class="input-cb"
+        <input-floating
+          class="p-0 bg-transparent border-none"
+          type="textarea"
           rows="5"
+          [form]="form"
+          size="md"
+          model="observation"
           name="observation"
           [(ngModel)]="dados.observation"
           placeholder="Escreva uma observação"
           [required]="true"
-        ></textarea>
+        />
       </div>
 
       <div class="grid grid-cols-3 gap-3" *ngIf="modo == 'admin'">

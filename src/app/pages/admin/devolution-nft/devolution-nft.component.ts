@@ -40,16 +40,23 @@ export class DevolutionNftComponent extends AbstractForms {
     { id: 'one', description: 'Especificar NFT' },
   ];
   constructor(service: ApiService, public tools: ToolsService) {
-    service.path = 'v1/admin/nfts/return';
+    service.path = 'v1/admin/nfts/return/origin';
     super(service);
   }
 
-  override submit(): void {
+  override async submit() {
     // if (this.dados.id) {
     //   this.update(this.dados, this.dados.id);
     // } else {
     // }
-    this.create(this.dados);
+    // this.create(this.dados);
+    this.loading = true;
+    await this.service
+      .updateCustom('v1/admin/nfts/return/origin', this.dados)
+      .then((res) => {
+        this.finish(res);
+      })
+      .finally(() => (this.loading = false));
   }
   override finish(result: any): void {
     // throw new Error('Method not implemented.');

@@ -69,9 +69,11 @@ export class InterceptService implements HttpInterceptor {
             // localStorage.removeItem(environment.token);
             // this.redirect.navigate(['/auth']);
           } else {
+            console.error(error);
+
             let message = '';
-            if (Array.isArray(error.error.erros)) {
-              for (let err of error.error.erros) {
+            if (error?.error?.errors && Array.isArray(error?.error?.errors)) {
+              for (let err of error.error.errors) {
                 message += `${err} \n`;
               }
             } else if (error?.error?.message) {
