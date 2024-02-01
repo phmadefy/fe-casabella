@@ -185,7 +185,7 @@ export class HeaderComponent {
       route: 'admin',
       subtitle: 'Administração',
       permissions:
-        'add_incentive,add_terms,add_terms,cycles,pictures,cashier,nft,add_nft,classification_nft,add_type_nft,movement_nft,details_floral,movement_floral,approve_floral,partner,add_partner,tickets,chat,terms,audit,approve_nft,reports,users,add_user,groups_and_segments,roles_and_departments,cities_and_states,import_defaulters,import_users,params',
+        'add_incentive,add_terms,add_terms,cycles,pictures,cashier,nft,add_nft,classification_nft,add_type_nft,approve_nft,details_floral,movement_floral,approve_floral,partner,add_partner,tickets,chat,terms,audit,approve_nft,reports,users,add_user,groups_and_segments,roles_and_departments,cities_and_states,import_defaulters,import_users,params',
       items: [
         {
           id: 'admin-incentivos',
@@ -283,14 +283,14 @@ export class HeaderComponent {
               id: 'admin-nfts-transfer',
               title: 'Transferir Propriedade de NFTs',
               route: '/transfer',
-              permissions: 'movement_nft',
+              permissions: 'approve_nft',
             },
             {
               id: 'admin-nfts-transfer-auth',
               title: 'Autorizar Transferências de NFTs',
               route: '/transfer-auth',
               queryParams: { tab: 'authorize' },
-              permissions: 'movement_nft',
+              permissions: 'approve_nft',
             },
           ],
         },
