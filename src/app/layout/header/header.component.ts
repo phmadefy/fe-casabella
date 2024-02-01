@@ -7,7 +7,7 @@ import { FloralPriceComponent } from 'src/app/components/floral-price/floral-pri
 import { MyFloralComponent } from 'src/app/components/my-floral/my-floral.component';
 import { Dialog } from '@angular/cdk/dialog';
 import { ModalChangePasswordComponent } from 'src/app/shared/modal-change-password/modal-change-password.component';
-import { initFlowbite } from 'flowbite';
+import { Drawer, DrawerInterface, DrawerOptions, initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'app-header',
@@ -668,6 +668,9 @@ export class HeaderComponent {
   FraseExibidaMenu = null;
   LinkRedirecionamentoGif = null;
 
+  drawerMenu!: DrawerInterface;
+  drawerProfile!: DrawerInterface;
+
   constructor(
     public tools: ToolsService,
     private service: ApiService,
@@ -707,7 +710,9 @@ export class HeaderComponent {
     this.rules = this.tools.getRules(this.userCurrent.group ?? []);
     // console.log('rules', this.rules);
     setTimeout(() => {
-      initFlowbite();
+      this.drawerMenu = this.setDrawerMenu();
+      this.drawerProfile = this.setDrawerProfile();
+      // initFlowbite();
     }, 500);
 
     // this.service.getSettings().then((res) => {
@@ -715,6 +720,54 @@ export class HeaderComponent {
     //     this.params[item.parameter] = item.value;
     //   }
     // });
+  }
+
+  setDrawerMenu(): DrawerInterface {
+    // set the drawer menu element
+    const $targetEl: any = document.getElementById('drawer-menu');
+
+    // options with default values
+    const options: DrawerOptions = {
+      placement: 'left',
+      backdrop: true,
+      bodyScrolling: false,
+      edge: false,
+      edgeOffset: '',
+    };
+
+    /*
+     * $targetEl (required)
+     * options (optional)
+     * instanceOptions (optional)
+     */
+    const drawer: DrawerInterface = new Drawer($targetEl, options);
+
+    // show the drawer
+    return drawer;
+  }
+
+  setDrawerProfile(): DrawerInterface {
+    // set the drawer menu element
+    const $targetEl: any = document.getElementById('drawer-profile');
+
+    // options with default values
+    const options: DrawerOptions = {
+      placement: 'left',
+      backdrop: true,
+      bodyScrolling: false,
+      edge: false,
+      edgeOffset: '',
+    };
+
+    /*
+     * $targetEl (required)
+     * options (optional)
+     * instanceOptions (optional)
+     */
+    const drawer: DrawerInterface = new Drawer($targetEl, options);
+
+    // show the drawer
+    return drawer;
   }
 
   closeDrawer() {

@@ -5,7 +5,7 @@
     </div>
 
     <div class="p-4">
-      <div class="flex items-center py-2 gap-6 mb-6">
+      <div class="flex flex-col md:flex-row items-center py-2 gap-6 mb-6">
         <avatar
           size="40"
           [image]="userCurrent?.avatar_url"
@@ -19,7 +19,7 @@
         </div>
       </div>
 
-      <div class="grid grid-cols-2 gap-3 mb-4">
+      <div class="grid md:grid-cols-2 gap-3 mb-4">
         <div class="">
           <input-floating
             class="p-0 bg-transparent border-none"
@@ -65,7 +65,7 @@
         </div> -->
       </div>
 
-      <div class="grid grid-cols-4 gap-3 mb-4">
+      <div class="grid md:grid-cols-4 gap-3 mb-4">
         <div class="">
           <input-floating
             class="p-0 bg-transparent border-none"
@@ -121,7 +121,7 @@
         />
       </div>
 
-      <div class="grid grid-cols-3 gap-3 mb-4">
+      <div class="grid md:grid-cols-3 gap-3 mb-4">
         <select-default
           class="p-0 bg-transparent border-none"
           label="Cidade"

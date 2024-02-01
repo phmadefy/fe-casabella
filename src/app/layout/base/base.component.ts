@@ -44,7 +44,9 @@ export class BaseComponent {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     await this.getTerms();
-    initFlowbite();
+    setTimeout(() => {
+      initFlowbite();
+    }, 500);
   }
 
   async getTerms() {
