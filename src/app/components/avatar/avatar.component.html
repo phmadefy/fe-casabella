@@ -8,7 +8,12 @@
     class="fa-regular fa-images text-[5rem] text-gradient-cb"
     *ngIf="!image"
   ></i>
-  <img class="w-full h-full" [src]="image" *ngIf="image" alt="avatar" />
+  <img
+    class="w-full h-full object-cover"
+    [src]="image"
+    *ngIf="image"
+    alt="avatar"
+  />
   <input
     type="file"
     id="fileInput"
