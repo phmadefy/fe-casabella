@@ -36,7 +36,10 @@
         </div>
       </div>
 
-      <div class="px-4 mb-4" [innerText]="item?.description"></div>
+      <div
+        class="px-4 mb-4"
+        [innerText]="item?.description ?? item?.text"
+      ></div>
     </div>
   </div>
 </modal>

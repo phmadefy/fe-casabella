@@ -90,7 +90,7 @@ export class IncentiveDetailsComponent {
     this.loading = true;
     await this.service
       .postCustom(
-        `v1/incentives/${this.dados.id}/comment/create`,
+        `v1/incentives/${this.dados.id}/comment`,
         formComment.value
       )
       .then((res) => {
@@ -104,7 +104,7 @@ export class IncentiveDetailsComponent {
     const dialogRef = this.dialog.open<any>(ModalViewCommentsComponent, {
       width: '95%',
       maxWidth: '850px',
-      data: this.dados,
+      data: { ...this.dados, endpoint: 'v1/incentives' },
     });
   }
 

@@ -27,11 +27,10 @@ export class ModalViewCommentsComponent {
     public dialogRef: DialogRef,
     private messageService: MessageService,
     @Inject(DIALOG_DATA) public data: any
-  ) {
-    service.path = 'v1/post';
-  }
+  ) {}
 
   async ngOnInit() {
+    this.service.path = this.data?.endpoint ?? 'v1/post';
     this.userCurrent = await this.tools.getCurrentUser();
     this.user_id = this.data?.user_id ?? null;
     // this.comments = this.data?.comments ?? [];
@@ -41,7 +40,7 @@ export class ModalViewCommentsComponent {
   getDados(id: any) {
     this.loading = true;
     this.service
-      .getCustom(`v1/posts/${id}`)
+      .getCustom(`${this.service.path}/${id}`)
       .then((res) => {
         // this.files = [];
         this.comments = res?.comments;
@@ -54,14 +53,22 @@ export class ModalViewCommentsComponent {
       '',
       'Editar Comentário',
       {
-        value: item.description,
+        value: item.description ?? item.text,
       }
     );
     modalRef.closed.subscribe((result) => {
       if (result) {
+        let dados: any = {};
+        if (item.description) {
+          dados.description = result;
+        }
+        if (item.text) {
+          dados.text = result;
+        }
+
         this.loading = true;
         this.service
-          .updateCustom(`v1/posts/${item.id}/comment`, { description: result })
+          .updateCustom(`${this.service.path}/${item.id}/comment`, dados)
           .then(async () => {
             item.description = result;
             // this.delete.emit(true);
@@ -80,7 +87,7 @@ export class ModalViewCommentsComponent {
       if (result) {
         this.loading = true;
         this.service
-          .deleteCustom(`v1/posts/${item.id}/comment`)
+          .deleteCustom(`${this.service.path}/${item.id}/comment`)
           .then(async () => {
             // this.delete.emit(true);
             this.getDados(this.data?.id);
