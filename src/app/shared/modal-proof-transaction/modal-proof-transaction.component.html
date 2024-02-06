@@ -1,0 +1,61 @@
+<div class="bg-cb-base rounded-md shadow border border-cb-info h-full relative">
+  <div
+    class="absolute z-[1010] bg-cb-contrast h-full overflow-hidden p-16 rounded-lg text-center w-full"
+    *ngIf="loading"
+  >
+    <spinner [size]="8" color="cb"></spinner>
+  </div>
+
+  <div
+    class="flex justify-between items-start p-4 border-b border-cb-secondary"
+  >
+    <h2 class="text-lg font-bold">Comprovante da transação</h2>
+    <button
+      class="text-cb-secondary hover:text-cb-base cursor-pointer"
+      (click)="dialogRef.close()"
+    >
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+
+  <ng-container *ngIf="!loading">
+    <div class="p-4">
+      <div class="mb-4">
+        <img src="assets/logo-report.png" alt="" />
+      </div>
+
+      <div class="mb-3">
+        <h2 class="text-cb-info text-lg">Comprovante de transferência</h2>
+      </div>
+      <div class="grid grid-cols-3">
+        <div class="col-span-1">Data da Transferência</div>
+        <div class="col-span-2">
+          {{ "" | date : "dd/MM/yyyy hh:mm:ss" }}
+        </div>
+      </div>
+      <div class="grid grid-cols-3">
+        <div class="col-span-1">Valor</div>
+        <div class="col-span-2">
+          {{ "" | currency : "BRL" : "F$" : "1.4-4" }}
+        </div>
+      </div>
+      <div class="grid grid-cols-3">
+        <div class="col-span-1">Taxa da transferência</div>
+        <div class="col-span-2">
+          {{ "" | currency : "BRL" : "F$" : "1.4-4" }}
+        </div>
+      </div>
+      <div class="grid grid-cols-3">
+        <div class="col-span-1">Tipo de transfência</div>
+        <div class="col-span-2">Floral</div>
+      </div>
+      <div class="mb-3">
+        <h2 class="text-cb-info text-lg">De</h2>
+      </div>
+      <div class="grid grid-cols-3">
+        <div class="col-span-1">Usuário</div>
+        <div class="col-span-2">código da transação.</div>
+      </div>
+    </div>
+  </ng-container>
+</div>

@@ -56,6 +56,12 @@ export class TermsOfUseFormComponent extends AbstractForms {
     if (history.state?.back_url) {
       this.back_url = history.state?.back_url;
     }
+    if (this.dados.type == 'incentives') {
+      this.back_url = {
+        url: '/admin/incentives',
+        params: { tab: 'terms-of-use' },
+      };
+    }
   }
 
   getDados(id: any) {

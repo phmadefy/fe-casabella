@@ -64,7 +64,8 @@
           </p>
         </div>
         <div class="w-1/2 text-3xl text-cb-success font-bold">
-          {{ CotacaoFloral * dados.amount | currency : "R$ " }} (em produtos)
+          <span>{{ CotacaoFloral * dados.amount | currency : "R$ " }}</span>
+          <span *ngIf="dados.rescue_type == 'products'">(em produtos)</span>
         </div>
       </div>
 

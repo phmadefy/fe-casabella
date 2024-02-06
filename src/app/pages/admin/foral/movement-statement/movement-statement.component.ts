@@ -77,5 +77,6 @@ export class MovementStatementComponent {
   changeOrigin() {
     delete this.filters.cashier_id;
     delete this.filters.user_id;
+    this.dataSource.data = [];
   }
 }

@@ -116,11 +116,15 @@
           <span [innerHTML]="tools.getDescriptionTransaction(row)"></span>
           <div class="flex items-center gap-2">
             <i
-              class="fa-solid fa-plus"
+              class="fa-solid"
               [ngClass]="{
                 'text-cb-success':
                   tools.getMovementType(row, userCurrent.id) == 'input',
                 'text-cb-red':
+                  tools.getMovementType(row, userCurrent.id) == 'output',
+                'fa-plus':
+                  tools.getMovementType(row, userCurrent.id) == 'input',
+                'fa-minus':
                   tools.getMovementType(row, userCurrent.id) == 'output'
               }"
             ></i>

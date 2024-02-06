@@ -117,7 +117,7 @@
               <span [innerHTML]="tools.getDescriptionTransaction(row)"></span>
               <div class="flex items-center gap-2">
                 <i
-                  class="fa-solid fa-plus"
+                  class="fa-solid"
                   [ngClass]="{
                     'text-cb-success':
                       tools.getMovementType(
@@ -125,6 +125,16 @@
                         filters.user_id ?? filters.cashier_id
                       ) == 'input',
                     'text-cb-red':
+                      tools.getMovementType(
+                        row,
+                        filters.user_id ?? filters.cashier_id
+                      ) == 'output',
+                    'fa-plus':
+                      tools.getMovementType(
+                        row,
+                        filters.user_id ?? filters.cashier_id
+                      ) == 'input',
+                    'fa-minus':
                       tools.getMovementType(
                         row,
                         filters.user_id ?? filters.cashier_id
