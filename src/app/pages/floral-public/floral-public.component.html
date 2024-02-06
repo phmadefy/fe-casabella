@@ -140,7 +140,7 @@
 
 <ng-container *ngIf="tab == 'pending'">
   <div
-    class="rounded-md border border-cb-secondary flex justify-between text-cb-base"
+    class="rounded-md border border-cb-secondary flex justify-between text-cb-base mb-2"
     *ngFor="let item of dataSource.data"
   >
     <div
@@ -167,20 +167,26 @@
     <div
       class="p-4 flex flex-col justify-center border-r border-cb-secondary w-full"
     >
-      <div class="text-center" *ngIf="item?.from_user_id != userCurrent.id">
+      <div
+        class="text-center"
+        *ngIf="item?.transaction?.from_user_id != userCurrent.id"
+      >
         <p>Recebido de:</p>
         <p>
           <span class="text-cb-info text-sm">
-            {{ item?.from_user?.nickname ?? "@casabella" }}
+            {{ item?.transaction?.user_from?.nickname ?? "@casabella" }}
           </span>
         </p>
       </div>
 
-      <div class="text-center" *ngIf="item?.from_user_id == userCurrent.id">
+      <div
+        class="text-center"
+        *ngIf="item?.transaction?.from_user_id == userCurrent.id"
+      >
         <p>Enviado para:</p>
         <p>
           <span class="text-cb-info text-sm">
-            {{ item?.to_user?.nickname ?? "@casabella" }}
+            {{ item?.transaction?.user_to?.nickname ?? "@casabella" }}
           </span>
         </p>
       </div>
