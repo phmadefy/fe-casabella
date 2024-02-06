@@ -27,6 +27,7 @@
         classes="btn btn-md text-cb-info rounded-md w-full min-w-max"
         label="Download"
         [loading]="loading"
+        (onClick)="service.download('v1/terms/' + dados.term.id + '/download')"
       />
 
       <button-cb

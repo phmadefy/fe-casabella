@@ -12,6 +12,8 @@ import { NgxCurrencyDirective } from 'ngx-currency';
 import { SelectDefaultComponent } from 'src/app/components/select-default/select-default.component';
 import { AlertDisplayComponent } from 'src/app/components/alert-display/alert-display.component';
 import { InputFloatingComponent } from 'src/app/components/input-floating/input-floating.component';
+import { ModalProofTransactionComponent } from 'src/app/shared/modal-proof-transaction/modal-proof-transaction.component';
+import { Dialog } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-floral-transfer-form',
@@ -38,7 +40,11 @@ export class FloralTransferFormComponent extends AbstractForms {
   modo = 'user';
 
   CotacaoFloral = 0;
-  constructor(service: ApiService, public tools: ToolsService) {
+  constructor(
+    service: ApiService,
+    public tools: ToolsService,
+    private dialog: Dialog
+  ) {
     service.path = 'v1/floral';
     super(service);
   }
@@ -70,15 +76,28 @@ export class FloralTransferFormComponent extends AbstractForms {
     }
   }
   override finish(result: any): void {
-    if (this.tools.checkRouteContainsAdmin()) {
-      this.tools.route.navigate(['/admin/floral/transfer-auth'], {
-        queryParams: { tab: 'authorize' },
-      });
-    } else {
-      this.tools.route.navigate(['/floral'], {
-        queryParams: { tab: 'pending' },
-      });
-    }
+    this.openProof(result);
+  }
+
+  openProof(data: any) {
+    const dialogRef = this.dialog.open<any>(ModalProofTransactionComponent, {
+      width: '95%',
+      maxWidth: '1055px',
+      // height: '90%',
+      data: { dados: data, type: 'floral' },
+    });
+
+    dialogRef.closed.subscribe((result) => {
+      if (this.tools.checkRouteContainsAdmin()) {
+        this.tools.route.navigate(['/admin/floral/transfer-auth'], {
+          queryParams: { tab: 'authorize' },
+        });
+      } else {
+        this.tools.route.navigate(['/floral'], {
+          queryParams: { tab: 'pending' },
+        });
+      }
+    });
   }
 
   changeTo(to: string) {

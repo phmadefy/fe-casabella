@@ -19,7 +19,7 @@ export class ModalIncentiveTermAcceptComponent {
   dados: any = {};
 
   constructor(
-    private service: ApiService,
+    public service: ApiService,
     public tools: ToolsService,
     public dialogRef: DialogRef,
     private messageService: MessageService,

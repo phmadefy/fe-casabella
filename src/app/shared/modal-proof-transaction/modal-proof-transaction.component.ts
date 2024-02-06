@@ -17,4 +17,9 @@ export class ModalProofTransactionComponent {
     public dialogRef: DialogRef,
     @Inject(DIALOG_DATA) public data: any
   ) {}
+
+  ngOnInit(): void {
+    console.log('ModalProofTransactionComponent', this.data);
+    this.dados = { ...this.data.dados };
+  }
 }
