@@ -41,7 +41,7 @@ import { ModalTypeNftFormComponent } from 'src/app/shared/modal-type-nft-form/mo
 export class NftFormComponent extends AbstractForms {
   admins: any[] = [];
   users: any[] = [];
-  dados: any = { active: true, balance: 0 };
+  dados: any = { active: true, balance: 0, subclassifications: [] };
 
   chooseOptionsModalConfigClassifications: ChooseOptionsModalConfig = {
     title: `Selecionar Sub-classificação:`,
@@ -124,6 +124,10 @@ export class NftFormComponent extends AbstractForms {
     if (event.length <= 0) {
       this.dados.subclassifications = [];
     }
+  }
+
+  chooseSubClassifications(event: any) {
+    this.dados.subclassifications.push(...event);
   }
 
   chooseImage(event: FileList | File[]) {

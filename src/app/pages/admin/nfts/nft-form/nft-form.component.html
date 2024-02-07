@@ -60,7 +60,6 @@
                   name="value"
                   [(ngModel)]="dados.value"
                   type="money"
-                  required
                   [form]="form"
                   size="md"
                 ></input-floating>
@@ -74,7 +73,6 @@
                   type="money"
                   prefix="F$ "
                   [precision]="4"
-                  required
                   [form]="form"
                   size="md"
                 ></input-floating>
@@ -87,7 +85,6 @@
                   endpoint="v1/persons-type"
                   name="public"
                   [(ngModel)]="dados.public"
-                  [required]="true"
                   [form]="form"
                   [multiple]="true"
                 >
@@ -101,7 +98,6 @@
                   endpoint="v1/segments"
                   name="segments"
                   [(ngModel)]="dados.segments"
-                  [required]="true"
                   [form]="form"
                   [multiple]="true"
                 >
@@ -167,7 +163,7 @@
         bindValue="id"
         name="classification"
         (choose)="chooseClassifications($event)"
-        (chooseOptions)="dados.subclassifications = $event"
+        (chooseOptions)="chooseSubClassifications($event)"
         [showBtn]="true"
         labelBtn="Nova Classificação"
         (onClick)="openModalClassification(inputChooseClassifications)"

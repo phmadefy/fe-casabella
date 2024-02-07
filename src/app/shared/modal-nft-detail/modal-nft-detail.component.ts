@@ -4,11 +4,12 @@ import { BtnLikeComponent } from 'src/app/components/btn-like/btn-like.component
 import { DIALOG_DATA, DialogModule, DialogRef } from '@angular/cdk/dialog';
 import { ToolsService } from 'src/app/services/tools.service';
 import { ApiService } from 'src/app/services/api.service';
+import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
 
 @Component({
   selector: 'modal-nft-detail',
   standalone: true,
-  imports: [CommonModule, BtnLikeComponent, DialogModule],
+  imports: [CommonModule, BtnLikeComponent, DialogModule, SpinnerComponent],
   providers: [ApiService],
   templateUrl: './modal-nft-detail.component.html',
   styleUrls: ['./modal-nft-detail.component.scss'],
