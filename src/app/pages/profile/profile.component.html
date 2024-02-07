@@ -16,6 +16,12 @@
           <p class="text-sm font-semibold">
             Gurpo de acesso: <span class="font-normal">{{ getGroups() }}</span>
           </p>
+          <p class="text-sm font-semibold">
+            CPF:
+            <span class="font-normal">{{
+              userCurrent?.person?.cpf | mask : "CPF_CNPJ"
+            }}</span>
+          </p>
         </div>
       </div>
 

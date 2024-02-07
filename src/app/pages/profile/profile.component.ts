@@ -12,6 +12,7 @@ import { SelectDefaultComponent } from 'src/app/components/select-default/select
 import { ComboboxComponent } from 'src/app/components/combobox/combobox.component';
 import { ButtonCbComponent } from 'src/app/components/button-cb/button-cb.component';
 import { ApiService } from 'src/app/services/api.service';
+import { NgxMaskPipe } from 'ngx-mask';
 
 @Component({
   selector: 'app-profile',
@@ -26,6 +27,7 @@ import { ApiService } from 'src/app/services/api.service';
     SelectDefaultComponent,
     ComboboxComponent,
     ButtonCbComponent,
+    NgxMaskPipe,
   ],
   providers: [ApiService],
   templateUrl: './profile.component.html',
