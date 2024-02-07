@@ -117,7 +117,7 @@ export class SegmentAccessGroupComponent {
       if (result) {
         this.loadingSegment = true;
         this.service
-          .postCustom(`v1/segments/${item.id}`, { name: result })
+          .updateCustom(`v1/segments/${item.id}`, { name: result })
           .then(async () => {
             this.messageService.presentAlert(
               'Segmento atualizado com sucesso.'
@@ -160,7 +160,7 @@ export class SegmentAccessGroupComponent {
       if (result) {
         this.loadingAccessGroup = true;
         this.service
-          .postCustom(`v1/groups/${item.id}`, { name: result })
+          .updateCustom(`v1/groups/${item.id}`, { name: result })
           .then(async () => {
             this.messageService.presentAlert(
               'Grupo de Acesso atualizado com sucesso.'

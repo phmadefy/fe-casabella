@@ -9,7 +9,10 @@
   </div>
 
   <div class="flex justify-between items-start p-4 border-b border-cb-info">
-    <h2 class="text-lg font-bold">Comprovante da transação</h2>
+    <h2 class="text-lg font-bold">
+      Comprovante
+      {{ data?.deposit ? "de Depósito" : "da transação" }}
+    </h2>
     <button
       class="text-cb-secondary hover:text-cb-base cursor-pointer"
       (click)="dialogRef.close()"
@@ -27,11 +30,11 @@
       <ng-container *ngIf="data.type == 'floral'">
         <div class="mb-3">
           <h2 class="text-cb-info font-semibold text-lg">
-            Comprovante de transferência
+            Comprovante de {{ data?.deposit ? "depósito" : "transferência" }}
           </h2>
         </div>
         <div class="grid grid-cols-3">
-          <div class="col-span-1">Data da Transferência</div>
+          <div class="col-span-1">Data</div>
           <div class="col-span-2">
             {{ dados.created_at | date : "dd/MM/yyyy hh:mm:ss" }}
           </div>
@@ -42,35 +45,88 @@
             {{ dados.amount | currency : "BRL" : "F$" : "1.4-4" }}
           </div>
         </div>
-        <div class="grid grid-cols-3">
+        <div class="grid grid-cols-3" *ngIf="!data?.deposit">
           <div class="col-span-1">Taxa da transferência</div>
           <div class="col-span-2">
             {{ dados.tax | currency : "BRL" : "F$" : "1.4-4" }}
           </div>
         </div>
-        <div class="grid grid-cols-3">
+        <div class="grid grid-cols-3" *ngIf="!data?.deposit">
           <div class="col-span-1">Tipo de transfência</div>
           <div class="col-span-2">Floral</div>
         </div>
-        <div class="my-2">
-          <h2 class="text-cb-info font-semibold text-lg">De</h2>
-        </div>
-        <div class="grid">
-          <div class="col-span-1">
-            {{ dados?.transaction?.user_from?.name }}
+
+        <ng-container *ngIf="dados?.transaction?.user_from">
+          <div
+            class="border-b border-t border-[#DEDFE4] border-dashed my-2"
+          ></div>
+          <div class="my-2">
+            <h2 class="text-cb-info font-semibold text-lg">De</h2>
           </div>
-        </div>
+          <div class="grid">
+            <div class="col-span-1">
+              {{ dados?.transaction?.user_from?.name }}
+            </div>
+          </div>
+        </ng-container>
 
-        <div
-          class="border-b border-t border-[#DEDFE4] border-dashed my-2"
-        ></div>
+        <ng-container *ngIf="dados?.transaction?.user_to">
+          <div
+            class="border-b border-t border-[#DEDFE4] border-dashed my-2"
+          ></div>
+          <div class="my-2">
+            <h2 class="text-cb-info font-semibold text-lg">Para</h2>
+          </div>
+          <div class="grid">
+            <div class="col-span-1">
+              {{ dados?.transaction?.user_to?.name }}
+            </div>
+          </div>
+        </ng-container>
 
-        <div class="my-2">
-          <h2 class="text-cb-info font-semibold text-lg">Para</h2>
-        </div>
-        <div class="grid">
-          <div class="col-span-1">{{ dados?.transaction?.user_to?.name }}</div>
-        </div>
+        <ng-container *ngIf="dados?.cashier && data?.deposit">
+          <div
+            class="border-b border-t border-[#DEDFE4] border-dashed my-2"
+          ></div>
+          <div class="my-2">
+            <h2 class="text-cb-info font-semibold text-lg">Caixa</h2>
+          </div>
+          <div class="grid">
+            <div class="col-span-1">
+              {{ dados?.cashier?.name }}
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-container
+          *ngIf="dados?.transaction?.cashier_from && !data?.deposit"
+        >
+          <div
+            class="border-b border-t border-[#DEDFE4] border-dashed my-2"
+          ></div>
+          <div class="my-2">
+            <h2 class="text-cb-info font-semibold text-lg">Do Caixa</h2>
+          </div>
+          <div class="grid">
+            <div class="col-span-1">
+              {{ dados?.transaction?.cashier_from?.name }}
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="dados?.transaction?.cashier_to && !data?.deposit">
+          <div
+            class="border-b border-t border-[#DEDFE4] border-dashed my-2"
+          ></div>
+          <div class="my-2">
+            <h2 class="text-cb-info font-semibold text-lg">Para o Caixa</h2>
+          </div>
+          <div class="grid">
+            <div class="col-span-1">
+              {{ dados?.transaction?.cashier_to?.name }}
+            </div>
+          </div>
+        </ng-container>
 
         <div
           class="border-b border-t border-[#DEDFE4] border-dashed my-2"

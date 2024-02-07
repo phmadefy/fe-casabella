@@ -61,6 +61,14 @@ export class HeaderComponent {
       permissions: 'incentive',
       items: [
         {
+          id: 'meus-incentivos',
+          title: 'Meus Incentivos',
+          route: '/',
+          queryParams: { tab: 'my' },
+          icon: '',
+          permissions: '',
+        },
+        {
           id: 'incentivos-ativos',
           title: 'Incentivos Ativos',
           route: '/',
@@ -76,14 +84,7 @@ export class HeaderComponent {
           icon: '',
           permissions: '',
         },
-        {
-          id: 'meus-incentivos',
-          title: 'Meus Incentivos',
-          route: '/meus',
-          queryParams: { tab: 'my' },
-          icon: '',
-          permissions: '',
-        },
+
         {
           id: 'gallery',
           title: 'Galeria de Fotos e Videos',
@@ -103,7 +104,7 @@ export class HeaderComponent {
       items: [
         {
           id: 'meu-floral',
-          title: 'Meu Floral',
+          title: 'Meus Florais',
           route: '/',
           queryParams: { tab: 'my' },
           icon: '',
@@ -185,7 +186,7 @@ export class HeaderComponent {
       route: 'admin',
       subtitle: 'Administração',
       permissions:
-        'add_incentive,add_terms,add_terms,cycles,pictures,cashier,nft,add_nft,classification_nft,add_type_nft,approve_nft,details_floral,movement_floral,approve_floral,partner,add_partner,attendence,chat,terms,audit,approve_nft,reports,users,add_user,groups_and_segments,roles_and_departments,cities_and_states,import_defaulters,import_users,params',
+        'add_incentive,add_terms,add_terms,cycles,pictures,cashier,nft,add_nft,classification_nft,add_type_nft,approve_nft,details_floral,movement_floral,approve_floral,partner,add_partner,attendance,chat,terms,audit,approve_nft,reports,users,add_user,groups_and_segments,roles_and_departments,cities_and_states,import_defaulters,import_users,params',
       items: [
         {
           id: 'admin-incentivos',
@@ -383,7 +384,7 @@ export class HeaderComponent {
           title: 'Fale Conosco',
           route: '/contact-us',
           icon: 'fa-solid fa-ticket',
-          permissions: 'attendence',
+          permissions: 'attendance',
         },
         {
           id: 'admin-chat',

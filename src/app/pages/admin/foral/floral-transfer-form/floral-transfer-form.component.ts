@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ViewChildren } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AbstractForms } from 'src/app/shared/abstract-form';
 import { ToolsService } from 'src/app/services/tools.service';
 import { ApiService } from 'src/app/services/api.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { CardComponent } from 'src/app/components/card/card.component';
 import { CheckboxComponent } from 'src/app/components/checkbox/checkbox.component';
 import { ButtonCbComponent } from 'src/app/components/button-cb/button-cb.component';
@@ -35,6 +35,8 @@ import { Dialog } from '@angular/cdk/dialog';
   styleUrls: ['./floral-transfer-form.component.scss'],
 })
 export class FloralTransferFormComponent extends AbstractForms {
+  @ViewChild('form', { static: true }) form!: NgForm;
+
   dados: any = { amount: 0, to: 'to_user' };
   userCurrent: any = {};
   modo = 'user';
@@ -76,6 +78,8 @@ export class FloralTransferFormComponent extends AbstractForms {
     }
   }
   override finish(result: any): void {
+    this.form.resetForm();
+
     this.openProof(result);
   }
 
@@ -88,15 +92,15 @@ export class FloralTransferFormComponent extends AbstractForms {
     });
 
     dialogRef.closed.subscribe((result) => {
-      if (this.tools.checkRouteContainsAdmin()) {
-        this.tools.route.navigate(['/admin/floral/transfer-auth'], {
-          queryParams: { tab: 'authorize' },
-        });
-      } else {
-        this.tools.route.navigate(['/floral'], {
-          queryParams: { tab: 'pending' },
-        });
-      }
+      // if (this.tools.checkRouteContainsAdmin()) {
+      //   this.tools.route.navigate(['/admin/floral/transfer-auth'], {
+      //     queryParams: { tab: 'authorize' },
+      //   });
+      // } else {
+      //   this.tools.route.navigate(['/floral'], {
+      //     queryParams: { tab: 'pending' },
+      //   });
+      // }
     });
   }
 

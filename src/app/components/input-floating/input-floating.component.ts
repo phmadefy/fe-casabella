@@ -63,7 +63,7 @@ export class InputFloatingComponent implements ControlValueAccessor {
   ngOnInit(): void {
     this.optionsMoney = {
       align: 'left',
-      allowNegative: true,
+      allowNegative: false,
       allowZero: true,
       decimal: ',',
       precision: this.precision ?? 2,

@@ -79,7 +79,7 @@ export class NftPublicComponent {
     if (tab == 'pending') {
       this.service.path = 'v1/transactions-nft';
       this.filters.status = 'pending';
-      this.filters.reciver_id = this.userCurrent.id;
+      // this.filters.reciver_id = this.userCurrent.id;
     } else {
       this.service.path = 'v1/nft';
     }

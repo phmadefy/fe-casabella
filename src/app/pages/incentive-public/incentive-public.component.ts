@@ -106,6 +106,7 @@ export class IncentivePublicComponent {
       dialogRef.closed.subscribe(async (res) => {
         if (res) {
           this.toIncentive(item.id);
+          location.reload();
         }
       });
     }
@@ -115,6 +116,5 @@ export class IncentivePublicComponent {
     await this.tools.route.navigate(['/incentivo/detalhe'], {
       state: { incentive_id },
     });
-    location.reload();
   }
 }

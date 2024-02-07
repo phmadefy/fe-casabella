@@ -17,6 +17,7 @@
           [optionsCurrency]="{
             prefix: ' ',
             suffix: ' %',
+            allowNegative: false
           }"
         ></input-inline>
       </div>
@@ -33,6 +34,7 @@
           [optionsCurrency]="{
             prefix: 'F$ ',
             precision: 4,
+            allowNegative: false
           }"
         ></input-inline>
       </div>
@@ -49,7 +51,8 @@
           [optionsCurrency]="{
             prefix: ' ',
             suffix: ' %',
-            precision: 4
+            precision: 4,
+            allowNegative: false
           }"
         ></input-inline>
       </div>
@@ -66,6 +69,7 @@
           [optionsCurrency]="{
             prefix: 'R$ ',
             precision: 4,
+            allowNegative: false
           }"
         ></input-inline>
       </div>
@@ -83,6 +87,7 @@
             prefix: ' ',
             suffix: ' %',
             precision: 4,
+            allowNegative: false
           }"
         ></input-inline>
       </div>
@@ -175,7 +180,7 @@
           }"
         >
           <label class="text-sm text-gray-300 px-2 w-1/2">
-            Imagem ou vídeo na Tela de Login
+            Imagem na Tela de Login
           </label>
           <input-file
             class="w-full"
