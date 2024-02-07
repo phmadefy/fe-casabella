@@ -15,7 +15,12 @@
           class="block rounded-t-lg px-2.5 pb-4 pt-5 w-1/2 text-4xl font-bold text-cb-base bg-transparent border-0 border-b-2 border-cb-secondary appearance-none focus:outline-none focus:ring-0 focus:border-cb-info focus:text-cb-info peer"
           placeholder=" "
           currencyMask
-          [options]="{ prefix: 'F$ ', align: 'center', precision: 4 }"
+          [options]="{
+            prefix: 'F$ ',
+            align: 'center',
+            precision: 4,
+            allowNegative: false
+          }"
           name="amount"
           [(ngModel)]="dados.amount"
         />
