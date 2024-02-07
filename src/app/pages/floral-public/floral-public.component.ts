@@ -40,6 +40,8 @@ export class FloralPublicComponent {
   userCurrent: any = {};
 
   tab: string = 'my';
+  rules: any[] = [];
+
   constructor(
     private route: ActivatedRoute,
     private service: ApiService,
@@ -51,6 +53,8 @@ export class FloralPublicComponent {
 
   async ngOnInit() {
     this.userCurrent = await this.tools.getCurrentUser();
+    this.rules = this.tools.getRules(this.userCurrent.group ?? []);
+
     this.filtersExtract = {
       ...this.filtersExtract,
       user_id: this.userCurrent?.id,
@@ -91,7 +95,7 @@ export class FloralPublicComponent {
   setTab(tab: string) {
     this.tab = tab;
     if (tab == 'my') {
-      this.getExtract();
+      // this.getExtract();
     } else {
       if (tab == 'pending') {
         this.filters.status = tab;

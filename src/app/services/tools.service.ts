@@ -8,6 +8,7 @@ import * as moment from 'moment';
 import { lastValueFrom, skipWhile, take } from 'rxjs';
 import { currentUser } from '../core/selectors/auth.selector';
 import { environment } from 'src/environments/environment';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,11 @@ import { environment } from 'src/environments/environment';
 export class ToolsService {
   noImageAvatar = 'assets/sem-foto.png';
   baseUrl = environment.url;
-  constructor(private store: Store<AppState>, public route: Router) {}
+  constructor(
+    private store: Store<AppState>,
+    public route: Router,
+    private sanitizer: DomSanitizer
+  ) {}
 
   async getCurrentUser() {
     return lastValueFrom(
@@ -322,5 +327,9 @@ export class ToolsService {
     console.log('isInRoute', type, path, location.pathname);
     const endPoints = location.pathname.split('/');
     return endPoints.includes(path);
+  }
+
+  getUrlSecurity(url: string): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 }

@@ -22,7 +22,11 @@
           </button>
         </li>
 
-        <li routerLink="/nfts" [queryParams]="{ tab: 'pending' }">
+        <li
+          routerLink="/nfts"
+          [queryParams]="{ tab: 'pending' }"
+          *ngIf="tools.getRule('movement_nft', rules)"
+        >
           <button
             class="px-8 py-2 text-cb-base rounded-md"
             [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'pending' }"
@@ -31,7 +35,7 @@
           </button>
         </li>
 
-        <li>
+        <li *ngIf="tools.getRule('movement_nft', rules)">
           <button
             [routerLink]="['transferir']"
             class="px-8 py-2 text-cb-base rounded-md"
@@ -48,7 +52,7 @@
   </card>
 </div>
 
-<card *ngIf="tab != 'pending'">
+<card *ngIf="tab != 'pending' && !loading">
   <div class="grid grid-cols-5 gap-3 p-4">
     <app-nft-card
       [nft]="{ src: item.image_url }"
@@ -58,7 +62,7 @@
   </div>
 </card>
 
-<ng-container *ngIf="tab == 'pending'">
+<ng-container *ngIf="tab == 'pending' && !loading">
   <div
     class="rounded-md border border-cb-secondary flex justify-between text-cb-base mb-2"
     *ngFor="let item of dataSource.data"

@@ -37,6 +37,8 @@ export class NftPublicComponent {
   tab: string = 'my';
 
   userCurrent: any = {};
+  rules: any[] = [];
+
   constructor(
     private route: ActivatedRoute,
     private service: ApiService,
@@ -48,6 +50,8 @@ export class NftPublicComponent {
 
   async ngOnInit() {
     this.userCurrent = await this.tools.getCurrentUser();
+    this.rules = this.tools.getRules(this.userCurrent.group ?? []);
+
     this.queryParamsObs = this.route.queryParams.subscribe((res: any) => {
       console.log('queryParams', res);
       if (res?.tab) {

@@ -13,7 +13,11 @@
           </button>
         </li>
 
-        <li routerLink="/floral" [queryParams]="{ tab: 'pending' }">
+        <li
+          routerLink="/floral"
+          [queryParams]="{ tab: 'pending' }"
+          *ngIf="tools.getRule('movement_floral', rules)"
+        >
           <button
             class="px-8 py-2 text-cb-base rounded-md"
             [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'pending' }"
@@ -22,7 +26,7 @@
           </button>
         </li>
 
-        <li>
+        <li *ngIf="tools.getRule('movement_floral', rules)">
           <button
             [routerLink]="['transferir']"
             class="px-8 py-2 text-cb-base rounded-md"
@@ -31,7 +35,7 @@
           </button>
         </li>
 
-        <li>
+        <li *ngIf="tools.getRule('movement_floral', rules)">
           <button
             [routerLink]="['resgatar']"
             class="px-8 py-2 text-cb-base rounded-md"
