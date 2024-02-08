@@ -17,7 +17,7 @@ import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
   styleUrls: ['./modal-slide-gallery.component.scss'],
 })
 export class ModalSlideGalleryComponent {
-  slideConfig = {
+  slideConfig: any = {
     // slidesToShow: 1,
     // arrows: false,
     // dots: true,
@@ -43,7 +43,7 @@ export class ModalSlideGalleryComponent {
 
   ngOnInit(): void {
     this.dataSource = this.data?.images ?? [];
-    this.active = this.data?.active ?? 0;
+    this.slideConfig.initialSlide = this.data?.active ?? 0;
   }
 
   prev(slickModal: SlickCarouselComponent) {
