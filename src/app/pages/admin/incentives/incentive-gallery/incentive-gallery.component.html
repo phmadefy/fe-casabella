@@ -1,6 +1,13 @@
 <div class="grid grid-cols-3 gap-2">
+  <div
+    class="bg-cb-contrast h-full overflow-hidden p-6 rounded-lg text-center w-full col-span-3"
+    *ngIf="loading"
+  >
+    <spinner [size]="8" color="cb"></spinner>
+  </div>
+
   <button
-    *ngIf="tools.checkRouteContainsAdmin()"
+    *ngIf="tools.checkRouteContainsAdmin() && !loading"
     routerLink="gallery/add"
     class="flex flex-col items-center justify-center border border-cb-secondary text-cb-secondary text-gradient-cb-hover rounded-md p-4 h-48"
   >
@@ -8,37 +15,72 @@
     <h2 class="text-cb-base my-3">Adicionar Galeria</h2>
   </button>
 
-  <div
-    class="flex flex-col gap-2 p-2 border border-cb-secondary rounded-md h-48"
-    *ngFor="let item of dataSource.data; let i = index"
-  >
-    <img
-      [src]="item.image ?? tools.noImageAvatar"
-      alt="image-card"
-      class="w-full rounded-t-md h-[80%] object-cover"
-    />
-    <div *ngIf="tools.checkRouteContainsAdmin()">
-      <button
-        class="btn btn-sm bg-cb-primary text-white rounded-md w-full"
-        [disabled]="loading"
-        routerLink="/admin/incentives/gallery/edit"
-        [state]="{ gallery_id: item.id }"
-      >
-        Editar
-      </button>
-    </div>
+  <ng-container *ngIf="!loading && !gallery.id">
     <div
-      *ngIf="!tools.checkRouteContainsAdmin()"
-      class="flex items-center gap-3"
+      class="flex flex-col gap-2 p-2 border border-cb-secondary rounded-md h-48"
+      *ngFor="let item of dataSource.data; let i = index"
     >
-      <button
-        class="btn btn-sm bg-cb-primary text-white rounded-md w-full"
-        [disabled]="loading"
-        (click)="viewMode = true"
+      <img
+        [src]="item.image ?? tools.noImageAvatar"
+        alt="image-card"
+        class="w-full rounded-t-md h-[80%] object-cover"
+      />
+      <div *ngIf="tools.checkRouteContainsAdmin()">
+        <button
+          class="btn btn-sm bg-cb-primary text-white rounded-md w-full"
+          [disabled]="loading"
+          routerLink="/admin/incentives/gallery/edit"
+          [state]="{ gallery_id: item.id }"
+        >
+          Editar
+        </button>
+      </div>
+      <div
+        *ngIf="!tools.checkRouteContainsAdmin()"
+        class="flex items-center gap-3"
       >
-        Conferir Detalhes
-      </button>
-      <btn-like class="min-w-max" [id]="'gl' + i"></btn-like>
+        <button
+          class="btn btn-sm bg-cb-primary text-white rounded-md w-full"
+          [disabled]="loading"
+          (click)="openView(item)"
+        >
+          Conferir Detalhes
+        </button>
+        <btn-like class="min-w-max" [id]="'gl' + i"></btn-like>
+      </div>
     </div>
-  </div>
+  </ng-container>
+
+  <ng-container *ngIf="!loading && gallery.id">
+    <card class="col-span-3">
+      <div
+        class="flex items-center justify-between border-b border-cb-secondary p-4"
+      >
+        <h2 class="font-semibold text-cb-info text-lg">
+          {{ gallery?.name }}
+        </h2>
+      </div>
+      <div class="p-4">
+        <div class="mb-4">
+          {{ gallery.description }}
+        </div>
+
+        <div
+          class="grid md:grid-cols-6 gap-2 p-4 border-top border-cb-secondary"
+        >
+          <div
+            *ngFor="let item of gallery.attachments; let i = index"
+            class="rounded-md overflow-hidden"
+            (click)="openSlideGallery(i, gallery.attachments)"
+          >
+            <img
+              [src]="item.path"
+              alt="Imagem"
+              class="w-full object-cover group-hover:opacity-75 transition-opacity hover:cursor-pointer"
+            />
+          </div>
+        </div>
+      </div>
+    </card>
+  </ng-container>
 </div>

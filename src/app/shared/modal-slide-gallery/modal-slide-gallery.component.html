@@ -1,0 +1,23 @@
+<div>
+  <div class="flex justify-end p-2">
+    <button
+      class="text-cb-secondary hover:text-cb-base cursor-pointer"
+      (click)="dialogRef.close()"
+    >
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+  <ngx-slick-carousel
+    class="carousel"
+    #slickModalIncentive="slick-carousel"
+    [config]="slideConfig"
+  >
+    <div
+      ngxSlickItem
+      *ngFor="let item of dataSource; let i = index"
+      class="slide p-2 bg-cb-modal"
+    >
+      <img [src]="item.path" class="rounded-md w-full max-h-[500px]" alt="" />
+    </div>
+  </ngx-slick-carousel>
+</div>
