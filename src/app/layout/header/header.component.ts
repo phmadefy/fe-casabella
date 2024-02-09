@@ -250,15 +250,14 @@ export class HeaderComponent {
           title: 'NFT',
           route: 'admin/nfts',
           icon: 'fa-solid fa-panorama',
-          permissions:
-            'nft,add_nft,classification_nft,add_type_nft,movement_nft',
+          permissions: 'add_nft,classification_nft,add_type_nft,approve_nft',
           items: [
             {
               id: 'admin-nfts-todos',
               title: 'Todos NFTs',
               route: '/',
               queryParams: { tab: 'all' },
-              permissions: 'nft',
+              permissions: 'add_nft',
             },
             {
               id: 'admin-nfts-add',
