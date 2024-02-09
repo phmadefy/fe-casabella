@@ -133,7 +133,7 @@
 
         <div class="p-4">
           <h2 class="text-3xl text-cb-success text-center font-bold">
-            F$ 0,0000
+            {{ dados.balance | currency : "BRL" : "F$" : "1.4-4" }}
           </h2>
         </div>
       </card>
