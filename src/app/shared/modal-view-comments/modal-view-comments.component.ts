@@ -30,7 +30,7 @@ export class ModalViewCommentsComponent {
   ) {}
 
   async ngOnInit() {
-    this.service.path = this.data?.endpoint ?? 'v1/post';
+    this.service.path = this.data?.endpoint ?? 'v1/posts';
     this.userCurrent = await this.tools.getCurrentUser();
     this.user_id = this.data?.user_id ?? null;
     // this.comments = this.data?.comments ?? [];

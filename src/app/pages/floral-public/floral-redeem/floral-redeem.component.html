@@ -29,6 +29,7 @@
           'bg-gradient-cb font-semibold': dados.rescue_type == 'cash'
         }"
         (click)="dados.rescue_type = 'cash'"
+        *ngIf="userCurrent?.person?.person_type?.name == 'Colaborador'"
       >
         Em dinheiro
       </button>

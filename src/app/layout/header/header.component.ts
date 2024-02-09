@@ -108,6 +108,7 @@ export class HeaderComponent {
           route: '/',
           queryParams: { tab: 'my' },
           icon: '',
+          permissions: 'movement_floral',
         },
         {
           id: 'transferencias-pendentes',

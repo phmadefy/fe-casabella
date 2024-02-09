@@ -11,6 +11,7 @@ import { TimelineComponent } from 'src/app/components/timeline/timeline.componen
 import { Dialog } from '@angular/cdk/dialog';
 import { ModalFloralApproveRefuseComponent } from 'src/app/shared/modal-floral-approve-refuse/modal-floral-approve-refuse.component';
 import { FormsModule } from '@angular/forms';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-floral-public',
@@ -58,6 +59,8 @@ export class FloralPublicComponent {
     this.filtersExtract = {
       ...this.filtersExtract,
       user_id: this.userCurrent?.id,
+      startDate: moment().subtract(7, 'days').format('YYYY-MM-DD'),
+      endDate: moment().format('YYYY-MM-DD'),
     };
 
     this.queryParamsObs = this.route.queryParams.subscribe((res: any) => {
@@ -95,7 +98,7 @@ export class FloralPublicComponent {
   setTab(tab: string) {
     this.tab = tab;
     if (tab == 'my') {
-      // this.getExtract();
+      this.getExtract();
     } else {
       if (tab == 'pending') {
         this.filters.status = tab;
