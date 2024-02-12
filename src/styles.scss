@@ -423,3 +423,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   color: white;
   opacity: 0.75;
 }
+
+.modal-content {
+  max-height: 75vh;
+  overflow-y: auto;
+}

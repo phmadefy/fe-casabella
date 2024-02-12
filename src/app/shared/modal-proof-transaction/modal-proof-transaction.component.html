@@ -9,10 +9,7 @@
   </div>
 
   <div class="flex justify-between items-start p-4 border-b border-cb-info">
-    <h2 class="text-lg font-bold">
-      Comprovante
-      {{ data?.deposit ? "de Depósito" : "da transação" }}
-    </h2>
+    <h2 class="text-lg font-bold">Comprovante {{ getType() }}</h2>
     <button
       class="text-cb-secondary hover:text-cb-base cursor-pointer"
       (click)="dialogRef.close()"
@@ -22,7 +19,7 @@
   </div>
 
   <ng-container *ngIf="!loading">
-    <div class="p-4">
+    <div class="p-4 modal-content">
       <div class="mb-4">
         <img src="assets/logo-report.png" class="w-44" alt="" />
       </div>
@@ -30,7 +27,7 @@
       <ng-container *ngIf="data.type == 'floral'">
         <div class="mb-3">
           <h2 class="text-cb-info font-semibold text-lg">
-            Comprovante de {{ data?.deposit ? "depósito" : "transferência" }}
+            Comprovante {{ getType() }}
           </h2>
         </div>
         <div class="grid grid-cols-3">
@@ -47,7 +44,7 @@
         </div>
         <div class="grid grid-cols-3" *ngIf="!data?.deposit">
           <div class="col-span-1">Taxa da transferência</div>
-          <div class="col-span-2">
+          <div class="col-span-2" *ngIf="dados.tax">
             {{ dados.tax | currency : "BRL" : "F$" : "1.4-4" }}
           </div>
         </div>
@@ -143,37 +140,66 @@
       <ng-container *ngIf="data.type == 'nft'">
         <div class="mb-3">
           <h2 class="text-cb-info font-semibold text-lg">
-            Comprovante de transferência
+            Comprovante {{ getType() }}
           </h2>
         </div>
         <div class="grid grid-cols-3">
-          <div class="col-span-1">Data da Transferência</div>
+          <div class="col-span-1">Data da {{ getType() }}</div>
           <div class="col-span-2">
             {{ "" | date : "dd/MM/yyyy hh:mm:ss" }}
           </div>
         </div>
         <div class="grid grid-cols-3">
-          <div class="col-span-1">Valor</div>
+          <div class="col-span-1">Nome NFT</div>
           <div class="col-span-2">
-            {{ "" | currency : "BRL" : "F$" : "1.4-4" }}
-          </div>
-        </div>
-        <div class="grid grid-cols-3">
-          <div class="col-span-1">Taxa da transferência</div>
-          <div class="col-span-2">
-            {{ "" | currency : "BRL" : "F$" : "1.4-4" }}
+            {{ "" }}
           </div>
         </div>
         <div class="grid grid-cols-3">
           <div class="col-span-1">Tipo de transfência</div>
-          <div class="col-span-2">Floral</div>
+          <div class="col-span-2">NFT</div>
         </div>
         <div class="mb-3">
           <h2 class="text-cb-info font-semibold text-lg">De</h2>
         </div>
-        <div class="grid grid-cols-3">
-          <div class="col-span-1">Usuário</div>
-          <div class="col-span-2">código da transação.</div>
+
+        <ng-container>
+          <div
+            class="border-b border-t border-[#DEDFE4] border-dashed my-2"
+          ></div>
+          <div class="my-2">
+            <h2 class="text-cb-info font-semibold text-lg">De</h2>
+          </div>
+          <div class="grid">
+            <div class="col-span-1">
+              {{ dados?.from_user?.name ?? "CasaBella" }}
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-container>
+          <div
+            class="border-b border-t border-[#DEDFE4] border-dashed my-2"
+          ></div>
+          <div class="my-2">
+            <h2 class="text-cb-info font-semibold text-lg">Para</h2>
+          </div>
+          <div class="grid">
+            <div class="col-span-1">
+              {{ dados?.to_user?.name ?? "CasaBella" }}
+            </div>
+          </div>
+        </ng-container>
+
+        <div
+          class="border-b border-t border-[#DEDFE4] border-dashed my-2"
+        ></div>
+
+        <div class="my-2">
+          <h2 class="text-cb-info font-semibold text-lg">Transação</h2>
+        </div>
+        <div class="grid">
+          <div class="col-span-1">{{ dados?.id }}</div>
         </div>
       </ng-container>
     </div>

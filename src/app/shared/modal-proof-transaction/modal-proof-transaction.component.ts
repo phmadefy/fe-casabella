@@ -22,4 +22,15 @@ export class ModalProofTransactionComponent {
     console.log('ModalProofTransactionComponent', this.data);
     this.dados = { ...this.data.dados };
   }
+
+  getType() {
+    if (this.data?.deposit) {
+      return 'de Depósito';
+    }
+    if (this.data?.devolution) {
+      return 'de Devolução';
+    }
+
+    return 'da transação';
+  }
 }

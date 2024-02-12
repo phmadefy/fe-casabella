@@ -87,7 +87,7 @@ export class FloralTransferFormComponent extends AbstractForms {
     const dialogRef = this.dialog.open<any>(ModalProofTransactionComponent, {
       width: '95%',
       maxWidth: '1055px',
-      // height: '90%',
+      maxHeight: '600px',
       data: { dados: data, type: 'floral' },
     });
 
