@@ -9,6 +9,7 @@ import { PDFSource } from 'ng2-pdf-viewer';
 })
 export class ApiService {
   path = '';
+  baseUrl = environment.url;
 
   constructor(private http: HttpClient) {}
 
@@ -74,6 +75,14 @@ export class ApiService {
       link.click();
       link.remove();
     });
+  }
+
+  downloadBlob(route: string) {
+    const httpOptions: any = {
+      responseType: 'blob',
+    };
+
+    return this.http.get(`${route}`, httpOptions);
   }
 
   downloadPdf(url: string): Observable<PDFSource> {

@@ -2,9 +2,12 @@
   class="flex flex-row items-center gap-3"
   [ngClass]="{ 'is-invalid': !tools.validateInputForm(form, model) }"
 >
-  <label [attr.for]="model" class="text-sm text-gray-300 px-2 w-1/2">{{
-    label
-  }}</label>
+  <label
+    [attr.for]="model"
+    *ngIf="label"
+    class="text-sm text-gray-300 px-2 w-1/2"
+    >{{ label }}</label
+  >
   <input
     *ngIf="type !== 'select' && type !== 'currency'"
     [(ngModel)]="value"

@@ -25,6 +25,23 @@
       <div class="mb-3">
         <input-inline
           class="p-0 bg-transparent border-none w-full"
+          label="Cotação Inicial do Floral (F$)"
+          model="CotacaoFloralInicial"
+          [(ngModel)]="dados.CotacaoFloralInicial"
+          name="CotacaoFloralInicial"
+          type="currency"
+          [form]="form"
+          [optionsCurrency]="{
+            prefix: 'F$ ',
+            precision: 4,
+            allowNegative: false
+          }"
+        ></input-inline>
+      </div>
+
+      <div class="mb-3">
+        <input-inline
+          class="p-0 bg-transparent border-none w-full"
           model="CotacaoFloral"
           label="Cotação do Floral (F$)"
           [(ngModel)]="dados.CotacaoFloral"
@@ -153,8 +170,85 @@
     <div class="divider"></div>
 
     <div class="px-4">
-      <div class="grid grid-cols-3">
-        <div class="col-span-1"></div>
+      <div class="mb-3">
+        <div
+          class="flex flex-row items-center gap-3"
+          [ngClass]="{
+            'is-invalid': !tools.validateInputForm(form, 'ImagemAnimadaMenu')
+          }"
+        >
+          <label class="text-sm text-gray-300 px-2 w-1/2">
+            Caixa Casabella Principal
+          </label>
+          <select-default
+            class="p-0 bg-transparent border-none w-full"
+            model="CashierMain"
+            [(ngModel)]="dados.CashierMain"
+            name="CashierMain"
+            type="select"
+            bindValue="id"
+            bindText="name"
+            placeholder="Selecione uma opção"
+            endpoint="v1/admin/cashiers?per_page=500"
+            [required]="true"
+            [form]="form"
+            size="md"
+          />
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <div
+          class="flex flex-row items-center gap-3"
+          [ngClass]="{
+            'is-invalid': !tools.validateInputForm(form, 'ImagemAnimadaMenu')
+          }"
+        >
+          <label class="text-sm text-gray-300 px-2 w-1/2">
+            Caixa de Resgate
+          </label>
+          <select-default
+            class="p-0 bg-transparent border-none w-full"
+            model="CashierRescue"
+            [(ngModel)]="dados.CashierRescue"
+            name="CashierRescue"
+            type="select"
+            bindValue="id"
+            bindText="name"
+            placeholder="Selecione uma opção"
+            endpoint="v1/admin/cashiers?per_page=500"
+            [required]="true"
+            [form]="form"
+            size="md"
+          />
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <div
+          class="flex flex-row items-center gap-3"
+          [ngClass]="{
+            'is-invalid': !tools.validateInputForm(form, 'ImagemAnimadaMenu')
+          }"
+        >
+          <label class="text-sm text-gray-300 px-2 w-1/2">
+            Caixa de Taxas
+          </label>
+          <select-default
+            class="p-0 bg-transparent border-none w-full"
+            model="CashierTax"
+            [(ngModel)]="dados.CashierTax"
+            name="CashierTax"
+            type="select"
+            bindValue="id"
+            bindText="name"
+            placeholder="Selecione uma opção"
+            endpoint="v1/admin/cashiers?per_page=500"
+            [required]="true"
+            [form]="form"
+            size="md"
+          />
+        </div>
       </div>
     </div>
 

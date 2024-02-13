@@ -53,4 +53,21 @@ export class ModalIncentiveTermAcceptComponent {
   reject() {
     this.dialogRef.close(false);
   }
+
+  download() {
+    this.service
+      .downloadBlob(
+        this.service.baseUrl + '/v1/terms/' + this.dados.term.id + '/download'
+      )
+      .subscribe((data: any) => {
+        const blob = new Blob([data]);
+
+        var downloadURL = window.URL.createObjectURL(blob);
+        var link = document.createElement('a');
+        link.href = downloadURL;
+        link.download = `${this.dados.name}.pdf`;
+        link.click();
+        link.remove();
+      });
+  }
 }

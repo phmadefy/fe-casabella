@@ -9,6 +9,7 @@ import { CardComponent } from 'src/app/components/card/card.component';
 import { ToolsService } from 'src/app/services/tools.service';
 import { InputFileComponent } from 'src/app/components/input-file/input-file.component';
 import { AbstractForms } from 'src/app/shared/abstract-form';
+import { SelectDefaultComponent } from 'src/app/components/select-default/select-default.component';
 
 @Component({
   selector: 'app-settings',
@@ -17,6 +18,7 @@ import { AbstractForms } from 'src/app/shared/abstract-form';
     CommonModule,
     FormsModule,
     InputInlineComponent,
+    SelectDefaultComponent,
     SpinnerComponent,
     CardComponent,
     InputFileComponent,

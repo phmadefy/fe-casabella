@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { CardComponent } from 'src/app/components/card/card.component';
 import { InputFloatingComponent } from 'src/app/components/input-floating/input-floating.component';
 import { AbstractForms } from 'src/app/shared/abstract-form';
@@ -13,6 +13,8 @@ import { NftChooseComponent } from 'src/app/components/nft-choose/nft-choose.com
 import { SelectDefaultComponent } from 'src/app/components/select-default/select-default.component';
 import { ComboboxComponent } from 'src/app/components/combobox/combobox.component';
 import { AlertDisplayComponent } from 'src/app/components/alert-display/alert-display.component';
+import { Dialog } from '@angular/cdk/dialog';
+import { ModalProofTransactionComponent } from 'src/app/shared/modal-proof-transaction/modal-proof-transaction.component';
 
 @Component({
   selector: 'app-nft-transfer-form',
@@ -36,6 +38,8 @@ import { AlertDisplayComponent } from 'src/app/components/alert-display/alert-di
 })
 export class NftTransferFormComponent extends AbstractForms {
   @ViewChild('nftChoose', { static: true }) nftChoose!: NftChooseComponent;
+  @ViewChild('form', { static: true }) form!: NgForm;
+
   dados: any = {};
   types = [
     { id: 'definitive', description: 'Definitiva' },
@@ -44,7 +48,11 @@ export class NftTransferFormComponent extends AbstractForms {
 
   userCurrent: any = {};
   modo = 'user';
-  constructor(service: ApiService, public tools: ToolsService) {
+  constructor(
+    service: ApiService,
+    public tools: ToolsService,
+    private dialog: Dialog
+  ) {
     super(service);
     service.path = 'v1/admin/nfts';
   }
@@ -89,13 +97,18 @@ export class NftTransferFormComponent extends AbstractForms {
     this.service.path = `v1/admin/nfts/${this.dados.nft_id}/transfer`;
     this.create(this.dados);
   }
-  async finish(result: any) {
-    // throw new Error('Method not implemented.');
-    // this.getDados(result.id);
-    let route = '/nfts';
-    if (await this.tools.isAdmin()) {
-      route = '/admin/nfts';
-    }
-    this.tools.route.navigate([route], { queryParams: { tab: 'all' } });
+  override finish(result: any): void {
+    this.form.resetForm();
+
+    this.openProof(result);
+  }
+
+  openProof(data: any) {
+    const dialogRef = this.dialog.open<any>(ModalProofTransactionComponent, {
+      width: '95%',
+      maxWidth: '1055px',
+      maxHeight: '600px',
+      data: { dados: data, type: 'nft' },
+    });
   }
 }
