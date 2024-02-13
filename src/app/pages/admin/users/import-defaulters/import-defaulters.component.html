@@ -1,4 +1,4 @@
-<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+<form #form="ngForm" (ngSubmit)="save(form)">
   <card>
     <div class="card-header">
       <h2 class="text-lg font-semibold">Importar Usuários Inadimplentes</h2>
@@ -14,11 +14,11 @@
           [form]="form"
           ngModel
           [required]="true"
-          (selectFile)="tools.logs($event)"
+          (selectFile)="selectFile($event)"
         ></input-file>
       </div>
 
-      <div class="flex items-center gap-4 py-4">
+      <!-- <div class="flex items-center gap-4 py-4">
         <div class="flex items-center">
           <input
             id="lock"
@@ -44,7 +44,7 @@
             >Desbloquear</label
           >
         </div>
-      </div>
+      </div> -->
     </div>
 
     <div class="p-4 border-b border-cb-secondary text-cb-secondary">
