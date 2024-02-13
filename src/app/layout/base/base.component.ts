@@ -11,6 +11,7 @@ import { ToolsService } from 'src/app/services/tools.service';
 import { Dialog } from '@angular/cdk/dialog';
 import { ModalTermAcceptComponent } from 'src/app/shared/modal-term-accept/modal-term-accept.component';
 import { ModalSlideComponent } from 'src/app/shared/modal-slide/modal-slide.component';
+import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
 
 @Component({
   selector: 'app-base',
@@ -22,6 +23,7 @@ import { ModalSlideComponent } from 'src/app/shared/modal-slide/modal-slide.comp
     FloralPriceComponent,
     MyFloralComponent,
     AdsComponent,
+    SpinnerComponent,
   ],
   providers: [ApiService],
   templateUrl: './base.component.html',
@@ -33,6 +35,8 @@ export class BaseComponent {
   userCurrent: any = {};
 
   termsPending: any[] = [];
+
+  overlay = true;
   constructor(
     private service: ApiService,
     public tools: ToolsService,
@@ -40,7 +44,9 @@ export class BaseComponent {
   ) {}
 
   async ngOnInit() {
-    this.userCurrent = await this.tools.getCurrentUser();
+    this.userCurrent = await this.tools
+      .getCurrentUser()
+      .finally(() => (this.overlay = false));
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     await this.getTerms();

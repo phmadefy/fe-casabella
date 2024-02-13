@@ -1,0 +1,71 @@
+<modal [title]="'Confirmação de Transferência'" [dialogRef]="dialogRef">
+  <div class="p-4">
+    <div class="gap-2 text-center" *ngIf="!data?.is_user">
+      <span>Você está realizando uma transferência de Floral do</span>
+      <span *ngIf="dados?.from_cashier" class="text-cb-info font-semibold">
+        {{ dados?.from_cashier?.name }}
+      </span>
+      <span>para o usuário</span>
+      <span *ngIf="dados?.to_user" class="text-cb-info font-semibold">
+        {{ dados?.to_user?.user?.nickname }}
+      </span>
+      <span>no valor abaixo, deseja continuar ?</span>
+    </div>
+
+    <div class="gap-2 text-center" *ngIf="data?.is_user">
+      <span>Você está realizando uma transferência de Floral</span>
+      <span>para o usuário</span>
+      <span *ngIf="dados?.to_user" class="text-cb-info font-semibold">
+        {{ dados?.to_user?.user?.nickname }}
+      </span>
+      <span
+        >. Esta transação deverá ser aprovada pela Casabella Fragrâncias, deseja
+        continuar ?</span
+      >
+    </div>
+
+    <div class="my-4 text-center">
+      <div class="my-3">
+        <span
+          class="text-cb-success text-4xl font-bold py-2 border-b border-cb-secondary"
+        >
+          {{ dados.amount | currency : "BRL" : "F$" : "1.4-4" }}
+        </span>
+      </div>
+      <div class="my-3" *ngIf="data?.is_user && dados?.tax">
+        <span class="text-center py-2 border-b border-cb-secondary">
+          <span>Taxa de tranferência: </span>
+          <span class="text-cb-red">
+            {{ dados.tax | currency : "BRL" : "F$" : "1.4-4" }}
+          </span>
+        </span>
+      </div>
+      <div class="mt-3">
+        <span class="text-center py-2" *ngIf="data?.is_user && dados?.tax">
+          <span>Valor da operação: </span>
+          <span class="text-cb-success">
+            {{ getTotalOperation() | currency : "BRL" : "F$" : "1.4-4" }}
+          </span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-footer grid grid-cols-2 items-center justify-between gap-3">
+    <button-cb
+      class="w-full"
+      classes="btn-lg text-white bg-gradient-cb rounded-md font-semibold w-full"
+      [loading]="loading"
+      [label]="'Continuar'"
+      (onClick)="dialogRef.close(true)"
+    />
+
+    <button
+      class="btn btn-lg text-white rounded-md w-full"
+      [disabled]="loading"
+      (click)="dialogRef.close()"
+    >
+      Cancelar
+    </button>
+  </div>
+</modal>

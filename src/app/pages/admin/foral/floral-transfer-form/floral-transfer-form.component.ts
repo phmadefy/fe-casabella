@@ -14,6 +14,7 @@ import { AlertDisplayComponent } from 'src/app/components/alert-display/alert-di
 import { InputFloatingComponent } from 'src/app/components/input-floating/input-floating.component';
 import { ModalProofTransactionComponent } from 'src/app/shared/modal-proof-transaction/modal-proof-transaction.component';
 import { Dialog } from '@angular/cdk/dialog';
+import { ModalConfirmTransactionComponent } from 'src/app/shared/modal-confirm-transaction/modal-confirm-transaction.component';
 
 @Component({
   selector: 'app-floral-transfer-form',
@@ -42,6 +43,7 @@ export class FloralTransferFormComponent extends AbstractForms {
   modo = 'user';
 
   CotacaoFloral = 0;
+  TaxaTransferenciaUsuarios = 0;
   constructor(
     service: ApiService,
     public tools: ToolsService,
@@ -62,6 +64,18 @@ export class FloralTransferFormComponent extends AbstractForms {
       this.CotacaoFloral = paramCotacao.value;
     }
 
+    const paramCotacaoTax = this.tools.getItemArray(
+      parameters,
+      'parameter',
+      'TaxaTransferenciaUsuarios'
+    );
+    if (paramCotacaoTax) {
+      this.TaxaTransferenciaUsuarios =
+        paramCotacaoTax?.type == 'Percentual'
+          ? parseFloat(paramCotacaoTax.value) / 100
+          : parseFloat(paramCotacaoTax.value);
+    }
+
     this.userCurrent = await this.tools.getCurrentUser();
     if (this.tools.checkRouteContainsAdmin()) {
       this.modo = 'admin';
@@ -71,11 +85,28 @@ export class FloralTransferFormComponent extends AbstractForms {
   }
 
   override submit(): void {
-    if (this.dados.id) {
-      this.update(this.dados, this.dados.id);
-    } else {
-      this.create(this.dados);
-    }
+    const dialogRef = this.dialog.open<any>(ModalConfirmTransactionComponent, {
+      width: '95%',
+      maxWidth: '600px',
+      maxHeight: '600px',
+      data: {
+        item: this.dados,
+        type: 'floral',
+        is_user: this.modo != 'admin' ? true : false,
+      },
+    });
+
+    dialogRef.closed.subscribe((result) => {
+      if (result) {
+        this.create(this.dados);
+      }
+    });
+
+    // if (this.dados.id) {
+    //   this.update(this.dados, this.dados.id);
+    // } else {
+    // this.create(this.dados);
+    // }
   }
   override finish(result: any): void {
     this.form.resetForm();
@@ -88,7 +119,10 @@ export class FloralTransferFormComponent extends AbstractForms {
       width: '95%',
       maxWidth: '1055px',
       maxHeight: '600px',
-      data: { dados: data, type: 'floral' },
+      data: {
+        dados: data,
+        type: 'floral',
+      },
     });
 
     dialogRef.closed.subscribe((result) => {
@@ -102,6 +136,14 @@ export class FloralTransferFormComponent extends AbstractForms {
       //   });
       // }
     });
+  }
+
+  calcTax() {
+    if (this.modo != 'admin') {
+      this.dados.tax = (
+        this.TaxaTransferenciaUsuarios * parseFloat(this.dados.amount)
+      ).toPrecision(4);
+    }
   }
 
   changeTo(to: string) {
