@@ -124,12 +124,15 @@ export class ToolsService {
 
   generateFormData(dados: any) {
     const formData = new FormData();
+    // console.log('generateFormData dados', dados);
+
     for (let key of Object.keys(dados)) {
-      if (!dados[key]) {
+      if (dados[key] == undefined) {
+        // console.log('generateFormData key', key);
         continue;
       }
 
-      console.log('is array', key, Array.isArray(dados[key]));
+      // console.log('is array', key, Array.isArray(dados[key]));
 
       if (Array.isArray(dados[key])) {
         for (let value of dados[key]) {
@@ -143,7 +146,7 @@ export class ToolsService {
       } else if (typeof dados[key] == 'object') {
         formData.append(key, JSON.stringify(dados[key]));
       } else {
-        formData.append(key, dados[key]);
+        formData.append(key, `${dados[key]}`);
       }
     }
 
