@@ -193,7 +193,7 @@ export class HeaderComponent {
           id: 'admin-incentivos',
           title: 'Incentivos',
           route: 'admin/incentives',
-          icon: 'fa-solid fa-flag',
+          icon: 'icone icon-incentive',
           permissions: 'add_incentive,add_terms,add_terms,cycles,pictures',
           items: [
             {
@@ -243,14 +243,14 @@ export class HeaderComponent {
           title: 'Caixas',
           route: '/cash-box',
           queryParams: { tab: 'active' },
-          icon: 'fa-solid fa-building-columns',
+          icon: 'icone icon-cashier',
           permissions: 'cashier',
         },
         {
           id: 'admin-nfts',
           title: 'NFT',
           route: 'admin/nfts',
-          icon: 'fa-solid fa-panorama',
+          icon: 'icone icon-nft',
           permissions: 'add_nft,classification_nft,add_type_nft,approve_nft',
           items: [
             {
@@ -299,7 +299,7 @@ export class HeaderComponent {
           id: 'admin-floral',
           title: 'Floral',
           route: 'admin/floral',
-          icon: 'fa-solid fa-fan',
+          icon: 'icone icon-floral',
           permissions: 'details_floral,approve_floral',
           items: [
             {
@@ -354,7 +354,7 @@ export class HeaderComponent {
           id: 'admin-patrocinio',
           title: 'Patrocinador',
           route: 'admin/sponsors',
-          icon: 'fa-solid fa-circle-dollar-to-slot',
+          icon: 'icone icon-partner',
           permissions: 'partner,add_partner',
           items: [
             {
@@ -383,20 +383,20 @@ export class HeaderComponent {
           id: 'admin-fale-conosco',
           title: 'Fale Conosco',
           route: '/contact-us',
-          icon: 'fa-solid fa-ticket',
+          icon: 'icone icon-tickets',
           permissions: 'attendance',
         },
         {
           id: 'admin-chat',
           title: 'Chat',
           route: 'admin/chat',
-          icon: 'fa-solid fa-message',
+          icon: 'icone icon-chat',
           permissions: 'chat',
         },
         {
           id: 'admin-termos',
           title: 'Termos',
-          icon: 'fa-solid fa-file-lines',
+          icon: 'icone icon-terms',
           route: '/termos-de-uso',
           queryParams: { type: 'login' },
           permissions: 'terms',
@@ -405,14 +405,14 @@ export class HeaderComponent {
           id: 'admin-audit',
           title: 'Auditoria',
           route: '/audit',
-          icon: 'fa-solid fa-clipboard-check',
+          icon: 'icone icon-audit',
           permissions: 'audit',
         },
         {
           id: 'admin-floral-nft-devolution',
           title: 'Devolução de Floral/NFT',
           route: 'admin/devolution',
-          icon: 'fa-solid fa-right-left',
+          icon: 'icone icon-devolutions',
           permissions: 'approve_nft,approve_floral',
           items: [
             {
@@ -433,7 +433,7 @@ export class HeaderComponent {
           id: 'admin-reports',
           title: 'Relatórios',
           route: 'admin/reports',
-          icon: 'fa-solid fa-file-invoice',
+          icon: 'icone icon-reports',
           permissions: 'reports',
           items: [
             {
@@ -546,7 +546,7 @@ export class HeaderComponent {
           id: 'admin-users',
           title: 'Usuários',
           route: '/admin/users',
-          icon: 'fa-solid fa-user',
+          icon: 'icone icon-users',
           permissions:
             'users,add_user,groups_and_segments,roles_and_departments,cities_and_states,import_defaulters,import_users',
           items: [
@@ -620,7 +620,7 @@ export class HeaderComponent {
           id: 'admin-settings',
           title: 'Configurações',
           route: '/settings',
-          icon: 'fa-solid fa-sliders',
+          icon: 'icone icon-settings',
           permissions: 'params',
         },
       ],

@@ -76,6 +76,17 @@ export class ModalNftApproveRefuseComponent {
     return '';
   }
 
+  getSubClassifications(item: any) {
+    return this.dados?.nft?.subclassifications
+      .filter((s: any) => s.nft_classification_id == item.id)
+      .map((t: any) => t.name)
+      .join(', ');
+  }
+
+  getTypes() {
+    return this.dados?.nft?.types.map((t: any) => t.name).join(',');
+  }
+
   getLabel() {
     if (this.data?.user) {
       return this.mode == 'approve'

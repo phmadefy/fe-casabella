@@ -428,3 +428,52 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   max-height: 75vh;
   overflow-y: auto;
 }
+
+//icons
+.icone {
+  display: inline-block;
+  width: 1em; /* ou qualquer tamanho desejado */
+  height: 1em; /* ou qualquer tamanho desejado */
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.icon-incentive {
+  background-image: url("/assets/icons/incentivos.svg"); /* Caminho para o arquivo SVG */
+}
+.icon-cashier {
+  background-image: url("/assets/icons/caixas.svg");
+}
+.icon-nft {
+  background-image: url("/assets/icons/nft.svg");
+}
+.icon-floral {
+  background-image: url("/assets/icons/floral.svg");
+}
+.icon-partner {
+  background-image: url("/assets/icons/patrocinador.svg");
+}
+.icon-tickets {
+  background-image: url("/assets/icons/fale-conosco.svg");
+}
+.icon-chat {
+  background-image: url("/assets/icons/chat.svg");
+}
+.icon-terms {
+  background-image: url("/assets/icons/termos.svg");
+}
+.icon-audit {
+  background-image: url("/assets/icons/auditoria.svg");
+}
+.icon-devolutions {
+  background-image: url("/assets/icons/devolucao-floral-nft.svg");
+}
+.icon-reports {
+  background-image: url("/assets/icons/relatorios.svg");
+}
+.icon-users {
+  background-image: url("/assets/icons/usuario.svg");
+}
+.icon-settings {
+  background-image: url("/assets/icons/parametros.svg");
+}

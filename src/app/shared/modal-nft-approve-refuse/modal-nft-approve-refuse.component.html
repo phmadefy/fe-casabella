@@ -88,22 +88,25 @@
           <h2 class="font-semibold text-cb-info">
             {{ dados?.nft?.name }}
           </h2>
-          <p *ngIf="dados?.nft?.classifications">
+          <p *ngFor="let item of dados?.nft?.classifications">
+            <strong>{{ item.name }}:</strong> {{ getSubClassifications(item) }}
+          </p>
+          <!-- <p *ngIf="dados?.nft?.classifications">
             <span class="font-semibold">Classificações:</span>
             <span class="text-sm">
               {{ parseArray(dados?.nft?.classifications) }}
             </span>
-          </p>
-          <p *ngIf="dados?.nft?.subclassifications">
+          </p> -->
+          <!-- <p *ngIf="dados?.nft?.subclassifications">
             <span class="font-semibold">Sub-Classificações:</span>
             <span class="text-sm">
               {{ parseArray(dados?.nft?.subclassifications) }}
             </span>
-          </p>
+          </p> -->
           <p *ngIf="dados?.nft?.types">
             <span class="font-semibold">Tipos:</span>
             <span class="text-sm">
-              {{ parseArray(dados?.nft?.types) }}
+              {{ getTypes() }}
             </span>
           </p>
         </div>
@@ -126,14 +129,14 @@
     <div class="card-footer flex items-center justify-between gap-3">
       <button-cb
         class="w-full"
-        classes="btn-sm text-white bg-gradient-cb rounded-md font-semibold w-full"
+        classes="btn-md text-white bg-gradient-cb rounded-md font-semibold w-full"
         [loading]="loading"
         [label]="getLabel()"
         type="submit"
       />
 
       <button
-        class="btn btn-sm text-white rounded-md w-full"
+        class="btn btn-md text-white rounded-md w-full"
         [disabled]="loading"
         (click)="dialogRef.close()"
       >

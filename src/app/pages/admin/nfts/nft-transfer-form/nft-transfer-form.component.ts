@@ -99,6 +99,7 @@ export class NftTransferFormComponent extends AbstractForms {
   }
   override finish(result: any): void {
     this.form.resetForm();
+    this.nftChoose.clearChoose();
 
     this.openProof(result);
   }
