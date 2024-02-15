@@ -38,7 +38,13 @@ export const routes: Routes = [
       },
     ],
   },
-
+  {
+    path: 'resetar-senha',
+    loadComponent: () =>
+      import('./auth/recovery-password/recovery-password.component').then(
+        (c) => c.RecoveryPasswordComponent
+      ),
+  },
   {
     path: '',
     canActivate: [AuthGuard],
