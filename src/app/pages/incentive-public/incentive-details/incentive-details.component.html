@@ -47,24 +47,19 @@
 
     <div class="mb-3">
       <h2 class="font-semibold text-cb-info text-lg">Sobre o Incentivo</h2>
-      <div class="text-sm" [innerHTML]="dados?.information"></div>
+      <div
+        class="text-sm"
+        *ngIf="dados.information"
+        [innerHTML]="dados?.information"
+        id="dsInformation"
+      ></div>
     </div>
 
     <div class="mb-3" *ngIf="dados?.link_youtube">
-      <!-- <iframe
-        width="560"
-        height="315"
-        src="https://www.youtube.com/embed/VUu2VOsWj8I?si=wjfZ69-hiLxvAH6Q"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen
-      ></iframe> -->
-
       <iframe
         width="560"
         height="315"
-        [src]="tools.getUrlSecurity(dados.link_youtube)"
+        [src]="dados.link_youtube"
         title="YouTube video player"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

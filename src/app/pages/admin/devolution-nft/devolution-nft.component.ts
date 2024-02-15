@@ -69,7 +69,9 @@ export class DevolutionNftComponent extends AbstractForms {
   override finish(result: any): void {
     this.form.resetForm();
 
-    this.openProof(result);
+    if (result.data) {
+      this.openProof(result);
+    }
   }
 
   openProof(data: any) {

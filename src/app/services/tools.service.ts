@@ -335,4 +335,8 @@ export class ToolsService {
   getUrlSecurity(url: string): SafeResourceUrl {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
+
+  getHtmlSecurity(html: any) {
+    return this.sanitizer.bypassSecurityTrustHtml(html);
+  }
 }

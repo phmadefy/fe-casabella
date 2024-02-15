@@ -18,6 +18,7 @@ import { SelectDefaultComponent } from 'src/app/components/select-default/select
 import { RouterLink } from '@angular/router';
 import { ToolsService } from 'src/app/services/tools.service';
 import { MessageService } from 'src/app/services/message.service';
+import { Base64UploadAdapter } from '@ckeditor/ckeditor5-upload';
 
 @Component({
   selector: 'app-incentive-form',

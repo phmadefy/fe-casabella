@@ -57,6 +57,28 @@ export class IncentiveDetailsComponent {
       .show(id)
       .then((res) => {
         this.dados = res;
+        if (this.dados.link_youtube) {
+          this.dados.link_youtube = this.tools.getUrlSecurity(
+            this.dados.link_youtube
+          );
+        }
+
+        if (this.dados.link_youtube) {
+          this.dados.information = this.tools.getHtmlSecurity(
+            this.dados.information
+          );
+        }
+
+        // if (this.dados?.information) {
+        //   setTimeout(() => {
+        //     const dsInformation = document.getElementById('dsInformation');
+        //     console.log('dsInformation', dsInformation);
+
+        //     if (dsInformation) {
+        //       dsInformation.innerHTML = this.dados?.information;
+        //     }
+        //   }, 500);
+        // }
       })
       .finally(() => (this.loading = false));
   }
@@ -89,10 +111,7 @@ export class IncentiveDetailsComponent {
 
     this.loading = true;
     await this.service
-      .postCustom(
-        `v1/incentives/${this.dados.id}/comment`,
-        formComment.value
-      )
+      .postCustom(`v1/incentives/${this.dados.id}/comment`, formComment.value)
       .then((res) => {
         formComment.resetForm();
         this.getDados(this.dados.id);
