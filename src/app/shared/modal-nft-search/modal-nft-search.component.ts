@@ -6,11 +6,18 @@ import { FormsModule } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 import { ToolsService } from 'src/app/services/tools.service';
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
+import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
 
 @Component({
   selector: 'app-modal-nft-search',
   standalone: true,
-  imports: [CommonModule, ModalComponent, InputSearchComponent, FormsModule],
+  imports: [
+    CommonModule,
+    ModalComponent,
+    InputSearchComponent,
+    FormsModule,
+    SpinnerComponent,
+  ],
   providers: [ApiService],
   templateUrl: './modal-nft-search.component.html',
   styleUrls: ['./modal-nft-search.component.scss'],

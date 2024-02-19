@@ -33,7 +33,7 @@ export class AuditComponent {
 
   tab: string = 'actives';
   constructor(private service: ApiService, public tools: ToolsService) {
-    service.path = 'v1/admin/nfts/audit/all';
+    service.path = 'v1/admin/audit';
   }
 
   ngOnInit(): void {
