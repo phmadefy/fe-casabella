@@ -46,7 +46,8 @@
               "moment",
               "apexcharts",
               "pdfjs-dist/build/pdf",
-              "pdfjs-dist/web/pdf_viewer"
+              "pdfjs-dist/web/pdf_viewer",
+              "ckeditor5-custom-build/build/ckeditor"
             ],
             "preserveSymlinks": true
           },

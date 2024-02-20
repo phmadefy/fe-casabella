@@ -8,7 +8,7 @@ import { AbstractForms } from 'src/app/shared/abstract-form';
 import { CheckboxComponent } from 'src/app/components/checkbox/checkbox.component';
 import { NgxCurrencyDirective } from 'ngx-currency';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { EditorConfig } from '@ckeditor/ckeditor5-core';
 import { ImageSelectComponent } from 'src/app/components/image-select/image-select.component';
 import { CardChooseComponent } from 'src/app/components/card-choose/card-choose.component';
@@ -19,6 +19,7 @@ import { RouterLink } from '@angular/router';
 import { ToolsService } from 'src/app/services/tools.service';
 import { MessageService } from 'src/app/services/message.service';
 import { Base64UploadAdapter } from '@ckeditor/ckeditor5-upload';
+import { EditorComponent } from 'src/app/components/editor/editor.component';
 
 @Component({
   selector: 'app-incentive-form',
@@ -36,6 +37,7 @@ import { Base64UploadAdapter } from '@ckeditor/ckeditor5-upload';
     InputFloatingComponent,
     SelectDefaultComponent,
     RouterLink,
+    EditorComponent,
   ],
   providers: [ApiService],
   templateUrl: './incentive-form.component.html',
@@ -49,9 +51,50 @@ export class IncentiveFormComponent extends AbstractForms {
     segments_view: [],
     cities: [],
   };
-  Editor = ClassicEditor;
+  // Editor = ClassicEditor;
   config: EditorConfig = {
     language: 'pt-br',
+    toolbar: {
+      items: [
+        'heading',
+        '|',
+        'bold',
+        'italic',
+        'link',
+        'bulletedList',
+        'numberedList',
+        '|',
+        'indent',
+        'outdent',
+        '|',
+        'imageUpload',
+        'blockQuote',
+        'insertTable',
+        'undo',
+        'redo',
+        '|',
+        'alignment',
+        'fontBackgroundColor',
+        'fontColor',
+        'fontSize',
+        'highlight',
+        'fontFamily',
+        'horizontalLine',
+      ],
+    },
+    image: {
+      toolbar: ['imageTextAlternative', 'imageStyle:full', 'imageStyle:side'],
+    },
+    table: {
+      contentToolbar: [
+        'tableColumn',
+        'tableRow',
+        'mergeTableCells',
+        'tableCellProperties',
+        'tableProperties',
+      ],
+    },
+    licenseKey: '',
   };
 
   status = Status;

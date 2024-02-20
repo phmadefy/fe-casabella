@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "postinstall": "npm install ./CKEditor-custom"
   },
   "private": true,
   "dependencies": {
@@ -20,10 +21,15 @@
     "@angular/platform-browser": "^16.1.0",
     "@angular/platform-browser-dynamic": "^16.1.0",
     "@angular/router": "^16.1.0",
+    "@ckeditor/ckeditor5-alignment": "^41.1.0",
     "@ckeditor/ckeditor5-angular": "^7.0.0",
     "@ckeditor/ckeditor5-build-classic": "^39.0.2",
+    "@ckeditor/ckeditor5-code-block": "^41.1.0",
     "@ckeditor/ckeditor5-core": "^39.0.2",
     "@ckeditor/ckeditor5-engine": "^39.0.2",
+    "@ckeditor/ckeditor5-find-and-replace": "^41.1.0",
+    "@ckeditor/ckeditor5-font": "^41.1.0",
+    "@ckeditor/ckeditor5-html-embed": "^41.1.0",
     "@ckeditor/ckeditor5-image": "^41.1.0",
     "@ckeditor/ckeditor5-upload": "^41.1.0",
     "@ckeditor/ckeditor5-utils": "^39.0.2",
@@ -34,6 +40,7 @@
     "@ngrx/store": "^16.2.0",
     "@tailwindcss/forms": "^0.5.6",
     "apexcharts": "^3.44.0",
+    "ckeditor5-custom-build": "file:CKEditor-custom",
     "file-saver": "^2.0.5",
     "flowbite": "^1.7.0",
     "flowbite-datepicker": "^1.2.2",

@@ -253,13 +253,18 @@
     <div class="divider"></div>
 
     <div class="px-4 mb-4">
-      <ckeditor
+      <!-- <ckeditor
         class="editor-cb"
         name="information"
         [(ngModel)]="dados.information"
         [editor]="Editor"
         [config]="config"
-      ></ckeditor>
+      ></ckeditor> -->
+
+      <app-editor
+        [(ngModel)]="dados.information"
+        name="information"
+      ></app-editor>
     </div>
 
     <div class="divider"></div>

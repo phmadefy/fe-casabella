@@ -360,6 +360,17 @@ select:-webkit-autofill:focus {
   .ck.ck-list__item {
     @apply bg-cb-contrast text-cb-base;
   }
+
+  .ck.ck-dropdown__panel {
+    @apply bg-cb-contrast text-cb-base;
+  }
+
+  .ck.ck-splitbutton.ck-splitbutton_open
+    > .ck-button:not(.ck-on):not(.ck-disabled):not(:hover),
+  .ck.ck-splitbutton:hover
+    > .ck-button:not(.ck-on):not(.ck-disabled):not(:hover) {
+    @apply bg-cb-contrast text-cb-base;
+  }
 }
 
 .cdk-overlay-dark-backdrop {
