@@ -17,6 +17,7 @@ export class ImageSelectComponent {
   @Input() name!: string;
 
   @Output() changeImage = new EventEmitter<any>();
+  @Output() remove = new EventEmitter<any>();
 
   constructor(private tools: ToolsService) {}
   ngOnInit(): void {
@@ -28,5 +29,10 @@ export class ImageSelectComponent {
       this.image = await this.tools.toBase64(event?.target?.files[0]);
       this.changeImage.emit(event?.target?.files);
     }
+  }
+
+  onRemove() {
+    this.image = '';
+    this.remove.emit();
   }
 }

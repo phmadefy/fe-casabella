@@ -80,7 +80,7 @@ export class BaseComponent {
     if (this.termsPending.length > 0) {
       this.openTerms();
     } else {
-      this.getIncentivesBanners();
+      // this.getIncentivesBanners();
     }
   }
 

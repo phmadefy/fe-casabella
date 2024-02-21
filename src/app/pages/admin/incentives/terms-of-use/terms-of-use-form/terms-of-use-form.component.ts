@@ -8,9 +8,10 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ToolsService } from 'src/app/services/tools.service';
 import { InputFloatingComponent } from 'src/app/components/input-floating/input-floating.component';
 import { ButtonCbComponent } from 'src/app/components/button-cb/button-cb.component';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { EditorConfig } from '@ckeditor/ckeditor5-core';
+import { EditorComponent } from 'src/app/components/editor/editor.component';
 
 @Component({
   selector: 'app-terms-of-use-form',
@@ -23,6 +24,7 @@ import { EditorConfig } from '@ckeditor/ckeditor5-core';
     ButtonCbComponent,
     RouterModule,
     CKEditorModule,
+    EditorComponent,
   ],
   providers: [ApiService],
   templateUrl: './terms-of-use-form.component.html',
@@ -31,7 +33,7 @@ import { EditorConfig } from '@ckeditor/ckeditor5-core';
 export class TermsOfUseFormComponent extends AbstractForms {
   dados: any = {};
 
-  Editor = ClassicEditor;
+  // Editor = ClassicEditor;
   config: EditorConfig = {
     language: 'pt-br',
   };

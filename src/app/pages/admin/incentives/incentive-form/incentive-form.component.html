@@ -473,6 +473,7 @@
             subtitle="770 x 470"
             (changeImage)="dados.image_feed = $event[0]"
             [image]="dados.image_feed_url"
+            (remove)="dados.image_feed = null"
           ></image-select>
           <!-- [image]="dados.image_feed" -->
         </div>

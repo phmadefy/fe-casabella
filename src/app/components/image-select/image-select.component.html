@@ -1,19 +1,29 @@
+<div
+  class="relative inline-block group rounded-md overflow-hidden"
+  *ngIf="image"
+>
+  <img class="w-full h-full rounded-md" [src]="image" alt="avatar" />
+
+  <button
+    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white bg-opacity-75 text-red-500 px-4 py-2 rounded-md opacity-0 group-hover:opacity-100 transition-opacity"
+    type="button"
+    (click)="onRemove()"
+  >
+    <i class="fa-regular fa-trash-can"></i>
+  </button>
+</div>
+
 <label
+  *ngIf="!image"
   [attr.for]="name"
   class="h-full overflow-hidden cursor-pointer border-[2px] bg-cb-modal rounded-md border-dashed border-cb-secondary flex flex-col justify-center items-center p-2"
 >
-  <div *ngIf="!image" class="text-center">
+  <div class="text-center">
     <i class="fa-solid fa-photo-film text-[5rem] text-cb-secondary mb-2"></i>
     <p class="text-cb-base text-sm">{{ title }}</p>
     <small class="text-cb-secondary text-xs">{{ subtitle }}</small>
   </div>
 
-  <img
-    class="w-full h-full rounded-md"
-    [src]="image"
-    *ngIf="image"
-    alt="avatar"
-  />
   <input
     type="file"
     [id]="name"

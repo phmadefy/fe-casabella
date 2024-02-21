@@ -11,6 +11,7 @@ import { CardImageComponent } from 'src/app/components/card-image/card-image.com
 import { IncentiveGalleryComponent } from '../admin/incentives/incentive-gallery/incentive-gallery.component';
 import { Dialog } from '@angular/cdk/dialog';
 import { ModalIncentiveTermAcceptComponent } from 'src/app/shared/modal-incentive-term-accept/modal-incentive-term-accept.component';
+import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
 
 @Component({
   selector: 'app-incentive-public',
@@ -23,6 +24,7 @@ import { ModalIncentiveTermAcceptComponent } from 'src/app/shared/modal-incentiv
     InputSearchComponent,
     CardImageComponent,
     IncentiveGalleryComponent,
+    SpinnerComponent,
     // TimelineComponent,
   ],
   providers: [ApiService],

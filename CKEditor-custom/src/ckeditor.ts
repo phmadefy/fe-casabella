@@ -40,10 +40,7 @@ import { PasteFromOffice } from '@ckeditor/ckeditor5-paste-from-office';
 import { Table, TableToolbar } from '@ckeditor/ckeditor5-table';
 import { TextTransformation } from '@ckeditor/ckeditor5-typing';
 import { Undo } from '@ckeditor/ckeditor5-undo';
-import {
-  Base64UploadAdapter,
-  SimpleUploadAdapter,
-} from '@ckeditor/ckeditor5-upload';
+import Base64UploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/base64uploadadapter';
 
 // You can read more about extending the build with additional plugins in the "Installing plugins" guide.
 // See https://ckeditor.com/docs/ckeditor5/latest/installation/plugins/installing-plugins.html for details.
@@ -84,7 +81,6 @@ class Editor extends ClassicEditor {
     TextTransformation,
     Undo,
     Base64UploadAdapter,
-    SimpleUploadAdapter,
   ];
 
   public static override defaultConfig: EditorConfig = {
@@ -118,7 +114,7 @@ class Editor extends ClassicEditor {
         'redo',
       ],
     },
-    plugins: ['Base64UploadAdapter', 'SimpleUploadAdapter'],
+    // plugins: ['Base64UploadAdapter', 'SimpleUploadAdapter'],
     // image: {
     //   toolbar: [
     //     'imageTextAlternative',

@@ -48,31 +48,36 @@
   </card>
 </div>
 
-<div class="grid md:grid-cols-3 gap-3" *ngIf="tab != 'galeria'">
-  <card [loading]="loading" *ngFor="let item of dataSource.data">
-    <div class="p-2">
-      <card-image
-        [image]="item.image_url"
-        [disabled]="tab == 'inactives'"
-      ></card-image>
-    </div>
-    <div class="p-2 flex items-center gap-2">
-      <button
-        class="btn btn-sm bg-cb-primary text-white rounded-md w-2/3"
-        [disabled]="loading"
-        (click)="openIncentive(item)"
-      >
-        Conferir detalhes
-      </button>
-      <button
-        class="btn btn-sm bg-cb-primary text-white rounded-md w-1/3"
-        [disabled]="loading"
-      >
-        Ranking
-      </button>
-    </div>
-  </card>
-</div>
+<ng-container *ngIf="tab != 'galeria'">
+  <div class="p-16 rounded-lg text-center w-full" *ngIf="loading">
+    <spinner [size]="8" color="cb"></spinner>
+  </div>
+  <div class="grid md:grid-cols-3 gap-3" *ngIf="!loading">
+    <card *ngFor="let item of dataSource.data">
+      <div class="p-2">
+        <card-image
+          [image]="item.image_url"
+          [disabled]="tab == 'inactives'"
+        ></card-image>
+      </div>
+      <div class="p-2 flex items-center gap-2">
+        <button
+          class="btn btn-sm bg-cb-primary text-white rounded-md w-2/3"
+          [disabled]="loading"
+          (click)="openIncentive(item)"
+        >
+          Conferir detalhes
+        </button>
+        <button
+          class="btn btn-sm bg-cb-primary text-white rounded-md w-1/3"
+          [disabled]="loading"
+        >
+          Ranking
+        </button>
+      </div>
+    </card>
+  </div>
+</ng-container>
 
 <ng-container *ngIf="tab == 'galeria'">
   <app-incentive-gallery></app-incentive-gallery>

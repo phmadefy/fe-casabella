@@ -23,13 +23,17 @@
     </div>
 
     <div class="px-4 mb-4">
-      <ckeditor
+      <!-- <ckeditor
         class="editor-cb"
         name="editorCB"
         [(ngModel)]="dados.description"
         [editor]="Editor"
         [config]="config"
-      ></ckeditor>
+      ></ckeditor> -->
+      <app-editor
+        [(ngModel)]="dados.description"
+        name="description"
+      ></app-editor>
     </div>
 
     <div class="card-footer flex items-center gap-3">

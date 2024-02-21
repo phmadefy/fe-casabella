@@ -8,9 +8,7 @@ import {
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 import Editor from 'ckeditor5-custom-build/build/ckeditor';
-import { EditorConfig } from '@ckeditor/ckeditor5-core/src/editor/editorconfig';
-import { Base64UploadAdapter } from '@ckeditor/ckeditor5-upload';
-import { environment } from 'src/environments/environment';
+import { EditorConfig } from '@ckeditor/ckeditor5-core';
 
 const INPUT_FLOATING_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -63,22 +61,18 @@ export class EditorComponent implements ControlValueAccessor {
         // 'horizontalLine',
       ],
     },
-    image: {
-      toolbar: ['imageTextAlternative', 'imageStyle:full', 'imageStyle:side'],
-    },
-    table: {
-      contentToolbar: [
-        'tableColumn',
-        'tableRow',
-        'mergeTableCells',
-        'tableCellProperties',
-        'tableProperties',
-      ],
-    },
-    plugins: ['SimpleUploadAdapter'],
-    simpleUpload: {
-      uploadUrl: `${environment.url}/upload-editor`,
-    },
+    // image: {
+    //   toolbar: ['imageTextAlternative', 'imageStyle:full', 'imageStyle:side'],
+    // },
+    // table: {
+    //   contentToolbar: [
+    //     'tableColumn',
+    //     'tableRow',
+    //     'mergeTableCells',
+    //     'tableCellProperties',
+    //     'tableProperties',
+    //   ],
+    // },
     licenseKey: '',
   };
 

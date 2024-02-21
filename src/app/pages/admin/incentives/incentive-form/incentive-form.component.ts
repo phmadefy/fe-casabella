@@ -18,7 +18,6 @@ import { SelectDefaultComponent } from 'src/app/components/select-default/select
 import { RouterLink } from '@angular/router';
 import { ToolsService } from 'src/app/services/tools.service';
 import { MessageService } from 'src/app/services/message.service';
-import { Base64UploadAdapter } from '@ckeditor/ckeditor5-upload';
 import { EditorComponent } from 'src/app/components/editor/editor.component';
 
 @Component({
@@ -50,51 +49,6 @@ export class IncentiveFormComponent extends AbstractForms {
     segments_participate: [],
     segments_view: [],
     cities: [],
-  };
-  // Editor = ClassicEditor;
-  config: EditorConfig = {
-    language: 'pt-br',
-    toolbar: {
-      items: [
-        'heading',
-        '|',
-        'bold',
-        'italic',
-        'link',
-        'bulletedList',
-        'numberedList',
-        '|',
-        'indent',
-        'outdent',
-        '|',
-        'imageUpload',
-        'blockQuote',
-        'insertTable',
-        'undo',
-        'redo',
-        '|',
-        'alignment',
-        'fontBackgroundColor',
-        'fontColor',
-        'fontSize',
-        'highlight',
-        'fontFamily',
-        'horizontalLine',
-      ],
-    },
-    image: {
-      toolbar: ['imageTextAlternative', 'imageStyle:full', 'imageStyle:side'],
-    },
-    table: {
-      contentToolbar: [
-        'tableColumn',
-        'tableRow',
-        'mergeTableCells',
-        'tableCellProperties',
-        'tableProperties',
-      ],
-    },
-    licenseKey: '',
   };
 
   status = Status;
