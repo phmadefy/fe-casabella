@@ -339,4 +339,11 @@ export class ToolsService {
   getHtmlSecurity(html: any) {
     return this.sanitizer.bypassSecurityTrustHtml(html);
   }
+
+  isMobileDevice() {
+    return (
+      typeof window.orientation !== 'undefined' ||
+      navigator.userAgent.indexOf('Mobile') !== -1
+    );
+  }
 }

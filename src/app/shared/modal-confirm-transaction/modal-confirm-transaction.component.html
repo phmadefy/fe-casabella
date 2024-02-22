@@ -1,9 +1,9 @@
 <modal [title]="'Confirmação de Transferência'" [dialogRef]="dialogRef">
   <div class="p-4">
     <div class="gap-2 text-center" *ngIf="!data?.is_user">
-      <span>Você está realizando uma transferência de Floral do</span>
+      <span>Você está realizando uma transferência de Floral </span>
       <span *ngIf="dados?.from_cashier" class="text-cb-info font-semibold">
-        {{ dados?.from_cashier?.name }}
+        do {{ dados?.from_cashier?.name }}
       </span>
       <span>para o usuário</span>
       <span *ngIf="dados?.to_user" class="text-cb-info font-semibold">

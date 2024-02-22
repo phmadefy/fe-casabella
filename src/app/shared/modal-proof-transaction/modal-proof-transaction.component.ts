@@ -33,4 +33,10 @@ export class ModalProofTransactionComponent {
 
     return 'da transação';
   }
+
+  getTotal() {
+    return (
+      parseFloat(this.dados.amount) + parseFloat(this.dados.tax)
+    ).toPrecision(4);
+  }
 }

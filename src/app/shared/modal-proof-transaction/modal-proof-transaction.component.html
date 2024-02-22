@@ -49,6 +49,12 @@
           </div>
         </div>
         <div class="grid grid-cols-3" *ngIf="!data?.deposit">
+          <div class="col-span-1">Total da transferência</div>
+          <div class="col-span-2" *ngIf="dados.tax">
+            {{ getTotal() | currency : "BRL" : "F$" : "1.4-4" }}
+          </div>
+        </div>
+        <div class="grid grid-cols-3" *ngIf="!data?.deposit">
           <div class="col-span-1">Tipo de transfência</div>
           <div class="col-span-2">Floral</div>
         </div>

@@ -49,6 +49,16 @@ export class FeedComponent {
       this.getNFTs();
     }
     this.getPosts();
+
+    // window.addEventListener('resize', (event) => {
+    //   console.log('A janela foi redimensionada!');
+    //   console.log('Nova largura: ' + window.innerWidth);
+    //   console.log('Nova altura: ' + window.innerHeight);
+    // });
+
+    if (this.tools.isMobileDevice()) {
+      this.slideConfig = { slidesToShow: 2, slidesToScroll: 1 };
+    }
   }
 
   getNFTs() {
