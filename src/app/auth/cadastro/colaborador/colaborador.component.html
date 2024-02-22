@@ -3,7 +3,7 @@
     <img class="w-40 h-28" src="../../assets/casabella.svg" alt="" />
   </div>
 
-  <div class="max-w-[768px]:gap-1 max-w-[1024px]:gap-2">
+  <div class="max-w-[768px]:gap-1 max-w-[1024px]:gap-2 p-4">
     <div class="w-full mb-4">
       <app-stepper [currentStep]="currentStep" [steps]="steps"></app-stepper>
     </div>
@@ -66,9 +66,9 @@
         ></input-floating>
       </div>
 
-      <div class="grid grid-cols-3 gap-2 mb-3">
+      <div class="grid grid-cols-1 gap-2 mb-3">
         <input-floating
-          class="col-span-2 p-0 bg-transparent border-none"
+          class="p-0 bg-transparent border-none"
           label="E-mail"
           model="email"
           [(ngModel)]="dados.email"
