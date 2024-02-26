@@ -110,7 +110,7 @@ export class FloralTransferFormComponent extends AbstractForms {
   }
   override finish(result: any): void {
     this.form.resetForm();
-
+    this.dados = { amount: 0, to: 'to_user' };
     this.openProof(result);
   }
 
@@ -140,9 +140,8 @@ export class FloralTransferFormComponent extends AbstractForms {
 
   calcTax() {
     if (this.modo != 'admin') {
-      this.dados.tax = (
-        this.TaxaTransferenciaUsuarios * parseFloat(this.dados.amount)
-      ).toPrecision(4);
+      this.dados.tax =
+        this.TaxaTransferenciaUsuarios * parseFloat(this.dados.amount);
     }
   }
 

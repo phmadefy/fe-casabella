@@ -42,13 +42,13 @@
             {{ dados.amount | currency : "BRL" : "F$" : "1.4-4" }}
           </div>
         </div>
-        <div class="grid grid-cols-3" *ngIf="!data?.deposit">
+        <div class="grid grid-cols-3" *ngIf="!data?.deposit && dados.tax">
           <div class="col-span-1">Taxa da transferência</div>
           <div class="col-span-2" *ngIf="dados.tax">
             {{ dados.tax | currency : "BRL" : "F$" : "1.4-4" }}
           </div>
         </div>
-        <div class="grid grid-cols-3" *ngIf="!data?.deposit">
+        <div class="grid grid-cols-3" *ngIf="!data?.deposit && dados.tax">
           <div class="col-span-1">Total da transferência</div>
           <div class="col-span-2" *ngIf="dados.tax">
             {{ getTotal() | currency : "BRL" : "F$" : "1.4-4" }}

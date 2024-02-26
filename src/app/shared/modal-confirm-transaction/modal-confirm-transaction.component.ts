@@ -37,8 +37,6 @@ export class ModalConfirmTransactionComponent {
   }
 
   getTotalOperation() {
-    return (
-      parseFloat(this.dados.amount) + parseFloat(this.dados.tax)
-    ).toPrecision(4);
+    return parseFloat(this.dados.amount) + parseFloat(this.dados.tax);
   }
 }

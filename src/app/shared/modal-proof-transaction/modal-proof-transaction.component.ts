@@ -35,8 +35,8 @@ export class ModalProofTransactionComponent {
   }
 
   getTotal() {
-    return (
-      parseFloat(this.dados.amount) + parseFloat(this.dados.tax)
-    ).toPrecision(4);
+    const total = parseFloat(this.dados.amount) + parseFloat(this.dados.tax);
+    console.log('total', total);
+    return total;
   }
 }

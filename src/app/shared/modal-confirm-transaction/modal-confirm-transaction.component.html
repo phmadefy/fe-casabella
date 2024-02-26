@@ -5,7 +5,7 @@
       <span *ngIf="dados?.from_cashier" class="text-cb-info font-semibold">
         do {{ dados?.from_cashier?.name }}
       </span>
-      <span>para o usuário</span>
+      <span class="ml-[4px]">para o usuário</span>
       <span *ngIf="dados?.to_user" class="text-cb-info font-semibold">
         {{ dados?.to_user?.user?.nickname }}
       </span>
@@ -14,7 +14,7 @@
 
     <div class="gap-2 text-center" *ngIf="data?.is_user">
       <span>Você está realizando uma transferência de Floral</span>
-      <span>para o usuário</span>
+      <span class="ml-[4px]">para o usuário</span>
       <span *ngIf="dados?.to_user" class="text-cb-info font-semibold">
         {{ dados?.to_user?.user?.nickname }}
       </span>
