@@ -77,6 +77,12 @@ export class FloralTransferFormComponent extends AbstractForms {
     }
 
     this.userCurrent = await this.tools.getCurrentUser();
+    this.generateDados();
+  }
+
+  generateDados() {
+    this.dados = { amount: 0, to: 'to_user' };
+
     if (this.tools.checkRouteContainsAdmin()) {
       this.modo = 'admin';
     } else {
@@ -110,7 +116,7 @@ export class FloralTransferFormComponent extends AbstractForms {
   }
   override finish(result: any): void {
     this.form.resetForm();
-    this.dados = { amount: 0, to: 'to_user' };
+    this.generateDados();
     this.openProof(result);
   }
 

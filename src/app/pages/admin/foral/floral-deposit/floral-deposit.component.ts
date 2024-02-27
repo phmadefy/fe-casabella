@@ -50,7 +50,7 @@ export class FloralDepositComponent extends AbstractForms {
   }
   override finish(result: any): void {
     this.form.resetForm();
-
+    this.dados = { amount: 0 };
     this.openProof(result);
   }
 
