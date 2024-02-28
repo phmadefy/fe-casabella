@@ -31,6 +31,8 @@ export class FeedComponent {
   nfts: any[] = [];
   posts: any = { data: [] };
 
+  filters: any = {};
+
   userCurrent: any = {};
   rules: any[] = [];
 
@@ -41,6 +43,12 @@ export class FeedComponent {
   ) {}
   async ngOnInit() {
     this.userCurrent = await this.tools.getCurrentUser();
+    if (this.userCurrent?.person?.type_person_id) {
+      this.filters.type_person_id = this.userCurrent.person.type_person_id;
+    }
+    if (this.userCurrent?.person?.segment_id) {
+      this.filters.segment_id = this.userCurrent.person.segment_id;
+    }
 
     this.rules = this.tools.getRules(this.userCurrent.group ?? []);
     console.log('rules', this.rules);
@@ -74,7 +82,7 @@ export class FeedComponent {
   getPosts() {
     this.loadingFeed = true;
     this.service
-      .getCustom('v1/posts')
+      .getCustom('v1/posts', this.filters)
       .then((res) => {
         this.posts = res;
       })

@@ -12,6 +12,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { BtnLikeComponent } from 'src/app/components/btn-like/btn-like.component';
 import { ModalViewCommentsComponent } from 'src/app/shared/modal-view-comments/modal-view-comments.component';
 import { ModalIncentiveTermAcceptComponent } from 'src/app/shared/modal-incentive-term-accept/modal-incentive-term-accept.component';
+import { ModalViewDocComponent } from 'src/app/shared/modal-view-doc/modal-view-doc.component';
 
 @Component({
   selector: 'app-incentive-details',
@@ -132,6 +133,18 @@ export class IncentiveDetailsComponent {
       width: '95%',
       maxWidth: '1055px',
       data: { ...this.dados, accept: true },
+    });
+  }
+
+  openRanking() {
+    const dialogRef = this.dialog.open<any>(ModalViewDocComponent, {
+      width: '95%',
+      maxWidth: '700px',
+      maxHeight: '90%',
+      data: {
+        file_url: this.dados.image_ranking_url,
+        path: this.dados.image_ranking,
+      },
     });
   }
 }
