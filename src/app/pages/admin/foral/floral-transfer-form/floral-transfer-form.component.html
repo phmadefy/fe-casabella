@@ -93,7 +93,7 @@
 
       <div class="mb-4" *ngIf="modo == 'user'">
         <select-default
-          endpoint="v1/users?status=active"
+          endpoint="v1/users?status=active&public=revendedor"
           inputPlaceholder="Informe o Usuário"
           bindText="name"
           bindValue="user_id"

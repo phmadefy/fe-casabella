@@ -481,6 +481,37 @@
     </div>
 
     <div class="mb-4">
+      <card [loading]="loading">
+        <div class="card-header">
+          <h2 class="font-semibold text-cb-secondary">Operações</h2>
+        </div>
+
+        <div class="px-4 pb-4">
+          <ul class="flex flex-col gap-2">
+            <li
+              class="p-2 hover:bg-cb-secondary cursor-pointer rounded-md border border-cb-secondary text-sm"
+              (click)="openParticipants()"
+            >
+              Participantes
+            </li>
+            <li
+              class="p-2 hover:bg-cb-secondary cursor-pointer rounded-md border border-cb-secondary text-sm"
+              (click)="openRanking()"
+            >
+              Ranking Parcial/Final
+            </li>
+            <li
+              class="p-2 hover:bg-cb-secondary cursor-pointer rounded-md border border-cb-secondary text-sm"
+              (click)="updateRanking()"
+            >
+              Atualizar Ranking
+            </li>
+          </ul>
+        </div>
+      </card>
+    </div>
+
+    <div class="mb-4">
       <card-choose
         inputPlaceholder="Público"
         endpoint="v1/persons-type"

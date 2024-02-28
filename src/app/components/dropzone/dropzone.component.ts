@@ -13,6 +13,7 @@ export class DropzoneComponent {
   fileToUpload!: File;
   @Input() files: File[] = [];
   @Input() extends = 'image/*';
+  @Input() multiple = true;
 
   @Output()
   changeFile: EventEmitter<File | File[]> = new EventEmitter<File | File[]>();

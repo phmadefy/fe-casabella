@@ -346,4 +346,8 @@ export class ToolsService {
       navigator.userAgent.indexOf('Mobile') !== -1
     );
   }
+
+  parseListArray(array: any[], property: string, separator: string = ', ') {
+    return array.map((a: any) => a[property]).join(separator);
+  }
 }

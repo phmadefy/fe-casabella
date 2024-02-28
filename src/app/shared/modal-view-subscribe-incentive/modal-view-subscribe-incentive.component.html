@@ -1,0 +1,59 @@
+<modal
+  title="Participantes do Incentivo"
+  [dialogRef]="dialogRef"
+  [loading]="loading"
+>
+  <div class="p-4">
+    <div class="relative overflow-x-auto">
+      <table class="w-full text-sm text-left table-cb">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th class="text-center">Usuário</th>
+            <th class="text-center">Segmento</th>
+            <th class="text-center">Data do aceite</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let item of dataSource; let i = index"
+            [ngClass]="{
+              'bg-transparent': i % 2 !== 0,
+              'bg-cb-tertiary': i % 2 === 0
+            }"
+          >
+            <td>
+              <img
+                [src]="item?.user?.avatar_url ?? tools.noImageAvatar"
+                alt="avatar"
+                class="h-10 w-10 rounded-full mr-3"
+              />
+            </td>
+            <td>
+              <span>{{ item?.user?.name }}</span>
+            </td>
+            <td>{{ item?.user?.person?.cpf | mask : "CPF_CNPJ" }}</td>
+            <td class="text-center">{{ item?.user?.nickname }}</td>
+            <td class="text-center">
+              {{ tools.parseListArray(item?.user?.segment, "name") }}
+            </td>
+            <td class="text-center">
+              {{ item.created_at | date : "medium" }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="relative overflow-x-auto">
+        <div
+          class="text-center py-2 text-gray-400"
+          *ngIf="dataSource.length <= 0"
+        >
+          Nenhum participante.
+        </div>
+      </div>
+    </div>
+  </div>
+</modal>

@@ -19,6 +19,10 @@ import { RouterLink } from '@angular/router';
 import { ToolsService } from 'src/app/services/tools.service';
 import { MessageService } from 'src/app/services/message.service';
 import { EditorComponent } from 'src/app/components/editor/editor.component';
+import { Dialog } from '@angular/cdk/dialog';
+import { ModalMediaUploadComponent } from 'src/app/shared/modal-media-upload/modal-media-upload.component';
+import { ModalViewDocComponent } from 'src/app/shared/modal-view-doc/modal-view-doc.component';
+import { ModalViewSubscribeIncentiveComponent } from 'src/app/shared/modal-view-subscribe-incentive/modal-view-subscribe-incentive.component';
 
 @Component({
   selector: 'app-incentive-form',
@@ -56,7 +60,8 @@ export class IncentiveFormComponent extends AbstractForms {
   constructor(
     service: ApiService,
     public tools: ToolsService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private dialog: Dialog
   ) {
     service.path = 'v1/incentives';
     super(service);
@@ -142,5 +147,47 @@ export class IncentiveFormComponent extends AbstractForms {
 
   getCities() {
     return this.dados?.cities?.map((f: any) => f?.pivot?.city_id);
+  }
+
+  openParticipants() {
+    const dialogRef = this.dialog.open<any>(
+      ModalViewSubscribeIncentiveComponent,
+      {
+        width: '95%',
+        maxWidth: '950px',
+        maxHeight: '90%',
+        data: { id: this.dados.id },
+      }
+    );
+  }
+
+  openRanking() {
+    const dialogRef = this.dialog.open<any>(ModalViewDocComponent, {
+      width: '95%',
+      maxWidth: '700px',
+      maxHeight: '90%',
+      data: {
+        file_url: this.dados.image_ranking_url,
+        path: this.dados.image_ranking,
+      },
+    });
+  }
+
+  updateRanking() {
+    const dialogRef = this.dialog.open<any>(ModalMediaUploadComponent, {
+      width: '95%',
+      maxWidth: '550px',
+      maxHeight: '90%',
+      data: {
+        endpoint: `v1/incentives/${this.dados.id}/ranking`,
+        inputFileName: 'image_ranking',
+        accept: 'image/*',
+        multipleFiles: false,
+      },
+    });
+
+    dialogRef.closed.subscribe((res) => {
+      this.getDados(this.dados.id);
+    });
   }
 }

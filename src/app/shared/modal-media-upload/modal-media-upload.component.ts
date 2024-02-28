@@ -21,6 +21,8 @@ export class ModalMediaUploadComponent {
 
   files: File[] = [];
 
+  multipleFiles = true;
+
   accept =
     'image/*,application/msword,application/vnd.ms-excel,text/plain,application/pdf, video/*';
 
@@ -33,6 +35,12 @@ export class ModalMediaUploadComponent {
     if (data?.endpoint) {
       service.path = data?.endpoint;
     }
+    if (data?.accept) {
+      service.path = data?.endpoint;
+    }
+    if (data?.multipleFiles != undefined) {
+      this.multipleFiles = data?.multipleFiles;
+    }
   }
 
   processFile(files: any) {
@@ -43,8 +51,13 @@ export class ModalMediaUploadComponent {
   sendFiles() {
     const inputFile = this.data?.inputFileName ?? 'file';
     const formData = new FormData();
-    for (let file of this.files) {
-      formData.append(`${inputFile}[]`, file);
+
+    if (this.multipleFiles) {
+      for (let file of this.files) {
+        formData.append(`${inputFile}[]`, file);
+      }
+    } else {
+      formData.append(`${inputFile}`, this.files[0]);
     }
 
     this.loading = true;
