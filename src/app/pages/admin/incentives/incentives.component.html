@@ -68,6 +68,7 @@
         [src]="item.image_url ?? tools.noImageAvatar"
         alt="image-card"
         class="w-full rounded-t-md h-[80%] object-cover"
+        [ngClass]="{ grayscale: !item.active }"
       />
       <div class="grid grid-cols-2 gap-2">
         <button
@@ -81,6 +82,7 @@
         <button
           class="btn btn-sm bg-cb-primary text-white rounded-md w-full"
           [disabled]="loading"
+          (click)="openParticipants(item)"
         >
           Participantes
         </button>

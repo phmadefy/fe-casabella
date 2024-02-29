@@ -10,6 +10,8 @@ import { Subscription } from 'rxjs';
 import { CardImageComponent } from 'src/app/components/card-image/card-image.component';
 import { TermsOfUseComponent } from './terms-of-use/terms-of-use.component';
 import { IncentiveGalleryComponent } from './incentive-gallery/incentive-gallery.component';
+import { ModalViewSubscribeIncentiveComponent } from 'src/app/shared/modal-view-subscribe-incentive/modal-view-subscribe-incentive.component';
+import { Dialog } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-incentives',
@@ -39,7 +41,8 @@ export class IncentivesComponent {
   constructor(
     private route: ActivatedRoute,
     private service: ApiService,
-    public tools: ToolsService
+    public tools: ToolsService,
+    private dialog: Dialog
   ) {
     service.path = 'v1/incentives';
   }
@@ -83,5 +86,17 @@ export class IncentivesComponent {
     this.tools.route.navigate([`/admin/users/edit`], {
       state: { user_id: item.id },
     });
+  }
+
+  openParticipants(item: any) {
+    const dialogRef = this.dialog.open<any>(
+      ModalViewSubscribeIncentiveComponent,
+      {
+        width: '95%',
+        maxWidth: '950px',
+        maxHeight: '90%',
+        data: { id: item.id },
+      }
+    );
   }
 }

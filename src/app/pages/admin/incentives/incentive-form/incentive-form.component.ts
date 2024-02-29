@@ -94,6 +94,8 @@ export class IncentiveFormComponent extends AbstractForms {
   }
 
   override async submit() {
+    // console.log('IncentiveFormComponent', this.dados);
+
     const formData = this.tools.generateFormData(this.dados);
 
     if (!this.dados.id) {
