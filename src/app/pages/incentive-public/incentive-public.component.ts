@@ -52,16 +52,6 @@ export class IncentivePublicComponent {
   async ngOnInit() {
     this.userCurrent = await this.tools.getCurrentUser();
 
-    if (this.userCurrent?.person?.type_person_id) {
-      this.filters.type_person_id = this.userCurrent.person.type_person_id;
-    }
-    if (this.userCurrent?.person?.segment_id) {
-      this.filters.segment_id = this.userCurrent.person.segment_id;
-    }
-    if (this.userCurrent?.person?.address?.city_id) {
-      this.filters.city_id = this.userCurrent.person.address.city_id;
-    }
-
     this.queryParamsObs = this.route.queryParams.subscribe((res: any) => {
       console.log('queryParams', res);
       if (res?.tab) {
@@ -87,6 +77,17 @@ export class IncentivePublicComponent {
   setTab(tab: string) {
     this.tab = tab;
     this.filters = { per_page: 30, page: 1 };
+
+    if (this.userCurrent?.person?.type_person_id) {
+      this.filters.type_person_id = this.userCurrent.person.type_person_id;
+    }
+    if (this.userCurrent?.person?.segment_id) {
+      this.filters.segment_id = this.userCurrent.person.segment_id;
+    }
+    if (this.userCurrent?.person?.address?.city_id) {
+      this.filters.city_id = this.userCurrent.person.address.city_id;
+    }
+
     if (tab == 'active') {
       this.filters.status = 'active';
     } else if (tab == 'inactives') {
