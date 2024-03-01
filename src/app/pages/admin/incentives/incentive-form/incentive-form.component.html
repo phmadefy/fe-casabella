@@ -180,7 +180,7 @@
           <select-default
             label="Vincular NFT"
             [isFloating]="false"
-            endpoint="v1/nft"
+            endpoint="v1/nft?sync=1"
             inputPlaceholder="Selecione um NFT"
             bindText="name"
             bindValue="id"
@@ -425,7 +425,7 @@
         (click)="deleteItem()"
         type="button"
       >
-        Excluir incentivo
+        Inativar incentivo
       </button>
 
       <button

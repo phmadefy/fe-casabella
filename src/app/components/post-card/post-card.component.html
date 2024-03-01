@@ -32,9 +32,7 @@
     </div>
   </div>
 
-  <div class="p-4">
-    {{ dados?.description }}
-  </div>
+  <div class="p-4" [innerText]="dados?.description"></div>
 
   <div class="w-full flex items-center justify-center">
     <img *ngIf="dados?.attachment_url" [src]="dados.attachment_url" alt="" />

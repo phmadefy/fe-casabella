@@ -88,7 +88,7 @@ export class BaseComponent {
     const dialogRef = this.dialog.open<any>(ModalTermAcceptComponent, {
       width: '95%',
       maxWidth: '1055px',
-      height: '90%',
+      height: '95%',
       maxHeight: '600px',
       data: this.termsPending,
       disableClose: true,

@@ -1,6 +1,10 @@
 <div class="mx-auto">
   <div class="flex justify-center py-4 max-w-[1024px]:w-28 max-w-[768px]:h-20">
-    <img class="w-40 h-28" src="../../assets/logo-floral-x-tela-de-login.svg" alt="" />
+    <img
+      class="w-40 h-28"
+      src="../../assets/logo-floral-x-tela-de-login.svg"
+      alt=""
+    />
   </div>
 
   <div class="max-w-[768px]:gap-1 max-w-[1024px]:gap-2 p-4">
@@ -61,6 +65,7 @@
           name="birthdate"
           type="tel"
           mask="00/00/0000"
+          [dropSpecialCharacters]="false"
           required
           [form]="form1"
         ></input-floating>

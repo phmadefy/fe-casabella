@@ -37,6 +37,7 @@ export class InputFloatingComponent implements ControlValueAccessor {
   @Input() label!: string;
   @Input() colorBgLabel = 'bg-cb-primary';
   @Input() mask!: string;
+  @Input() dropSpecialCharacters = true;
   @Input() form!: NgForm;
   @Input() isDisabled = false;
   @Input() isReadOnly = false;
