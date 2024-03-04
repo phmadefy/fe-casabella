@@ -7,7 +7,7 @@
   <div class="pt-[90px] pb-6 px-2 min-h-screen grid grid-cols-12 gap-3">
     <div class="col-span-12 md:col-span-3 h-full order-1 md:order-2">
       <div class="flex flex-col gap-4 md:fixed md:w-1/4">
-        <div class="md:flex flex-col gap-4" *ngIf="tools.isMobileDevice()">
+        <div class="md:flex flex-col gap-4" *ngIf="!tools.isMobileDevice()">
           <app-floral-price></app-floral-price>
 
           <app-my-floral></app-my-floral>

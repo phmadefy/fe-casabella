@@ -22,7 +22,11 @@
 </div>
 
 <div class="flex flex-col gap-3 mb-3">
-  <post-card *ngFor="let item of posts.data" [dados]="item"></post-card>
+  <post-card
+    *ngFor="let item of posts.data"
+    [dados]="item"
+    (delete)="getPosts()"
+  ></post-card>
 </div>
 
 <div class="relative" *ngIf="loadingNFT || loadingFeed">

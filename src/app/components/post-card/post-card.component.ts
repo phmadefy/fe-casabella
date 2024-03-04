@@ -93,7 +93,7 @@ export class PostCardComponent {
       if (result) {
         this.loading = true;
         this.service
-          .deleteCustom(`v1/post/${this.dados.id}`)
+          .deleteCustom(`v1/posts/${this.dados.id}`)
           .then(async () => {
             this.delete.emit(true);
           })

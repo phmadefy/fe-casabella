@@ -79,7 +79,7 @@
             [form]="form"
             size="md"
             mask="CPF_CNPJ"
-            [isReadOnly]="true"
+            [isReadOnly]="dados.id ? true : false"
           ></input-floating>
 
           <!-- <input-floating
