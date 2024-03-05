@@ -580,6 +580,13 @@ export const routes: Routes = [
             (c) => c.ProfileComponent
           ),
       },
+      {
+        path: 'pesquisa',
+        loadComponent: () =>
+          import('./pages/search-result/search-result.component').then(
+            (c) => c.SearchResultComponent
+          ),
+      },
     ],
   },
 

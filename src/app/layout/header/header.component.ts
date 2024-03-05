@@ -787,4 +787,10 @@ export class HeaderComponent {
       maxHeight: '90%',
     });
   }
+
+  openSearch(event: any) {
+    this.tools.route.navigate(['pesquisa'], {
+      state: { search: event?.target?.value },
+    });
+  }
 }

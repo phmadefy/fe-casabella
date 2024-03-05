@@ -100,6 +100,7 @@
           type="text"
           class="block w-[190px] p-2 pr-10 rounded-lg text-sm text-cb-base bg-[#344A6A] placeholder:text-cb-base focus:border-[#21ACBE] focus:text-[#21ACBE] focus:placeholder:text-[#21ACBE]"
           placeholder="O que você procura?"
+          (keyup.enter)="openSearch($event)"
         />
         <div
           class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none"
