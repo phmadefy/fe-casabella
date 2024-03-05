@@ -11,6 +11,7 @@ import { ModalIncentiveTermAcceptComponent } from 'src/app/shared/modal-incentiv
 import { NftCardComponent } from 'src/app/components/nft-card/nft-card.component';
 import { ModalNftDetailComponent } from 'src/app/shared/modal-nft-detail/modal-nft-detail.component';
 import { PostCardComponent } from 'src/app/components/post-card/post-card.component';
+import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
 
 @Component({
   selector: 'app-search-result',
@@ -23,6 +24,7 @@ import { PostCardComponent } from 'src/app/components/post-card/post-card.compon
     CardImageComponent,
     NftCardComponent,
     PostCardComponent,
+    SpinnerComponent,
   ],
   providers: [ApiService],
   templateUrl: './search-result.component.html',
