@@ -53,6 +53,9 @@
             <span *ngIf="item?.cashier_form">
               {{ item.cashier_form.name }}
             </span>
+            <span *ngIf="item?.user_from">
+              {{ item.user_from.name }}
+            </span>
           </td>
           <td>
             <span *ngIf="item.type == 'floral'">{{ item.floral_id }}</span>
