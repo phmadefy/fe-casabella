@@ -32,10 +32,10 @@
         <tr>
           <th>Data</th>
           <th>Mensagem do log</th>
+          <th>Tipo</th>
           <th>Usuário Origem</th>
-          <th>CPF Origem</th>
           <th>Transação</th>
-          <th>Objeto</th>
+          <!-- <th>Objeto</th> -->
         </tr>
       </thead>
       <tbody>
@@ -48,11 +48,18 @@
           (dblclick)="edit(item)"
         >
           <td>{{ item.created_at | date : "dd/MM/yyyy HH:mm" }}</td>
-          <td>{{ item.action }}</td>
-          <td>Fulano de Tal</td>
-          <td>2351452696</td>
-          <td>dflkhgjlkdghlakuhgkfjgh</td>
-          <td>NFTdlkfghjfdlksdgkjdf</td>
+          <td>{{ item.observation }}</td>
+          <td>{{ item.type }}</td>
+          <td>
+            <span *ngIf="item?.cashier_form">
+              {{ item.cashier_form.name }}
+            </span>
+          </td>
+          <td>
+            <span *ngIf="item.type == 'floral'">{{ item.floral_id }}</span>
+            <span *ngIf="item.type == 'nft'">{{ item.id }}</span>
+          </td>
+          <!-- <td>NFTdlkfghjfdlksdgkjdf</td> -->
         </tr>
       </tbody>
     </table>
