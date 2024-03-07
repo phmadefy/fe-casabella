@@ -66,4 +66,18 @@ export class AuditComponent {
     this.filters = { ...this.filters, page, per_page };
     this.getList();
   }
+
+  getType(item: any) {
+    if (item.type == 'floral') {
+      if (item.cashier_to && !item.cashier_from && !item.user_from) {
+        return 'Depósito de Floral';
+      } else {
+        return 'transferência de Floral';
+      }
+    } else if (item.type == 'nft') {
+      return 'Transferência de NFT';
+    }
+
+    return '';
+  }
 }

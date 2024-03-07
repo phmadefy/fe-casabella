@@ -16,7 +16,23 @@
       </li>
     </ul>
 
-    <div class="p-5 grid grid-cols-2 border-t border-cb-secondary">
+    <div class="p-5 grid grid-cols-2 gap-2 border-t border-cb-secondary">
+      <div class="flex items-center gap-2">
+        <input
+          type="date"
+          class="input-cb"
+          [(ngModel)]="filters.startDate"
+          (ngModelChange)="getList()"
+        />
+
+        <input
+          type="date"
+          class="input-cb"
+          [(ngModel)]="filters.endDate"
+          (ngModelChange)="getList()"
+        />
+      </div>
+
       <input-search
         [(ngModel)]="filters.search"
         (search)="getList()"
@@ -31,11 +47,12 @@
       <thead>
         <tr>
           <th>Data</th>
-          <th>Mensagem do log</th>
           <th>Tipo</th>
-          <th>Usuário Origem</th>
-          <th>Transação</th>
-          <!-- <th>Objeto</th> -->
+          <th>Usuário</th>
+          <th>Origem</th>
+          <th>Destino</th>
+          <th>Autoriazado por</th>
+          <th>ID</th>
         </tr>
       </thead>
       <tbody>
@@ -47,21 +64,30 @@
           }"
         >
           <td>{{ item.created_at | date : "dd/MM/yyyy HH:mm" }}</td>
-          <td>{{ item.observation }}</td>
-          <td>{{ item.type }}</td>
+          <td>{{ getType(item) }}</td>
+          <td>{{ item?.user_action?.name }}</td>
           <td>
             <span *ngIf="item?.cashier_from">
-              {{ item.cashier_from.name }}
+              Caixa: {{ item.cashier_from.name }}
             </span>
             <span *ngIf="item?.user_from">
-              {{ item.user_from.name }}
+              Usuário: {{ item.user_from.name }}
             </span>
           </td>
           <td>
-            <span *ngIf="item.type == 'floral'">{{ item.floral_id }}</span>
-            <span *ngIf="item.type == 'nft'">{{ item.id }}</span>
+            <span *ngIf="item?.cashier_to">
+              Caixa: {{ item.cashier_to.name }}
+            </span>
+            <span *ngIf="item?.user_to">
+              Usuário: {{ item.user_to.name }}
+            </span>
           </td>
-          <!-- <td>NFTdlkfghjfdlksdgkjdf</td> -->
+          <td>
+            {{ item?.authorized?.name ?? item?.authorized_by?.name }}
+          </td>
+          <td>
+            {{ item.id }}
+          </td>
         </tr>
       </tbody>
     </table>
