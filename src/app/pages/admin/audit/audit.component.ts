@@ -8,6 +8,9 @@ import { InputSearchComponent } from 'src/app/components/input-search/input-sear
 import { PaginationComponent } from 'src/app/components/pagination/pagination.component';
 import { ApiService } from 'src/app/services/api.service';
 import { ToolsService } from 'src/app/services/tools.service';
+import { Dialog } from '@angular/cdk/dialog';
+import { ModalProofTransactionComponent } from 'src/app/shared/modal-proof-transaction/modal-proof-transaction.component';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-audit',
@@ -28,11 +31,16 @@ import { ToolsService } from 'src/app/services/tools.service';
 export class AuditComponent {
   dataSource: any = { data: [] };
   loading = false;
+  loadingExport = false;
 
   filters: any = { per_page: 50, page: 1 };
 
   tab: string = 'actives';
-  constructor(private service: ApiService, public tools: ToolsService) {
+  constructor(
+    private service: ApiService,
+    public tools: ToolsService,
+    private dialog: Dialog
+  ) {
     service.path = 'v1/admin/audit';
   }
 
@@ -43,7 +51,7 @@ export class AuditComponent {
   getList() {
     this.loading = true;
     this.service
-      .listing(this.filters)
+      .listing({ ...this.filters, web: true })
       .then((res) => {
         this.dataSource = res;
       })
@@ -79,5 +87,52 @@ export class AuditComponent {
     }
 
     return '';
+  }
+
+  openProof(item: any) {
+    let data: any = {};
+    if (item.type == 'floral') {
+      data = {
+        dados: { ...item.floral, transaction: item },
+        type: 'floral',
+      };
+    } else if (item.type == 'nft') {
+      data = {
+        dados: { ...item.nft, transaction: item },
+        type: 'floral',
+      };
+    }
+
+    const dialogRef = this.dialog.open<any>(ModalProofTransactionComponent, {
+      width: '95%',
+      maxWidth: '1055px',
+      maxHeight: '600px',
+      data,
+    });
+  }
+
+  export() {
+    this.loadingExport = true;
+    this.service
+      .downloadBlobJson(this.service.baseUrl + '/v1/admin/audit', {
+        ...this.filters,
+      })
+      .subscribe(
+        (data: any) => {
+          const blob = new Blob([data]);
+
+          var downloadURL = window.URL.createObjectURL(blob);
+          var link = document.createElement('a');
+          link.href = downloadURL;
+          const now = moment().format('DD-MM-YYYY_hh-mm');
+          link.download = `auditoria-${now}.csv`;
+          link.click();
+          link.remove();
+          this.loadingExport = false;
+        },
+        () => {
+          this.loadingExport = false;
+        }
+      );
   }
 }

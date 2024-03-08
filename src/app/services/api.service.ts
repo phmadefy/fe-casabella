@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable, lastValueFrom } from 'rxjs';
 import { PDFSource } from 'ng2-pdf-viewer';
@@ -77,9 +77,24 @@ export class ApiService {
     });
   }
 
-  downloadBlob(route: string) {
+  downloadBlobJson(route: string, queryParams: any = {}) {
+    const params = new HttpParams();
+    if (Object.keys(queryParams).length > 0) {
+      for (const key of Object.keys(queryParams)) {
+        params.set(key, queryParams[key]);
+      }
+    }
+
+    return this.http.get(`${route}`, {
+      params,
+      responseType: 'blob',
+    });
+  }
+
+  downloadBlob(route: string, queryParams: any = {}) {
     const httpOptions: any = {
       responseType: 'blob',
+      queryParams,
     };
 
     return this.http.get(`${route}`, httpOptions);
