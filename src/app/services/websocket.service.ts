@@ -74,11 +74,8 @@ export class WebsocketService {
     });
   }
 
-  join() {
-    return this.socket.emit('join', {
-      token: 1,
-      type: 'support',
-    });
+  join(data: any) {
+    return this.socket.emit('join', data);
   }
 
   chats() {
@@ -94,6 +91,29 @@ export class WebsocketService {
       this.socket.on('not-read', (data: string) => {
         observer.next(data);
       });
+    });
+  }
+
+  getHistoryMessages(sender: any, receiver: any) {
+    return this.socket.emit('history-messages', {
+      sender,
+      receiver,
+    });
+  }
+
+  historyMessages() {
+    return new Observable((observer) => {
+      this.socket.on('send-message', (data: string) => {
+        observer.next(data);
+      });
+    });
+  }
+
+  sendMessage(sender: any, receiver: any, message: string) {
+    return this.socket.emit('chat-message', {
+      sender,
+      receiver,
+      message,
     });
   }
 }

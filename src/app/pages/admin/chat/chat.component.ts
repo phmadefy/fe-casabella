@@ -7,12 +7,14 @@ import { ToolsService } from 'src/app/services/tools.service';
 import { WebsocketService } from 'src/app/services/websocket.service';
 import { Subscription } from 'rxjs';
 import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-chat',
   standalone: true,
   imports: [
     CommonModule,
+    FormsModule,
     CardComponent,
     InputFloatingComponent,
     SpinnerComponent,
@@ -28,11 +30,13 @@ export class ChatComponent {
   loading = false;
 
   userCurrent: any = {};
+  userConnected: any = {};
 
   chatObserver!: Subscription;
   haveToSyncObserver!: Subscription;
   notReadObserver!: Subscription;
   userUpdateObserver!: Subscription;
+  historyMessagesObserver!: Subscription;
 
   allUsers: any[] = [];
 
@@ -53,17 +57,16 @@ export class ChatComponent {
     await this.getAllUsers();
 
     //conecta o usuario
-    const userConnected = this.allUsers.find(
+    this.userConnected = this.allUsers.find(
       (u: any) => u.token == this.userCurrent.id
     );
-    if (userConnected) {
+    if (this.userConnected) {
       this.websocketService.connected({
-        ...userConnected,
+        ...this.userConnected,
         status: 'online',
       });
+      this.getChats();
     }
-
-    this.getChats();
   }
 
   startObservers() {
@@ -92,6 +95,13 @@ export class ChatComponent {
       .subscribe((userUpdate) => {
         console.log('userUpdate', userUpdate);
       });
+
+    this.historyMessagesObserver = this.websocketService
+      .historyMessages()
+      .subscribe((historyMessages) => {
+        console.log('historyMessages', historyMessages);
+        this.currentChat.messages = historyMessages;
+      });
   }
 
   async getAllUsers() {
@@ -118,6 +128,36 @@ export class ChatComponent {
   }
 
   getChats() {
-    this.websocketService.join();
+    this.websocketService.join({
+      token: this.userConnected.token,
+      type: this.userConnected.type,
+    });
+  }
+
+  setCurrentChat(chat: any) {
+    this.currentChat = { ...chat, messages: [] };
+    this.getHistoryChat();
+  }
+
+  getHistoryChat() {
+    this.websocketService.getHistoryMessages(
+      this.userConnected.token,
+      this.currentChat.token
+    );
+  }
+
+  sendMessage(form: NgForm) {
+    if (!form.valid) {
+      return;
+    }
+
+    this.websocketService.sendMessage(
+      this.userConnected.token,
+      this.currentChat.token,
+      form.controls['message'].value
+    );
+
+    form.resetForm();
+    this.getHistoryChat();
   }
 }

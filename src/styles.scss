@@ -494,3 +494,29 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .icon-settings {
   background-image: url("/assets/icons/parametros.svg");
 }
+
+.chat-msg-lte {
+  @apply flex justify-start;
+  .content {
+    @apply text-start w-4/5;
+  }
+  .message {
+    @apply p-3 rounded-t-xl rounded-e-xl bg-cb-secondary;
+  }
+  .date {
+    @apply text-start text-xs;
+  }
+}
+
+.chat-msg-rte {
+  @apply flex justify-end;
+  .content {
+    @apply text-end w-4/5;
+  }
+  .message {
+    @apply p-3 rounded-t-xl rounded-s-xl bg-cb-secondary;
+  }
+  .date {
+    @apply text-end text-xs;
+  }
+}

@@ -350,4 +350,8 @@ export class ToolsService {
   parseListArray(array: any[], property: string, separator: string = ', ') {
     return array.map((a: any) => a[property]).join(separator);
   }
+
+  onEnterPress(event: any) {
+    event.preventDefault(); // Isso impede o comportamento padrão de pressionar Enter
+  }
 }

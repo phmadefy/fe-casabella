@@ -11,6 +11,8 @@
         <div
           class="flex items-center justify-between px-4 py-6 cursor-pointer hover:bg-cb-info"
           *ngFor="let item of chats"
+          [ngClass]="{ 'bg-cb-info': currentChat.token == item.token }"
+          (click)="setCurrentChat(item)"
         >
           <div class="flex items-center">
             <img
@@ -18,7 +20,12 @@
               alt="avatar"
               class="h-10 w-10 rounded-full mr-3"
             />
-            <span class="font-semibold">{{ item.name }}</span>
+            <div>
+              <span class="font-semibold">{{ item.name }}</span>
+              <p class="text-sm y-2" *ngIf="item?.last_message_text">
+                {{ item.last_message_text }}
+              </p>
+            </div>
           </div>
           <i
             class="fa-solid fa-circle flex"
@@ -36,6 +43,61 @@
       <div *ngIf="!currentChat?.token" class="p-4 text-center">
         Selecione uma conversa.
       </div>
+      <ng-container *ngIf="currentChat?.token">
+        <div class="flex items-center border-b border-cb-secondary mb-4 p-4">
+          <img
+            [src]="currentChat.avatar ?? tools.noImageAvatar"
+            alt="avatar"
+            class="h-10 w-10 rounded-full mr-3"
+          />
+          <div>
+            <span class="font-semibold">{{ currentChat.name }}</span>
+          </div>
+        </div>
+        <div class="p-4">
+          <div
+            class="mb-4"
+            [ngClass]="{
+              'chat-msg-lte': item.sender != userConnected.token,
+              'chat-msg-rte': item.sender == userConnected.token
+            }"
+            *ngFor="let item of currentChat.messages"
+          >
+            <div class="content">
+              <div class="message">
+                {{ item.message }}
+              </div>
+              <p class="date">
+                {{ item.createdAt | date : "medium" }}
+              </p>
+            </div>
+          </div>
+
+          <!-- messages -->
+        </div>
+        <form
+          class="w-full relative"
+          #formComment="ngForm"
+          (keydown.enter)="tools.onEnterPress($event)"
+        >
+          <textarea
+            type="text"
+            class="input-cb !pr-20"
+            name="message"
+            ngModel
+            placeholder="Deixe o seu comentário"
+            required
+            [disabled]="loading"
+          ></textarea>
+          <button
+            class="absolute inset-y-0 right-3 flex items-center pr-3 text-gradient-cb"
+            (click)="sendMessage(formComment)"
+            [disabled]="loading"
+          >
+            <i class="fa-solid fa-paper-plane mr-2"></i>
+          </button>
+        </form>
+      </ng-container>
     </card>
   </div>
 </div>
