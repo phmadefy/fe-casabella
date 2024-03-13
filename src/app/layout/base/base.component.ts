@@ -12,6 +12,7 @@ import { Dialog } from '@angular/cdk/dialog';
 import { ModalTermAcceptComponent } from 'src/app/shared/modal-term-accept/modal-term-accept.component';
 import { ModalSlideComponent } from 'src/app/shared/modal-slide/modal-slide.component';
 import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
+import { ChatPopupComponent } from 'src/app/components/chat-popup/chat-popup.component';
 
 @Component({
   selector: 'app-base',
@@ -24,6 +25,7 @@ import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
     MyFloralComponent,
     AdsComponent,
     SpinnerComponent,
+    ChatPopupComponent,
   ],
   providers: [ApiService],
   templateUrl: './base.component.html',

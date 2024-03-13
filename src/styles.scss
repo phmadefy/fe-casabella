@@ -285,6 +285,10 @@ select:-webkit-autofill:focus {
   }
 }
 
+.input-base {
+  @apply block px-2 pb-2 pt-2 w-full text-sm border border-cb-secondary appearance-none focus:outline-none focus:ring-0 focus:border-cb-info autofill:shadow-cb-primary;
+}
+
 .input-cb {
   @apply block px-2 pb-2 pt-2 w-full text-sm text-cb-base bg-cb-primary rounded-md border border-cb-secondary appearance-none focus:outline-none focus:ring-0 focus:border-cb-info autofill:shadow-cb-primary;
 }
@@ -501,7 +505,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     @apply text-start w-4/5;
   }
   .message {
-    @apply p-3 rounded-t-xl rounded-e-xl bg-cb-secondary;
+    @apply p-3 rounded-t-xl rounded-e-xl bg-cb-info text-cb-base;
   }
   .date {
     @apply text-start text-xs;
@@ -514,9 +518,22 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     @apply text-end w-4/5;
   }
   .message {
-    @apply p-3 rounded-t-xl rounded-s-xl bg-cb-secondary;
+    @apply p-3 rounded-t-xl rounded-s-xl bg-cb-info-dark text-cb-base;
   }
   .date {
     @apply text-end text-xs;
   }
+}
+
+.chat-popup {
+  width: 380px;
+  // max-height: 500px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #fff;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  z-index: 9999;
 }

@@ -1,0 +1,110 @@
+<button
+  (click)="toggleChat()"
+  class="fixed bottom-1 right-1 bg-cb-info-dark hover:bg-cb-info text-white font-bold px-4 py-2 texy-sm rounded-full flex items-center gap-2"
+>
+  <i class="icone icon-chat"></i> Suporte
+</button>
+
+<div class="chat-popup" [ngClass]="{ block: showChat, hidden: !showChat }">
+  <ng-container *ngIf="!currentChat?.token">
+    <div
+      class="flex items-center justify-between py-3 px-4 bg-cb-info text-white"
+    >
+      <h2 class="text-lg font-semibold">Suporte</h2>
+      <div>
+        <button (click)="toggleChat()">&times;</button>
+      </div>
+    </div>
+    <div
+      class="grid grid-cols-1 divide-y divide-gray-200 max-h-[500px] overflow-y-auto"
+    >
+      <div
+        class="flex items-center justify-between p-3 cursor-pointer hover:bg-cb-info"
+        *ngFor="let item of chats"
+        (click)="setCurrentChat(item)"
+      >
+        <div class="flex items-center">
+          <img
+            [src]="item.avatar ?? tools.noImageAvatar"
+            alt="avatar"
+            class="h-10 w-10 rounded-full mr-3"
+          />
+          <div>
+            <span class="font-semibold">{{ item.name }}</span>
+            <p class="text-sm y-2" *ngIf="item?.last_message_text">
+              {{ item.last_message_text }}
+            </p>
+          </div>
+        </div>
+        <i
+          class="fa-solid fa-circle flex"
+          [ngClass]="{
+            'text-cb-success': item?.status == 'online',
+            'text-cb-red': item?.status != 'online'
+          }"
+        ></i>
+      </div>
+
+      <div *ngIf="chats.length <= 0" class="text-center text-sm">
+        Ninguém disponível no suporte.
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="currentChat?.token">
+    <div
+      class="flex items-center justify-between py-3 px-4 bg-cb-info text-white"
+    >
+      <div>
+        <button (click)="currentChat = {}">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+      </div>
+      <h2 class="font-semibold">{{ currentChat.name }}</h2>
+    </div>
+    <div class="p-4">
+      <div
+        class="mb-4"
+        [ngClass]="{
+          'chat-msg-lte': item.sender != userConnected.token,
+          'chat-msg-rte': item.sender == userConnected.token
+        }"
+        *ngFor="let item of currentChat.messages"
+      >
+        <div class="content">
+          <div class="message">
+            {{ item.message }}
+          </div>
+          <p class="date">
+            {{ item.createdAt | date : "medium" }}
+          </p>
+        </div>
+      </div>
+
+      <div class="mb-4 text-center" *ngIf="currentChat?.messages?.length <= 0">
+        Sem mensagens
+      </div>
+
+      <!-- messages -->
+    </div>
+    <form
+      class="w-full relative"
+      #formComment="ngForm"
+      (keydown.enter)="tools.onEnterPress($event)"
+    >
+      <textarea
+        type="text"
+        class="input-base !pr-20"
+        name="message"
+        ngModel
+        placeholder="Deixe o seu comentário"
+        required
+      ></textarea>
+      <button
+        class="absolute inset-y-0 right-3 flex items-center pr-3 text-gradient-cb"
+        (click)="sendMessage(formComment)"
+      >
+        <i class="fa-solid fa-paper-plane mr-2"></i>
+      </button>
+    </form>
+  </ng-container>
+</div>
