@@ -389,7 +389,7 @@ export class HeaderComponent {
         {
           id: 'admin-chat',
           title: 'Chat',
-          route: 'admin/chat',
+          route: '/chat',
           icon: 'icone icon-chat',
           permissions: 'chat',
         },

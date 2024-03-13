@@ -1,0 +1,41 @@
+<div class="relative" *ngIf="loading">
+  <div class="text-center w-full">
+    <spinner [size]="8" color="cb"></spinner>
+  </div>
+</div>
+
+<div class="grid grid-cols-12 gap-3" *ngIf="!loading">
+  <div class="col-span-5">
+    <card>
+      <div class="grid grid-cols-1 divide-y divide-cb-secondary">
+        <div
+          class="flex items-center justify-between px-4 py-6 cursor-pointer hover:bg-cb-info"
+          *ngFor="let item of chats"
+        >
+          <div class="flex items-center">
+            <img
+              [src]="item.avatar ?? tools.noImageAvatar"
+              alt="avatar"
+              class="h-10 w-10 rounded-full mr-3"
+            />
+            <span class="font-semibold">{{ item.name }}</span>
+          </div>
+          <i
+            class="fa-solid fa-circle flex"
+            [ngClass]="{
+              'text-cb-success': item?.status == 'online',
+              'text-cb-red': item?.status != 'online'
+            }"
+          ></i>
+        </div>
+      </div>
+    </card>
+  </div>
+  <div class="col-span-7">
+    <card>
+      <div *ngIf="!currentChat?.token" class="p-4 text-center">
+        Selecione uma conversa.
+      </div>
+    </card>
+  </div>
+</div>

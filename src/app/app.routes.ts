@@ -427,6 +427,13 @@ export const routes: Routes = [
             ],
           },
           {
+            path: 'chat',
+            loadComponent: () =>
+              import('./pages/admin/chat/chat.component').then(
+                (c) => c.ChatComponent
+              ),
+          },
+          {
             path: 'contact-us',
             children: [
               {
