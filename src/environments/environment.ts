@@ -8,7 +8,7 @@ export const environment = {
   api_key: 'fOjACoM5B8wOoUFjFuLsR5AC2KiGyOYpxi2DpdV4',
   client_id: '9b1dd04c-c6b8-4903-aa30-f28ab150e70d',
 
-  url_websocket: 'https://38.242.218.253:3010',
+  url_websocket: 'https://bechat.madefy.com.br',
 
   token: 'casabellaToken',
 };
