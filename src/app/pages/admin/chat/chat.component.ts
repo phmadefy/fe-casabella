@@ -55,18 +55,6 @@ export class ChatComponent {
     // this.getChats();
 
     await this.getAllUsers();
-
-    //conecta o usuario
-    this.userConnected = this.allUsers.find(
-      (u: any) => u.token == this.userCurrent.id
-    );
-    if (this.userConnected) {
-      this.websocketService.connected({
-        ...this.userConnected,
-        status: 'online',
-      });
-      this.getChats();
-    }
   }
 
   startObservers() {
@@ -92,8 +80,14 @@ export class ChatComponent {
 
     this.userUpdateObserver = this.websocketService
       .userUpdate()
-      .subscribe((userUpdate) => {
+      .subscribe((userUpdate: any) => {
         console.log('userUpdate', userUpdate);
+        const findIndex = this.chats.findIndex(
+          (c: any) => c.token == userUpdate.token
+        );
+        if (findIndex >= 0) {
+          this.chats[findIndex] = userUpdate;
+        }
       });
 
     this.historyMessagesObserver = this.websocketService
@@ -123,6 +117,18 @@ export class ChatComponent {
           totalUsersInApp: res.length,
           // type: 'support',
         });
+
+        //conecta o usuario
+        this.userConnected = this.allUsers.find(
+          (u: any) => u.token == this.userCurrent.id
+        );
+        if (this.userConnected) {
+          this.websocketService.connected({
+            ...this.userConnected,
+            status: 'online',
+          });
+          this.getChats();
+        }
       })
       .finally(() => (this.loading = false));
   }

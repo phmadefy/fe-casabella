@@ -38,6 +38,8 @@ export class BaseComponent {
 
   termsPending: any[] = [];
 
+  hiddenChat = true;
+
   overlay = true;
   constructor(
     private service: ApiService,
@@ -49,8 +51,17 @@ export class BaseComponent {
     this.userCurrent = await this.tools
       .getCurrentUser()
       .finally(() => (this.overlay = false));
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
+
+    if (this.userCurrent?.group) {
+      for (const group of this.userCurrent.group) {
+        const rule = group?.rules?.find((r: any) => r.name == 'chat');
+        if (!rule) {
+          this.hiddenChat = false;
+          break;
+        }
+      }
+    }
+
     await this.getTerms();
     setTimeout(() => {
       initFlowbite();

@@ -2,17 +2,21 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ToolsService } from 'src/app/services/tools.service';
 import { WebsocketService } from 'src/app/services/websocket.service';
-import { Subscription } from 'rxjs';
+import { Subscription, find } from 'rxjs';
 import { FormsModule, NgForm } from '@angular/forms';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-chat-popup',
   standalone: true,
   imports: [CommonModule, FormsModule],
+  providers: [ApiService],
   templateUrl: './chat-popup.component.html',
   styleUrls: ['./chat-popup.component.scss'],
 })
 export class ChatPopupComponent {
+  loading = false;
+
   showChat: boolean = false;
   userCurrent: any = {};
   userConnected: any = {};
@@ -21,12 +25,15 @@ export class ChatPopupComponent {
   currentChat: any = {};
 
   chatObserver!: Subscription;
+  haveToSyncObserver!: Subscription;
   notReadObserver!: Subscription;
   userUpdateObserver!: Subscription;
   historyMessagesObserver!: Subscription;
 
+  allUsers: any[] = [];
+
   constructor(
-    // public service: ApiService,
+    public service: ApiService,
     public tools: ToolsService,
     private websocketService: WebsocketService // private dialog: Dialog, // private messageService: MessageService
   ) {
@@ -34,24 +41,51 @@ export class ChatPopupComponent {
   }
 
   async ngOnInit() {
-    this.userCurrent = await this.tools.getCurrentUser();
+    this.userCurrent = await this.tools
+      .getCurrentUser()
+      .then(async (user: any) => {
+        this.userConnected = {
+          name: user.name,
+          token: user.id,
+          type: 'user',
+          avatar: user.avatar_url,
+        };
 
-    this.userConnected = {
-      name: this.userCurrent.name,
-      token: this.userCurrent.id,
-      type: 'user',
-      avatar: this.userCurrent.avatar_url,
-    };
+        this.websocketService.init(user);
+        this.startObservers();
 
-    this.websocketService.init(this.userCurrent);
-    this.startObservers();
+        await this.getAllUsers();
 
-    this.websocketService.connected({
-      ...this.userConnected,
-      status: 'online',
-    });
+        this.websocketService.connected({
+          ...this.userConnected,
+          status: 'online',
+        });
 
-    this.getChats();
+        this.getChats();
+      });
+  }
+
+  async getAllUsers() {
+    this.loading = true;
+    await this.service
+      .getCustom('v1/admin/users-for-chats')
+      .then((res: any[]) => {
+        console.log('getAllUsers', res);
+        this.allUsers = res.map((u: any) => {
+          return {
+            name: u.name,
+            token: u.id,
+            type: u?.type == 'support' ? u.type : 'user',
+            avatar: u.avatar_url,
+          };
+        });
+
+        this.websocketService.checkUsers({
+          totalUsersInApp: res.length,
+          // type: 'support',
+        });
+      })
+      .finally(() => (this.loading = false));
   }
 
   getChats() {
@@ -67,7 +101,13 @@ export class ChatPopupComponent {
       .subscribe((chats: any) => {
         console.log('chats', chats);
         this.chats = chats;
-        // this.chats = chats.filter((c: any) => c.status == 'online');
+      });
+
+    this.haveToSyncObserver = this.websocketService
+      .haveToSync()
+      .subscribe((haveToSync) => {
+        console.log('haveToSync', haveToSync);
+        this.websocketService.syncUsers(this.allUsers);
       });
 
     this.notReadObserver = this.websocketService
@@ -78,8 +118,14 @@ export class ChatPopupComponent {
 
     this.userUpdateObserver = this.websocketService
       .userUpdate()
-      .subscribe((userUpdate) => {
+      .subscribe((userUpdate: any) => {
         console.log('userUpdate', userUpdate);
+        const findIndex = this.chats.findIndex(
+          (c: any) => c.token == userUpdate.token
+        );
+        if (findIndex >= 0) {
+          this.chats[findIndex] = userUpdate;
+        }
       });
 
     this.historyMessagesObserver = this.websocketService
