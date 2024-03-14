@@ -25,6 +25,8 @@ import { FormsModule, NgForm } from '@angular/forms';
 })
 export class ChatComponent {
   chats: any[] = [];
+  chatsNotRead: any[] = [];
+
   currentChat: any = {};
 
   loading = false;
@@ -76,6 +78,7 @@ export class ChatComponent {
       .notRead()
       .subscribe((notRead) => {
         console.log('notRead', notRead);
+        this.chatsNotRead.concat(notRead);
       });
 
     this.userUpdateObserver = this.websocketService
@@ -86,7 +89,14 @@ export class ChatComponent {
           (c: any) => c.token == userUpdate.token
         );
         if (findIndex >= 0) {
-          this.chats[findIndex] = userUpdate;
+          const chat = this.chats[findIndex];
+          const updateData = {
+            ...chat,
+            status: userUpdate.status,
+            avatar: userUpdate.avatar,
+          };
+
+          this.chats[findIndex] = updateData;
         }
       });
 
@@ -167,5 +177,17 @@ export class ChatComponent {
 
     form.resetForm();
     this.getHistoryChat();
+  }
+
+  getLastMassage(item: any) {
+    const msgs: any[] = this.chatsNotRead.filter(
+      (c: any) => c.receiver == this.userConnected.token
+    );
+
+    if (msgs.length > 0) {
+      return msgs[msgs.length - 1].message;
+    }
+
+    return item.last_message_text;
   }
 }

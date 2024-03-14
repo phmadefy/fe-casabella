@@ -22,8 +22,8 @@
             />
             <div>
               <span class="font-semibold">{{ item.name }}</span>
-              <p class="text-sm y-2" *ngIf="item?.last_message_text">
-                {{ item.last_message_text }}
+              <p class="text-sm">
+                {{ getLastMassage(item) }}
               </p>
             </div>
           </div>
@@ -34,6 +34,7 @@
               'text-cb-red': item?.status != 'online'
             }"
           ></i>
+          <span></span>
         </div>
       </div>
     </card>

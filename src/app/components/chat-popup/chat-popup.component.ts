@@ -22,6 +22,8 @@ export class ChatPopupComponent {
   userConnected: any = {};
 
   chats: any[] = [];
+  chatsNotRead: any[] = [];
+
   currentChat: any = {};
 
   chatObserver!: Subscription;
@@ -49,6 +51,7 @@ export class ChatPopupComponent {
           token: user.id,
           type: 'user',
           avatar: user.avatar_url,
+          status: 'online',
         };
 
         this.websocketService.init(user);
@@ -56,10 +59,9 @@ export class ChatPopupComponent {
 
         await this.getAllUsers();
 
-        this.websocketService.connected({
-          ...this.userConnected,
-          status: 'online',
-        });
+        console.log('this.userConnected', this.userConnected);
+
+        this.websocketService.connected(this.userConnected);
 
         this.getChats();
       });
@@ -115,6 +117,7 @@ export class ChatPopupComponent {
       .notRead()
       .subscribe((notRead) => {
         console.log('notRead', notRead);
+        this.chatsNotRead.concat(notRead);
       });
 
     this.userUpdateObserver = this.websocketService
@@ -166,5 +169,17 @@ export class ChatPopupComponent {
 
   toggleChat() {
     this.showChat = !this.showChat;
+  }
+
+  getLastMassage(item: any) {
+    const msgs: any[] = this.chatsNotRead.filter(
+      (c: any) => c.receiver == this.userConnected.token
+    );
+
+    if (msgs.length > 0) {
+      return msgs[msgs.length - 1].message;
+    }
+
+    return item.last_message_text;
   }
 }
