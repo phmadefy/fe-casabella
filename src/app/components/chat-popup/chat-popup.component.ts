@@ -81,8 +81,9 @@ export class ChatPopupComponent {
         });
 
         this.websocketService.checkUsers({
-          totalUsersInApp: res.length,
-          // type: 'support',
+          totalUsersInApp: this.allUsers.filter((u: any) => u?.type == 'user')
+            .length,
+          type: 'user',
         });
       })
       .finally(() => (this.loading = false));

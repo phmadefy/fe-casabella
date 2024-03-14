@@ -114,8 +114,10 @@ export class ChatComponent {
         });
 
         this.websocketService.checkUsers({
-          totalUsersInApp: res.length,
-          // type: 'support',
+          totalUsersInApp: this.allUsers.filter(
+            (u: any) => u?.type == 'support'
+          ).length,
+          type: 'support',
         });
 
         //conecta o usuario
