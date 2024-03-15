@@ -38,7 +38,7 @@ export class BaseComponent {
 
   termsPending: any[] = [];
 
-  hiddenChat = true;
+  hiddenChat: any;
 
   overlay = true;
   constructor(
@@ -55,10 +55,14 @@ export class BaseComponent {
     if (this.userCurrent?.group) {
       for (const group of this.userCurrent.group) {
         const rule = group?.rules?.find((r: any) => r.name == 'chat');
-        if (!rule) {
-          this.hiddenChat = false;
+        if (rule) {
+          this.hiddenChat = true;
           break;
         }
+      }
+
+      if (this.hiddenChat == undefined) {
+        this.hiddenChat = false;
       }
     }
 

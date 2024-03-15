@@ -25,6 +25,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 })
 export class ChatComponent {
   chats: any[] = [];
+  allChats: any[] = [];
   chatsNotRead: any[] = [];
 
   currentChat: any = {};
@@ -108,14 +109,17 @@ export class ChatComponent {
       .chats()
       .subscribe((chats: any) => {
         console.log('chats', chats);
-        this.chats = chats;
+        this.allChats = chats;
+        this.chats = chats.filter((c: any) => c.last_message_text);
       });
 
     this.haveToSyncObserver = this.websocketService
       .haveToSync()
       .subscribe((haveToSync) => {
         console.log('haveToSync', haveToSync);
-        this.websocketService.syncUsers(this.allUsers);
+        this.websocketService.syncUsers(
+          this.allUsers.filter((u: any) => u?.type == 'support')
+        );
       });
 
     this.notReadObserver = this.websocketService

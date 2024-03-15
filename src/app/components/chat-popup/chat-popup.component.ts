@@ -107,14 +107,19 @@ export class ChatPopupComponent {
       .chats()
       .subscribe((chats: any) => {
         console.log('chats', chats);
-        this.chats = chats;
+        // this.chats = chats;
+        this.chats = chats.filter(
+          (c: any) => c.last_message_text || c.status == 'online'
+        );
       });
 
     this.haveToSyncObserver = this.websocketService
       .haveToSync()
       .subscribe((haveToSync) => {
         console.log('haveToSync', haveToSync);
-        this.websocketService.syncUsers(this.allUsers);
+        this.websocketService.syncUsers(
+          this.allUsers.filter((u: any) => u?.type == 'user')
+        );
       });
 
     this.notReadObserver = this.websocketService

@@ -46,11 +46,8 @@
           </div>
         </div>
         <i
-          class="fa-solid fa-circle flex"
-          [ngClass]="{
-            'text-cb-success': item?.status == 'online',
-            'text-cb-red': item?.status != 'online'
-          }"
+          class="fa-solid fa-circle flex text-cb-success"
+          *ngIf="item?.status == 'online'"
         ></i>
       </div>
 
@@ -95,11 +92,7 @@
 
       <!-- messages -->
     </div>
-    <form
-      class="w-full relative"
-      #formComment="ngForm"
-      (keydown.enter)="tools.onEnterPress($event)"
-    >
+    <form class="w-full relative" #formComment="ngForm">
       <textarea
         type="text"
         class="input-base !pr-20"
