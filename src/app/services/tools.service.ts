@@ -9,12 +9,13 @@ import { lastValueFrom, skipWhile, take } from 'rxjs';
 import { currentUser } from '../core/selectors/auth.selector';
 import { environment } from 'src/environments/environment';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-
+import { Howl } from 'howler';
 @Injectable({
   providedIn: 'root',
 })
 export class ToolsService {
   noImageAvatar = 'assets/sem-foto.png';
+  soundNotification = 'assets/sounds/notify.mp3';
   baseUrl = environment.url;
   constructor(
     private store: Store<AppState>,
@@ -353,5 +354,13 @@ export class ToolsService {
 
   onEnterPress(event: any) {
     event.preventDefault(); // Isso impede o comportamento padrão de pressionar Enter
+  }
+
+  playNotification() {
+    const sound = new Howl({
+      src: [this.soundNotification], // Substitua pelo caminho do seu arquivo de áudio
+      autoplay: true,
+    });
+    sound.play();
   }
 }

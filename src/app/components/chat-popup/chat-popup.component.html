@@ -3,6 +3,12 @@
   class="fixed bottom-1 right-1 bg-cb-info-dark hover:bg-cb-info text-white font-bold px-4 py-2 texy-sm rounded-full flex items-center gap-2"
 >
   <i class="icone icon-chat"></i> Suporte
+  <span
+    *ngIf="chatsNotRead.length > 0"
+    class="bg-red-800 text-cb-base w-6 h-6 rounded-full flex items-center justify-center absolute -top-2 -right-1"
+  >
+    {{ chatsNotRead.length }}
+  </span>
 </button>
 
 <div class="chat-popup" [ngClass]="{ block: showChat, hidden: !showChat }">
@@ -23,7 +29,10 @@
         *ngFor="let item of chats"
         (click)="setCurrentChat(item)"
       >
-        <div class="flex items-center">
+        <div
+          class="flex items-center"
+          [ngClass]="{ 'text-cb-red': checkMsgNotRead(item) }"
+        >
           <img
             [src]="item.avatar ?? tools.noImageAvatar"
             alt="avatar"
@@ -61,7 +70,7 @@
       </div>
       <h2 class="font-semibold">{{ currentChat.name }}</h2>
     </div>
-    <div class="p-4">
+    <div class="p-4 max-h-[500px] overflow-y-auto" id="content-chat">
       <div
         class="mb-4"
         [ngClass]="{
@@ -96,7 +105,7 @@
         class="input-base !pr-20"
         name="message"
         ngModel
-        placeholder="Deixe o seu comentário"
+        placeholder="Escreva uma mensagem"
         required
       ></textarea>
       <button

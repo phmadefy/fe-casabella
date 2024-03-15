@@ -7,7 +7,9 @@
 <div class="grid grid-cols-12 gap-3" *ngIf="!loading">
   <div class="col-span-5">
     <card>
-      <div class="grid grid-cols-1 divide-y divide-cb-secondary">
+      <div
+        class="grid grid-cols-1 divide-y divide-cb-secondary max-h-[500px] overflow-y-auto"
+      >
         <div
           class="flex items-center justify-between px-4 py-6 cursor-pointer hover:bg-cb-info"
           *ngFor="let item of chats"
@@ -20,7 +22,7 @@
               alt="avatar"
               class="h-10 w-10 rounded-full mr-3"
             />
-            <div>
+            <div [ngClass]="{ 'text-cb-red': checkMsgNotRead(item) }">
               <span class="font-semibold">{{ item.name }}</span>
               <p class="text-sm">
                 {{ getLastMassage(item) }}
@@ -34,7 +36,7 @@
               'text-cb-red': item?.status != 'online'
             }"
           ></i>
-          <span></span>
+          <!-- <span></span> -->
         </div>
       </div>
     </card>
@@ -55,7 +57,7 @@
             <span class="font-semibold">{{ currentChat.name }}</span>
           </div>
         </div>
-        <div class="p-4">
+        <div class="p-4 max-h-[360px] overflow-y-auto" id="content-chat">
           <div
             class="mb-4"
             [ngClass]="{
@@ -86,7 +88,7 @@
             class="input-cb !pr-20"
             name="message"
             ngModel
-            placeholder="Deixe o seu comentário"
+            placeholder="Escreva uma mensagem"
             required
             [disabled]="loading"
           ></textarea>

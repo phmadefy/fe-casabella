@@ -48,7 +48,7 @@ export class ChatPopupComponent {
       .then(async (user: any) => {
         this.userConnected = {
           name: user.name,
-          token: user.id,
+          token: parseInt(user.id),
           type: 'user',
           avatar: user.avatar_url,
           status: 'online',
@@ -91,6 +91,10 @@ export class ChatPopupComponent {
       .finally(() => (this.loading = false));
   }
 
+  toggleChat() {
+    this.showChat = !this.showChat;
+  }
+
   getChats() {
     this.websocketService.join({
       token: this.userConnected.token,
@@ -115,9 +119,29 @@ export class ChatPopupComponent {
 
     this.notReadObserver = this.websocketService
       .notRead()
-      .subscribe((notRead) => {
+      .subscribe((notRead: any) => {
         console.log('notRead', notRead);
-        this.chatsNotRead.concat(notRead);
+        this.chatsNotRead = this.chatsNotRead.concat(notRead);
+        if (this.currentChat?.token) {
+          const msgByUser = this.chatsNotRead.filter(
+            (c: any) =>
+              c.receiver == this.currentChat.token ||
+              c.sender == this.currentChat.token
+          );
+          if (msgByUser.length > 0) {
+            this.currentChat.messages =
+              this.currentChat.messages.concat(msgByUser);
+            this.clearMsgNotRead();
+            setTimeout(() => {
+              this.toBottomContentChat();
+            }, 200);
+          }
+          if (notRead.length > msgByUser.length) {
+            this.tools.playNotification();
+          }
+        } else if (notRead.length > 0) {
+          this.tools.playNotification();
+        }
       });
 
     this.userUpdateObserver = this.websocketService
@@ -128,7 +152,14 @@ export class ChatPopupComponent {
           (c: any) => c.token == userUpdate.token
         );
         if (findIndex >= 0) {
-          this.chats[findIndex] = userUpdate;
+          const chat = this.chats[findIndex];
+          const updateData = {
+            ...chat,
+            status: userUpdate.status,
+            avatar: userUpdate.avatar,
+          };
+
+          this.chats[findIndex] = updateData;
         }
       });
 
@@ -137,11 +168,15 @@ export class ChatPopupComponent {
       .subscribe((historyMessages) => {
         console.log('historyMessages', historyMessages);
         this.currentChat.messages = historyMessages;
+        setTimeout(() => {
+          this.toBottomContentChat();
+        }, 300);
       });
   }
 
   setCurrentChat(chat: any) {
-    this.currentChat = { ...chat, messages: [] };
+    this.currentChat = { ...chat, token: parseInt(chat.token), messages: [] };
+    this.clearMsgNotRead();
     this.getHistoryChat();
   }
 
@@ -164,16 +199,14 @@ export class ChatPopupComponent {
     );
 
     form.resetForm();
-    this.getHistoryChat();
-  }
-
-  toggleChat() {
-    this.showChat = !this.showChat;
+    setTimeout(() => {
+      this.getHistoryChat();
+    }, 400);
   }
 
   getLastMassage(item: any) {
     const msgs: any[] = this.chatsNotRead.filter(
-      (c: any) => c.receiver == this.userConnected.token
+      (c: any) => c.sender == item.token
     );
 
     if (msgs.length > 0) {
@@ -181,5 +214,41 @@ export class ChatPopupComponent {
     }
 
     return item.last_message_text;
+  }
+
+  checkMsgNotRead(item: any) {
+    const msgs: any[] = this.chatsNotRead.filter(
+      (c: any) => c.sender == item.token
+    );
+
+    if (msgs.length > 0) {
+      return true;
+    }
+
+    return false;
+  }
+
+  clearMsgNotRead() {
+    this.websocketService.readMessage(
+      this.currentChat.token,
+      this.userConnected.token
+    );
+
+    this.chatsNotRead = this.chatsNotRead.filter(
+      (c: any) =>
+        c.sender != this.currentChat.token &&
+        c.receiver != this.userConnected.token
+    );
+  }
+
+  toBottomContentChat() {
+    const contentChat = document.getElementById('content-chat');
+    if (contentChat) {
+      const scrollHeight = contentChat.scrollHeight;
+      contentChat.scrollTo({
+        top: scrollHeight,
+        behavior: 'instant',
+      });
+    }
   }
 }

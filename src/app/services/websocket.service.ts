@@ -47,13 +47,7 @@ export class WebsocketService {
   }
 
   connected(user: any) {
-    return this.socket.emit('connected', {
-      name: user?.name,
-      token: 1,
-      avatar: user?.avatar,
-      status: 'online',
-      type: 'support',
-    });
+    return this.socket.emit('connected', user);
   }
 
   userUpdate() {
@@ -114,6 +108,13 @@ export class WebsocketService {
       sender,
       receiver,
       message,
+    });
+  }
+
+  readMessage(sender: any, receiver: any) {
+    return this.socket.emit('read-message', {
+      sender,
+      receiver,
     });
   }
 }
