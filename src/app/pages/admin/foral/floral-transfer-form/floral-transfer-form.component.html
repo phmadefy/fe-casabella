@@ -127,18 +127,18 @@
       </div>
 
       <div
-        class="border border-cb-secondary bg-cb-primary p-4 mb-4 flex gap-6 items-center"
+        class="border border-cb-secondary bg-cb-primary p-4 mb-4 flex gap-6 items-center justify-center"
       >
-        <div class="text-right w-1/2">
+        <!-- <div class="text-right w-1/2">
           <span class="font-semibold">Valor equivalente em Reais (R$)</span>
           <p class="text-sm text-cb-orange">
             {{ 1 | currency : "BRL" : "F$" : "1.4-4" }}
             Floral equivalente a
             {{ CotacaoFloral * 1 | currency : "R$ " }}
           </p>
-        </div>
-        <div class="w-1/2 text-3xl text-cb-success font-bold">
-          {{ CotacaoFloral * dados.amount | currency : "R$ " }} (em produtos)
+        </div> -->
+        <div class="text-3xl text-cb-success font-bold">
+          {{ CotacaoFloral * dados.amount | currency : "R$ " }}
         </div>
       </div>
 
