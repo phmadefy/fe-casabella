@@ -387,6 +387,7 @@
           aria-controls="drawer-menu"
           (click)="closeDrawer()"
           [routerLink]="item.route"
+          [queryParams]="item?.queryParams"
           routerLinkActive="text-cb-primary bg-cb-info"
           class="flex items-center p-2 text-cb-base hover:text-cb-primary hover:bg-cb-info rounded-lg group w-full"
         >

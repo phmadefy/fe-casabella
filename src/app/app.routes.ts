@@ -500,6 +500,14 @@ export const routes: Routes = [
           },
 
           {
+            path: 'relatorios',
+            loadComponent: () =>
+              import('./pages/admin/report/report.component').then(
+                (c) => c.ReportComponent
+              ),
+          },
+
+          {
             path: 'users',
             children: [
               {

@@ -18,16 +18,16 @@ import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 })
 export class ModalSlideGalleryComponent {
   slideConfig: any = {
-    // slidesToShow: 1,
+    slidesToShow: 1,
     // arrows: false,
     // dots: true,
     // adaptiveHeight: true,
     // respondTo: 'slider',
     // autoplay: false,
     // infinite: false,
-    // speed: 300,
-    // centerMode: true,
-    // variableWidth: true,
+    speed: 300,
+    centerMode: true,
+    variableWidth: true,
   };
 
   dataSource: any[] = [];

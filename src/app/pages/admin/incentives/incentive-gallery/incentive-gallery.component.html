@@ -46,7 +46,14 @@
         >
           Conferir Detalhes
         </button>
-        <btn-like class="min-w-max" [id]="'gl' + i"></btn-like>
+        <btn-like
+          class="min-w-max"
+          [id]="'gl' + i"
+          (changeOption)="sendReact($event, item)"
+          [interaction]="
+            tools.getMyInteraction(item?.interactions ?? [], userCurrent)
+          "
+        ></btn-like>
       </div>
     </div>
   </ng-container>
@@ -73,7 +80,7 @@
         >
           <div
             *ngFor="let item of gallery.attachments; let i = index"
-            class="rounded-md overflow-hidden"
+            class="rounded-md overflow-hidden h-[150px]"
             (click)="openSlideGallery(i, gallery.attachments)"
           >
             <img

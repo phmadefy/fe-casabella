@@ -432,7 +432,7 @@ export class HeaderComponent {
         {
           id: 'admin-reports',
           title: 'Relatórios',
-          route: 'admin/reports',
+          route: 'admin',
           icon: 'icone icon-reports',
           permissions: 'reports',
           items: [
@@ -443,7 +443,8 @@ export class HeaderComponent {
             {
               id: 'admin-report-floral-resgated',
               title: 'Florais Resgatados',
-              route: 'admin/report-floral-resgated',
+              route: 'relatorios',
+              queryParams: { type: 'floral-recue' },
             },
             {
               id: 'admin-report-floral-sald-caixa',

@@ -33,6 +33,8 @@ export class IncentiveGalleryComponent {
 
   gallery: any = {};
 
+  userCurrent: any = {};
+
   constructor(
     private service: ApiService,
     public tools: ToolsService,
@@ -41,7 +43,9 @@ export class IncentiveGalleryComponent {
     service.path = 'v1/incentives-gallery';
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    this.userCurrent = await this.tools.getCurrentUser();
+
     this.getList();
   }
 
@@ -74,5 +78,33 @@ export class IncentiveGalleryComponent {
       data: { active: index, images },
       disableClose: true,
     });
+  }
+
+  async sendReact(event: any, item: any) {
+    // this.loading = true;
+    await this.service
+      .updateCustom(`v1/incentives-gallery/${item.id}/interaction`, {
+        interaction: event,
+      })
+      .then((res) => {
+        console.log('sendReact', res);
+
+        const index = this.dataSource.data.findIndex(
+          (f: any) => f.id == item.id
+        );
+        if (index >= 0) {
+          const indexInteraction = this.dataSource?.data[
+            index
+          ]?.interactions.findIndex((f: any) => f.user_id == res.user_id);
+          if (indexInteraction >= 0) {
+            this.dataSource.data[index].interactions[indexInteraction] = res;
+          } else {
+            this.dataSource?.data[index]?.interactions.push(res);
+          }
+        }
+
+        // this.getDados(this.dados.id);
+      });
+    // .finally(() => (this.loading = false));
   }
 }
