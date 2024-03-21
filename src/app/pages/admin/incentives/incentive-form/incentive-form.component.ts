@@ -121,7 +121,7 @@ export class IncentiveFormComponent extends AbstractForms {
   async deleteItem() {
     this.messageService
       .presentAlertConfirm(
-        'Você está <b>EXCLUINDO</b> esta campanha. A exclusão é irreversível, deseja continuar ?'
+        'Você está <b>INATIVANDO</b> esta campanha. Deseja continuar ?'
       )
       .closed.subscribe((res) => {
         if (res) {

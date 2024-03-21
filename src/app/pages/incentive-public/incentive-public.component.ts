@@ -12,6 +12,7 @@ import { IncentiveGalleryComponent } from '../admin/incentives/incentive-gallery
 import { Dialog } from '@angular/cdk/dialog';
 import { ModalIncentiveTermAcceptComponent } from 'src/app/shared/modal-incentive-term-accept/modal-incentive-term-accept.component';
 import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
+import { ModalViewDocComponent } from 'src/app/shared/modal-view-doc/modal-view-doc.component';
 
 @Component({
   selector: 'app-incentive-public',
@@ -128,6 +129,18 @@ export class IncentivePublicComponent {
   async toIncentive(incentive_id: any) {
     await this.tools.route.navigate(['/incentivo/detalhe'], {
       state: { incentive_id },
+    });
+  }
+
+  openRanking(item: any) {
+    const dialogRef = this.dialog.open<any>(ModalViewDocComponent, {
+      width: '95%',
+      maxWidth: '700px',
+      maxHeight: '90%',
+      data: {
+        file_url: item.image_ranking_url,
+        path: item.image_ranking,
+      },
     });
   }
 }

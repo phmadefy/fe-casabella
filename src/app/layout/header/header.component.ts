@@ -100,7 +100,7 @@ export class HeaderComponent {
       title: 'Floral',
       route: 'floral',
       icon: '',
-      permissions: 'floral,movement_floral',
+      permissions: 'floral,details_floral,movement_floral',
       items: [
         {
           id: 'meu-floral',
@@ -108,7 +108,7 @@ export class HeaderComponent {
           route: '/',
           queryParams: { tab: 'my' },
           icon: '',
-          permissions: 'movement_floral',
+          permissions: 'details_floral',
         },
         {
           id: 'transferencias-pendentes',
@@ -116,7 +116,7 @@ export class HeaderComponent {
           route: '/',
           queryParams: { tab: 'pending' },
           icon: '',
-          permissions: 'movement_floral',
+          permissions: 'floral',
         },
         {
           id: 'transferir-floral',
@@ -130,7 +130,7 @@ export class HeaderComponent {
           title: 'Resgatar Floral',
           route: '/resgatar',
           icon: '',
-          permissions: 'movement_floral',
+          permissions: 'floral',
         },
       ],
     },
