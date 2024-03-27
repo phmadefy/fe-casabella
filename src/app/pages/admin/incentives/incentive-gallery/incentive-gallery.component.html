@@ -1,11 +1,11 @@
-<div class="grid grid-cols-3 gap-2">
-  <div
-    class="bg-cb-contrast h-full overflow-hidden p-6 rounded-lg text-center w-full col-span-3"
-    *ngIf="loading"
-  >
-    <spinner [size]="8" color="cb"></spinner>
-  </div>
+<div
+  class="bg-cb-contrast h-full overflow-hidden p-6 rounded-lg text-center w-full col-span-3"
+  *ngIf="loading"
+>
+  <spinner [size]="8" color="cb"></spinner>
+</div>
 
+<div class="grid md:grid-cols-3 gap-2 mb-6">
   <button
     *ngIf="tools.checkRouteContainsAdmin() && !loading"
     routerLink="gallery/add"

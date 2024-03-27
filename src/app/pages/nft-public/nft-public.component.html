@@ -53,7 +53,7 @@
 </div>
 
 <card *ngIf="tab != 'pending' && !loading">
-  <div class="grid grid-cols-5 gap-3 p-4">
+  <div class="grid grid-cols-2 md:grid-cols-5 gap-2 md:gap-3 p-2 md:p-4">
     <app-nft-card
       [nft]="{ src: item.image_url }"
       *ngFor="let item of dataSource.data"
