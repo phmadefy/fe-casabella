@@ -70,12 +70,15 @@
   <div class="card-footer flex gap-3 items-center">
     <app-pagination
       class="w-full"
-      [currentPage]="dataSource.current_page"
-      [totalItems]="dataSource.total"
-      [itemsPerPage]="filters.per_page"
-      (pageChange)="changePagination($event, filters.per_page)"
-      [to]="dataSource.to"
-      [from]="dataSource.from"
+      [fromRows]="dataSource.from"
+      [toRows]="dataSource.to"
+      [total]="dataSource.total"
+      [current]="dataSource.current_page"
+      [links]="dataSource.links"
+      (goTo)="changePagination($event, filters.per_page)"
+      (next)="changePagination($event, filters.per_page)"
+      (previous)="changePagination($event, filters.per_page)"
+      (onPerPage)="changePagination(filters.page, $event)"
     ></app-pagination>
   </div>
 </card>

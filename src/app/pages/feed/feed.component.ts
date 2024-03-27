@@ -72,7 +72,7 @@ export class FeedComponent {
   getNFTs() {
     this.loadingNFT = true;
     this.service
-      .getCustom('v1/nft', { perPage: 500 })
+      .getCustom('v1/nft', { per_page: 500 })
       .then((res) => {
         this.nfts = res?.data;
       })
