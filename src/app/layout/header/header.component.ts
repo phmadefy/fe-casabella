@@ -643,16 +643,19 @@ export class HeaderComponent {
       title: 'Incentivo',
       route: '/incentivo',
       icon: 'fa-solid fa-flag',
+      queryParams: { tab: 'my' },
     },
     {
       title: 'Floral',
       route: '/floral',
       icon: 'fa-solid fa-fan',
+      queryParams: { tab: 'my' },
     },
     {
       title: 'NFTs',
       route: '/nfts',
       icon: 'fa-solid fa-panorama',
+      queryParams: { tab: 'my' },
     },
     {
       title: 'Fale Conosco',

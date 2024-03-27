@@ -139,6 +139,7 @@
       [totalItems]="dataSource.total"
       [itemsPerPage]="filters.per_page"
       (pageChange)="changePagination($event, filters.per_page)"
+      (perPageChange)="changePagination(filters.page, $event)"
       [to]="dataSource.to"
       [from]="dataSource.from"
     ></app-pagination>

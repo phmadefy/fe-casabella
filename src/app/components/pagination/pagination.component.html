@@ -2,7 +2,7 @@
   <div class="flex items-center gap-4">
     <select
       [(ngModel)]="itemsPerPage"
-      (change)="perPageChange.emit(itemsPerPage)"
+      (ngModelChange)="perPageChange.emit(itemsPerPage)"
       class="select-default"
     >
       <option value="10">10</option>

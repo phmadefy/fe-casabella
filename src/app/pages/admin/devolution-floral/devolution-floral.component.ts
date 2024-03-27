@@ -58,7 +58,7 @@ export class DevolutionFloralComponent extends AbstractForms {
   override finish(result: any): void {
     this.form.resetForm();
 
-    // this.openProof(result);
+    this.openProof(result);
   }
 
   openProof(data: any) {

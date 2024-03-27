@@ -70,7 +70,7 @@ export class DevolutionNftComponent extends AbstractForms {
     this.form.resetForm();
 
     if (result.data) {
-      this.openProof(result);
+      // this.openProof(result);
     }
   }
 

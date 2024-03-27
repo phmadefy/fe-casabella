@@ -113,6 +113,8 @@ export class UsersComponent {
   }
 
   changePagination(page: number, per_page: number) {
+    console.log('changePagination', page, per_page);
+
     this.filters = { ...this.filters, page, per_page };
     this.getList();
   }
