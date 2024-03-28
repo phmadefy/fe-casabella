@@ -11,6 +11,7 @@ import { ToolsService } from 'src/app/services/tools.service';
 import { Dialog } from '@angular/cdk/dialog';
 import { ModalNftApproveRefuseComponent } from 'src/app/shared/modal-nft-approve-refuse/modal-nft-approve-refuse.component';
 import { ModalNftDetailComponent } from 'src/app/shared/modal-nft-detail/modal-nft-detail.component';
+import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
 
 @Component({
   selector: 'app-nft-public',
@@ -22,6 +23,7 @@ import { ModalNftDetailComponent } from 'src/app/shared/modal-nft-detail/modal-n
     DropdownCbComponent,
     InputSearchComponent,
     NftCardComponent,
+    SpinnerComponent,
   ],
   providers: [ApiService],
   templateUrl: './nft-public.component.html',
