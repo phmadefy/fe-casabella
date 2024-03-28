@@ -39,7 +39,7 @@ export class PaginationComponent {
   }
 
   getPages() {
-    const newLinks = this.links.filter((obj) => {
+    const newLinks = this.links?.filter((obj) => {
       if (obj?.label?.includes('Anterior') || obj?.label?.includes('Próximo')) {
         return false;
       }

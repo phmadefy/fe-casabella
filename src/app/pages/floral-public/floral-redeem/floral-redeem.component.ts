@@ -141,7 +141,7 @@ export class FloralRedeemComponent extends AbstractForms {
   }
 
   generateDados() {
-    this.dados = { amount: 0, to: 'to_user' };
+    this.dados = { rescue_type: 'products', amount: 0, to: 'to_user' };
 
     if (this.tools.checkRouteContainsAdmin()) {
       this.modo = 'admin';

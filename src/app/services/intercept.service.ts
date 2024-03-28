@@ -71,15 +71,16 @@ export class InterceptService implements HttpInterceptor {
           } else {
             console.error(error);
 
-            let message = '';
+            let message = `${error.message} \n`;
+
             if (error?.error?.errors && Array.isArray(error?.error?.errors)) {
               for (let err of error.error.errors) {
                 message += `${err} \n`;
               }
             } else if (error?.error?.message) {
               message = error.error.message;
-            } else {
-              message = error.message;
+            } else if (error?.error) {
+              message = error.error;
             }
 
             this.messageService.presentAlertError(
