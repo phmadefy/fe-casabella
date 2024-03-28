@@ -8,6 +8,7 @@
           <button
             class="px-8 py-2 text-cb-base rounded-md"
             [ngClass]="{ 'bg-gradient-cb font-semibold': tab == 'my' }"
+            *ngIf="tools.getRule('floral', rules)"
           >
             Meu Floral
           </button>
@@ -16,7 +17,7 @@
         <li
           routerLink="/floral"
           [queryParams]="{ tab: 'pending' }"
-          *ngIf="tools.getRule('movement_floral', rules)"
+          *ngIf="tools.getRule('floral', rules)"
         >
           <button
             class="px-8 py-2 text-cb-base rounded-md"
@@ -35,7 +36,7 @@
           </button>
         </li>
 
-        <li *ngIf="tools.getRule('movement_floral', rules)">
+        <li *ngIf="tools.getRule('floral', rules)">
           <button
             [routerLink]="['resgatar']"
             class="px-8 py-2 text-cb-base rounded-md"

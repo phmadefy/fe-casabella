@@ -46,6 +46,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'impressao',
+    loadComponent: () =>
+      import('./shared/print-area/print-area.component').then(
+        (c) => c.PrintAreaComponent
+      ),
+  },
+  {
     path: '',
     canActivate: [AuthGuard],
     loadComponent: () =>

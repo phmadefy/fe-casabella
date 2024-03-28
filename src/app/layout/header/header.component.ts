@@ -100,7 +100,7 @@ export class HeaderComponent {
       title: 'Floral',
       route: 'floral',
       icon: '',
-      permissions: 'floral,details_floral,movement_floral',
+      permissions: 'floral,movement_floral',
       items: [
         {
           id: 'meu-floral',
@@ -108,7 +108,7 @@ export class HeaderComponent {
           route: '/',
           queryParams: { tab: 'my' },
           icon: '',
-          permissions: 'details_floral',
+          permissions: 'floral',
         },
         {
           id: 'transferencias-pendentes',
