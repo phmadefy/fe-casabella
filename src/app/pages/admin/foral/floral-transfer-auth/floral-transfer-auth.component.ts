@@ -8,11 +8,18 @@ import { Subscription } from 'rxjs';
 import { ToolsService } from 'src/app/services/tools.service';
 import { Dialog } from '@angular/cdk/dialog';
 import { ModalFloralApproveRefuseComponent } from 'src/app/shared/modal-floral-approve-refuse/modal-floral-approve-refuse.component';
+import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
 
 @Component({
   selector: 'app-floral-transfer-auth',
   standalone: true,
-  imports: [CommonModule, CardComponent, RouterLink, InputSearchComponent],
+  imports: [
+    CommonModule,
+    CardComponent,
+    RouterLink,
+    InputSearchComponent,
+    SpinnerComponent,
+  ],
   providers: [ApiService],
   templateUrl: './floral-transfer-auth.component.html',
   styleUrls: ['./floral-transfer-auth.component.scss'],

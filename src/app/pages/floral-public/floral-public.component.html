@@ -155,7 +155,7 @@
     <spinner [size]="8" color="cb"></spinner>
   </div>
 
-  <ng-container *ngIf="!tools.isMobileDevice()">
+  <ng-container *ngIf="!tools.isMobileDevice() && !loading">
     <div
       class="rounded-md border border-cb-secondary flex justify-between text-cb-base mb-2"
       *ngFor="let item of dataSource.data"
@@ -246,7 +246,7 @@
         class="p-4 flex flex-col justify-center border-l border-cb-secondary gap-2 w-full"
         *ngIf="isReceive(item)"
       >
-        <div class="flex gap-2">
+        <div class="flex flex-col gap-2">
           <button
             class="btn-sm btn-md w-full rounded-md bg-gradient-cb font-semibold"
             (click)="openModalApproveRefuse(item, 'approve')"
@@ -266,7 +266,7 @@
         class="p-4 flex flex-col justify-center border-l border-cb-secondary gap-2 w-full"
         *ngIf="isSend(item)"
       >
-        <div class="flex gap-2">
+        <div class="flex flex-col gap-2">
           <button
             class="btn-sm btn-md w-full text-white rounded-md border border-cb-secondary"
           >
@@ -284,7 +284,7 @@
     </div>
   </ng-container>
 
-  <ng-container *ngIf="tools.isMobileDevice()">
+  <ng-container *ngIf="tools.isMobileDevice() && !loading">
     <div
       class="rounded-md border border-cb-secondary grid text-cb-base mb-6"
       *ngFor="let item of dataSource.data"
