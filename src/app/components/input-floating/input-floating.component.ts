@@ -52,6 +52,7 @@ export class InputFloatingComponent implements ControlValueAccessor {
   @Input() rows: any = 4;
   @Input() prefix!: string;
   @Input() suffix!: string;
+  @Input() align = 'left';
   @Input() precision!: number;
 
   optionsMoney!: NgxCurrencyConfig;
@@ -63,7 +64,7 @@ export class InputFloatingComponent implements ControlValueAccessor {
   constructor(public tools: ToolsService) {}
   ngOnInit(): void {
     this.optionsMoney = {
-      align: 'left',
+      align: this.align,
       allowNegative: false,
       allowZero: true,
       decimal: ',',
