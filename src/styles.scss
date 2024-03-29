@@ -537,3 +537,20 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   overflow: hidden;
   z-index: 9999;
 }
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .print-area,
+  .print-area * {
+    visibility: visible;
+  }
+
+  .print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}

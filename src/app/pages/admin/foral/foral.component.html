@@ -40,12 +40,15 @@
   </card>
 </div>
 
+<div class="p-16 rounded-lg text-center w-full" *ngIf="loading">
+  <spinner [size]="8" color="cb"></spinner>
+</div>
+
 <!-- <card *ngFor="let item of dataSource.data"> -->
-<div class="mb-4">
-  <card>
+<div class="mb-4" *ngIf="!loading">
+  <card *ngFor="let item of dataSource.data" class="mb-4">
     <div
       class="rounded-md border border-cb-secondary flex justify-between text-cb-base"
-      *ngFor="let item of dataSource.data"
     >
       <div
         class="py-2 px-3 flex flex-col justify-center border-r border-cb-secondary text-2xl text-cb-success font-bold w-1/6"
@@ -70,7 +73,6 @@
           <i class="fa-solid fa-circle"></i>
           <span class="">Rejeitado</span>
         </p>
-        <p>Resgate de fim de ano</p>
       </div>
 
       <div
@@ -164,12 +166,12 @@
 
       <ng-container *ngIf="tab === 'pending'">
         <div class="py-2 px-3 flex flex-col justify-center gap-2">
-          <div class="flex gap-2">
+          <div class="flex flex-col gap-2">
             <button
               class="btn-sm btn-md w-full rounded-md bg-gradient-cb font-semibold"
               (click)="openModalApproveRefuse(item, 'approve')"
             >
-              Aprovar
+              Autorizar
             </button>
 
             <button
@@ -189,12 +191,15 @@
   <div class="card-footer flex gap-3 items-center">
     <app-pagination
       class="w-full"
-      [currentPage]="dataSource.current_page"
-      [totalItems]="dataSource.total"
-      [itemsPerPage]="filters.per_page"
-      (pageChange)="changePagination($event, filters.per_page)"
-      [to]="dataSource.to"
-      [from]="dataSource.from"
+      [fromRows]="dataSource.from"
+      [toRows]="dataSource.to"
+      [total]="dataSource.total"
+      [current]="dataSource.current_page"
+      [links]="dataSource.links"
+      (goTo)="changePagination($event, filters.per_page)"
+      (next)="changePagination($event, filters.per_page)"
+      (previous)="changePagination($event, filters.per_page)"
+      (onPerPage)="changePagination(filters.page, $event)"
     ></app-pagination>
   </div>
 </card>

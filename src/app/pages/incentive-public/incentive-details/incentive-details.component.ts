@@ -60,7 +60,7 @@ export class IncentiveDetailsComponent {
         this.dados = res;
         if (this.dados.link_youtube) {
           this.dados.link_youtube = this.tools.getUrlSecurity(
-            this.dados.link_youtube
+            `https://www.youtube.com/embed/${this.dados.link_youtube}`
           );
         }
 

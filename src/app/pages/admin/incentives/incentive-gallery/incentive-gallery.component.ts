@@ -71,12 +71,12 @@ export class IncentiveGalleryComponent {
 
   openSlideGallery(index: number, images: any[]) {
     const dialogRef = this.dialog.open<any>(ModalSlideGalleryComponent, {
-      // width: '95%',
+      width: '95%',
       maxWidth: '550px',
       height: '90%',
       maxHeight: '600px',
       data: { active: index, images },
-      disableClose: true,
+      disableClose: false,
     });
   }
 

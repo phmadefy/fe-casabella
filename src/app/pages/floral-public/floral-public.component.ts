@@ -12,6 +12,7 @@ import { Dialog } from '@angular/cdk/dialog';
 import { ModalFloralApproveRefuseComponent } from 'src/app/shared/modal-floral-approve-refuse/modal-floral-approve-refuse.component';
 import { FormsModule } from '@angular/forms';
 import * as moment from 'moment';
+import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
 
 @Component({
   selector: 'app-floral-public',
@@ -24,6 +25,7 @@ import * as moment from 'moment';
     DropdownCbComponent,
     InputSearchComponent,
     TimelineComponent,
+    SpinnerComponent,
   ],
   providers: [ApiService],
   templateUrl: './floral-public.component.html',

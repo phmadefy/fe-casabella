@@ -40,6 +40,7 @@ export class NftTransferFormComponent extends AbstractForms {
   @ViewChild('nftChoose', { static: true }) nftChoose!: NftChooseComponent;
   @ViewChild('form', { static: true }) form!: NgForm;
 
+  nft: any = {};
   dados: any = {};
   types = [
     { id: 'definitive', description: 'Definitiva' },
@@ -76,7 +77,7 @@ export class NftTransferFormComponent extends AbstractForms {
     this.service
       .show(id)
       .then((res) => {
-        this.dados = res;
+        this.nft = res;
         this.nftChoose.setNFT(res);
       })
       .finally(() => (this.loading = false));

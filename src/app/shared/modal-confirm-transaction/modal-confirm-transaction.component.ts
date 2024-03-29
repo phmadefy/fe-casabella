@@ -39,4 +39,12 @@ export class ModalConfirmTransactionComponent {
   getTotalOperation() {
     return parseFloat(this.dados.amount) + parseFloat(this.dados.tax);
   }
+
+  getTitle() {
+    if (this.data?.rescue) {
+      return 'Confirmação de Resgate';
+    }
+
+    return 'Confirmação de Transferência';
+  }
 }

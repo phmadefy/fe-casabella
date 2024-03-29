@@ -10,77 +10,43 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./pagination.component.scss'],
 })
 export class PaginationComponent {
-  @Input() currentPage: number = 1;
-  @Input() totalItems: number = 0;
-  @Input() itemsPerPage: number = 0;
-  @Input() to: number = 0;
-  @Input() from: number = 0;
-  @Output() pageChange = new EventEmitter<number>();
-  @Output() perPageChange = new EventEmitter<number>();
+  @Input() current: number = 0;
+  @Input() total: number = 0;
+  @Input() perPage: number = 50;
 
-  get totalPages(): number {
-    return Math.ceil(this.totalItems / this.itemsPerPage);
+  @Input() fromRows!: number;
+  @Input() toRows!: number;
+
+  @Input() links: any[] = [];
+
+  @Output() goTo: EventEmitter<number> = new EventEmitter<number>();
+  @Output() next: EventEmitter<number> = new EventEmitter<number>();
+  @Output() previous: EventEmitter<number> = new EventEmitter<number>();
+  @Output() onPerPage: EventEmitter<number> = new EventEmitter<number>();
+
+  public pages: number[] = [];
+
+  public onGoTo(page: number): void {
+    this.goTo.emit(page);
   }
 
-  get firstPages(): number[] {
-    const pages = [];
-    const maxFirstPages = Math.min(5, this.totalPages);
-    for (let i = 1; i <= maxFirstPages; i++) {
-      pages.push(i);
-    }
-    return pages;
+  public onNext(): void {
+    this.next.emit(this.current + 1);
   }
 
-  get lastPages(): number[] {
-    const pages = [];
-    const maxLastPages = Math.min(5, this.totalPages);
-    for (
-      let i = this.totalPages - maxLastPages + 1;
-      i <= this.totalPages;
-      i++
-    ) {
-      pages.push(i);
-    }
-    return pages;
+  public onPrevious(): void {
+    this.previous.next(this.current - 1);
   }
 
-  get pagesToShow(): number[] {
-    const pages = [];
-    for (let i = this.currentPage - 5; i <= this.currentPage + 5; i++) {
-      if (i > 0 && i <= this.totalPages) {
-        pages.push(i);
+  getPages() {
+    const newLinks = this.links?.filter((obj) => {
+      if (obj?.label?.includes('Anterior') || obj?.label?.includes('Próximo')) {
+        return false;
       }
-    }
-    return pages;
-  }
 
-  goToPage(page: number): void {
-    if (page !== this.currentPage) {
-      this.pageChange.emit(page);
-    }
-  }
+      return true;
+    });
 
-  goToFirstPage(): void {
-    if (this.currentPage > 1) {
-      this.pageChange.emit(1);
-    }
-  }
-
-  goToLastPage(): void {
-    if (this.currentPage < this.totalPages) {
-      this.pageChange.emit(this.totalPages);
-    }
-  }
-
-  goToPreviousPage(): void {
-    if (this.currentPage > 1) {
-      this.pageChange.emit(this.currentPage - 1);
-    }
-  }
-
-  goToNextPage(): void {
-    if (this.currentPage < this.totalPages) {
-      this.pageChange.emit(this.currentPage + 1);
-    }
+    return newLinks;
   }
 }

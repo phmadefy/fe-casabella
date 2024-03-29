@@ -52,8 +52,12 @@
   </card>
 </div>
 
+<div class="p-16 rounded-lg text-center w-full" *ngIf="loading">
+  <spinner [size]="8" color="cb"></spinner>
+</div>
+
 <card *ngIf="tab != 'pending' && !loading">
-  <div class="grid grid-cols-5 gap-3 p-4">
+  <div class="grid grid-cols-2 md:grid-cols-5 gap-2 md:gap-3 p-2 md:p-4">
     <app-nft-card
       [nft]="{ src: item.image_url }"
       *ngFor="let item of dataSource.data"
@@ -63,98 +67,211 @@
 </card>
 
 <ng-container *ngIf="tab == 'pending' && !loading">
-  <div
-    class="rounded-md border border-cb-secondary flex justify-between text-cb-base mb-2"
-    *ngFor="let item of dataSource.data"
-  >
+  <ng-container *ngIf="!tools.isMobileDevice()">
     <div
-      class="overflow-hidden rounded-s-md border-r border-cb-secondary min-w-max"
+      class="rounded-md border border-cb-secondary flex justify-between text-cb-base mb-2"
+      *ngFor="let item of dataSource.data"
     >
-      <img [src]="item?.nft?.image" alt="nft" class="h-24 w-32 object-cover" />
-    </div>
+      <div
+        class="overflow-hidden rounded-s-md border-r border-cb-secondary min-w-max"
+      >
+        <img
+          [src]="item?.nft?.image"
+          alt="nft"
+          class="h-24 w-32 object-cover"
+        />
+      </div>
 
-    <div class="p-4 flex flex-col justify-center border-r border-cb-secondary">
-      <p class="flex gap-2" *ngIf="isReceive(item)">
-        <i class="fa-solid fa-circle flex text-cb-success"></i>
-        <span class="">Recebido</span>
-      </p>
-      <p class="flex gap-2" *ngIf="isSend(item)">
-        <i class="fa-solid fa-circle flex text-cb-red"></i>
-        <span class="">Enviado</span>
-      </p>
-    </div>
-
-    <div
-      class="p-4 flex flex-col justify-center border-r border-cb-secondary w-full"
-    >
-      <div class="text-center" *ngIf="item?.from_user_id != userCurrent.id">
-        <p>Recebido de:</p>
-        <p>
-          <span class="text-cb-info text-sm">
-            {{ item?.from_user?.nickname ?? "@casabella" }}
-          </span>
+      <div
+        class="p-4 flex flex-col justify-center border-r border-cb-secondary"
+      >
+        <p class="flex gap-2" *ngIf="isReceive(item)">
+          <i class="fa-solid fa-circle flex text-cb-success"></i>
+          <span class="">Recebido</span>
+        </p>
+        <p class="flex gap-2" *ngIf="isSend(item)">
+          <i class="fa-solid fa-circle flex text-cb-red"></i>
+          <span class="">Enviado</span>
         </p>
       </div>
 
-      <div class="text-center" *ngIf="item?.from_user_id == userCurrent.id">
-        <p>Enviado para:</p>
-        <p>
-          <span class="text-cb-info text-sm">
-            {{ item?.to_user?.nickname ?? "@casabella" }}
-          </span>
+      <div
+        class="p-4 flex flex-col justify-center border-r border-cb-secondary w-full"
+      >
+        <div class="text-center" *ngIf="item?.from_user_id != userCurrent.id">
+          <p>Recebido de:</p>
+          <p>
+            <span class="text-cb-info text-sm">
+              {{ item?.from_user?.nickname ?? "@casabella" }}
+            </span>
+          </p>
+        </div>
+
+        <div class="text-center" *ngIf="item?.from_user_id == userCurrent.id">
+          <p>Enviado para:</p>
+          <p>
+            <span class="text-cb-info text-sm">
+              {{ item?.to_user?.nickname ?? "@casabella" }}
+            </span>
+          </p>
+        </div>
+      </div>
+
+      <div class="p-4 flex flex-col justify-center text-center w-full">
+        <div>
+          <p>Data:</p>
+          <p>
+            <span class="text-cb-info text-sm">
+              {{ item.created_at | date : "dd/MM/yyyy" }}
+            </span>
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="p-4 flex flex-col justify-center border-l border-cb-secondary gap-2 w-full"
+        *ngIf="isReceive(item)"
+      >
+        <div class="flex gap-2">
+          <button
+            class="btn-sm btn-md w-full rounded-md bg-gradient-cb font-semibold"
+            (click)="openModalApproveRefuse(item, 'approve')"
+          >
+            Aceitar
+          </button>
+
+          <button
+            class="btn-sm btn-md w-full text-white rounded-md border border-cb-secondary"
+            (click)="openModalApproveRefuse(item, 'refuse')"
+          >
+            Recusar
+          </button>
+        </div>
+      </div>
+      <div
+        class="p-4 flex flex-col justify-center border-l border-cb-secondary gap-2 w-full"
+        *ngIf="isSend(item)"
+      >
+        <div class="flex gap-2">
+          <button
+            class="btn-sm btn-md w-full text-white rounded-md border border-cb-secondary"
+          >
+            Aguardando
+          </button>
+
+          <button
+            class="btn-sm btn-md w-full rounded-md bg-gradient-cb font-semibold"
+            (click)="openModalApproveRefuse(item, 'cancel')"
+          >
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="tools.isMobileDevice()">
+    <div
+      class="rounded-md border border-cb-secondary grid items-center justify-between text-cb-base mb-2"
+      *ngFor="let item of dataSource.data"
+    >
+      <div
+        class="overflow-hidden rounded-s-md border-b border-cb-secondary min-w-max"
+      >
+        <img
+          [src]="item?.nft?.image"
+          alt="nft"
+          class="h-24 w-32 object-cover"
+        />
+      </div>
+
+      <div
+        class="p-4 flex flex-col items-center justify-center border-b border-cb-secondary"
+      >
+        <p class="flex gap-2" *ngIf="isReceive(item)">
+          <i class="fa-solid fa-circle flex text-cb-success"></i>
+          <span class="">Recebido</span>
+        </p>
+        <p class="flex gap-2" *ngIf="isSend(item)">
+          <i class="fa-solid fa-circle flex text-cb-red"></i>
+          <span class="">Enviado</span>
         </p>
       </div>
-    </div>
 
-    <div class="p-4 flex flex-col justify-center text-center w-full">
-      <div>
-        <p>Data:</p>
-        <p>
-          <span class="text-cb-info text-sm">
-            {{ item.created_at | date : "dd/MM/yyyy" }}
-          </span>
-        </p>
+      <div
+        class="p-4 flex flex-col items-center justify-center border-b border-cb-secondary w-full"
+      >
+        <div class="text-center" *ngIf="item?.from_user_id != userCurrent.id">
+          <p>Recebido de:</p>
+          <p>
+            <span class="text-cb-info text-sm">
+              {{ item?.from_user?.nickname ?? "@casabella" }}
+            </span>
+          </p>
+        </div>
+
+        <div class="text-center" *ngIf="item?.from_user_id == userCurrent.id">
+          <p>Enviado para:</p>
+          <p>
+            <span class="text-cb-info text-sm">
+              {{ item?.to_user?.nickname ?? "@casabella" }}
+            </span>
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="p-4 flex flex-col items-center justify-center text-center w-full"
+      >
+        <div>
+          <p>Data:</p>
+          <p>
+            <span class="text-cb-info text-sm">
+              {{ item.created_at | date : "dd/MM/yyyy" }}
+            </span>
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="p-4 flex flex-col items-center justify-center border-t border-cb-secondary gap-2 w-full"
+        *ngIf="isReceive(item)"
+      >
+        <div class="flex gap-2">
+          <button
+            class="btn-sm btn-md w-full rounded-md bg-gradient-cb font-semibold"
+            (click)="openModalApproveRefuse(item, 'approve')"
+          >
+            Aceitar
+          </button>
+
+          <button
+            class="btn-sm btn-md w-full text-white rounded-md border border-cb-secondary"
+            (click)="openModalApproveRefuse(item, 'refuse')"
+          >
+            Recusar
+          </button>
+        </div>
+      </div>
+      <div
+        class="p-4 flex flex-col items-center justify-center border-t border-cb-secondary gap-2 w-full"
+        *ngIf="isSend(item)"
+      >
+        <div class="flex gap-2">
+          <button
+            class="btn-sm btn-md w-full text-white rounded-md border border-cb-secondary"
+          >
+            Aguardando
+          </button>
+
+          <button
+            class="btn-sm btn-md w-full rounded-md bg-gradient-cb font-semibold"
+            (click)="openModalApproveRefuse(item, 'cancel')"
+          >
+            Cancelar
+          </button>
+        </div>
       </div>
     </div>
-
-    <div
-      class="p-4 flex flex-col justify-center border-l border-cb-secondary gap-2 w-full"
-      *ngIf="isReceive(item)"
-    >
-      <div class="flex gap-2">
-        <button
-          class="btn-sm btn-md w-full rounded-md bg-gradient-cb font-semibold"
-          (click)="openModalApproveRefuse(item, 'approve')"
-        >
-          Aceitar
-        </button>
-
-        <button
-          class="btn-sm btn-md w-full text-white rounded-md border border-cb-secondary"
-          (click)="openModalApproveRefuse(item, 'refuse')"
-        >
-          Recusar
-        </button>
-      </div>
-    </div>
-    <div
-      class="p-4 flex flex-col justify-center border-l border-cb-secondary gap-2 w-full"
-      *ngIf="isSend(item)"
-    >
-      <div class="flex gap-2">
-        <button
-          class="btn-sm btn-md w-full text-white rounded-md border border-cb-secondary"
-        >
-          Aguardando
-        </button>
-
-        <button
-          class="btn-sm btn-md w-full rounded-md bg-gradient-cb font-semibold"
-          (click)="openModalApproveRefuse(item, 'cancel')"
-        >
-          Cancelar
-        </button>
-      </div>
-    </div>
-  </div>
+  </ng-container>
 </ng-container>
