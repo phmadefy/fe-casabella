@@ -27,7 +27,7 @@
         <div class="mb-2">
           <div
             class="grid grid-cols-2 gap-2 mb-4"
-            *ngIf="showFilter('rescue-floral')"
+            *ngIf="showFilter('rescue-floral,balance-cashiers')"
           >
             <input-floating
               class="p-0 bg-transparent border-none"
@@ -95,7 +95,10 @@
             />
           </div>
 
-          <div class="mb-4" *ngIf="showFilter('rescue-floral')">
+          <div
+            class="mb-4"
+            *ngIf="showFilter('rescue-floral,balance-cashiers')"
+          >
             <combobox
               class="p-0 bg-transparent border-none"
               label="Formato de Saída"

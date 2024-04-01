@@ -33,6 +33,10 @@ export class ReportComponent {
       key: 'rescue-floral',
       label: 'Florais Regatados',
     },
+    {
+      key: 'balance-cashiers',
+      label: 'Saldo de Floral nos Caixas',
+    },
   ];
 
   optionsRescue: any[] = [
