@@ -37,6 +37,26 @@ export class ReportComponent {
       key: 'balance-cashiers',
       label: 'Saldo de Floral nos Caixas',
     },
+    {
+      key: 'total-floral-with-users',
+      label: 'Total de Florais em Circulação',
+    },
+    {
+      key: 'total-nfts-with-users',
+      label: 'Total de NFTs em Circulação',
+    },
+    {
+      key: 'total-nfts',
+      label: 'Total de NFTs Cadastradas',
+    },
+    {
+      key: 'total-deposit-floral',
+      label: 'Total de Aporte Floral',
+    },
+    {
+      key: 'total-floral-tax',
+      label: 'Total de Taxas Recebidas',
+    },
   ];
 
   optionsRescue: any[] = [
