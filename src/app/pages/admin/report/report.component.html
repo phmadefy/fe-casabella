@@ -25,14 +25,7 @@
 
       <div class="p-5 grid grid-cols-2 gap-2">
         <div class="mb-2">
-          <div
-            class="grid grid-cols-2 gap-2 mb-4"
-            *ngIf="
-              showFilter(
-                'rescue-floral,balance-cashiers,total-floral-with-users,total-nfts-with-users'
-              )
-            "
-          >
+          <div class="grid grid-cols-2 gap-2 mb-4">
             <input-floating
               class="p-0 bg-transparent border-none"
               label="Data Início"
@@ -102,14 +95,38 @@
             />
           </div>
 
-          <div
-            class="mb-4"
-            *ngIf="
-              showFilter(
-                'rescue-floral,balance-cashiers,total-floral-with-users,total-nfts-with-users,total-nfts,total-deposit-floral,total-floral-tax'
-              )
-            "
-          >
+          <div class="mb-4" *ngIf="showFilter('total-users')">
+            <combobox
+              class="p-0 bg-transparent border-none"
+              label="Status"
+              model="status"
+              [(ngModel)]="dados.status"
+              name="status"
+              [options]="optionsUsersStatus"
+              bindValue="key"
+              bindText="label"
+              placeholder="Selecione um status"
+              size="md"
+              [isFloating]="true"
+            />
+          </div>
+
+          <div class="mb-4" *ngIf="showFilter('users-incentive-report')">
+            <select-default
+              inputPlaceholder="Incentivo"
+              bindText="name"
+              bindValue="id"
+              endpoint="v1/incentives"
+              name="incentive_id"
+              [(ngModel)]="dados.incentive_id"
+              [form]="form"
+              placeholder="Selecione um incentivo"
+              [isFloating]="true"
+              [required]="true"
+            />
+          </div>
+
+          <div class="mb-4">
             <combobox
               class="p-0 bg-transparent border-none"
               label="Formato de Saída"
@@ -122,6 +139,7 @@
               placeholder="Selecione um Formato"
               size="md"
               [isFloating]="true"
+              [required]="true"
             />
           </div>
         </div>

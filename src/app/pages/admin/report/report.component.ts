@@ -57,6 +57,26 @@ export class ReportComponent {
       key: 'total-floral-tax',
       label: 'Total de Taxas Recebidas',
     },
+    {
+      key: 'total-floral-tax-users',
+      label: 'Total de Taxas Recebidas Entre Contas',
+    },
+    {
+      key: 'total-users',
+      label: 'Total de Inscritos',
+    },
+    {
+      key: 'tickets-report',
+      label: 'Tickets',
+    },
+    {
+      key: 'incentives-report',
+      label: 'Incentivos',
+    },
+    {
+      key: 'users-incentive-report',
+      label: 'Inscritos por Incentivo',
+    },
   ];
 
   optionsRescue: any[] = [
@@ -82,6 +102,21 @@ export class ReportComponent {
     {
       key: 'excel',
       label: 'Excel',
+    },
+  ];
+
+  optionsUsersStatus: any[] = [
+    {
+      key: '',
+      label: 'Todos',
+    },
+    {
+      key: '1',
+      label: 'Ativo',
+    },
+    {
+      key: '0',
+      label: 'Inativo',
     },
   ];
 
