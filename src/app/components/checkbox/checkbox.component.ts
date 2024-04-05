@@ -36,7 +36,7 @@ export class CheckboxComponent implements ControlValueAccessor {
   @Input() label!: string;
   @Input() disabled = false;
   @Input() required = false;
-  @Input() checked: any;
+  @Input() checked: any = 0;
 
   @Output() checkedItem = new EventEmitter<any>();
 

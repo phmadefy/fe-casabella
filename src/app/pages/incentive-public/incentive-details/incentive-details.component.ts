@@ -13,6 +13,7 @@ import { BtnLikeComponent } from 'src/app/components/btn-like/btn-like.component
 import { ModalViewCommentsComponent } from 'src/app/shared/modal-view-comments/modal-view-comments.component';
 import { ModalIncentiveTermAcceptComponent } from 'src/app/shared/modal-incentive-term-accept/modal-incentive-term-accept.component';
 import { ModalViewDocComponent } from 'src/app/shared/modal-view-doc/modal-view-doc.component';
+import { AlertDisplayComponent } from 'src/app/components/alert-display/alert-display.component';
 
 @Component({
   selector: 'app-incentive-details',
@@ -25,6 +26,7 @@ import { ModalViewDocComponent } from 'src/app/shared/modal-view-doc/modal-view-
     ButtonCbComponent,
     SlickCarouselModule,
     NftCardComponent,
+    AlertDisplayComponent,
   ],
   templateUrl: './incentive-details.component.html',
   styleUrls: ['./incentive-details.component.scss'],
@@ -35,6 +37,8 @@ export class IncentiveDetailsComponent {
 
   dados: any = {};
   loading = false;
+
+  isViewOrParticipate = 'view';
 
   constructor(
     private service: ApiService,
@@ -69,6 +73,11 @@ export class IncentiveDetailsComponent {
             this.dados.information
           );
         }
+
+        this.isViewOrParticipate = this.tools.isViewOrParticipate(
+          res,
+          this.userCurrent
+        );
 
         // if (this.dados?.information) {
         //   setTimeout(() => {

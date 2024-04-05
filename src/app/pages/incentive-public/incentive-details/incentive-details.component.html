@@ -1,3 +1,17 @@
+<div class="my-3">
+  <alert-display
+    *ngIf="isViewOrParticipate == 'view'"
+    title="Você não participa desta campanha! Fale com um supervisor."
+    type="warning"
+  ></alert-display>
+
+  <alert-display
+    *ngIf="isViewOrParticipate != 'view'"
+    title="Você não participa desta campanha! Fale com um supervisor."
+    type="success"
+  ></alert-display>
+</div>
+
 <card [loading]="loading">
   <div
     class="grid md:grid-cols-2 gap-2 items-center justify-between border-b border-cb-secondary p-4"
@@ -11,6 +25,7 @@
         classes="btn btn-sm bg-cb-primary text-cb-base rounded-md w-full min-w-max"
         label="Regulamento"
         (onClick)="openTerm()"
+        *ngIf="isViewOrParticipate != 'view'"
       />
       <button-cb
         class="w-full"

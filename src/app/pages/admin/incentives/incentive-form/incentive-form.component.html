@@ -36,13 +36,25 @@
             name="view_description"
             [(ngModel)]="dados.view_description"
           />
-          <textarea
+          <!-- <textarea
             rows="3"
             class="input-cb"
             name="description"
             [(ngModel)]="dados.description"
             placeholder="Descrição do Incentivo"
-          ></textarea>
+          ></textarea> -->
+          <input-floating
+            class="p-0 bg-transparent border-none"
+            placeholder="Descrição do Incentivo"
+            model="description"
+            [(ngModel)]="dados.description"
+            name="description"
+            type="text"
+            [required]="true"
+            [rows]="3"
+            [form]="form"
+            size="md"
+          />
         </div>
       </div>
 
@@ -171,14 +183,13 @@
         </div> -->
 
         <div class="mb-4 col-span-2">
-          <!-- <checkbox
+          <checkbox
             label="Vincular NFT"
-            controlName="view_nft_id"
-            name="view_nft_id"
-            [(ngModel)]="dados.view_nft_id"
-          /> -->
+            controlName="view_nft"
+            name="view_nft"
+            [(ngModel)]="dados.view_nft"
+          />
           <select-default
-            label="Vincular NFT"
             [isFloating]="false"
             endpoint="v1/nft?sync=1"
             inputPlaceholder="Selecione um NFT"
@@ -374,9 +385,9 @@
         <div class="mb-4">
           <checkbox
             label="Vincular Termo"
-            controlName="view_term_id"
-            name="view_term_id"
-            [(ngModel)]="dados.view_term_id"
+            controlName="view_term"
+            name="view_term"
+            [(ngModel)]="dados.view_term"
           />
           <select-default
             endpoint="v1/terms"

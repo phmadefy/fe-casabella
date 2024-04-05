@@ -100,29 +100,43 @@ export class IncentivePublicComponent {
   }
 
   openIncentive(item: any) {
-    const find = this.userCurrent.terms.find(
-      (t: any) => t.id == item?.term?.id
+    console.log(
+      'isViewOrParticipate',
+      this.tools.isViewOrParticipate(item, this.userCurrent)
     );
 
-    if (find) {
+    const isViewOrParticipate = this.tools.isViewOrParticipate(
+      item,
+      this.userCurrent
+    );
+
+    if (isViewOrParticipate == 'view') {
       this.toIncentive(item.id);
     } else {
-      const dialogRef = this.dialog.open<any>(
-        ModalIncentiveTermAcceptComponent,
-        {
-          width: '95%',
-          maxWidth: '1055px',
-          data: item,
-          disableClose: true,
-        }
+      const find = this.userCurrent.terms.find(
+        (t: any) => t.id == item?.term?.id
       );
 
-      dialogRef.closed.subscribe(async (res) => {
-        if (res) {
-          this.toIncentive(item.id);
-          location.reload();
-        }
-      });
+      if (find) {
+        this.toIncentive(item.id);
+      } else {
+        const dialogRef = this.dialog.open<any>(
+          ModalIncentiveTermAcceptComponent,
+          {
+            width: '95%',
+            maxWidth: '1055px',
+            data: item,
+            disableClose: true,
+          }
+        );
+
+        dialogRef.closed.subscribe(async (res) => {
+          if (res) {
+            this.toIncentive(item.id);
+            location.reload();
+          }
+        });
+      }
     }
   }
 

@@ -9,7 +9,7 @@ import { ToolsService } from 'src/app/services/tools.service';
 import { InputFloatingComponent } from 'src/app/components/input-floating/input-floating.component';
 import { ButtonCbComponent } from 'src/app/components/button-cb/button-cb.component';
 // import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+// import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { EditorConfig } from '@ckeditor/ckeditor5-core';
 import { EditorComponent } from 'src/app/components/editor/editor.component';
 
@@ -23,7 +23,7 @@ import { EditorComponent } from 'src/app/components/editor/editor.component';
     InputFloatingComponent,
     ButtonCbComponent,
     RouterModule,
-    CKEditorModule,
+    // CKEditorModule,
     EditorComponent,
   ],
   providers: [ApiService],

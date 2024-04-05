@@ -10,4 +10,5 @@ import { CommonModule } from '@angular/common';
 })
 export class AlertDisplayComponent {
   @Input() title!: string;
+  @Input() type = 'warning';
 }
