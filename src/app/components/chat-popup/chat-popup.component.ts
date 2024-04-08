@@ -59,7 +59,7 @@ export class ChatPopupComponent {
 
         await this.getAllUsers();
 
-        console.log('this.userConnected', this.userConnected);
+        // console.log('this.userConnected', this.userConnected);
 
         this.websocketService.connected(this.userConnected);
 
@@ -116,7 +116,7 @@ export class ChatPopupComponent {
     this.haveToSyncObserver = this.websocketService
       .haveToSync()
       .subscribe((haveToSync) => {
-        console.log('haveToSync', haveToSync);
+        // console.log('haveToSync', haveToSync);
         this.websocketService.syncUsers(
           this.allUsers.filter((u: any) => u?.type == 'user')
         );
@@ -125,7 +125,7 @@ export class ChatPopupComponent {
     this.notReadObserver = this.websocketService
       .notRead()
       .subscribe((notRead: any) => {
-        console.log('notRead', notRead);
+        // console.log('notRead', notRead);
         this.chatsNotRead = this.chatsNotRead.concat(notRead);
         if (this.currentChat?.token) {
           const msgByUser = this.chatsNotRead.filter(
@@ -152,7 +152,7 @@ export class ChatPopupComponent {
     this.userUpdateObserver = this.websocketService
       .userUpdate()
       .subscribe((userUpdate: any) => {
-        console.log('userUpdate', userUpdate);
+        // console.log('userUpdate', userUpdate);
         const findIndex = this.chats.findIndex(
           (c: any) => c.token == userUpdate.token
         );
@@ -171,7 +171,7 @@ export class ChatPopupComponent {
     this.historyMessagesObserver = this.websocketService
       .historyMessages()
       .subscribe((historyMessages) => {
-        console.log('historyMessages', historyMessages);
+        // console.log('historyMessages', historyMessages);
         this.currentChat.messages = historyMessages;
         setTimeout(() => {
           this.toBottomContentChat();

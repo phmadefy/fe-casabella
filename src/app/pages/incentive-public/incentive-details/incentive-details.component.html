@@ -1,13 +1,13 @@
-<div class="my-3">
+<div class="my-3" *ngIf="dados.id">
   <alert-display
     *ngIf="isViewOrParticipate == 'view'"
-    title="Você não participa desta campanha! Fale com um supervisor."
+    title='Atenção! Você não está inscrito no incentivo, pois não pertence a segmentação / categoria selecionada, em caso de dúvidas, clique no botão "Fale conosco" e nos envie uma mensagem.'
     type="warning"
   ></alert-display>
 
   <alert-display
     *ngIf="isViewOrParticipate != 'view'"
-    title="Você não participa desta campanha! Fale com um supervisor."
+    title="Parabéns! Você se inscreveu com sucesso neste incentivo, leia as regras com atenção. Desejamos sucesso e boa sorte, caso tenha dúvidas, entre em contato."
     type="success"
   ></alert-display>
 </div>

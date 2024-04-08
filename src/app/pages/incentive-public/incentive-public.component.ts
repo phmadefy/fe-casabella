@@ -41,6 +41,8 @@ export class IncentivePublicComponent {
 
   tab: string = 'my';
   userCurrent: any = { terms: [] };
+
+  gallery_id: any;
   constructor(
     private route: ActivatedRoute,
     private service: ApiService,
@@ -52,6 +54,7 @@ export class IncentivePublicComponent {
 
   async ngOnInit() {
     this.userCurrent = await this.tools.getCurrentUser();
+    this.gallery_id = this.route.snapshot.queryParamMap.get('g');
 
     this.queryParamsObs = this.route.queryParams.subscribe((res: any) => {
       console.log('queryParams', res);

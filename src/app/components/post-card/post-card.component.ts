@@ -27,6 +27,7 @@ import { ModalViewCommentsComponent } from 'src/app/shared/modal-view-comments/m
 })
 export class PostCardComponent {
   @Input() dados: any = {};
+
   loading = false;
   userCurrent: any = {};
 
@@ -41,6 +42,7 @@ export class PostCardComponent {
 
   async ngOnInit() {
     this.userCurrent = await this.tools.getCurrentUser();
+    this.link();
   }
 
   async sendComment(formComment: NgForm) {
@@ -64,6 +66,7 @@ export class PostCardComponent {
       .getCustom(`v1/posts/${id}`)
       .then((res) => {
         this.dados = res;
+        this.link();
       })
       .finally(() => (this.loading = false));
   }
@@ -113,5 +116,20 @@ export class PostCardComponent {
     dialogRef.closed.subscribe((result) => {
       console.log('The dialog was closed');
     });
+  }
+
+  link() {
+    console.log('link:', this.dados);
+
+    if (this.dados?.incentive_id) {
+      this.dados.link = '/incentivo/detalhe';
+      this.dados.state = { incentive_id: this.dados.incentive_id };
+    } else if (this.dados?.incentive_gallery_id) {
+      this.dados.link = '/incentivo';
+      this.dados.queryParams = {
+        tab: 'galeria',
+        g: this.dados.incentive_gallery_id,
+      };
+    }
   }
 }

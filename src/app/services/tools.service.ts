@@ -366,24 +366,25 @@ export class ToolsService {
 
   isViewOrParticipate(incentive: any, user: any) {
     let type = 'view';
+
+    const segment: any = user?.person?.segment_id;
+    // console.log('isViewOrParticipate segment', segment);
+    // console.log('isViewOrParticipate incentive', incentive);
+    // console.log(
+    //   'isViewOrParticipate incentive',
+    //   incentive?.segments_participate?.some(
+    //     (s: any) => segment == s.pivot.segment_id
+    //   )
+    // );
+
     if (
-      user?.segment?.some((us: any) =>
-        incentive?.segments_participate?.some(
-          (s: any) => us.pivot.segment_id == s.pivot.segment_id
-        )
+      incentive?.segments_participate?.some(
+        (s: any) => segment == s.pivot.segment_id
       )
     ) {
       type = 'participate';
     }
-    if (
-      user?.segment?.some((us: any) =>
-        incentive?.segments_view?.some(
-          (s: any) => us.pivot.segment_id == s.pivot.segment_id
-        )
-      )
-    ) {
-      type = 'view';
-    }
+
     return type;
   }
 }

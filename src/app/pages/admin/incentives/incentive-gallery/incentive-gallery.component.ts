@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApiService } from 'src/app/services/api.service';
 import { ToolsService } from 'src/app/services/tools.service';
@@ -26,6 +26,8 @@ import { ModalSlideGalleryComponent } from 'src/app/shared/modal-slide-gallery/m
   styleUrls: ['./incentive-gallery.component.scss'],
 })
 export class IncentiveGalleryComponent {
+  @Input() gallery_id: any;
+
   dataSource: any = { data: [] };
   loading = false;
 
@@ -55,14 +57,17 @@ export class IncentiveGalleryComponent {
       .listing(this.filters)
       .then((res) => {
         this.dataSource = res;
+        if (this.gallery_id) {
+          this.openView(this.gallery_id);
+        }
       })
       .finally(() => (this.loading = false));
   }
 
-  openView(item: any) {
+  openView(id: any) {
     this.loading = true;
     this.service
-      .show(item.id)
+      .show(id)
       .then((res) => {
         this.gallery = res;
       })
