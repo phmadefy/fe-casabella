@@ -15,6 +15,7 @@ module.exports = {
       "cb-info": "#21ACBE",
       "cb-info-dark": "#173E5E",
       "cb-success": "#4CAF50",
+      "cb-success-light": "#42f05717",
       "cb-modal": "#162446",
       "cb-hover-signup": "#F10B4E",
       "cb-orange": "#F39257",

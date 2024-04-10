@@ -432,116 +432,116 @@ export class HeaderComponent {
         {
           id: 'admin-reports',
           title: 'Relatórios',
-          route: 'admin',
+          route: '/relatorios',
           icon: 'icone icon-reports',
-          permissions: 'reports',
-          items: [
-            {
-              id: 'admin-report-floral',
-              title: 'Relatórios de Floral',
-            },
-            {
-              id: 'admin-report-floral-resgated',
-              title: 'Florais Resgatados',
-              route: 'relatorios',
-              queryParams: { type: 'floral-recue' },
-            },
-            {
-              id: 'admin-report-floral-sald-caixa',
-              title: 'Saldo de Florais nos Caixas',
-              route: 'admin/report-floral-saldo-caixas',
-            },
-            {
-              id: 'admin-report-floral-circulate',
-              title: 'Total de Florais em Circulação',
-              route: 'admin/report-floral-circulate',
-            },
-            {
-              id: 'admin-report-floral-add-in-system',
-              title: 'Total de Aporte de Floral no Sistema',
-              route: 'admin/report-floral-add-in-system',
-            },
-            {
-              id: 'admin-report-floral-taxa',
-              title: 'Recebidos em Taxas Floral',
-              route: 'admin/report-floral-taxa',
-            },
-            {
-              id: 'admin-report-receive-tax-transfer',
-              title: 'Recebidos em Taxa Transf. Entre Contas',
-              route: 'admin/report-receive-tax-transfer',
-            },
+          // permissions: '',
+          // items: [
+          //   {
+          //     id: 'admin-report-floral',
+          //     title: 'Relatórios de Floral',
+          //   },
+          //   {
+          //     id: 'admin-report-floral-resgated',
+          //     title: 'Florais Resgatados',
+          //     route: 'relatorios',
+          //     queryParams: { type: 'floral-recue' },
+          //   },
+          //   {
+          //     id: 'admin-report-floral-sald-caixa',
+          //     title: 'Saldo de Florais nos Caixas',
+          //     route: 'admin/report-floral-saldo-caixas',
+          //   },
+          //   {
+          //     id: 'admin-report-floral-circulate',
+          //     title: 'Total de Florais em Circulação',
+          //     route: 'admin/report-floral-circulate',
+          //   },
+          //   {
+          //     id: 'admin-report-floral-add-in-system',
+          //     title: 'Total de Aporte de Floral no Sistema',
+          //     route: 'admin/report-floral-add-in-system',
+          //   },
+          //   {
+          //     id: 'admin-report-floral-taxa',
+          //     title: 'Recebidos em Taxas Floral',
+          //     route: 'admin/report-floral-taxa',
+          //   },
+          //   {
+          //     id: 'admin-report-receive-tax-transfer',
+          //     title: 'Recebidos em Taxa Transf. Entre Contas',
+          //     route: 'admin/report-receive-tax-transfer',
+          //   },
 
-            {
-              id: 'admin-report-nft',
-              title: 'Relatórios de NFT',
-            },
-            {
-              id: 'admin-report-nft-resgated',
-              title: 'NFTs Resgatados',
-              route: 'admin/report-nft-resgated',
-            },
-            {
-              id: 'admin-report-nft-history',
-              title: 'Histórico do NFT',
-              route: 'admin/report-nft-history',
-            },
-            {
-              id: 'admin-report-total-nft-resgat',
-              title: 'Total de NFTS a Resgatar',
-              route: 'admin/report-total-nft-resgat',
-            },
-            {
-              id: 'admin-report-nft-add-campaing',
-              title: 'NFTs Cadastradas para Campanha',
-              route: 'admin/report-nft-add-campaing',
-            },
-            {
-              id: 'admin-report-nft-in-db',
-              title: 'NFTs Disponiveis no Banco de Dados',
-              route: 'admin/report-nft-in-db',
-            },
-            {
-              id: 'admin-report-total-nft-circulated',
-              title: 'Total de NFTs em Circulação',
-              route: 'admin/report-total-nft-circulated',
-            },
+          //   {
+          //     id: 'admin-report-nft',
+          //     title: 'Relatórios de NFT',
+          //   },
+          //   {
+          //     id: 'admin-report-nft-resgated',
+          //     title: 'NFTs Resgatados',
+          //     route: 'admin/report-nft-resgated',
+          //   },
+          //   {
+          //     id: 'admin-report-nft-history',
+          //     title: 'Histórico do NFT',
+          //     route: 'admin/report-nft-history',
+          //   },
+          //   {
+          //     id: 'admin-report-total-nft-resgat',
+          //     title: 'Total de NFTS a Resgatar',
+          //     route: 'admin/report-total-nft-resgat',
+          //   },
+          //   {
+          //     id: 'admin-report-nft-add-campaing',
+          //     title: 'NFTs Cadastradas para Campanha',
+          //     route: 'admin/report-nft-add-campaing',
+          //   },
+          //   {
+          //     id: 'admin-report-nft-in-db',
+          //     title: 'NFTs Disponiveis no Banco de Dados',
+          //     route: 'admin/report-nft-in-db',
+          //   },
+          //   {
+          //     id: 'admin-report-total-nft-circulated',
+          //     title: 'Total de NFTs em Circulação',
+          //     route: 'admin/report-total-nft-circulated',
+          //   },
 
-            {
-              id: 'admin-report-campaing',
-              title: 'Relatórios de Campanhas',
-            },
-            {
-              id: 'admin-report-campaing-people-in-incentivos',
-              title: 'Pessoas Inscritas nos Incentivos',
-              route: 'admin/report-campaing-people-in-incentivos',
-            },
-            {
-              id: 'admin-report-campaing-people-downoad-terms',
-              title: 'Pessoas que Baixaram Regulamentos',
-              route: 'admin/report-campaing-people-downoad-terms',
-            },
-            {
-              id: 'admin-report-campaing-total-subscribes-winers',
-              title: 'Total de Campanhas, Inscritos e Ganhadores',
-              route: 'admin/report-campaing-total-subscribes-winers',
-            },
+          //   {
+          //     id: 'admin-report-campaing',
+          //     title: 'Relatórios de Campanhas',
+          //   },
+          //   {
+          //     id: 'admin-report-campaing-people-in-incentivos',
+          //     title: 'Pessoas Inscritas nos Incentivos',
+          //     route: 'admin/report-campaing-people-in-incentivos',
+          //   },
+          //   {
+          //     id: 'admin-report-campaing-people-downoad-terms',
+          //     title: 'Pessoas que Baixaram Regulamentos',
+          //     route: 'admin/report-campaing-people-downoad-terms',
+          //   },
+          //   {
+          //     id: 'admin-report-campaing-total-subscribes-winers',
+          //     title: 'Total de Campanhas, Inscritos e Ganhadores',
+          //     route: 'admin/report-campaing-total-subscribes-winers',
+          //   },
 
-            {
-              id: 'admin-report-users',
-              title: 'Relatórios de Usuários',
-            },
-            {
-              id: 'admin-report-users-add-in-platform',
-              title: 'Números de Cadatrados na Plataforma',
-              route: 'admin/report-users-add-in-platform',
-            },
-            {
-              id: 'admin-report-users-frequence',
-              title: 'Frequência de Acessos de Usuários',
-              route: 'admin/report-users-frequence',
-            },
-          ],
+          //   {
+          //     id: 'admin-report-users',
+          //     title: 'Relatórios de Usuários',
+          //   },
+          //   {
+          //     id: 'admin-report-users-add-in-platform',
+          //     title: 'Números de Cadatrados na Plataforma',
+          //     route: 'admin/report-users-add-in-platform',
+          //   },
+          //   {
+          //     id: 'admin-report-users-frequence',
+          //     title: 'Frequência de Acessos de Usuários',
+          //     route: 'admin/report-users-frequence',
+          //   },
+          // ],
         },
         {
           id: 'admin-users',

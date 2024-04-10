@@ -21,7 +21,7 @@
             name="subject"
             [(ngModel)]="dados.subject"
             type="text"
-            required
+            [required]="true"
             [form]="form"
             size="md"
           ></input-floating>
@@ -43,13 +43,25 @@
         </div>
 
         <div class="mb-4">
-          <textarea
+          <!-- <textarea
             class="input-cb col-span-2"
             [rows]="10"
             name="description"
             [(ngModel)]="dados.description"
             placeholder="Descrição do Seu Chamado"
-          ></textarea>
+          ></textarea> -->
+          <input-floating
+            class="p-0 bg-transparent border-none col-span-2"
+            model="description"
+            name="description"
+            [(ngModel)]="dados.description"
+            type="textarea"
+            placeholder="Descrição do Seu Chamado"
+            [rows]="10"
+            [required]="true"
+            [form]="form"
+            size="md"
+          />
         </div>
 
         <div class="mb-4">

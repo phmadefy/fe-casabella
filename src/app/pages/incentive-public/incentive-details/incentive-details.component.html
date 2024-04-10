@@ -1,3 +1,17 @@
+<div class="my-3" *ngIf="dados.id">
+  <alert-display
+    *ngIf="isViewOrParticipate == 'view'"
+    title='Atenção! Você não está inscrito no incentivo, pois não pertence a segmentação / categoria selecionada, em caso de dúvidas, clique no botão "Fale conosco" e nos envie uma mensagem.'
+    type="warning"
+  ></alert-display>
+
+  <alert-display
+    *ngIf="isViewOrParticipate != 'view'"
+    title="Parabéns! Você se inscreveu com sucesso neste incentivo, leia as regras com atenção. Desejamos sucesso e boa sorte, caso tenha dúvidas, entre em contato."
+    type="success"
+  ></alert-display>
+</div>
+
 <card [loading]="loading">
   <div
     class="grid md:grid-cols-2 gap-2 items-center justify-between border-b border-cb-secondary p-4"
@@ -11,6 +25,7 @@
         classes="btn btn-sm bg-cb-primary text-cb-base rounded-md w-full min-w-max"
         label="Regulamento"
         (onClick)="openTerm()"
+        *ngIf="isViewOrParticipate != 'view'"
       />
       <button-cb
         class="w-full"

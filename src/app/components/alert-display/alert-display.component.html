@@ -1,6 +1,10 @@
 <div
-  class="flex justify-between items-center p-4 mb-4 text-sm text-cb-base rounded-md border border-cb-orange bg-cb-orange-light"
+  class="flex justify-between items-center p-4 mb-4 text-sm text-cb-base rounded-md border"
   role="alert"
+  [ngClass]="{
+    'border-cb-orange bg-cb-orange-light': type == 'warning',
+    'border-cb-success bg-cb-success-light': type == 'success'
+  }"
 >
   <span>
     {{ title }}
@@ -8,6 +12,10 @@
 
   <button
     class="border h-4 w-4 text-cb-orange border-cb-orange rounded-full flex items-center justify-center"
+    [ngClass]="{
+      'text-cb-orange border-cb-orange': type == 'warning',
+      'text-cb-success border-cb-success': type == 'success'
+    }"
   >
     <i class="fa-solid fa-xmark text-[10px]"></i>
   </button>

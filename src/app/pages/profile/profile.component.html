@@ -18,9 +18,15 @@
           </p>
           <p class="text-sm font-semibold">
             CPF:
-            <span class="font-normal">{{
-              userCurrent?.person?.cpf | mask : "CPF_CNPJ"
-            }}</span>
+            <span class="font-normal">
+              {{ userCurrent?.person?.cpf | mask : "CPF_CNPJ" }}
+            </span>
+          </p>
+          <p class="text-sm font-semibold">
+            Cidade:
+            <span class="font-normal">
+              {{ userCurrent?.person?.address?.city }}
+            </span>
           </p>
         </div>
       </div>
@@ -129,7 +135,7 @@
         />
       </div>
 
-      <div class="grid md:grid-cols-3 gap-3 mb-4">
+      <!-- <div class="grid md:grid-cols-3 gap-3 mb-4">
         <select-default
           class="p-0 bg-transparent border-none"
           label="Cidade"
@@ -147,7 +153,7 @@
           bindTextSecondaryDivider="/"
           bindTextSecondary="state.label"
         />
-      </div>
+      </div> -->
     </div>
 
     <div class="card-footer flex items-center gap-3">

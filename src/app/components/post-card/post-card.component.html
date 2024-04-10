@@ -35,7 +35,18 @@
   <div class="p-4" [innerText]="dados?.description"></div>
 
   <div class="w-full flex items-center justify-center">
-    <img *ngIf="dados?.attachment_url" [src]="dados.attachment_url" alt="" />
+    <ng-container *ngIf="!dados.link">
+      <img *ngIf="dados?.attachment_url" [src]="dados.attachment_url" alt="" />
+    </ng-container>
+    <a
+      href="javascript:void(0)"
+      [routerLink]="dados.link"
+      [state]="dados?.state"
+      [queryParams]="dados?.queryParams"
+      *ngIf="dados.link"
+    >
+      <img *ngIf="dados?.attachment_url" [src]="dados.attachment_url" alt="" />
+    </a>
   </div>
 
   <div class="p-4 flex items-center justify-between">

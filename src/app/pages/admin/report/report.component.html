@@ -1,1 +1,168 @@
-<p>report works!</p>
+<div class="mb-4">
+  <card>
+    <div class="flex flex-wrap gap-3 text-lg font-semibold text-center p-5">
+      <h5>Relatórios</h5>
+    </div>
+
+    <form #form="ngForm" class="border-t border-cb-secondary">
+      <div class="p-5 w-1/2">
+        <combobox
+          class="p-0 bg-transparent border-none"
+          label="Modelo de relatório"
+          model="type"
+          [(ngModel)]="dados.type"
+          name="type"
+          [options]="optionsReport"
+          bindValue="key"
+          bindText="label"
+          placeholder="Selecione um modelo"
+          size="md"
+          [isFloating]="false"
+          [required]="true"
+          [form]="form"
+        />
+      </div>
+
+      <div class="p-5 grid grid-cols-2 gap-2">
+        <div class="mb-2">
+          <div class="grid grid-cols-2 gap-2 mb-4">
+            <input-floating
+              class="p-0 bg-transparent border-none"
+              label="Data Início"
+              model="startDate"
+              [(ngModel)]="dados.startDate"
+              name="startDate"
+              placeholder=" "
+              size="md"
+              type="date"
+            />
+            <input-floating
+              class="p-0 bg-transparent border-none"
+              label="Data Final"
+              model="endDate"
+              [(ngModel)]="dados.endDate"
+              name="endDate"
+              placeholder=" "
+              size="md"
+              type="date"
+            />
+          </div>
+
+          <div class="mb-4" *ngIf="showFilter('rescue-floral')">
+            <combobox
+              class="p-0 bg-transparent border-none"
+              label="Tipo de Resgate"
+              model="rescue_type"
+              [(ngModel)]="dados.rescue_type"
+              name="rescue_type"
+              [options]="optionsRescue"
+              bindValue="key"
+              bindText="label"
+              placeholder="Selecione um tipo"
+              size="md"
+              [isFloating]="true"
+            />
+          </div>
+
+          <div class="mb-4" *ngIf="showFilter('rescue-floral')">
+            <select-default
+              label="Público"
+              model="public"
+              [(ngModel)]="dados.public"
+              name="public"
+              endpoint="v1/persons-type"
+              bindText="name"
+              bindValue="id"
+              inputPlaceholder="Selecione o público"
+              size="md"
+            />
+          </div>
+
+          <div
+            class="mb-4"
+            *ngIf="showFilter('rescue-floral,total-nfts-with-users')"
+          >
+            <input-floating
+              class="p-0 bg-transparent border-none"
+              label="CPF:"
+              model="cpf"
+              [(ngModel)]="dados.cpf"
+              name="cpf"
+              placeholder="CPF:"
+              size="md"
+              type="tel"
+              mask="000.000.000-00"
+            />
+          </div>
+
+          <div class="mb-4" *ngIf="showFilter('total-users')">
+            <combobox
+              class="p-0 bg-transparent border-none"
+              label="Status"
+              model="status"
+              [(ngModel)]="dados.status"
+              name="status"
+              [options]="optionsUsersStatus"
+              bindValue="key"
+              bindText="label"
+              placeholder="Selecione um status"
+              size="md"
+              [isFloating]="true"
+            />
+          </div>
+
+          <div class="mb-4" *ngIf="showFilter('users-incentive-report')">
+            <select-default
+              inputPlaceholder="Incentivo"
+              bindText="name"
+              bindValue="id"
+              endpoint="v1/incentives"
+              name="incentive_id"
+              [(ngModel)]="dados.incentive_id"
+              [form]="form"
+              placeholder="Selecione um incentivo"
+              [isFloating]="true"
+              [required]="true"
+            />
+          </div>
+
+          <div class="mb-4">
+            <combobox
+              class="p-0 bg-transparent border-none"
+              label="Formato de Saída"
+              model="returnReport"
+              [(ngModel)]="dados.returnReport"
+              name="returnReport"
+              [options]="optionsReturnReport"
+              bindValue="key"
+              bindText="label"
+              placeholder="Selecione um Formato"
+              size="md"
+              [isFloating]="true"
+              [required]="true"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer flex items-center gap-3">
+        <button
+          class="btn btn-md text-white bg-gradient-cb bg-gradient-cb-hover rounded-md"
+          [disabled]="loading"
+          (click)="submit(form)"
+        >
+          <spinner *ngIf="loading" />
+          <span *ngIf="!loading">Gerar</span>
+        </button>
+        <!-- <button
+          class="btn btn-sm text-white rounded-md"
+          [disabled]="loading"
+          routerLink="/admin/users"
+          [queryParams]="{ tab: 'active' }"
+        >
+          Cancelar
+        </button> -->
+      </div>
+    </form>
+  </card>
+</div>

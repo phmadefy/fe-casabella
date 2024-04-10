@@ -363,4 +363,28 @@ export class ToolsService {
     });
     sound.play();
   }
+
+  isViewOrParticipate(incentive: any, user: any) {
+    let type = 'view';
+
+    const segment: any = user?.person?.segment_id;
+    // console.log('isViewOrParticipate segment', segment);
+    // console.log('isViewOrParticipate incentive', incentive);
+    // console.log(
+    //   'isViewOrParticipate incentive',
+    //   incentive?.segments_participate?.some(
+    //     (s: any) => segment == s.pivot.segment_id
+    //   )
+    // );
+
+    if (
+      incentive?.segments_participate?.some(
+        (s: any) => segment == s.pivot.segment_id
+      )
+    ) {
+      type = 'participate';
+    }
+
+    return type;
+  }
 }

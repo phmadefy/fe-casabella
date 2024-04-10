@@ -100,6 +100,14 @@ export class ApiService {
     return this.http.get(`${route}`, httpOptions);
   }
 
+  downloadBlobPost(route: string, body: any = {}) {
+    const httpOptions: any = {
+      responseType: 'blob',
+    };
+
+    return this.http.post(`${route}`, body, httpOptions);
+  }
+
   downloadPdf(url: string): Observable<PDFSource> {
     return new Observable((observer) => {
       this.http.get(url, { responseType: 'arraybuffer' }).subscribe(
