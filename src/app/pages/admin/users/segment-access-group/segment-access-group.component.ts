@@ -49,7 +49,7 @@ export class SegmentAccessGroupComponent {
   async getSegment() {
     this.loadingSegment = true;
     await this.service
-      .getSegments()
+      .getSegments({ perPage: 100 })
       .then((res: any) => {
         console.log('getSegment', res);
         this.segment = res;
@@ -60,7 +60,7 @@ export class SegmentAccessGroupComponent {
   async getAccessGroup() {
     this.loadingAccessGroup = true;
     await this.service
-      .getAccessGroups()
+      .getAccessGroups({ perPage: 100 })
       .then((res: any) => {
         console.log('getAccessGroup', res);
         this.accessGroup = res;

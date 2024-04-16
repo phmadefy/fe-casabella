@@ -77,7 +77,7 @@ export class PermissionsAccessGroupComponent {
 
     this.loading = true;
     this.service
-      .getCustom(`v1/groups/${group.id}`)
+      .getCustom(`v1/groups/${group.id}`, { perPage: 100 })
       .then((res) => {
         console.log('getGroup', res);
         this.group = res;
