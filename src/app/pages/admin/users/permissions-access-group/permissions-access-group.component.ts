@@ -47,7 +47,7 @@ export class PermissionsAccessGroupComponent {
   }
 
   listPermissions() {
-    this.service.listing({ perPage: 100 }).then((res) => {
+    this.service.listing({ per_page: 100 }).then((res) => {
       // console.log('listPermissions', res);
       const list: any[] = res.data;
 
@@ -77,7 +77,7 @@ export class PermissionsAccessGroupComponent {
 
     this.loading = true;
     this.service
-      .getCustom(`v1/groups/${group.id}`, { perPage: 100 })
+      .getCustom(`v1/groups/${group.id}`, { per_page: 100 })
       .then((res) => {
         console.log('getGroup', res);
         this.group = res;

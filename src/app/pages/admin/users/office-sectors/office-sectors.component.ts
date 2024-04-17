@@ -44,7 +44,7 @@ export class OfficeSectorsComponent {
   async getOffice() {
     this.loadingOffice = true;
     await this.service
-      .getCustom('v1/roles', { perPage: 100 })
+      .getCustom('v1/roles', { per_page: 100 })
       .then((res: any) => {
         console.log('getOffice', res);
         this.office = res;
@@ -55,7 +55,7 @@ export class OfficeSectorsComponent {
   async getSectors() {
     this.loadingSectors = true;
     await this.service
-      .getCustom('v1/departments', { perPage: 100 })
+      .getCustom('v1/departments', { per_page: 100 })
       .then((res: any) => {
         console.log('getSectors', res);
         this.sectors = res;

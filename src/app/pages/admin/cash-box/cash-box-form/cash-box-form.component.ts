@@ -76,7 +76,7 @@ export class CashBoxFormComponent extends AbstractForms {
   }
   override finish(result: any): void {
     // throw new Error('Method not implemented.');
-    this.getDados(result.id);
+    this.getDados(result?.data?.id);
   }
 
   async setAdmin(admin: any) {
