@@ -37,7 +37,7 @@
             <td>{{ item?.user?.person?.cpf | mask : "CPF_CNPJ" }}</td>
             <td class="text-center">{{ item?.user?.nickname }}</td>
             <td class="text-center">
-              {{ tools.parseListArray(item?.user?.segment, "name") }}
+              {{ item?.user?.person?.segment?.name }}
             </td>
             <td class="text-center">
               {{ item.created_at | date : "medium" }}

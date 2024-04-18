@@ -20,6 +20,7 @@ import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
   ],
   templateUrl: './import-users.component.html',
   styleUrls: ['./import-users.component.scss'],
+  providers: [ApiService],
 })
 export class ImportUsersComponent {
   loading = false;

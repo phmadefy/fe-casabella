@@ -46,145 +46,147 @@
 
 <!-- <card *ngFor="let item of dataSource.data"> -->
 <div class="mb-4" *ngIf="!loading">
-  <card *ngFor="let item of dataSource.data" class="mb-4">
-    <div
-      class="rounded-md border border-cb-secondary flex justify-between text-cb-base"
-    >
+  <div *ngFor="let item of dataSource.data" class="mb-4">
+    <card class="mb-4">
       <div
-        class="py-2 px-3 flex flex-col justify-center border-r border-cb-secondary text-2xl text-cb-success font-bold w-1/6"
+        class="rounded-md border border-cb-secondary flex justify-between text-cb-base"
       >
-        <!-- <img src="assets/nft1.jpg" alt="nft" class="h-24 w-32 object-cover" /> -->
-        {{ item.amount | currency : "BRL" : "F$" : "1.4-4" }}
-      </div>
+        <div
+          class="py-2 px-3 flex flex-col justify-center border-r border-cb-secondary text-2xl text-cb-success font-bold w-2/6"
+        >
+          <!-- <img src="assets/nft1.jpg" alt="nft" class="h-24 w-32 object-cover" /> -->
+          {{ item.amount | currency : "BRL" : "F$" : "1.4-4" }}
+        </div>
 
-      <div
-        class="py-2 px-3 flex flex-col justify-center border-r border-cb-secondary w-1/4"
-      >
-        <p>Resgate:</p>
-        <p class="text-cb-success flex gap-2" *ngIf="tab === 'approve'">
-          <i class="fa-solid fa-circle"></i>
-          <span class="">Aprovado</span>
-        </p>
-        <p class="text-cb-orange flex gap-2" *ngIf="tab === 'pending'">
-          <i class="fa-solid fa-circle"></i>
-          <span class="">Em aprovação</span>
-        </p>
-        <p class="text-cb-red flex gap-2" *ngIf="tab === 'rejected'">
-          <i class="fa-solid fa-circle"></i>
-          <span class="">Rejeitado</span>
-        </p>
-      </div>
-
-      <div
-        class="py-2 px-3 flex flex-col justify-center border-r border-cb-secondary w-1/6"
-      >
-        <div>
-          <p>Solicitante:</p>
-          <p>
-            <span class="text-cb-info text-sm">
-              {{ item?.user?.name }}
-            </span>
+        <div
+          class="py-2 px-3 flex flex-col justify-center border-r border-cb-secondary w-1/4"
+        >
+          <p>Resgate:</p>
+          <p class="text-cb-success flex gap-2" *ngIf="tab === 'approve'">
+            <i class="fa-solid fa-circle"></i>
+            <span class="">Aprovado</span>
           </p>
-          <p>
-            <span class="text-gray-500 text-sm">
-              {{ item?.user?.nickname }}
-            </span>
+          <p class="text-cb-orange flex gap-2" *ngIf="tab === 'pending'">
+            <i class="fa-solid fa-circle"></i>
+            <span class="">Em aprovação</span>
+          </p>
+          <p class="text-cb-red flex gap-2" *ngIf="tab === 'rejected'">
+            <i class="fa-solid fa-circle"></i>
+            <span class="">Rejeitado</span>
           </p>
         </div>
-      </div>
 
-      <div
-        class="py-2 px-3 flex flex-col justify-center border-r border-cb-secondary text-center"
-        *ngIf="tab !== 'rejected'"
-      >
-        <div>
-          <p>Data:</p>
-          <p>
-            <span class="text-cb-info text-sm">
-              {{ item.created_at | date : "dd/MM/yyyy" }}
-            </span>
-          </p>
-        </div>
-      </div>
-
-      <div
-        class="py-2 px-3 flex flex-col justify-center border-r border-cb-secondary text-center w-1/6"
-      >
-        <div>
-          <p>Valor (R$):</p>
-          <p><span class="text-cb-info text-sm">R$ 50,00</span></p>
-        </div>
-      </div>
-
-      <div
-        class="py-2 px-3 flex flex-col justify-center w-1/5"
-        *ngIf="tab === 'approve'"
-      >
-        <div>
-          <p>Aprovado por:</p>
-          <p>
-            <span class="text-cb-info text-sm">
-              {{ item?.approved?.nickname }}
-            </span>
-          </p>
-          <p>
-            <span class="text-gray-500 text-sm">
-              {{ item?.approved_at | date : "dd/MM/yyyy" }}
-            </span>
-          </p>
-        </div>
-      </div>
-
-      <ng-container *ngIf="tab === 'rejected'">
-        <div class="py-2 px-3 flex flex-col justify-center w-1/6">
+        <div
+          class="py-2 px-3 flex flex-col justify-center border-r border-cb-secondary w-1/6"
+        >
           <div>
-            <p>Rejeitado por:</p>
+            <p>Solicitante:</p>
             <p>
               <span class="text-cb-info text-sm">
-                {{ item?.transaction?.user_rejected?.nickname }}
+                {{ item?.user?.name }}
               </span>
             </p>
             <p>
               <span class="text-gray-500 text-sm">
-                {{ item?.transaction?.rejected_at | date : "dd/MM/yyyy" }}
+                {{ item?.user?.nickname }}
               </span>
             </p>
           </div>
         </div>
 
         <div
-          class="py-2 px-3 flex flex-col justify-center border-l border-cb-secondary gap-2"
+          class="py-2 px-3 flex flex-col justify-center border-r border-cb-secondary text-center"
+          *ngIf="tab !== 'rejected'"
         >
           <div>
-            <p>Motivo:</p>
-            <span class="text-cb-info text-sm">
-              {{ item?.transaction?.observation }}
-            </span>
+            <p>Data:</p>
+            <p>
+              <span class="text-cb-info text-sm">
+                {{ item.created_at | date : "dd/MM/yyyy" }}
+              </span>
+            </p>
           </div>
         </div>
-      </ng-container>
 
-      <ng-container *ngIf="tab === 'pending'">
-        <div class="py-2 px-3 flex flex-col justify-center gap-2">
-          <div class="flex flex-col gap-2">
-            <button
-              class="btn-sm btn-md w-full rounded-md bg-gradient-cb font-semibold"
-              (click)="openModalApproveRefuse(item, 'approve')"
-            >
-              Autorizar
-            </button>
+        <!-- <div
+          class="py-2 px-3 flex flex-col justify-center border-r border-cb-secondary text-center w-1/6"
+        >
+          <div>
+            <p>Valor (R$):</p>
+            <p><span class="text-cb-info text-sm">R$ 50,00</span></p>
+          </div>
+        </div> -->
 
-            <button
-              class="btn-sm btn-md w-full text-white rounded-md border border-cb-secondary"
-              (click)="openModalApproveRefuse(item, 'refuse')"
-            >
-              Rejeitar
-            </button>
+        <div
+          class="py-2 px-3 flex flex-col justify-center w-1/5"
+          *ngIf="tab === 'approve'"
+        >
+          <div>
+            <p>Aprovado por:</p>
+            <p>
+              <span class="text-cb-info text-sm">
+                {{ item?.approved?.nickname }}
+              </span>
+            </p>
+            <p>
+              <span class="text-gray-500 text-sm">
+                {{ item?.approved_at | date : "dd/MM/yyyy" }}
+              </span>
+            </p>
           </div>
         </div>
-      </ng-container>
-    </div>
-  </card>
+
+        <ng-container *ngIf="tab === 'rejected'">
+          <div class="py-2 px-3 flex flex-col justify-center w-1/6">
+            <div>
+              <p>Rejeitado por:</p>
+              <p>
+                <span class="text-cb-info text-sm">
+                  {{ item?.transaction?.user_rejected?.nickname }}
+                </span>
+              </p>
+              <p>
+                <span class="text-gray-500 text-sm">
+                  {{ item?.transaction?.rejected_at | date : "dd/MM/yyyy" }}
+                </span>
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="py-2 px-3 flex flex-col justify-center border-l border-cb-secondary gap-2"
+          >
+            <div>
+              <p>Motivo:</p>
+              <span class="text-cb-info text-sm">
+                {{ item?.transaction?.observation }}
+              </span>
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="tab === 'pending'">
+          <div class="py-2 px-3 flex flex-col justify-center gap-2">
+            <div class="flex flex-col gap-2">
+              <button
+                class="btn-sm btn-md w-full rounded-md bg-gradient-cb font-semibold"
+                (click)="openModalApproveRefuse(item, 'approve')"
+              >
+                Autorizar
+              </button>
+
+              <button
+                class="btn-sm btn-md w-full text-white rounded-md border border-cb-secondary"
+                (click)="openModalApproveRefuse(item, 'refuse')"
+              >
+                Rejeitar
+              </button>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </card>
+  </div>
 </div>
 
 <card [loading]="loading">
