@@ -1,27 +1,33 @@
 <modal [title]="getTitle()" [dialogRef]="dialogRef">
   <div class="p-4">
-    <div class="gap-2 text-center" *ngIf="!data?.is_user">
-      <span>Você está realizando uma transferência de Floral </span>
-      <span *ngIf="dados?.from_cashier" class="text-cb-info font-semibold">
-        do {{ dados?.from_cashier?.name }}
-      </span>
-      <span class="ml-[4px]">para o usuário</span>
-      <span *ngIf="dados?.to_user" class="text-cb-info font-semibold">
-        {{ dados?.to_user?.user?.nickname }}
-      </span>
-      <span>no valor abaixo, deseja continuar ?</span>
-    </div>
+    <ng-container *ngIf="!data?.rescue">
+      <div class="gap-2 text-center" *ngIf="!data?.is_user">
+        <span>Você está realizando uma transferência de Floral </span>
+        <span *ngIf="dados?.from_cashier" class="text-cb-info font-semibold">
+          do {{ dados?.from_cashier?.name }}
+        </span>
+        <span class="ml-[4px]">para o usuário</span>
+        <span *ngIf="dados?.to_user" class="text-cb-info font-semibold">
+          {{ dados?.to_user?.user?.nickname }}
+        </span>
+        <span>no valor abaixo, deseja continuar ?</span>
+      </div>
 
-    <div class="gap-2 text-center" *ngIf="data?.is_user">
-      <span>Você está realizando uma transferência de Floral</span>
-      <span class="ml-[4px]">para o usuário</span>
-      <span *ngIf="dados?.to_user" class="text-cb-info font-semibold">
-        {{ dados?.to_user?.user?.nickname }}
-      </span>
-      <span
-        >. Esta transação deverá ser aprovada pela Casabella Fragrâncias, deseja
-        continuar ?</span
-      >
+      <div class="gap-2 text-center" *ngIf="data?.is_user">
+        <span>Você está realizando uma transferência de Floral</span>
+        <span class="ml-[4px]">para o usuário</span>
+        <span *ngIf="dados?.to_user" class="text-cb-info font-semibold">
+          {{ dados?.to_user?.user?.nickname }}
+        </span>
+        <span
+          >. Esta transação deverá ser aprovada pela Casabella Fragrâncias,
+          deseja continuar ?</span
+        >
+      </div>
+    </ng-container>
+
+    <div class="text-center" *ngIf="data?.rescue">
+      Você está realizando um resgate no valor abaixo, deseja continuar?
     </div>
 
     <div class="my-4 text-center">

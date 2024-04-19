@@ -42,7 +42,7 @@
                   inputPlaceholder="Vincular Incentivo"
                   bindText="name"
                   bindValue="id"
-                  endpoint="v1/incentives"
+                  endpoint="v1/incentives?per_page=500"
                   name="incentive_id"
                   [(ngModel)]="dados.incentive_id"
                   [form]="form"
@@ -60,7 +60,7 @@
                   inputPlaceholder="Vincular Galeria"
                   bindText="name"
                   bindValue="id"
-                  endpoint="v1/incentives-gallery"
+                  endpoint="v1/incentives-gallery?per_page=500"
                   name="incentive_gallery_id"
                   [(ngModel)]="dados.incentive_gallery_id"
                   [form]="form"
@@ -93,7 +93,7 @@
     <div class="mb-2">
       <card-choose
         inputPlaceholder="Público"
-        endpoint="v1/persons-type"
+        endpoint="v1/persons-type?per_page=500"
         bindText="name"
         bindValue="id"
         (choose)="dados.public = $event"
@@ -104,7 +104,7 @@
     <div class="mb-2">
       <card-choose
         inputPlaceholder="Segmentos"
-        endpoint="v1/segments"
+        endpoint="v1/segments?per_page=500"
         bindText="name"
         bindValue="id"
         (choose)="dados.segments = $event"
